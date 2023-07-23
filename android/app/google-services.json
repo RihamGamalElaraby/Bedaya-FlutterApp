@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "767727548490",
+    "project_id": "bedaya-final",
+    "storage_bucket": "bedaya-final.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767727548490:android:a0321976f16afb3be70eb3",
+        "android_client_info": {
+          "package_name": "com.example.bedaya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767727548490-59qirsu0qsb295fattc1lbp5cjpruig6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiy4Cj5FrizJ4-O59IGZOvIy7wbtJ8TLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767727548490-59qirsu0qsb295fattc1lbp5cjpruig6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
