@@ -10,32 +10,32 @@ class PatientAdultModel {
   String? maritalStatus; //done
   int? childrenNumber; //done
   int? ageOfYoungChild; //done
-  String? educationLevelAdultPatient;
-  String? smokingAdultPatient;
-  String? rateSmoking;
-  String? typeSmoking;
-  String? otherHabits;
-  String? smokingCessationsStatus;
-  String? DurationSmokingCessations;
-  String? smokingCessations;
-  int? gravidaNumber;
-  int? abortionNumber;
-  String? contracebtion;
-  String? methodContracebtion;
-  String? othercontracebtion;
-  List<ComplaintsModel>? complaintsList; //*******************important
-  List<String>? medicalPastHistory;
-  String? otherMedicalPastHistory;
-  List<String>? allergyPastHistory;
-  String? specifyAllergyPastHistory;
-  String? bloodTransfusionPastHistory;
-  String? durationBloodTransfusionPastHistory;
-  String? surgicalPastHistory;
-  String? operationSurgicalPastHistory;
-  List<String>? drugsOfChronicDiseases;
-  String? othersDrugsOfChronicDiseases;
-  List<String>? familyHistory;
-  String? othersFamilyHistory;
+  String? educationLevelAdultPatient; //done
+  String? smokingAdultPatient; // done
+  String? rateSmoking; // done
+  String? typeSmoking; // done
+  String? otherHabitsSmoking; // done
+  String? smokingCessationsStatus; // done
+  String? DurationSmokingCessations; // done
+  String? smokingCessations; // done
+  int? gravidaNumber; // done
+  int? abortionNumber; // done
+  String? contracebtion; // done
+  String? methodContracebtion; // done
+  String? othercontracebtion; // done
+  List<ComplaintsModel>? complaintsList; //*******************important            --------->>>>>>> lesa mt3mlsh
+  List<String>? medicalPastHistory; // done
+  String? otherMedicalPastHistory; // done
+  String? allergyPastHistory; // done
+  String? specifyAllergyPastHistory; // done
+  String? bloodTransfusionPastHistory; // done
+  String? durationBloodTransfusionPastHistory; // done
+  String? surgicalPastHistory; // done
+  String? operationSurgicalPastHistory; // done
+  List<String>? drugsOfChronicDiseases; // done
+  String? othersDrugsOfChronicDiseases; // done
+  List<String>? familyHistory; // done
+  String? othersFamilyHistory; // done
   //VitalDataGeneralExamination? vitalDataGeneralExamination;// change that
   double? BP1Vital;
   double? BP2Vital;
@@ -65,7 +65,7 @@ class PatientAdultModel {
     this.smokingAdultPatient,
     this.rateSmoking,
     this.typeSmoking,
-    this.otherHabits,
+    this.otherHabitsSmoking,
     this.smokingCessationsStatus,
     this.DurationSmokingCessations,
     this.smokingCessations,
@@ -118,7 +118,7 @@ class PatientAdultModel {
     smokingAdultPatient: json["smokingAdultPatient"],
     rateSmoking: json["rateSmoking"],
     typeSmoking: json["typeSmoking"],
-    otherHabits: json["otherHabits"],
+    otherHabitsSmoking: json["otherHabitsSmoking"],
     smokingCessationsStatus: json["smokingCessationsStatus"],
     DurationSmokingCessations: json["DurationSmokingCessations"],
     smokingCessations: json["smokingCessations"],
@@ -176,7 +176,7 @@ class PatientAdultModel {
       "smokingAdultPatient": smokingAdultPatient,
       "rateSmoking": rateSmoking,
       "typeSmoking": typeSmoking,
-      "otherHabits": otherHabits,
+      "otherHabitsSmoking": otherHabitsSmoking,
       "smokingCessationsStatus": smokingCessationsStatus,
       "DurationSmokingCessations": DurationSmokingCessations,
       "smokingCessations": smokingCessations,
