@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:767727548490:android:0c782cfd1682a7c1e70eb3",
+        "android_client_info": {
+          "package_name": "com.Bedaya.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767727548490-59qirsu0qsb295fattc1lbp5cjpruig6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiy4Cj5FrizJ4-O59IGZOvIy7wbtJ8TLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767727548490-59qirsu0qsb295fattc1lbp5cjpruig6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "767727548490-fuc1pqa0nf9mlupmo51rilv4gikdtjnj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.onatcipli.networkUpp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:767727548490:android:a0321976f16afb3be70eb3",
         "android_client_info": {
           "package_name": "com.example.bedaya"
@@ -29,6 +65,13 @@
             {
               "client_id": "767727548490-59qirsu0qsb295fattc1lbp5cjpruig6.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "767727548490-fuc1pqa0nf9mlupmo51rilv4gikdtjnj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.onatcipli.networkUpp"
+              }
             }
           ]
         }

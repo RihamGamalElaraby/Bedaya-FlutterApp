@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDiy4Cj5FrizJ4-O59IGZOvIy7wbtJ8TLU',
-    appId: '1:767727548490:android:a0321976f16afb3be70eb3',
+    appId: '1:767727548490:android:0c782cfd1682a7c1e70eb3',
     messagingSenderId: '767727548490',
     projectId: 'bedaya-final',
     storageBucket: 'bedaya-final.appspot.com',
@@ -63,23 +63,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBLkN2KgYeAeRtPW9DcbqG_6tlZi_WE_jM',
-    appId: '1:767727548490:ios:912acefefbc28c3be70eb3',
+    appId: '1:767727548490:ios:7a3e0df619967853e70eb3',
     messagingSenderId: '767727548490',
     projectId: 'bedaya-final',
     storageBucket: 'bedaya-final.appspot.com',
-    iosClientId:
-        '767727548490-jdbjco8arlujfcjr63kcvd6v7lpunroa.apps.googleusercontent.com',
-    iosBundleId: 'com.example.bedaya',
+    iosClientId: '767727548490-fuc1pqa0nf9mlupmo51rilv4gikdtjnj.apps.googleusercontent.com',
+    iosBundleId: 'com.onatcipli.networkUpp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBLkN2KgYeAeRtPW9DcbqG_6tlZi_WE_jM',
-    appId: '1:767727548490:ios:912acefefbc28c3be70eb3',
+    appId: '1:767727548490:ios:7a3e0df619967853e70eb3',
     messagingSenderId: '767727548490',
     projectId: 'bedaya-final',
     storageBucket: 'bedaya-final.appspot.com',
-    iosClientId:
-        '767727548490-jdbjco8arlujfcjr63kcvd6v7lpunroa.apps.googleusercontent.com',
-    iosBundleId: 'com.example.bedaya',
+    iosClientId: '767727548490-fuc1pqa0nf9mlupmo51rilv4gikdtjnj.apps.googleusercontent.com',
+    iosBundleId: 'com.onatcipli.networkUpp',
   );
 }

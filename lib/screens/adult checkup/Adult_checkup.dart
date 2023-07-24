@@ -1,4 +1,4 @@
-
+import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/component/component.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/widgets/my_button.dart';
@@ -16,19 +16,54 @@ class adultCheckup extends StatefulWidget {
 }
 
 class _adultCheckupState extends State<adultCheckup> {
-  List <String> Chosedaylist = ['Day 1','Day 2','Day 3','Day 4','Day 5'];
-  String selectedday = 'Day 1' ;
-  List <String> ChoseMartialState = ['Single','Married','Divorced','Widowed'];
-  String SlectedMartialState = 'Married' ;
+  var formKey = GlobalKey<FormState>();
+  List<String> Chosedaylist = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'];
+  String selectedday = 'Day 1';
 
-  bool Day1 = false;
+  List<String> ChoseMartialState = ['Single', 'Married', 'Divorced', 'Widowed'];
+  String SlectedMartialState = 'Married';
+
+  bool Day1 = false; // haderrrr
   bool Day2 = false;
   bool Day3 = false;
   bool Day4 = false;
   bool Day5 = false;
+  bool Day6= false;
+  bool Day7 = false;
+
+  bool yesSmoke = false;
+  bool noSmoke = false;
+  String isSmoking = "";
+
+
+  String educationLevel="";
+  bool  Illiterate = false ;
+  bool  Readandwrite = false ;
+  bool  Primary = false ;
+  bool  Preparatory = false ;
+  bool  Secondary = false ;
+  bool  University = false ;
+  bool  Postgraduate = false ;
+
+
   bool Male = false;
+   String sex= "";
   bool Female = false;
   bool married = false;
+
+  TextEditingController patientNameController = TextEditingController();
+
+  TextEditingController codePatientController = TextEditingController();
+
+  TextEditingController houseNuController =TextEditingController();
+
+  TextEditingController occubationController = TextEditingController();
+
+  TextEditingController mobileNumController = TextEditingController();
+
+  TextEditingController childrenNumController = TextEditingController();
+
+  TextEditingController ageYoungchildController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,63 +77,65 @@ class _adultCheckupState extends State<adultCheckup> {
         preferredSize: Size(100, 50),
       ),
       body: Form(
+        key: formKey,  // wrbna ana fnannnn
         child: SingleChildScrollView(
           child: Column(
             children: [
               sizedBoxhight(hight: 20),
-              Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 250,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                        ),
-                        child:
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Center(
-                                    child: Text(
-                                  'Chose Day',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                )),
-                              ],
-                            ),
-                      ),
-                    ],
-                  ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-              // List <String> Chosedaylist = ['Day 1','Day 2','Day 3','Day 4','Day 5'];
-              // String selectedday = 'Day 1' ;
-                    child: DropdownButton<String>(
-                            value: selectedday ,
-                            items: Chosedaylist.
-                            map((day)=>
-                            DropdownMenuItem(
-                            value:day,
-                            child: Text(day , style: TextStyle(
-                            color: Colors.black,),),),).toList(),
-                            onChanged: (day)=> setState(() =>  selectedday = day!  )
-                              ),
-                            ),
-                          ],
-                        ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     height: 40,
                     width: 250,
+                    decoration: BoxDecoration(
                       color: Colors.green,
-                      // borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                            child: Text(
+                          'Chose Day',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: DropdownButton<String>(
+                        value: selectedday, // 1-done
+                        items: Chosedaylist.map(
+                          (day) => DropdownMenuItem(
+                            value: day,
+                            child: Text(
+                              day,
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ).toList(),
+                        onChanged: (day) => setState(() => selectedday = day!)),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 250,
+                    color: Colors.green,
+                    // borderRadius: BorderRadius.all(Radius.circular(15)),
                     child: Center(
                         child: Text(
                       'Personal Information',
@@ -111,39 +148,80 @@ class _adultCheckupState extends State<adultCheckup> {
               ),
               sizedBoxhight(hight: 20,),
               Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                         crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(flex: 1, child: defultText(data: 'Patient Name:')),
                   sizedBoxWidth(width: 5),
                   Flexible(
                     flex: 1,
                     child: defultTextField(
+                      validator: (String? value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return "Enter name";
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: patientNameController, // 2-done validator ?
                       text: 'Name',
                       width: 200,
                     ),
                   ),
                   sizedBoxWidth(width: 10),
-                  Flexible(flex: 1, child: defultText(data: 'Code:')),
+                  Flexible(flex: 1, child: defultText(data: 'Code:',)),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 1, child: defultTextField(text: 'code', width: 80)),
+                      flex: 1, child: defultTextField(text: 'code', width: 80,controller: codePatientController,validator: (String? value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "Code";
+                    } else {
+                      return null;
+                    }
+                  },)),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'Sex:')),
                   sizedBoxWidth(width: 5),
                   Flexible(flex: 1, child: defultText(data: 'male')),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Male, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Male, onChanged: (val) {
+                     setState(() {
+                       Male =val! ;
+                       Female = false ;
+                     });
+                     if (val!) {
+                       sex = "male";
+                     } else {
+                       sex = "female";
+                     }
+                     },)),
                   sizedBoxWidth(width: 5),
                   Flexible(flex: 1, child: defultText(data: 'female')),
-                  Checkbox(value: Female, onChanged: (val) {}),
+                  Checkbox(value: Female, onChanged: (val) {
+                    setState(() {
+                      Female =val! ;
+                      Male = false ;
+                    });
+                    if (val!) {
+                      sex = "female";
+                    } else {
+                      sex = "male";
+                    }
+                  }),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'House Number:')),
                   sizedBoxWidth(width: 5),
-                  Flexible(flex: 1, child: defultTextField(text: 'H.N')),
+                  Flexible(flex: 1, child: defultTextField(text: 'H.N',controller: houseNuController ,validator: (String? value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "house nu.";
+                    } else {
+                      return null;
+                    }
+                  },)),
                 ],
               ),
-                sizedBoxhight(hight: 10),
+              sizedBoxhight(hight: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,6 +232,14 @@ class _adultCheckupState extends State<adultCheckup> {
                     flex: 1,
                     child: defultTextField(
                       text: 'Occupation',
+                      controller: occubationController,
+                      validator: (String? value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return "Enter occupation";
+                        } else {
+                          return null;
+                        }
+                      },
                       width: 140,
                     ),
                   ),
@@ -161,7 +247,15 @@ class _adultCheckupState extends State<adultCheckup> {
                   defultText(data: 'Mobile Number:'),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 1, child: defultTextField(text: 'num', width: 140))
+                      flex: 1, child: defultTextField(text: 'num', width: 140,controller: mobileNumController,validator: (String? value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "Mobile Number ";
+                    } else if (value.length < 11) {
+                      return "enter 11 numbers please";
+                    } else {
+                      return null;
+                    }
+                  },))
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -173,26 +267,25 @@ class _adultCheckupState extends State<adultCheckup> {
                   Flexible(flex: 2, child: defultText(data: 'Marital Status:')),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                    flex :2,
+                    flex: 2,
                     child: Container(
-                    child:  DropdownButton<String>(
-                       //  decoration: InputDecoration(
-                       // enabledBorder: OutlineInputBorder(
-                       //  borderSide: BorderSide(width: 250 , color: Colors.green),
-                       // )
-                       //  ),
-                              value:  SlectedMartialState,
-                              items: ChoseMartialState.
-                              map((MartialState)=>
-                                  DropdownMenuItem(
-                                    value:MartialState,
-                                    child: Text(MartialState , style: TextStyle(
-                                      color: Colors.black,),),),).toList(),
-                              onChanged: (MartialState)=> setState(() =>  SlectedMartialState = MartialState!  )
-                          ),
-                        ),
-                   ),
-
+                      child: DropdownButton<String>(
+                          value: SlectedMartialState,
+                          items: ChoseMartialState.map(
+                            (MartialState) => DropdownMenuItem(
+                              value: MartialState,
+                              child: Text(
+                                MartialState,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ).toList(),
+                          onChanged: (MartialState) => setState(
+                              () => SlectedMartialState = MartialState!)),
+                    ),
+                  ),
                   sizedBoxWidth(width: 10),
                   Flexible(
                     flex: 1,
@@ -206,7 +299,16 @@ class _adultCheckupState extends State<adultCheckup> {
                       child: defultText(data: 'Children Number:', x: 12)),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 1, child: defultTextField(text: 'Children Number')),
+                      flex: 1, child: defultTextField(text: 'Children Number',controller: childrenNumController,
+                      validator: (String? value) {
+                        if(SlectedMartialState == 'Married')
+                        {
+                                     return "children num";
+                        }else {
+                          return null;
+                        }
+                      },
+                        )),
                   sizedBoxWidth(width: 10),
                   Flexible(
                       flex: 2,
@@ -214,7 +316,14 @@ class _adultCheckupState extends State<adultCheckup> {
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 1,
-                      child: defultTextField(text: 'Age of the youngest')),
+                      child: defultTextField(text: 'Age of the youngest',controller: ageYoungchildController,validator: (String? value) {
+                        if(SlectedMartialState == 'Married')
+                        {
+                          return "yongest age";
+                        }else {
+                          return null;
+                        }
+                      },)),
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -224,36 +333,145 @@ class _adultCheckupState extends State<adultCheckup> {
                 children: [
                   defultText(data: 'Education Level:'),
                   sizedBoxWidth(width: 10),
-                  Flexible(flex: 1, child: defultText(data: 'Illiterate', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1, child: defultText(data: 'Illiterate', x: 12)),
+                  Flexible(
+                      flex: 1,
+                      child: Checkbox(value: Illiterate, onChanged: (val) {
+                        setState(() {
+                          Illiterate =val! ;
+                          Readandwrite = false ;
+                           Primary= false;
+                          Preparatory = false;
+                          Secondary = false;
+                          University = false;
+                          Postgraduate = false;
+
+                        });
+                        if (val!) {
+                          educationLevel = "Illiterate";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
                   Flexible(
-                      flex: 1, child: defultText(data: 'Read and write', x: 12)),
+                      flex: 1,
+                      child: defultText(data: 'Read and write', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Readandwrite, onChanged: (val) {
+                        setState(() {
+                          Illiterate =false ;
+                          Readandwrite = val! ;
+                          Primary= false;
+                          Preparatory = false;
+                          Secondary = false;
+                          University = false;
+                          Postgraduate = false;
+
+                        });
+                        if (val!) {
+                          educationLevel = "Read and write";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'Primary', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Primary, onChanged: (val) {
+                        setState(() {
+                          Illiterate =false ;
+                          Readandwrite = false  ;
+                          Primary= val!;
+                          Preparatory = false;
+                          Secondary = false;
+                          University = false;
+                          Postgraduate = false;
+
+                        });
+                        if (val!) {
+                          educationLevel = "Primary";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
                   Flexible(
                       flex: 1, child: defultText(data: 'Preparatory', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Preparatory, onChanged: (val) {
+                        setState(() {
+                          Illiterate =false ;
+                          Readandwrite = false ;
+                          Primary= false;
+                          Preparatory = val!;
+                          Secondary = false;
+                          University = false;
+                          Postgraduate = false;
+
+                        });
+                        if (val!) {
+                          educationLevel = "Preparatory";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
-                  Flexible(flex: 1, child: defultText(data: 'Secondary', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1, child: defultText(data: 'Secondary', x: 12)),
+                  Flexible(
+                      flex: 1,
+                      child: Checkbox(value: Secondary, onChanged: (val) {
+                        setState(() {
+                          Illiterate =false ;
+                          Readandwrite = false ;
+                          Primary= false;
+                          Preparatory = false;
+                          Secondary = val!;
+                          University = false;
+                          Postgraduate = false;
+
+                        });
+                        if (val!) {
+                          educationLevel = "Secondary";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
-                  Flexible(flex: 1, child: defultText(data: 'University', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1, child: defultText(data: 'University', x: 12)),
+                  Flexible(
+                      flex: 1,
+                          child: Checkbox(value: University, onChanged: (val) {
+                        setState(() {
+                          Illiterate =false ;
+                          Readandwrite = false ;
+                          Primary= false;
+                          Preparatory = false;
+                          Secondary = false;
+                          University = val!;
+                          Postgraduate = false;
+
+                        });
+                        if (val!) {
+                          educationLevel = "University";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
                   Flexible(
                       flex: 1, child: defultText(data: 'Postgraduate', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Postgraduate, onChanged: (val) {
+                        setState(() {
+                          Illiterate =false ;
+                          Readandwrite = false ;
+                          Primary= false;
+                          Preparatory = false;
+                          Secondary = false;
+                          University = false;
+                          Postgraduate = val!;
+
+                        });
+                        if (val!) {
+                          educationLevel = "Postgraduate";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
                 ],
               ),
@@ -287,23 +505,43 @@ class _adultCheckupState extends State<adultCheckup> {
                   sizedBoxWidth(width: 20),
                   Flexible(flex: 1, child: defultText(data: 'Yes', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: yesSmoke, onChanged: (val) {
+                        setState(() {
+                          yesSmoke =val! ;
+                          noSmoke = false ;
+                        });
+                        if (val!) {
+                          isSmoking = "Smoke";
+                        }
+                      })),
                   sizedBoxWidth(width: 20),
                   Flexible(flex: 1, child: defultText(data: 'No', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: noSmoke, onChanged: (val) {
+                        setState(() {
+                          yesSmoke =false ;
+                          noSmoke = val! ;
+                        });
+                        if (val!) {
+                          isSmoking = "No smoke";
+                        }
+                      })),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 2, child: defultText(data: 'IF Yes; ')),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'Rate: ')),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 2, child: defultTextField(text: 'Rate', width: 140)),
+                      flex: 2,
+                      child: defultTextField(text: 'Rate', width: 140)),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'Type: ')),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 2, child: defultTextField(text: 'Type', width: 140)),
+                      flex: 2,
+                      child: defultTextField(text: 'Type', width: 140)),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 2, child: defultText(data: 'Other habits: ')),
                   sizedBoxWidth(width: 5),
@@ -326,7 +564,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'Yes',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 20),
                   Flexible(
                       flex: 1,
@@ -334,7 +573,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'No',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 2, child: defultText(data: 'IF Yes; ')),
                   sizedBoxWidth(width: 10),
@@ -359,7 +599,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'Regular',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 1,
@@ -367,7 +608,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'Irregular',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 10),
                   Flexible(
                       flex: 1,
@@ -375,15 +617,19 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'Menopause',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 5),
-                  Flexible(flex: 2, child: defultText(data: 'Gravida Number:  ')),
+                  Flexible(
+                      flex: 2, child: defultText(data: 'Gravida Number:  ')),
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 2,
-                      child: defultTextField(text: 'Gravida Number', width: 140)),
+                      child:
+                          defultTextField(text: 'Gravida Number', width: 140)),
                   sizedBoxWidth(width: 10),
-                  Flexible(flex: 2, child: defultText(data: 'Abortion Number:')),
+                  Flexible(
+                      flex: 2, child: defultText(data: 'Abortion Number:')),
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 2,
@@ -404,7 +650,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'Yes',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 20),
                   Flexible(
                       flex: 1,
@@ -412,7 +659,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'No',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 2, child: defultText(data: 'IF Yes; ')),
                   sizedBoxhight(hight: 20),
@@ -424,7 +672,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'IUD',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 20),
                   Flexible(
                       flex: 1,
@@ -432,7 +681,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'Implant',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 20),
                   Flexible(
                       flex: 1,
@@ -440,11 +690,13 @@ class _adultCheckupState extends State<adultCheckup> {
                         data: 'COC',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                      flex: 1,
+                      child: Checkbox(value: Day1, onChanged: (val) {})),
                   sizedBoxWidth(width: 20),
                   Flexible(flex: 2, child: defultText(data: 'Other:')),
                   Flexible(
-                      flex: 2, child: defultTextField(text: 'other', width: 140)),
+                      flex: 2,
+                      child: defultTextField(text: 'other', width: 140)),
                 ],
               ),
               sizedBoxhight(hight: 5),
@@ -457,9 +709,33 @@ class _adultCheckupState extends State<adultCheckup> {
                       x: Colors.white,
                       title: 'Save&Continue',
                       size: 25,
-                      onPressed: () => {
-                        Navigator.pushNamed(
-                            context, continueCheckupAdult.screenRoute)
+                      onPressed: (){
+                        // print(sex);
+                        // print(educationLevel);
+                        // print(int.parse(houseNuController.text));
+                        if (formKey.currentState!.validate()) {
+
+                          Navigator.pushNamed(
+                            context,
+                            continueCheckupAdult.screenRoute,
+                          );
+                          PatientAdultModel patientmodel = PatientAdultModel(
+                            chosenDay: selectedday,
+                            nameAdultPatient: patientNameController.text,
+                            codeAdultPatient: int.parse(codePatientController.text),
+                            sexAdultPatient: sex,
+                            houseNumberAdultPatient: int.parse(houseNuController.text),
+                            mobileNumberAdultPatient: int.parse(mobileNumController.text),
+                            occupationAdultPatient: occubationController.text,
+                            maritalStatus:  SlectedMartialState ,
+                            childrenNumber: int.parse(childrenNumController.text),
+                            ageOfYoungChild: int.parse(ageYoungchildController.text),
+                            educationLevelAdultPatient: educationLevel,
+
+
+
+                          );
+                        }
                       },
                     ),
                   )
@@ -1118,8 +1394,6 @@ class _adultCheckupState extends State<adultCheckup> {
 //     );
 //   }
 // }
-
-
 
 // Row(
 //   mainAxisAlignment: MainAxisAlignment.center,

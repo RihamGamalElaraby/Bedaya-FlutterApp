@@ -1,3 +1,4 @@
+import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_checkup.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
@@ -21,6 +22,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
   bool Day3 = false;
   bool Day4 = false;
   bool Day5 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,11 +52,11 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   ),
                   child: Center(
                       child: Text(
-                    'Past History',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )),
+                        'Past History',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ],
             ),
@@ -424,11 +426,11 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   ),
                   child: Center(
                       child: Text(
-                    'General Examination',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )),
+                        'General Examination',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ],
             ),
@@ -781,11 +783,11 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   ),
                   child: Center(
                       child: Text(
-                    'Referral of convoy clinics',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )),
+                        'Referral of convoy clinics',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ],
             ),
@@ -880,11 +882,11 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   ),
                   child: Center(
                       child: Text(
-                    'Follow up',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )),
+                        'Follow up',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ],
             ),
@@ -912,7 +914,38 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   title: 'Save&Done',
                   size: 25,
                   onPressed: () =>
-                      {Navigator.pushNamed(context, adultCheckup.screenRoute)},
+                  {
+                    Navigator.pushNamed(context, adultCheckup.screenRoute),
+                    // PatientAdultModel patientmodel = PatientAdultModel(
+                    //     chosenDay: ,
+                    //     nameAdultPatient: nameAdultPatient,
+                    //     codeAdultPatient: codeAdultPatient,
+                    //     sexAdultPatient: sexAdultPatient,
+                    //     houseNumberAdultPatient: houseNumberAdultPatient,
+                    //     mobileNumberAdultPatient: mobileNumberAdultPatient,
+                    //     occupationAdultPatient: occupationAdultPatient,
+                    //     maritalStatus: maritalStatus,
+                    //     educationLevelAdultPatient: educationLevelAdultPatient,
+                    //     smokingAdultPatient: smokingAdultPatient,
+                    //     smokingCessationsStatus: smokingCessationsStatus,
+                    //     smokingCessations: smokingCessations,
+                    //     gravidaNumber: gravidaNumber,
+                    //     abortionNumber: abortionNumber,
+                    //     contracebtion: contracebtion,
+                    //     complaintsList: complaintsList,
+                    //     medicalPastHistory: medicalPastHistory,
+                    //     allergyPastHistory: allergyPastHistory,
+                    //     specifyAllergyPastHistory: specifyAllergyPastHistory,
+                    //     bloodTransfusionPastHistory: bloodTransfusionPastHistory,
+                    //     durationBloodTransfusionPastHistory: durationBloodTransfusionPastHistory,
+                    //     surgicalPastHistory: surgicalPastHistory,
+                    //     drugsOfChronicDiseases: drugsOfChronicDiseases,
+                    //     familyHistory: familyHistory,
+                    //     vitalDataGeneralExamination: vitalDataGeneralExamination,
+                    //     complexionGenerallExamination: complexionGenerallExamination,
+                    //     ReferralOfConvoyClinics: ReferralOfConvoyClinics,
+                    //     followUp: followUp)
+                  },
                 ),
                 sizedBoxWidth(width: 20),
                 mysignin(
@@ -920,7 +953,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   x: Colors.white,
                   title: 'Save&BacktoEdit',
                   size: 25,
-                  onPressed: () => {
+                  onPressed: () =>
+                  {
                     Navigator.pushNamed(
                         context, continueCheckupAdult.screenRoute)
                   },
@@ -931,7 +965,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   x: Colors.white,
                   title: 'Save&GotoFollowup',
                   size: 25,
-                  onPressed: () => {
+                  onPressed: () =>
+                  {
                     // Navigator.pushNamed(
                     //     context, continueCheckupAdult.screenRoute)
                   },

@@ -115,7 +115,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child: Row(
                   children: [
                     Icon(Icons.photo_album),
                     SizedBox(width: 20,),
@@ -129,7 +129,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
               InkWell(onTap: ()async{
              await  uploadImage();
               }, child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_camera),
                     SizedBox(width: 20,),
@@ -151,7 +151,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_album),
                     SizedBox(width: 20,),
@@ -163,7 +163,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
               SizedBox(width: 200,),
 
               InkWell(onTap: (){}, child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_camera),
                     SizedBox(width: 20,),
@@ -185,7 +185,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_album),
                     SizedBox(width: 20,),
@@ -197,7 +197,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
               SizedBox(width: 200,),
 
               InkWell(onTap: (){}, child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_camera),
                     SizedBox(width: 20,),
@@ -219,7 +219,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_album),
                     SizedBox(width: 20,),
@@ -230,7 +230,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
                   ],),),),
               SizedBox(width: 200,),
               InkWell(onTap: (){}, child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_camera),
                     SizedBox(width: 20,),
@@ -253,7 +253,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
             children: [
               Flexible(
                 child: InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
-                  child: const Row(
+                  child:  Row(
                     children: [
                       Icon(Icons.photo_album),
                       SizedBox(width: 20,),
@@ -265,7 +265,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
               ),
               SizedBox(width: 200,),
               InkWell(onTap: (){}, child: Container( padding: const EdgeInsets.all(10 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.photo_camera),
                     SizedBox(width: 20,),
