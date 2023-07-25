@@ -6,6 +6,7 @@ class PatientAdultModel {
   String? sexAdultPatient; //done
   int? houseNumberAdultPatient; //done
   int? mobileNumberAdultPatient; //done
+  int? agePatientAdult; // done
   String? occupationAdultPatient; //done
   String? maritalStatus; //done
   int? childrenNumber; //done
@@ -37,19 +38,25 @@ class PatientAdultModel {
   List<String>? familyHistory; // done
   String? othersFamilyHistory; // done
   //VitalDataGeneralExamination? vitalDataGeneralExamination;// change that
-  double? BP1Vital;
-  double? BP2Vital;
-  double? mmHg1Vital;
-  double? mmHg2Vital;
-  double? hrVital;
-  double? tempVital;
-  double? randomBloodSugarVital;
-  List<String>? complexionGenerallExamination;
-  String? o2SaturationGenerallExamination;
-  List<String>? ReferralOfConvoyClinics;
-  String? followUp;
+  double? BP1Vital; // done
+  double? BP2Vital; // done
+  double? mmHg1Vital; // done
+  double? mmHg2Vital; // done
+  double? hrVital; // done
+  double? tempVital; // done
+  double? randomBloodSugarVital; // done
+  double? o2Saturationvital; // done
+  List<String>? complexionGenerallExamination; // done
+  List<String>? ReferralOfConvoyClinics; // done
+  String? followUp; // done
+  String? goHome; // done
+  String? communityDevelopment; // done
+  List<String>? screening; // done
 
   PatientAdultModel({
+    this.goHome,
+    this.communityDevelopment,
+    this.screening,
     this.idAdultPatient = "",
     this.chosenDay,
     this.nameAdultPatient,
@@ -57,6 +64,7 @@ class PatientAdultModel {
     this.sexAdultPatient,
     this.houseNumberAdultPatient,
     this.mobileNumberAdultPatient,
+    this.agePatientAdult,
     this.occupationAdultPatient,
     this.maritalStatus,
     this.childrenNumber,
@@ -96,13 +104,16 @@ class PatientAdultModel {
     this.tempVital,
     this.randomBloodSugarVital,
     this.complexionGenerallExamination,
-    this.o2SaturationGenerallExamination,
+    this.o2Saturationvital,
     this.ReferralOfConvoyClinics,
     this.followUp,
   });
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
+    goHome: json["goHome"],
+    communityDevelopment: json["communityDevelopment"],
+    screening: json["screening"],
     idAdultPatient: json["idAdultPatient"],
     chosenDay: json["chosenDay"],
     nameAdultPatient: json["nameAdultPatient"],
@@ -110,6 +121,7 @@ class PatientAdultModel {
     sexAdultPatient: json["sexAdultPatient"],
     houseNumberAdultPatient: json["houseNumberAdultPatient"],
     mobileNumberAdultPatient: json["mobileNumberAdultPatient"],
+    agePatientAdult: json["agePatientAdult"],
     occupationAdultPatient: json["occupationAdultPatient"],
     maritalStatus: json["maritalStatus"],
     childrenNumber: json["childrenNumber"],
@@ -153,14 +165,17 @@ class PatientAdultModel {
     tempVital: json["tempVital"],
     randomBloodSugarVital : json["randomBloodSugarVital"],
     complexionGenerallExamination: json["complexionGenerallExamination"],
-    o2SaturationGenerallExamination:
-    json["o2SaturationGenerallExamination"],
+    o2Saturationvital:
+    json["o2Saturationvital"],
     ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"],
     followUp: json["followUp"],
   );
 
   Map<String, dynamic> toFireStore() {
     return {
+      "goHome":goHome,
+      "communityDevelopment":communityDevelopment,
+      "screening":screening,
       "idAdultPatient": idAdultPatient,
       "chosenDay": chosenDay,
       "nameAdultPatient": nameAdultPatient,
@@ -168,6 +183,7 @@ class PatientAdultModel {
       "sexAdultPatient": sexAdultPatient,
       "houseNumberAdultPatient": houseNumberAdultPatient,
       "mobileNumberAdultPatient": mobileNumberAdultPatient,
+      "agePatientAdult": agePatientAdult,
       "occupationAdultPatient": occupationAdultPatient,
       "maritalStatus": maritalStatus,
       "childrenNumber": childrenNumber,
@@ -210,7 +226,7 @@ class PatientAdultModel {
       "randomBloodSugarVital"  :randomBloodSugarVital,
 
       "complexionGenerallExamination": complexionGenerallExamination,
-      "o2SaturationGenerallExamination": o2SaturationGenerallExamination,
+      "o2Saturationvital": o2Saturationvital,
       "ReferralOfConvoyClinics": ReferralOfConvoyClinics,
       "followUp": followUp,
     };

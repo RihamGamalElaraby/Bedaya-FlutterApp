@@ -96,6 +96,8 @@ class _adultCheckupState extends State<adultCheckup> {
 
   TextEditingController otherContraceptionController = TextEditingController();
 
+  TextEditingController agePatientController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +260,23 @@ class _adultCheckupState extends State<adultCheckup> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  defultText(data: 'Age:'),
+                  sizedBoxWidth(width: 5),
+                  Flexible(
+                    flex: 1,
+                    child: defultTextField(
+                      text: 'Age',
+                      controller: agePatientController,
+                      validator: (String? value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return "Enter Age";
+                        } else {
+                          return null;
+                        }
+                      },
+                      width: 140,
+                    ),
+                  ), sizedBoxWidth(width: 10),
                   defultText(data: 'Occupation:'),
                   sizedBoxWidth(width: 5),
                   Flexible(
@@ -869,6 +888,7 @@ class _adultCheckupState extends State<adultCheckup> {
                             sexAdultPatient: sex,
                             houseNumberAdultPatient: int.parse(houseNuController.text),
                             mobileNumberAdultPatient: int.parse(mobileNumController.text),
+                            agePatientAdult: int.parse(agePatientController.text),
                             occupationAdultPatient: occubationController.text,
                             maritalStatus:  SlectedMartialState ,
                             childrenNumber: int.parse(childrenNumController.text),
