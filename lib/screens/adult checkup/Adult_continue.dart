@@ -1,3 +1,4 @@
+import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/component/component.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_continue3.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
@@ -18,7 +19,20 @@ class continueCheckupAdult extends StatefulWidget {
 }
 
 class _continueCheckupAdultState extends State<continueCheckupAdult> {
+
+  List<ComplaintsModel> complaintsList =[];
   bool isVisible = false;
+
+  TextEditingController complaintNameController = TextEditingController();
+  TextEditingController symptomComplaintController = TextEditingController();
+  TextEditingController onsetComplaintController = TextEditingController();
+  TextEditingController courseComplaintController = TextEditingController();
+  TextEditingController durationComplaintController = TextEditingController();
+  TextEditingController radiationComplaintController = TextEditingController();
+  TextEditingController previousComplaintController = TextEditingController();
+  TextEditingController increasedbyComplaintController = TextEditingController();
+  TextEditingController decreasedbyComplaintController = TextEditingController();
+  TextEditingController siteComplaintController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -203,7 +217,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                 height: 50,
                                 child: Center(
                                     child: defultText(
-                                        data: 'Complaint 1:', c: Colors.white)),
+                                        data: 'Complaint :', c: Colors.white)),
                               ),
                               Container(
                                 decoration: BoxDecoration(
@@ -212,6 +226,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                 width: 280,
                                 height: 350,
                                 child: TextField(
+                                  controller: complaintNameController,
                                   decoration: InputDecoration(
                                     labelText: 'C1',
                                     hoverColor: Colors.black,
@@ -259,7 +274,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Symptom', width: 550))
+                                              text: 'Symptom', width: 550,controller: symptomComplaintController))
                                     ],
                                   ),
                                 ),
@@ -277,7 +292,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Onset', width: 550))
+                                              text: 'Onset', width: 550,controller: onsetComplaintController))
                                     ],
                                   ),
                                 ),
@@ -295,7 +310,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Course', width: 550))
+                                              text: 'Course', width: 550,controller: courseComplaintController))
                                     ],
                                   ),
                                 ),
@@ -313,7 +328,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Duration', width: 550))
+                                              text: 'Duration', width: 550,controller: durationComplaintController))
                                     ],
                                   ),
                                 ),
@@ -331,7 +346,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Site', width: 550))
+                                              text: 'Site', width: 550,controller: siteComplaintController))
                                     ],
                                   ),
                                 ),
@@ -349,7 +364,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Radiation', width: 550))
+                                              text: 'Radiation', width: 550,controller: radiationComplaintController))
                                     ],
                                   ),
                                 ),
@@ -368,7 +383,8 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                           flex: 5,
                                           child: defultTextField(
                                               text: 'Increased by ',
-                                              width: 550))
+                                              width: 550,
+                                          controller: increasedbyComplaintController))
                                     ],
                                   ),
                                 ),
@@ -386,7 +402,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Decreased By', width: 550))
+                                              text: 'Decreased By', width: 550,controller: decreasedbyComplaintController))
                                     ],
                                   ),
                                 ),
@@ -404,7 +420,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                       Flexible(
                                           flex: 5,
                                           child: defultTextField(
-                                              text: 'Previous', width: 550))
+                                              text: 'Previous', width: 550,controller: previousComplaintController))
                                     ],
                                   ),
                                 ),
@@ -414,7 +430,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                           ))
                     ],
                   ),
-                  sizedBoxhight(hight: 30),
+                  sizedBoxhight(hight: 50),
                   //   Row(
                   //     mainAxisAlignment: MainAxisAlignment.center,
                   //     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1086,14 +1102,49 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                   //         ))
                   //   ],
                   // ),
-                  sizedBoxhight(hight: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Center(
                         child: mysignin(
                           color: Color.fromARGB(255, 4, 59, 6),
-                          title: 'Save&Continue',
+                          title: 'Save & Add another Complaint',
+                          onPressed: () {
+                            setState(() {
+                              ComplaintsModel complaint = ComplaintsModel(
+                                complaintName: complaintNameController.text,
+                                course: courseComplaintController.text,
+                                decreasedBy: decreasedbyComplaintController.text,
+                                increasedBy: increasedbyComplaintController.text,
+                                duration: durationComplaintController.text,
+                                onset: onsetComplaintController.text,
+                                previous: previousComplaintController.text,
+                                radiation: radiationComplaintController.text,
+                                site: siteComplaintController.text,
+                                symptom: symptomComplaintController.text,
+                              );
+                              complaintsList.add(complaint);
+                              PatientAdultModel patient = PatientAdultModel(
+                                  complaintsList: complaintsList
+                              );
+                              print(complaintsList);
+                              complaintsList.clear();
+                            });
+
+                          },
+                          x: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  sizedBoxhight(hight: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: mysignin(
+                          color: Color.fromARGB(255, 4, 59, 6),
+                          title: 'Save & Continue',
                           onPressed: () => {
                             Navigator.pushNamed(
                                 context, adultCheckThird.screenRoute)
