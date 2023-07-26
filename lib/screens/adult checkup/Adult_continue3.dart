@@ -1,4 +1,5 @@
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
+import 'package:bedaya/network/my_database.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_checkup.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
@@ -130,12 +131,13 @@ class _adultCheckThirdState extends State<adultCheckThird> {
 
   @override
   Widget build(BuildContext context) {
+    PatientAdultModel? patientModel = ModalRoute.of(context)?.settings.arguments as PatientAdultModel? ;
+
     return Scaffold(
       appBar: PreferredSize(
         child: appBardefult(
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),
@@ -1577,39 +1579,45 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                       selectedCheckboxesClinics.clear();
                       print(clinics);
                       if (formKey.currentState!.validate()) {
+                        double? Bp1vital = double.tryParse(Bp1Controller.text);
+                        double? Bp2vital = double.tryParse(Bp2Controller.text);
+                        double? o2satvital = double.tryParse(o2satController.text);
+                        double? randombloodvital = double.tryParse(randomBloodSugarController.text);
+                        double? tempvital = double.tryParse(tempVitalController.text);
+                        double? hrvital = double.tryParse(hrVitalController.text);
+                        double? mmhg2Vital = double.tryParse(mmHG2Controller.text);
+                        double? mmHg1vital = double.tryParse(mmHG1Controller.text);
+
                         Navigator.pushNamed(context, adultCheckup.screenRoute);
-                        PatientAdultModel patientModel = PatientAdultModel(
-                          medicalPastHistory:medicalPastHistory,
-                          otherMedicalPastHistory: otherMedicalHistoryController.text,
-                          bloodTransfusionPastHistory: bloodTransfusion,
-                          durationBloodTransfusionPastHistory: durationBloodTransfusionController.text,
-                          allergyPastHistory: Allergy,
-                          specifyAllergyPastHistory: specifyAllergyController.text,
-                          surgicalPastHistory: surgical,
-                          operationSurgicalPastHistory: operationSurgicalController.text,
-                          drugsOfChronicDiseases: drugsChronicDiseases,
-                          othersDrugsOfChronicDiseases: otherDrugController.text,
-                          familyHistory: familyHistory,
-                          othersFamilyHistory: otherFamilyHistoryController.text,
-                          BP1Vital: double.parse(Bp1Controller.text),
-                          BP2Vital: double.parse(Bp2Controller.text),
-                          mmHg1Vital: double.parse(mmHG1Controller.text),
-                          mmHg2Vital: double.parse(mmHG2Controller.text),
-                          hrVital: double.parse(hrVitalController.text),
-                          tempVital: double.parse(tempVitalController.text),
-                          randomBloodSugarVital: double.parse(randomBloodSugarController.text),
-                          o2Saturationvital: double.parse(o2satController.text),
-                          complexionGenerallExamination: complextionGeneralExamination,
-                          screening: screening,
-                            ReferralOfConvoyClinics: clinics,
-                          followUp: Followup,
-                          goHome: GoHome,
-                          communityDevelopment: CommunityDevelopment
-
-
-
-                        );
-
+                     //   PatientAdultModel patientModel = PatientAdultModel(
+                          patientModel?.medicalPastHistory= medicalPastHistory;
+                        patientModel?.otherMedicalPastHistory= otherMedicalHistoryController.text;
+                      patientModel?.bloodTransfusionPastHistory= bloodTransfusion;
+                      patientModel?.durationBloodTransfusionPastHistory= durationBloodTransfusionController.text;
+                      patientModel?.allergyPastHistory= Allergy;
+                      patientModel?.specifyAllergyPastHistory= specifyAllergyController.text;
+                      patientModel?.surgicalPastHistory= surgical;
+                      patientModel?.operationSurgicalPastHistory= operationSurgicalController.text;
+                      patientModel?.drugsOfChronicDiseases= drugsChronicDiseases;
+                      patientModel?.othersDrugsOfChronicDiseases= otherDrugController.text;
+                      patientModel?.familyHistory= familyHistory;
+                      patientModel?.othersFamilyHistory= otherFamilyHistoryController.text;
+                      patientModel?.BP1Vital= Bp1vital;
+                      patientModel?.BP2Vital=Bp2vital;
+                      patientModel?.mmHg1Vital= mmHg1vital;
+                      patientModel?.mmHg2Vital= mmhg2Vital;
+                      patientModel?.hrVital= hrvital;
+                      patientModel?.tempVital= tempvital;
+                      patientModel?.randomBloodSugarVital= randombloodvital;
+                      patientModel?.o2Saturationvital= o2satvital;
+                      patientModel?.complexionGenerallExamination= complextionGeneralExamination;
+                      patientModel?.screening =screening; // gameddddddddddd عاوزة اجرب انا ويتتتتتتتتتتتتتت
+                      patientModel?.ReferralOfConvoyClinics= clinics;
+                      patientModel?.followUp= Followup;
+                      patientModel?.goHome= GoHome;
+                      patientModel?.communityDevelopment= CommunityDevelopment;
+                        MyDataBase.updatePatientAdult(patientModel!);
+                        print("updated");
                       }
                     },
                   ),
@@ -1622,7 +1630,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     onPressed: () =>
                     {
                       Navigator.pushNamed(
-                          context, continueCheckupAdult.screenRoute)
+                          context, continueCheckupAdult.screenRoute,arguments: patientModel)
                     },
                   ),
                   sizedBoxWidth(width: 20),

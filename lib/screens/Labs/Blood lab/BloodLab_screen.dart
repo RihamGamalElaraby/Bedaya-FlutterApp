@@ -26,7 +26,6 @@ class _bloodLabScreenState extends State<bloodLabScreen> {
         child: appBardefult(
           data: 'Blood Lab',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

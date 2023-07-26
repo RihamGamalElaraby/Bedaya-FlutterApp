@@ -26,7 +26,6 @@ class _OphthaClinicScreenState extends State<OphthaClinicScreen> {
         child: appBardefult(
           data: 'Ophthalmology Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

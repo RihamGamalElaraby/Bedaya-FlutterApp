@@ -26,7 +26,6 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
         child: appBardefult(
           data: 'Blood Lab',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

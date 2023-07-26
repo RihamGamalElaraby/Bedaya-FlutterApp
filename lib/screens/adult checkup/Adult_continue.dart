@@ -1,5 +1,6 @@
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/component/component.dart';
+import 'package:bedaya/screens/adult%20checkup/Adult_checkup.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_continue3.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
 import 'package:flutter/material.dart';
@@ -36,12 +37,12 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
 
   @override
   Widget build(BuildContext context) {
+    PatientAdultModel? patientModel = ModalRoute.of(context)?.settings.arguments as PatientAdultModel? ;
     return Scaffold(
       appBar: PreferredSize(
         child: appBardefult(
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),
@@ -430,7 +431,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                           ))
                     ],
                   ),
-                  sizedBoxhight(hight: 50),
+                  sizedBoxhight(hight: 20),
                   //   Row(
                   //     mainAxisAlignment: MainAxisAlignment.center,
                   //     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1128,7 +1129,9 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                   complaintsList: complaintsList
                               );
                               print(complaintsList);
-                              complaintsList.clear();
+                              //complaintsList.clear();
+                              _clearTextFields();
+                              // اشطر كتكوت l
                             });
 
                           },
@@ -1137,7 +1140,7 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                       )
                     ],
                   ),
-                  sizedBoxhight(hight: 20),
+                  sizedBoxhight(hight: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -1145,9 +1148,70 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                         child: mysignin(
                           color: Color.fromARGB(255, 4, 59, 6),
                           title: 'Save & Continue',
-                          onPressed: () => {
-                            Navigator.pushNamed(
-                                context, adultCheckThird.screenRoute)
+                          onPressed: () {
+                            setState(() {
+                              ComplaintsModel complaint = ComplaintsModel(
+                                complaintName: complaintNameController.text,
+                                course: courseComplaintController.text,
+                                decreasedBy: decreasedbyComplaintController.text,
+                                increasedBy: increasedbyComplaintController.text,
+                                duration: durationComplaintController.text,
+                                onset: onsetComplaintController.text,
+                                previous: previousComplaintController.text,
+                                radiation: radiationComplaintController.text,
+                                site: siteComplaintController.text,
+                                symptom: symptomComplaintController.text,
+                              );
+                              complaintsList.add(complaint);
+                              patientModel?.complaintsList = complaintsList;
+                              // PatientAdultModel patient = PatientAdultModel(
+                              //     complaintsList: complaintsList
+                              // );
+                              print(complaintsList);
+                              //complaintsList.clear();
+                              // اشطر كتكوت l
+                            });
+
+                            Navigator.pushNamed(context, adultCheckThird.screenRoute,arguments: patientModel);
+                          },
+                          x: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  sizedBoxhight(hight: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: mysignin(
+                          color: Color.fromARGB(255, 4, 59, 6),
+                          title: 'Save & Back to Edit',
+                          onPressed: () {
+                            setState(() {
+                              ComplaintsModel complaint = ComplaintsModel(
+                                complaintName: complaintNameController.text,
+                                course: courseComplaintController.text,
+                                decreasedBy: decreasedbyComplaintController.text,
+                                increasedBy: increasedbyComplaintController.text,
+                                duration: durationComplaintController.text,
+                                onset: onsetComplaintController.text,
+                                previous: previousComplaintController.text,
+                                radiation: radiationComplaintController.text,
+                                site: siteComplaintController.text,
+                                symptom: symptomComplaintController.text,
+                              );
+                              complaintsList.add(complaint);
+                              patientModel?.complaintsList = complaintsList;
+                              // PatientAdultModel patient = PatientAdultModel(
+                              //     complaintsList: complaintsList
+                              // );
+                              print(complaintsList);
+                              //complaintsList.clear();
+                              // اشطر كتكوت l
+                            });
+
+                            Navigator.pushNamed(context, adultCheckup.screenRoute,arguments: patientModel);
                           },
                           x: Colors.white,
                         ),
@@ -1163,6 +1227,18 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
         ),
       ),
     );
+  }
+  void _clearTextFields() {
+    courseComplaintController.clear();
+    complaintNameController.clear();
+    decreasedbyComplaintController.clear();
+    increasedbyComplaintController.clear();
+    durationComplaintController.clear();
+    onsetComplaintController.clear();
+    previousComplaintController.clear();
+    radiationComplaintController.clear();
+    siteComplaintController.clear();
+     symptomComplaintController.clear();
   }
 
   Widget Complain() => Row(

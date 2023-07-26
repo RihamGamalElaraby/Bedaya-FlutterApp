@@ -1,5 +1,6 @@
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/component/component.dart';
+import 'package:bedaya/network/my_database.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/widgets/my_button.dart';
 import 'package:flutter/material.dart';
@@ -101,12 +102,17 @@ class _adultCheckupState extends State<adultCheckup> {
 
   @override
   Widget build(BuildContext context) {
+    PatientAdultModel? patientModel = ModalRoute.of(context)?.settings.arguments as PatientAdultModel? ;
+    if (occubationController == null) {
+      patientNameController = TextEditingController(text: patientModel?.nameAdultPatient);
+      occubationController =
+          TextEditingController(text: patientModel?.occupationAdultPatient );
+    }
     return Scaffold(
       appBar: PreferredSize(
         child: appBardefult(
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),
@@ -872,27 +878,27 @@ class _adultCheckupState extends State<adultCheckup> {
                       title: 'Save&Continue',
                       size: 25,
                       onPressed: (){
-                        // print(sex);
-                        // print(educationLevel);
-                        // print(int.parse(houseNuController.text));
+                        int? agryoungch = int.tryParse(ageYoungchildController.text);
+                        int? chidlnum = int.tryParse(childrenNumController.text);
+                        // int? code = int.tryParse(codePatientController.text);
+                        int? housn = int.tryParse(houseNuController.text);
+                        int? mobilen = int.tryParse(mobileNumController.text);
+                        int? agen = int.tryParse(agePatientController.text);
+                        int? abortionno = int.tryParse(abortionNumberController.text);
+                        int? gravidano = int.tryParse(gravideNumberController.text);
                         if (formKey.currentState!.validate()) {
-
-                          Navigator.pushNamed(
-                            context,
-                            continueCheckupAdult.screenRoute,
-                          );
                           PatientAdultModel patientmodel = PatientAdultModel(
                             chosenDay: selectedday,
                             nameAdultPatient: patientNameController.text,
-                            codeAdultPatient: int.parse(codePatientController.text),
+                            codeAdultPatient: codePatientController.text,
                             sexAdultPatient: sex,
-                            houseNumberAdultPatient: int.parse(houseNuController.text),
-                            mobileNumberAdultPatient: int.parse(mobileNumController.text),
-                            agePatientAdult: int.parse(agePatientController.text),
+                           houseNumberAdultPatient: housn,
+                           mobileNumberAdultPatient: mobilen,
+                           agePatientAdult: agen,
                             occupationAdultPatient: occubationController.text,
                             maritalStatus:  SlectedMartialState ,
-                            childrenNumber: int.parse(childrenNumController.text),
-                            ageOfYoungChild: int.parse(ageYoungchildController.text),
+                           childrenNumber: chidlnum,
+                           ageOfYoungChild: agryoungch,
                             educationLevelAdultPatient: educationLevel,
                             smokingAdultPatient: isSmoking,
                             rateSmoking: rateSmokingController.text,
@@ -901,22 +907,22 @@ class _adultCheckupState extends State<adultCheckup> {
                             smokingCessationsStatus: isSmokingCessationStatus,
                             DurationSmokingCessations: durationCessationController.text,
                             smokingCessations: isSmokingCessation,
-                            gravidaNumber: int.parse(gravideNumberController.text),
-                            abortionNumber: int.parse(abortionNumberController.text),
+                           gravidaNumber: gravidano,
+                           abortionNumber: abortionno,
                             contracebtion: contraception,
                             methodContracebtion: contraceptionMethod,
                             othercontracebtion: otherContraceptionController.text
-
-
-
-
-
-
-
-
-
-
                           );
+                          print("done");
+                       MyDataBase.addPatientAdult(patientmodel);
+                          Navigator.pushNamed(
+                            context,
+                            continueCheckupAdult.screenRoute,
+                            arguments: patientmodel
+                          );
+                          print("done");  // bs kda n2ol yarb
+                          // MyDataBase.addPatientAdult(patientmodel).then((value) {
+                          // });
                         }
                       },
                     ),

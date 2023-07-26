@@ -25,7 +25,6 @@ class _DermaClinicScreenState extends State<DermaClinicScreen> {
         child: appBardefult(
           data: 'Derma Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

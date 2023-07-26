@@ -27,7 +27,6 @@ class _GynClinicScreenState extends State<GynClinicScreen> {
         child: appBardefult(
           data: 'Gynecology Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

@@ -23,7 +23,6 @@ class _DentalClinicScreenState extends State<DentalClinicScreen> {
         child: appBardefult(
           data: 'Dental Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

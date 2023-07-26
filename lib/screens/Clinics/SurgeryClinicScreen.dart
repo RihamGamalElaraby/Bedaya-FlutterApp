@@ -24,7 +24,6 @@ class _SurgeryClinicScreenState extends State<SurgeryClinicScreen> {
         child: appBardefult(
           data: 'Surgery Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

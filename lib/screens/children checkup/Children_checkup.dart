@@ -31,7 +31,6 @@ class _childrenCheckupState extends State<childrenCheckup> {
         child: appBardefult(
           data: 'Children Checkup',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

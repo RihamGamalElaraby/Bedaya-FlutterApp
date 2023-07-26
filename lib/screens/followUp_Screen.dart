@@ -65,7 +65,6 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
         child: appBardefult(
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

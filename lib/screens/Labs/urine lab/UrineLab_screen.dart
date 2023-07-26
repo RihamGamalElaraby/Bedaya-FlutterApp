@@ -1,3 +1,5 @@
+import 'package:bedaya/network/my_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/component/component.dart';
@@ -5,6 +7,8 @@ import 'package:bedaya/widgets/my_button.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
 import 'package:bedaya/screens/Labs/choselabs_screen.dart';
 import 'package:bedaya/screens/Labs/Blood%20lab/BloodLab_screen.dart';
+
+import '../../../DateModels/PatientAdultModel.dart';
 
 class urineLabscreen extends StatefulWidget {
   static const String screenRoute = 'urineLabscreen';
@@ -28,6 +32,8 @@ class _urineLabscreenState extends State<urineLabscreen>
 
   late AnimationController _controller;
 
+  TextEditingController codeController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -44,10 +50,13 @@ class _urineLabscreenState extends State<urineLabscreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult( // grby hna text field
+
           data: 'Urine Lab',
           icon: Icon(Icons.menu),
-          function: () => {},
+          // searchFunction: (){
+          //   Showbottomsheedt();
+        //  } ,
         ),
         preferredSize: Size(100, 50),
       ),
@@ -55,43 +64,70 @@ class _urineLabscreenState extends State<urineLabscreen>
         child: SingleChildScrollView(
           child: Column(
             children: [
-              sizedBoxhight(hight: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Container(
+                      width: 250,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: TextFormField(
+                        controller: codeController,
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          prefixIcon: Icon(Icons.search),
+                        ),),
+                    ),
+                  )
+                ],),
+              sizedBoxhight(hight: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                     flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(10)),
-                      width: 1000,
-                      height: 80,
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              flex: 4,
-                              child: defultText(
-                                  data: "Patient’s Name:",
-                                  c: Colors.black,
-                                  x: 17),
+                    child: StreamBuilder(
+                      stream: MyDataBase.getPatient(codeController.text),// tmam ha3'yr esmha
+                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<PatientAdultModel>> snapshot) {
+                        PatientAdultModel patient = snapshot.data as PatientAdultModel ;
+                       return Container(
+                          decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(10)),
+                          width: 1000,
+                          height: 80,
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  flex: 4,
+                                  child: defultText(
+                                      data: "Patient’s Name: ${patient.nameAdultPatient} ",
+                                      c: Colors.black,
+                                      x: 17),
+                                ),
+                                sizedBoxWidth(width: 300),
+                                Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                        data: 'Code: ${patient.codeAdultPatient}', c: Colors.black, x: 17)),
+                                sizedBoxWidth(width: 50),
+                                Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                        data: 'Sex: ${patient.sexAdultPatient}', c: Colors.black, x: 17)),
+                              ],
                             ),
-                            sizedBoxWidth(width: 300),
-                            Flexible(
-                                flex: 1,
-                                child: defultText(
-                                    data: 'Code:', c: Colors.black, x: 17)),
-                            sizedBoxWidth(width: 50),
-                            Flexible(
-                                flex: 1,
-                                child: defultText(
-                                    data: 'Sex:', c: Colors.black, x: 17)),
-                          ],
-                        ),
-                      ),
+                          ),
+                        );
+                      },
+
                     ),
                   ),
                 ],
@@ -1783,4 +1819,35 @@ class _urineLabscreenState extends State<urineLabscreen>
       ),
     );
   }
+
+   // Showbottomsheedt() {
+   //   return showModalBottomSheet(context: context, builder: (context) {
+   //     return Container(
+   //       padding: const EdgeInsets.all(20),
+   //       height: 300,
+   //       width: 500,
+   //       child: Column(
+   //         crossAxisAlignment: CrossAxisAlignment.start,
+   //         children: [
+   //           const Text('Please Write code', style: TextStyle(
+   //             fontWeight: FontWeight.bold,
+   //             fontSize: 20,
+   //           ),),
+   //            SizedBox(height: 40,),
+   //           defultTextField (
+   //               text: 'code',
+   //                   controller : codeController
+   //           ),
+   //           IconButton(
+   //             icon: Icon(Icons.search),
+   //             onPressed: () {
+   //               MyDataBase.getPatient(codeController.text);
+   //             },
+   //           ),
+   //         ],
+   //       ),
+   //     );
+   //   },
+   //   );
+   //   }
 }

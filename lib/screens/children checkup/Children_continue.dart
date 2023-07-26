@@ -29,7 +29,6 @@ class _childrenContinueState extends State<childrenContinue> {
         child: appBardefult(
           data: 'Children Checkup',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

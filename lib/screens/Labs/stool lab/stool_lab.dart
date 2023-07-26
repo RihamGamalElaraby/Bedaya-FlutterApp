@@ -27,7 +27,6 @@ class _stoolLabState extends State<stoolLab> {
         child: appBardefult(
           data: 'Stool Lab',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

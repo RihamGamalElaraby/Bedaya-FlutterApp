@@ -26,7 +26,6 @@ class _PediatricsClinicScreenState extends State<PediatricsClinicScreen> {
         child: appBardefult(
           data: 'Pediatrics Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

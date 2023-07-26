@@ -25,7 +25,6 @@ class _OrthoClinicScreenState extends State<OrthoClinicScreen> {
         child: appBardefult(
           data: 'Orthopedics Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

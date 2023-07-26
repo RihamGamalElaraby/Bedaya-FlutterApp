@@ -24,7 +24,6 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
         child: appBardefult(
           data: 'ENT Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

@@ -25,7 +25,6 @@ class _BloodlaponecontiunueState extends State<Bloodlaponecontiunue> {
             child: appBardefult(
               data: 'Blood Lab',
               icon: Icon(Icons.menu),
-              function: () => {},
             ),
             preferredSize: Size(100, 50),
           ),

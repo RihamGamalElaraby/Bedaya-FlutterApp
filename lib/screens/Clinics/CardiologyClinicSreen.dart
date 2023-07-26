@@ -26,7 +26,6 @@ class _CardioScreenState extends State<CardioScreen> {
         child: appBardefult(
           data: 'Cardiology Clinic',
           icon: Icon(Icons.menu),
-          function: () => {},
         ),
         preferredSize: Size(100, 50),
       ),

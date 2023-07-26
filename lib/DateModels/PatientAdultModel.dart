@@ -2,7 +2,8 @@ class PatientAdultModel {
   String? idAdultPatient;
   String? chosenDay;      //done
   String? nameAdultPatient; //done
-  int? codeAdultPatient; //done
+  String? codeAdultPatient; //done
+  //String? codeAdultPatient;
   String? sexAdultPatient; //done
   int? houseNumberAdultPatient; //done
   int? mobileNumberAdultPatient; //done
