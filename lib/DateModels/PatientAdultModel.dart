@@ -3,7 +3,6 @@ class PatientAdultModel {
   String? chosenDay;      //done
   String? nameAdultPatient; //done
   String? codeAdultPatient; //done
-  //String? codeAdultPatient;
   String? sexAdultPatient; //done
   int? houseNumberAdultPatient; //done
   int? mobileNumberAdultPatient; //done
@@ -112,9 +111,15 @@ class PatientAdultModel {
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
+    familyHistory: json["familyHistory"] == null?null: List<String>.from(json["familyHistory"]),
+    drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null?null:  List<String>.from(json["drugsOfChronicDiseases"]),
+    complexionGenerallExamination: json["complexionGenerallExamination"] == null?null:  List<String>.from(json["complexionGenerallExamination"]),
+    ReferralOfConvoyClinics : json["ReferralOfConvoyClinics"] == null?null:  List<String>.from(json["ReferralOfConvoyClinics"]),
+    medicalPastHistory: json["medicalPastHistory"] == null?null:  List<String>.from(json["medicalPastHistory"]),
+    screening: json["screening"] == null?null:  List<String>.from(json["screening"]),
     goHome: json["goHome"],
     communityDevelopment: json["communityDevelopment"],
-    screening: json["screening"],
+   // screening: json["screening"],
     idAdultPatient: json["idAdultPatient"],
     chosenDay: json["chosenDay"],
     nameAdultPatient: json["nameAdultPatient"],
@@ -141,10 +146,10 @@ class PatientAdultModel {
     methodContracebtion: json["methodContracebtion"],
     othercontracebtion: json["othercontracebtion"],
     ///////////////////////////////////
-    complaintsList: List<ComplaintsModel>.from(
+    complaintsList: json["complaintsList"] == null?null:List<ComplaintsModel>.from(
         json["complaintsList"].map((e) => ComplaintsModel.fromFire(e))),
     /////////////////////////////////////
-    medicalPastHistory: json["medicalPastHistory"],
+    //medicalPastHistory: json["medicalPastHistory"] ,
     otherMedicalPastHistory: json["otherMedicalPastHistory"],
     allergyPastHistory: json["allergyPastHistory"],
     specifyAllergyPastHistory: json["specifyAllergyPastHistory"],
@@ -153,9 +158,7 @@ class PatientAdultModel {
     json["durationBloodTransfusionPastHistory"],
     surgicalPastHistory: json["surgicalPastHistory"],
     operationSurgicalPastHistory: json["operationSurgicalPastHistory"],
-    drugsOfChronicDiseases: json["drugsOfChronicDiseases"],
     othersDrugsOfChronicDiseases: json["othersDrugsOfChronicDiseases"],
-    familyHistory: json["familyHistory"],
     othersFamilyHistory: json["othersFamilyHistory"],
     // vitalDataGeneralExamination: json["vitalDataGeneralExamination"],
     BP1Vital: json["BP1Vital"] ,
@@ -165,10 +168,9 @@ class PatientAdultModel {
     hrVital: json["hrVital"],
     tempVital: json["tempVital"],
     randomBloodSugarVital : json["randomBloodSugarVital"],
-    complexionGenerallExamination: json["complexionGenerallExamination"],
     o2Saturationvital:
     json["o2Saturationvital"],
-    ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"],
+    //ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"],
     followUp: json["followUp"],
   );
 

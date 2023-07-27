@@ -12,6 +12,7 @@ import '../../../DateModels/PatientAdultModel.dart';
 
 class urineLabscreen extends StatefulWidget {
   static const String screenRoute = 'urineLabscreen';
+
   const urineLabscreen({super.key});
 
   @override
@@ -20,15 +21,27 @@ class urineLabscreen extends StatefulWidget {
 
 class _urineLabscreenState extends State<urineLabscreen>
     with SingleTickerProviderStateMixin {
-   List <String> ChosedpositiveCalcium = ['Positive 1','Positive 2','Positive 3'];
-   String selectedpositiveCalcium = 'Positive 1' ;
-   List <String> Chosedpositiveuric = ['Positive 1','Positive 2','Positive 3'];
-   String selectedpositiveuric = 'Positive 1' ;
-   List <String> Chosedpositivetriple = ['Positive 1','Positive 2','Positive 3'];
-   String selectedpositivetriple = 'Positive 1' ;
-   List <String> ChosedpositiveAmor = ['Positive 1','Positive 2','Positive 3'];
-   String selectedpositiveAmor = 'Positive 1' ;
-    bool Day1 = false;
+  List<String> ChosedpositiveCalcium = [
+    'Positive 1',
+    'Positive 2',
+    'Positive 3'
+  ];
+  String selectedpositiveCalcium = 'Positive 1';
+
+  List<String> Chosedpositiveuric = ['Positive 1', 'Positive 2', 'Positive 3'];
+  String selectedpositiveuric = 'Positive 1';
+
+  List<String> Chosedpositivetriple = [
+    'Positive 1',
+    'Positive 2',
+    'Positive 3'
+  ];
+  String selectedpositivetriple = 'Positive 1';
+
+  List<String> ChosedpositiveAmor = ['Positive 1', 'Positive 2', 'Positive 3'];
+  String selectedpositiveAmor = 'Positive 1';
+
+  bool Day1 = false;
 
   late AnimationController _controller;
 
@@ -50,13 +63,14 @@ class _urineLabscreenState extends State<urineLabscreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult( // grby hna text field
+        child: appBardefult(
+          // grby hna text field
 
           data: 'Urine Lab',
           icon: Icon(Icons.menu),
           // searchFunction: (){
           //   Showbottomsheedt();
-        //  } ,
+          //  } ,
         ),
         preferredSize: Size(100, 50),
       ),
@@ -64,6 +78,7 @@ class _urineLabscreenState extends State<urineLabscreen>
         child: SingleChildScrollView(
           child: Column(
             children: [
+              sizedBoxhight(hight: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,58 +93,151 @@ class _urineLabscreenState extends State<urineLabscreen>
                       child: TextFormField(
                         controller: codeController,
                         decoration: InputDecoration(
+                          // t3aly ne3ml gmbha text button awel ma yedos 3leh ye search
                           hintText: 'Search',
                           prefixIcon: Icon(Icons.search),
-                        ),),
+                        ),
+                      ),
                     ),
-                  )
-                ],),
+                  ),
+                  sizedBoxWidth(width: 20),
+                  Flexible(
+                      child: mysignin(
+                    color: Colors.green,
+                    title: 'search',
+                    onPressed: () {
+                      setState(() {});
+                      print(codeController.text);
+                      // StreamBuilder<QuerySnapshot<PatientAdultModel>>(
+                      //   stream: MyDataBase.getPatient(codeController.text),
+                      //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<PatientAdultModel>> snapshot) {
+                      //     if (snapshot.connectionState == ConnectionState.waiting) {
+                      //       return CircularProgressIndicator();
+                      //     } else if (snapshot.hasError) {
+                      //       return Text('Error: ${snapshot.error}');
+                      //     } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      //       return Text('No patient data found!');
+                      //     } else {
+                      //       // Access the first patient from the query snapshot
+                      //       PatientAdultModel patient = snapshot.data!.docs[0].data();
+                      //       return Container(
+                      //         decoration: BoxDecoration(
+                      //           color: Colors.green,
+                      //           borderRadius: BorderRadius.circular(10),
+                      //         ),
+                      //         width: 1000,
+                      //         height: 80,
+                      //         child: Center(
+                      //           child: Row(
+                      //             mainAxisAlignment: MainAxisAlignment.center,
+                      //             children: [
+                      //               Flexible(
+                      //                 flex: 4,
+                      //                 child: defultText(
+                      //                   data: "Patient’s Name: ${patient.nameAdultPatient}",
+                      //                   c: Colors.black,
+                      //                   x: 17,
+                      //                 ),
+                      //               ),
+                      //               sizedBoxWidth(width: 300),
+                      //               Flexible(
+                      //                 flex: 1,
+                      //                 child: defultText(
+                      //                   data: 'Code: ${patient.codeAdultPatient}',
+                      //                   c: Colors.black,
+                      //                   x: 17,
+                      //                 ),
+                      //               ),
+                      //               sizedBoxWidth(width: 50),
+                      //               Flexible(
+                      //                 flex: 1,
+                      //                 child: defultText(
+                      //                   data: 'Sex: ${patient.sexAdultPatient}',
+                      //                   c: Colors.black,
+                      //                   x: 17,
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       );
+                      //     }
+                      //   },
+                      // );
+                    },
+                  ))
+                ],
+              ),
               sizedBoxhight(hight: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
-                    flex: 1,
-                    child: StreamBuilder(
-                      stream: MyDataBase.getPatient(codeController.text),// tmam ha3'yr esmha
-                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<PatientAdultModel>> snapshot) {
-                        PatientAdultModel patient = snapshot.data as PatientAdultModel ;
-                       return Container(
-                          decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(10)),
-                          width: 1000,
-                          height: 80,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                  flex: 4,
-                                  child: defultText(
-                                      data: "Patient’s Name: ${patient.nameAdultPatient} ",
-                                      c: Colors.black,
-                                      x: 17),
+                      flex: 1,
+                      child: StreamBuilder<QuerySnapshot<PatientAdultModel>>(
+                        stream: MyDataBase.getPatient(codeController.text),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          } else if (!snapshot.hasData ||
+                              snapshot.data!.docs.isEmpty) {
+                            return Text('No patient data found!');
+                          } else {
+                            // Access the first patient from the query snapshot
+                            //   List<PatientAdultModel> patientList =
+                            //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                            PatientAdultModel patient = snapshot.data!.docs[0].data();
+                            print("data ${patient.screening}");
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: 1000,
+                              height: 80,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Flexible(
+                                      flex: 4,
+                                      child: defultText(
+                                        data:
+                                            "Patient’s Name: ${patient.nameAdultPatient}",
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                    sizedBoxWidth(width: 300),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data:
+                                            'Code: ${patient.codeAdultPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                    sizedBoxWidth(width: 50),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data: 'Sex: ${patient.sexAdultPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                sizedBoxWidth(width: 300),
-                                Flexible(
-                                    flex: 1,
-                                    child: defultText(
-                                        data: 'Code: ${patient.codeAdultPatient}', c: Colors.black, x: 17)),
-                                sizedBoxWidth(width: 50),
-                                Flexible(
-                                    flex: 1,
-                                    child: defultText(
-                                        data: 'Sex: ${patient.sexAdultPatient}', c: Colors.black, x: 17)),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-
-                    ),
-                  ),
+                              ),
+                            );
+                          }
+                        },
+                      )),
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -204,8 +312,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Test name', c: Colors.black, x: 18),
+                        child: defultText(
+                            data: 'Test name', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -234,8 +342,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Reference', c: Colors.black, x: 18),
+                        child: defultText(
+                            data: 'Reference', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -334,7 +442,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultText(data: 'Clear', c: Colors.white, x: 18),
+                        child:
+                            defultText(data: 'Clear', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -389,8 +498,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Test name', c: Colors.black, x: 18),
+                        child: defultText(
+                            data: 'Test name', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -419,8 +528,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Reference', c: Colors.black, x: 18),
+                        child: defultText(
+                            data: 'Reference', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -440,7 +549,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultText(data: 'Blood:', c: Colors.white, x: 18),
+                        child:
+                            defultText(data: 'Blood:', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -587,8 +697,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Protein:', c: Colors.white, x: 18),
+                        child: defultText(
+                            data: 'Protein:', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -640,8 +750,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Nitrite:', c: Colors.white, x: 18),
+                        child: defultText(
+                            data: 'Nitrite:', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -738,8 +848,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Glucose:', c: Colors.white, x: 18),
+                        child: defultText(
+                            data: 'Glucose:', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -887,7 +997,9 @@ class _urineLabscreenState extends State<urineLabscreen>
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
                         child: defultText(
-                            data: 'Leukocyte esterase:', c: Colors.white, x: 18),
+                            data: 'Leukocyte esterase:',
+                            c: Colors.white,
+                            x: 18),
                       ),
                     ),
                   ),
@@ -970,8 +1082,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Test name', c: Colors.black, x: 18),
+                        child: defultText(
+                            data: 'Test name', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -1000,8 +1112,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                            defultText(data: 'Reference', c: Colors.black, x: 18),
+                        child: defultText(
+                            data: 'Reference', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -1021,7 +1133,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultText(data: 'RBCs:', c: Colors.white, x: 18),
+                        child:
+                            defultText(data: 'RBCs:', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -1185,16 +1298,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: DropdownButton<String>(
-                              value: selectedpositiveCalcium ,
-                              items: ChosedpositiveCalcium.
-                              map((pov)=>
-                                  DropdownMenuItem(
-                                    value:pov,
-                                    child: Text(pov , style: TextStyle(
-                                      color: Colors.black,),),),).toList(),
-                              onChanged: (pov)=> setState(() =>  selectedpositiveCalcium = pov!  )
-                          ),),
+                        child: DropdownButton<String>(
+                            value: selectedpositiveCalcium,
+                            items: ChosedpositiveCalcium.map(
+                              (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedpositiveCalcium = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -1207,7 +1326,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultText(data: 'Absent', c: Colors.white, x: 18),
+                        child:
+                            defultText(data: 'Absent', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -1242,16 +1362,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child:  DropdownButton<String>(
-                              value: selectedpositiveuric,
-                              items: Chosedpositiveuric.
-                              map((pov)=>
-                                  DropdownMenuItem(
-                                    value:pov,
-                                    child: Text(pov , style: TextStyle(
-                                      color: Colors.black,),),),).toList(),
-                              onChanged: (pov)=> setState(() =>  selectedpositiveuric = pov!  )
-                          ),),
+                        child: DropdownButton<String>(
+                            value: selectedpositiveuric,
+                            items: Chosedpositiveuric.map(
+                              (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedpositiveuric = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -1264,7 +1390,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultText(data: 'Absent', c: Colors.white, x: 18),
+                        child:
+                            defultText(data: 'Absent', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -1299,16 +1426,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: DropdownButton<String>(
-                              value: selectedpositivetriple ,
-                              items: Chosedpositivetriple.
-                              map((pov)=>
-                                  DropdownMenuItem(
-                                    value:pov,
-                                    child: Text(pov , style: TextStyle(
-                                      color: Colors.black,),),),).toList(),
-                              onChanged: (pov)=> setState(() =>  selectedpositivetriple = pov!  )
-                          ),),
+                        child: DropdownButton<String>(
+                            value: selectedpositivetriple,
+                            items: Chosedpositivetriple.map(
+                              (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedpositivetriple = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -1321,7 +1454,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultText(data: 'Absent', c: Colors.white, x: 18),
+                        child:
+                            defultText(data: 'Absent', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -1356,16 +1490,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child:DropdownButton<String>(
-                              value: selectedpositiveAmor ,
-                              items: ChosedpositiveAmor.
-                              map((pov)=>
-                                  DropdownMenuItem(
-                                    value:pov,
-                                    child: Text(pov , style: TextStyle(
-                                      color: Colors.black,),),),).toList(),
-                              onChanged: (pov)=> setState(() =>  selectedpositiveAmor = pov!  )
-                          ),),
+                        child: DropdownButton<String>(
+                            value: selectedpositiveAmor,
+                            items: ChosedpositiveAmor.map(
+                              (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedpositiveAmor = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -1378,7 +1518,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultText(data: 'Absent', c: Colors.white, x: 18),
+                        child:
+                            defultText(data: 'Absent', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -1433,8 +1574,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                        defultText(data: 'Test name', c: Colors.black, x: 18),
+                        child: defultText(
+                            data: 'Test name', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -1449,7 +1590,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
                         child:
-                        defultText(data: 'Results', c: Colors.black, x: 18),
+                            defultText(data: 'Results', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -1463,57 +1604,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                        defultText(data: 'Reference', c: Colors.black, x: 18),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              sizedBoxhight(hight: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 14, 64, 15),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                        child: defultText(data: 'Albumin:', c: Colors.white, x: 18),
-                      ),
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 193, 191, 191),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 14, 64, 15),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                        child:
-                        defultText(data: '<30 mg/g', c: Colors.white, x: 18),
+                        child: defultText(
+                            data: 'Reference', c: Colors.black, x: 18),
                       ),
                     ),
                   ),
@@ -1534,7 +1626,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
                         child: defultText(
-                            data: 'Creat:', c: Colors.white, x: 18),
+                            data: 'Albumin:', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -1562,8 +1654,61 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
+                        child: defultText(
+                            data: '<30 mg/g', c: Colors.white, x: 18),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              sizedBoxhight(hight: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      height: 70,
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 14, 64, 15),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Center(
                         child:
-                        defultText(data: '20-275 mg/dl in Females \n 20-320 mg/dl in male', c: Colors.white, x: 18),
+                            defultText(data: 'Creat:', c: Colors.white, x: 18),
+                      ),
+                    ),
+                  ),
+                  sizedBoxWidth(width: 20),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      height: 70,
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 193, 191, 191),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Center(
+                          child: defultTextField(
+                              max: 4, text: 'result', hight: 50, width: 250)),
+                    ),
+                  ),
+                  sizedBoxWidth(width: 20),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      height: 70,
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 14, 64, 15),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Center(
+                        child: defultText(
+                            data:
+                                '20-275 mg/dl in Females \n 20-320 mg/dl in male',
+                            c: Colors.white,
+                            x: 18),
                       ),
                     ),
                   ),
@@ -1584,7 +1729,9 @@ class _urineLabscreenState extends State<urineLabscreen>
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
                         child: defultText(
-                            data: 'Albumin/Creat ratio', c: Colors.white, x: 18),
+                            data: 'Albumin/Creat ratio',
+                            c: Colors.white,
+                            x: 18),
                       ),
                     ),
                   ),
@@ -1612,8 +1759,11 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 14, 64, 15),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child:
-                        defultText(data: 'Normal < 30 mg/dl \n Microalbuminuria 30-300 mg/g \n proteinuria > 300 mg/g', c: Colors.white, x: 18),
+                        child: defultText(
+                            data:
+                                'Normal < 30 mg/dl \n Microalbuminuria 30-300 mg/g \n proteinuria > 300 mg/g',
+                            c: Colors.white,
+                            x: 18),
                       ),
                     ),
                   ),
@@ -1640,7 +1790,9 @@ class _urineLabscreenState extends State<urineLabscreen>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           defultText(
-                              data: 'Abnormal findings:', c: Colors.black, x: 18),
+                              data: 'Abnormal findings:',
+                              c: Colors.black,
+                              x: 18),
                           Icon(
                             Icons.arrow_downward_rounded,
                             color: Color.fromARGB(255, 2, 61, 4),
@@ -1780,7 +1932,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                       title: 'Save&Done',
                       size: 25,
                       onPressed: () => {
-                        Navigator.pushNamed(context, ChoseLabsScreen.screenRoute)
+                        Navigator.pushNamed(
+                            context, ChoseLabsScreen.screenRoute)
                       },
                     ),
                   ),
@@ -1820,34 +1973,34 @@ class _urineLabscreenState extends State<urineLabscreen>
     );
   }
 
-   // Showbottomsheedt() {
-   //   return showModalBottomSheet(context: context, builder: (context) {
-   //     return Container(
-   //       padding: const EdgeInsets.all(20),
-   //       height: 300,
-   //       width: 500,
-   //       child: Column(
-   //         crossAxisAlignment: CrossAxisAlignment.start,
-   //         children: [
-   //           const Text('Please Write code', style: TextStyle(
-   //             fontWeight: FontWeight.bold,
-   //             fontSize: 20,
-   //           ),),
-   //            SizedBox(height: 40,),
-   //           defultTextField (
-   //               text: 'code',
-   //                   controller : codeController
-   //           ),
-   //           IconButton(
-   //             icon: Icon(Icons.search),
-   //             onPressed: () {
-   //               MyDataBase.getPatient(codeController.text);
-   //             },
-   //           ),
-   //         ],
-   //       ),
-   //     );
-   //   },
-   //   );
-   //   }
+// Showbottomsheedt() {
+//   return showModalBottomSheet(context: context, builder: (context) {
+//     return Container(
+//       padding: const EdgeInsets.all(20),
+//       height: 300,
+//       width: 500,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           const Text('Please Write code', style: TextStyle(
+//             fontWeight: FontWeight.bold,
+//             fontSize: 20,
+//           ),),
+//            SizedBox(height: 40,),
+//           defultTextField (
+//               text: 'code',
+//                   controller : codeController
+//           ),
+//           IconButton(
+//             icon: Icon(Icons.search),
+//             onPressed: () {
+//               MyDataBase.getPatient(codeController.text);
+//             },
+//           ),
+//         ],
+//       ),
+//     );
+//   },
+//   );
+//   }
 }
