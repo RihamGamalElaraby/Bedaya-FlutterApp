@@ -111,12 +111,15 @@ class PatientAdultModel {
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
+    // ***************
     familyHistory: json["familyHistory"] == null?null: List<String>.from(json["familyHistory"]),
     drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null?null:  List<String>.from(json["drugsOfChronicDiseases"]),
     complexionGenerallExamination: json["complexionGenerallExamination"] == null?null:  List<String>.from(json["complexionGenerallExamination"]),
     ReferralOfConvoyClinics : json["ReferralOfConvoyClinics"] == null?null:  List<String>.from(json["ReferralOfConvoyClinics"]),
     medicalPastHistory: json["medicalPastHistory"] == null?null:  List<String>.from(json["medicalPastHistory"]),
     screening: json["screening"] == null?null:  List<String>.from(json["screening"]),
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6
+
     goHome: json["goHome"],
     communityDevelopment: json["communityDevelopment"],
    // screening: json["screening"],

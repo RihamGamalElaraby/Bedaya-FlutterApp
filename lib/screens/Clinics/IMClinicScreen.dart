@@ -23,6 +23,9 @@ class _ClinicScreenState extends State<ClinicScreen> {
   ['Anemia','Diabetes Mellitus','GERD','UTI','IBS','Gout','Parasitic infections','Bronchial Asthm','Diarrhea',
   'Renal Stone','Headache','Gastritis (H pylori)','Hypertension','CKD',];
   String SelectedCommondiagnosesforIM = 'Anemia';
+
+  TextEditingController ImdiagnoseController = TextEditingController();
+
   /////////////////////////////////////////////
   // List<String> CommondiagnosesforENT =
   // ['Tonsilitis','Sinusitis','Pharyngitis','Otitis Media','Otitis Externa','Ear wax','Epistaxis','Allergic rhinitis',
@@ -59,10 +62,6 @@ class _ClinicScreenState extends State<ClinicScreen> {
   //   'PNEUMONIA','RHEUMTIC FEVER','DIABETES','CONGENITAL HEART DISEASE','CONGENITAL HEART DISEASE'
   // ,'BRONCHIAL ASTHMA '];
   // String SelectedCommondiagnosesforPediatrics = 'PARASITES';
-
-
-
-
 
 
   @override
@@ -195,6 +194,7 @@ class _ClinicScreenState extends State<ClinicScreen> {
                                 width: 350,
                                 child: Center(
                                   child: TextFormField(
+                                    controller: ImdiagnoseController,
                                     decoration: InputDecoration(
                                       labelText: 'Result',
                                       hoverColor: Colors.black,
@@ -280,8 +280,12 @@ class _ClinicScreenState extends State<ClinicScreen> {
                       x: Colors.black,
                       title: 'Save&Done',
                       size: 25,
-                      onPressed: () => {
+                      onPressed: (){
+                        setState(() {
+                          CommondiagnosesforIM.add(ImdiagnoseController.text);
+                        });
                         // Navigator.pushNamed(context, ChoseLabsScreen.screenRoute)
+
                       },
                     ),
                   ),

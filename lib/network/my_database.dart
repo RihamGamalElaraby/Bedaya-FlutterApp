@@ -32,5 +32,4 @@ class MyDataBase{
         .where("codeAdultPatient", isEqualTo: code)
         .snapshots();
   }
-
 }
