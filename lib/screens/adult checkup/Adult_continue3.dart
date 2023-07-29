@@ -1366,7 +1366,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                       }
                     });
 
-                  })),
+                  })
+                  ),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 1,

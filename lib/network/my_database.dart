@@ -32,4 +32,22 @@ class MyDataBase{
         .where("codeAdultPatient", isEqualTo: code)
         .snapshots();
   }
+  static Stream<QuerySnapshot<PatientAdultModel>> getListBlood(bool t) {
+    var collection = getCollection();
+    return collection
+        .where("bloodCheckIn", isEqualTo: t)
+        .snapshots();
+  }
+  static Stream<QuerySnapshot<PatientAdultModel>> getListUrine(bool t) {
+    var collection = getCollection();
+    return collection
+        .where("urineCheckIn", isEqualTo: t)
+        .snapshots();
+  }
+  static Stream<QuerySnapshot<PatientAdultModel>> getListStool(bool t) {
+    var collection = getCollection();
+    return collection
+        .where("stoolCheckIn", isEqualTo: t)
+        .snapshots();
+  }
 }

@@ -93,6 +93,7 @@ class _urineLabscreenState extends State<urineLabscreen>
 
   @override
   Widget build(BuildContext context) {
+    PatientAdultModel patient;
     return Scaffold(
       appBar: PreferredSize(
         child: appBardefult(
@@ -139,63 +140,6 @@ class _urineLabscreenState extends State<urineLabscreen>
                     title: 'search',
                     onPressed: () {
                       setState(() {});
-                      print(codeController.text);
-                      // StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-                      //   stream: MyDataBase.getPatient(codeController.text),
-                      //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<PatientAdultModel>> snapshot) {
-                      //     if (snapshot.connectionState == ConnectionState.waiting) {
-                      //       return CircularProgressIndicator();
-                      //     } else if (snapshot.hasError) {
-                      //       return Text('Error: ${snapshot.error}');
-                      //     } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                      //       return Text('No patient data found!');
-                      //     } else {
-                      //       // Access the first patient from the query snapshot
-                      //       PatientAdultModel patient = snapshot.data!.docs[0].data();
-                      //       return Container(
-                      //         decoration: BoxDecoration(
-                      //           color: Colors.green,
-                      //           borderRadius: BorderRadius.circular(10),
-                      //         ),
-                      //         width: 1000,
-                      //         height: 80,
-                      //         child: Center(
-                      //           child: Row(
-                      //             mainAxisAlignment: MainAxisAlignment.center,
-                      //             children: [
-                      //               Flexible(
-                      //                 flex: 4,
-                      //                 child: defultText(
-                      //                   data: "Patient’s Name: ${patient.nameAdultPatient}",
-                      //                   c: Colors.black,
-                      //                   x: 17,
-                      //                 ),
-                      //               ),
-                      //               sizedBoxWidth(width: 300),
-                      //               Flexible(
-                      //                 flex: 1,
-                      //                 child: defultText(
-                      //                   data: 'Code: ${patient.codeAdultPatient}',
-                      //                   c: Colors.black,
-                      //                   x: 17,
-                      //                 ),
-                      //               ),
-                      //               sizedBoxWidth(width: 50),
-                      //               Flexible(
-                      //                 flex: 1,
-                      //                 child: defultText(
-                      //                   data: 'Sex: ${patient.sexAdultPatient}',
-                      //                   c: Colors.black,
-                      //                   x: 17,
-                      //                 ),
-                      //               ),
-                      //             ],
-                      //           ),
-                      //         ),
-                      //       );
-                      //     }
-                      //   },
-                      // );
                     },
                   ))
                 ],
@@ -222,47 +166,102 @@ class _urineLabscreenState extends State<urineLabscreen>
                             // Access the first patient from the query snapshot
                             //   List<PatientAdultModel> patientList =
                             //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                            PatientAdultModel patient = snapshot.data!.docs[0].data();
-                            print("data ${patient.screening}");
+                             patient = snapshot.data!.docs[0].data();
+                            print("urine ${patient.urineCheckIn}");
+                             print("blood ${patient.bloodCheckIn}");
+                             print("stool ${patient.stoolCheckIn}");
                             return Container(
                               decoration: BoxDecoration(
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               width: 1000,
-                              height: 80,
+                              height: 120,
                               child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                child: Column(
                                   children: [
-                                    Flexible(
-                                      flex: 4,
-                                      child: defultText(
-                                        data:
-                                            "Patient’s Name: ${patient.nameAdultPatient}",
-                                        c: Colors.black,
-                                        x: 19,
-                                      ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          flex: 4,
+                                          child: defultText(
+                                            data:
+                                                "Patient’s Name: ${patient.nameAdultPatient}",
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                        sizedBoxWidth(width: 300),
+                                        Flexible(
+                                          flex: 1,
+                                          child: defultText(
+                                            data:
+                                                'Code: ${patient.codeAdultPatient}',
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                        sizedBoxWidth(width: 50),
+                                        Flexible(
+                                          flex: 1,
+                                          child: defultText(
+                                            data: 'Sex: ${patient.sexAdultPatient}',
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    sizedBoxWidth(width: 300),
-                                    Flexible(
-                                      flex: 1,
-                                      child: defultText(
-                                        data:
-                                            'Code: ${patient.codeAdultPatient}',
-                                        c: Colors.black,
-                                        x: 19,
-                                      ),
+                                    SizedBox(height: 8,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          flex: 4,
+                                          child: defultText(
+                                            data:"urine : ${patient.urineCheckIn.toString()}",
+                                            // patient.urineCheckIn! ? "Urine’s Check in : the urine test is checked in ":
+                                            // "Urine’s Check in : the urine test is chicked out or not already chicked in ",
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    sizedBoxWidth(width: 50),
-                                    Flexible(
-                                      flex: 1,
-                                      child: defultText(
-                                        data: 'Sex: ${patient.sexAdultPatient}',
-                                        c: Colors.black,
-                                        x: 19,
-                                      ),
+                                    SizedBox(height: 8,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          flex: 4,
+                                          child: defultText(
+                                            data:"blood : ${patient.bloodCheckIn.toString()}",
+                                            // patient.bloodCheckIn! ? "Blood’s Check in : the blood test is checked in ":
+                                            // "Blood’s Check in : the blood test is chicked out or not already chicked in ",
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    SizedBox(height: 8,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          flex: 4,
+                                          child: defultText(
+                                            data: "stool : ${patient.stoolCheckIn.toString()}",
+                                            // patient.stoolCheckIn==true ? "Stool’s Check in : the stool test is checked in ":
+                                            // "Stool’s Check in : the stool test is chicked out or not already chicked in ",
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
                                   ],
                                 ),
                               ),
@@ -2143,6 +2142,37 @@ class _urineLabscreenState extends State<urineLabscreen>
                 ],
               ),
               sizedBoxhight(hight: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                      flex: 1,
+                      child: defultText(
+                          data: 'Checked out :', x: 17, c: Colors.black)),
+                  sizedBoxWidth(width: 10),
+                  Flexible(
+                      flex: 1,
+                      child: defultText(
+                          data: 'Yes', x: 17, c: Colors.black)),
+                  sizedBoxWidth(width: 5),
+                  Flexible(
+                      flex: 1,
+                      child:
+                      Checkbox(value: Day1, onChanged: (val) {})),
+                  sizedBoxWidth(width: 10),
+                  Flexible(
+                      flex: 1,
+                      child: defultText(
+                          data: 'No', x: 17, c: Colors.black)),
+                  Flexible(
+                      flex: 1,
+                      child:
+                      Checkbox(value: Day1, onChanged: (val) {})),
+                  sizedBoxWidth(width: 10),
+
+                ],) ,
+              sizedBoxhight(hight: 40),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

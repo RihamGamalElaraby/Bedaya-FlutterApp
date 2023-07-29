@@ -406,6 +406,10 @@ class PatientAdultModel {
   List<String>? pedTreatment;
   List<String>? surgerydiagnoses;
   List<String>? surgeryTreatment;
+  bool? urineCheckIn;
+  bool? bloodCheckIn;
+  bool? stoolCheckIn;
+
 
 
 
@@ -414,6 +418,9 @@ class PatientAdultModel {
 
 
   PatientAdultModel({
+    this.urineCheckIn=false,
+    this.bloodCheckIn=false,
+    this.stoolCheckIn=false,
     this.orthodiagnoses,
     this.orthoTreatment,
     this.goHome,
@@ -491,6 +498,9 @@ class PatientAdultModel {
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
+    bloodCheckIn: json["urineCheckIn"],
+    stoolCheckIn:  json["urineCheckIn"],
+    urineCheckIn:  json["urineCheckIn"],
     // ***************
     familyHistory: json["familyHistory"] == null?null: List<String>.from(json["familyHistory"]),
     drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null?null:  List<String>.from(json["drugsOfChronicDiseases"]),
@@ -579,6 +589,9 @@ class PatientAdultModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "urineCheckIn":urineCheckIn,
+      "bloodCheckIn":bloodCheckIn,
+      "stoolCheckIn":stoolCheckIn,
       "orthoTreatment":orthoTreatment,
       "orthodiagnoses":orthodiagnoses,
       "goHome":goHome,
