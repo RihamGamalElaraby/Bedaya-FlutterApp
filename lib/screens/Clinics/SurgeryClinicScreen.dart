@@ -420,7 +420,6 @@ class _SurgeryClinicScreenState extends State<SurgeryClinicScreen> {
                         clearList(SelectedTreatment, SelectedCommondiagnosesforSurgery);
                         clearTextField(TreatmentController, surgerydiagnoseController);
                         // Navigator.pushNamed(context, ChoseLabsScreen.screenRoute)
-
                       },
                     ),
                   ),
