@@ -47,6 +47,38 @@ class _urineLabscreenState extends State<urineLabscreen>
 
   TextEditingController codeController = TextEditingController();
 
+  String selectedBlood = "negative";
+
+  List<String> chosenBlood = ["negative" ,"ca. 5-10" , "ca. 50" ,"ca. 250"];
+
+  String selectedUrobilinogen = "norm";
+  List<String> chosenUrobilinogen = ["norm","2","4", "8","12"];
+
+  String selectedBilirubin = "negative";
+  List<String> chosenBilirubin = ["negative",'Positive 1', 'Positive 2', 'Positive 3'];
+
+  String selectedProtein ="negative";
+  List<String> chosenProtein = ["negative","30","100","500"];
+
+  String selectedNitrite = "negative";
+  List<String> chosenNitrite=["negative","positive"];
+
+  String selectedKetone = "negative";
+  List<String> chosenKetone = ["negative",'Positive 1', 'Positive 2', 'Positive 3'];
+
+  String selectedGlucose ="negative";
+  List<String> chosenGlucose=["negative","norm","50","150","500",">=1000"];
+
+  String selectedPH = "5";
+  List<String> chosenPH=["5","6","7","8","9"];
+
+  String selectedLeukocyte = "negative";
+  List<String> chosenLeukocyte=["negative","ca. 25","ca. 75","ca. 500"];
+
+  String selectedDenisty ="1,000";
+  List<String> chosenDenisty=["1,000","1,005","1,010","1,015","1,020","1,025","1,030"];
+
+
   @override
   void initState() {
     super.initState();
@@ -564,8 +596,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedBlood,
+                            items: chosenBlood.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedBlood = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -613,8 +659,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedUrobilinogen,
+                            items: chosenUrobilinogen.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedUrobilinogen = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -663,8 +723,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedBilirubin,
+                            items: chosenBilirubin.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedBilirubin = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -712,11 +786,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4,
-                              text: 'Negligible Trace',
-                              hight: 50,
-                              width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedProtein,
+                            items: chosenProtein.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedProtein = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -765,8 +850,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedNitrite,
+                            items: chosenNitrite.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedNitrite = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -814,8 +913,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedKetone,
+                            items: chosenKetone.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedKetone = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -863,8 +976,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedGlucose,
+                            items: chosenGlucose.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedGlucose = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -911,8 +1038,22 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedPH,
+                            items: chosenPH.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedPH = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
@@ -1013,11 +1154,92 @@ class _urineLabscreenState extends State<urineLabscreen>
                           color: Color.fromARGB(255, 193, 191, 191),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                          child: defultTextField(
-                              max: 4, text: 'result', hight: 50, width: 250)),
+                        child: DropdownButton<String>(
+                            value: selectedLeukocyte,
+                            items: chosenLeukocyte.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedLeukocyte = pov!)),
+                      ),
                     ),
                   ),
                   sizedBoxWidth(width: 20),
+
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      height: 70,
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 14, 64, 15),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Center(
+                        child: defultText(data: '-ve', c: Colors.white, x: 18),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              sizedBoxhight(hight: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      height: 70,
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 14, 64, 15),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Center(
+                        child: defultText(
+                            data: 'Denisty:',
+                            c: Colors.white,
+                            x: 18),
+                      ),
+                    ),
+                  ),
+                  sizedBoxWidth(width: 20),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      height: 70,
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 193, 191, 191),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Center(
+                        child: DropdownButton<String>(
+                            value: selectedDenisty,
+                            items: chosenDenisty.map(
+                                  (pov) => DropdownMenuItem(
+                                value: pov,
+                                child: Text(
+                                  pov,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                            onChanged: (pov) =>
+                                setState(() => selectedDenisty = pov!)),
+                      ),
+                    ),
+                  ),
+                  sizedBoxWidth(width: 20),
+
                   Flexible(
                     flex: 1,
                     child: Container(
