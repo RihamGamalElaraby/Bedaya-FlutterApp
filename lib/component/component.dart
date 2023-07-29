@@ -21,5 +21,13 @@ Widget defultText({
         color: c,
       ),
     );
+void clearTextField(TextEditingController a,TextEditingController b){
+  a.clear();
+  b.clear();
+}
+void clearList(List a,List b){
+  a.clear();
+  b.clear();
+}
 // Color.fromARGB(255, 1, 70, 2
 // Color(0xFF014602)
