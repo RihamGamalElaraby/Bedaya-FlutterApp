@@ -211,16 +211,6 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                                   x: 19,
                                                 ),
                                               ),
-                                              Flexible(
-                                                flex: 4,
-                                                child: defultText(
-                                                  data:"${patient.bloodCheckIn}",
-                                                  // patient.bloodCheckIn == true ? "blood’s Check in : checked in ":
-                                                  // "blood’s Check in : chicked out",
-                                                  c: Colors.black,
-                                                  x: 19,
-                                                ),
-                                              ),
                                             ],
                                           ),
                                         ),
@@ -311,13 +301,13 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                       }
                                       MyDataBase.updatePatientAdult(patient);
                                       setState(() {
-                                        selectedLab.clear();
                                         blood = false;
                                         urine= false;
                                         stool= false;
                                       });
 
                                       print(selectedLab);
+                                      selectedLab.clear();
                                     },)
 
                                   ],
