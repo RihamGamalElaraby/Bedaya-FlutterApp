@@ -1,6 +1,8 @@
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/component/component.dart';
 import 'package:bedaya/network/my_database.dart';
+import 'package:bedaya/screens/Search%20Screen/search_screen.dart';
+import 'package:bedaya/screens/welcome%20screen/welcomescreen.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/widgets/my_button.dart';
 import 'package:flutter/material.dart';
@@ -113,6 +115,9 @@ class _adultCheckupState extends State<adultCheckup> {
         child: appBardefult(
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
+          searchFunction:() {
+            Navigator.pushNamed(context, SearchScreen.screenRoute);
+          },
         ),
         preferredSize: Size(100, 50),
       ),

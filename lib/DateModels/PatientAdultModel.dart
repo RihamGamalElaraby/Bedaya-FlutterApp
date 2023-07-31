@@ -424,30 +424,45 @@ class PatientAdultModel {
   String? urineChemicalExHemoglobin;
   String? urineChemicalExLeukocyte;
   String? urineChemicalExSpecificgravity;
-
   String? urineChemicalExDensity; //12
   String? urineMicroscopicExRBCs;
-
   String? urineMicroscopicExPuscells;
-
   String? urineMicroscopicExEpithelialcells;
-
   String? urineMicroscopicExCalciumOxalate;
-
   String? urineMicroscopicExUricacid;
-
   String? urineMicroscopicExTriplephosphate;
-
   String? urineMicroscopicExAmorphous;
-
   String? urineAlbumineAlbumine;
-
   String? urineAlbumineCreat;
-
   String? urineAlbumineAlbuminaCreateRatio;
 
   List<String>? urineAbnormalFindings; // lissttttt
   String? urineAdittionalComments;
+
+  String? consisteny;
+  String? Stoollabblood;
+  String? Stoollabmucus;
+  String? Stoollabfasciola;
+  String? Stoollabsch;
+  String? Stoollabhnana;
+  String? Stoollabtinea;
+  String? StoollabAscaris;
+  String? StoollabTtrichuria;
+  String? StoollabHookworm;
+  String? StoollabHpylori;
+  String? Stoollabfecal;
+  String? StoollabEntrobious;
+  String? StoollabEcoli;
+  String? StoollabEhistolitica;
+  String? StoollabGiardia;
+  String? StoollabStrongyloideslarvae;
+  String? StoollabGiardiatrophozozite;
+  String? StoollabEhistoliticatrophozite;
+  String? StoolColor;
+  String? StoolWorm;
+  String? StoolOdour;
+  String? wbcscontroller;
+  String? Rbcscontroller;
 
   PatientAdultModel({
     this.urinePhysicalExAspect,
@@ -552,9 +567,33 @@ class PatientAdultModel {
     this.pedTreatment,
     this.surgerydiagnoses,
     this.surgeryTreatment,
+    this.StoollabHpylori,
+    this.Stoollabfecal,
+    this.StoollabEhistoliticatrophozite,
+    this.StoollabGiardiatrophozozite,
+    this.StoollabStrongyloideslarvae,
+    this.StoollabGiardia,
+    this.StoollabEcoli,
+    this.StoollabHookworm,
+    this.StoollabTtrichuria,
+    this.StoollabAscaris,
+    this.Stoollabtinea,
+    this.Stoollabhnana,
+    this.Stoollabsch,
+    this.Stoollabfasciola,
+    this.consisteny,
+    this.Rbcscontroller,
+    this.StoolColor,
+    this.Stoollabblood,
+    this.StoollabEhistolitica,
+    this.StoollabEntrobious,
+    this.Stoollabmucus,
+    this.StoolOdour,
+    this.StoolWorm,
+    this.wbcscontroller,
   });
-  // اشطر كتكوت في الكتاكيت كلهم ana matettt hn3ml eh tany
 
+  // اشطر كتكوت في الكتاكيت كلهم ana matettt hn3ml eh tany
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
@@ -733,6 +772,31 @@ class PatientAdultModel {
           o2Saturationvital: json["o2Saturationvital"],
           //ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"],
           followUp: json["followUp"],
+          consisteny: json["consisteny"],
+          Stoollabblood: json["Stoollabblood"],
+          Stoollabmucus: json["Stoollabmucus"],
+          Stoollabfasciola: json["Stoollabfasciola"],
+          Stoollabsch: json["Stoollabsch"],
+          Stoollabhnana: json["Stoollabhnana"],
+          Stoollabtinea: json["Stoollabtinea"],
+          StoollabAscaris: json["StoollabAscaris"],
+          StoollabTtrichuria: json["StoollabTtrichuria"],
+          StoollabHookworm: json["StoollabHookworm"],
+          StoollabHpylori: json["StoollabHpylori"],
+          Stoollabfecal: json["Stoollabfecal"],
+          StoollabEntrobious: json["StoollabEntrobious"],
+          StoollabEcoli: json["StoollabEcoli"],
+          StoollabEhistolitica: json["StoollabEhistolitica"],
+          StoollabGiardia: json["StoollabGiardia"],
+          StoollabStrongyloideslarvae: json["StoollabStrongyloideslarvae"],
+          StoollabGiardiatrophozozite: json["StoollabGiardiatrophozozite"],
+          StoollabEhistoliticatrophozite:
+              json["StoollabEhistoliticatrophozite"],
+          StoolColor: json["StoolColor"],
+          StoolWorm: json["StoolWorm"],
+          StoolOdour: json["StoolOdour"],
+          wbcscontroller: json["wbcscontroller"],
+          Rbcscontroller: json["Rbcscontroller"],
         );
 
   Map<String, dynamic> toFireStore() {
@@ -846,6 +910,31 @@ class PatientAdultModel {
       "pedTreatment": pedTreatment,
       "surgerydiagnoses": surgerydiagnoses,
       "surgeryTreatment": surgeryTreatment,
+
+      "StoollabHpylori": StoollabHpylori,
+      "Stoollabfecal": Stoollabfecal,
+      "StoollabEhistoliticatrophozite": StoollabEhistoliticatrophozite,
+      "StoollabGiardiatrophozozite": StoollabGiardiatrophozozite,
+      "StoollabStrongyloideslarvae": StoollabStrongyloideslarvae,
+      "StoollabGiardia": StoollabGiardia,
+      "StoollabEcoli": StoollabEcoli,
+      "StoollabHookworm": StoollabHookworm,
+      "StoollabTtrichuria": StoollabTtrichuria,
+      "StoollabAscaris": StoollabAscaris,
+      "Stoollabtinea": Stoollabtinea,
+      "Stoollabhnana": Stoollabhnana,
+      "Stoollabsch": Stoollabsch,
+      "Stoollabfasciola": Stoollabfasciola,
+      "consisteny": consisteny,
+      "Rbcscontroller": Rbcscontroller,
+      "StoolColor": StoolColor,
+      "Stoollabblood": Stoollabblood,
+      "StoollabEhistolitica": StoollabEhistolitica,
+      "StoollabEntrobious": StoollabEntrobious,
+      "Stoollabmucus": Stoollabmucus,
+      "StoolOdour": StoolOdour,
+      "StoolWorm": StoolWorm,
+      "wbcscontroller": wbcscontroller,
     };
   }
 }

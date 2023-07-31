@@ -5,6 +5,9 @@ import 'package:bedaya/screens/Clinics/GynClinicScreen.dart';
 import 'package:bedaya/screens/Clinics/OphthaClinicScreen.dart';
 import 'package:bedaya/screens/Clinics/PediatricsClinicScreen.dart';
 import 'package:bedaya/screens/Clinics/SurgeryClinicScreen.dart';
+import 'package:bedaya/screens/Search%20Screen/adult_search.dart';
+import 'package:bedaya/screens/Search%20Screen/children_search.dart';
+import 'package:bedaya/screens/Search%20Screen/search_screen.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_checkup.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_continue.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_continue3.dart';
@@ -90,6 +93,9 @@ class MyApp extends StatelessWidget {
         DermaClinicScreen.screenRoute: (context) => DermaClinicScreen(),
         FollowUpScreen.screenRoute: (context) => FollowUpScreen(),
         PharmacyScreen.screenRoute: (context) => PharmacyScreen(),
+        SearchScreen.screenRoute : (context) => SearchScreen(),
+        ChildrenSearch.screenRoute : (context) => ChildrenSearch(),
+        AdultSearch.screenRoute : (context) => AdultSearch(),
       },
     );
   }
