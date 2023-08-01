@@ -148,7 +148,7 @@ class _stoolLabState extends State<stoolLab> {
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Stool Lab',
           icon: Icon(Icons.menu),
         ),

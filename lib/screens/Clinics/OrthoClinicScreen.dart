@@ -76,7 +76,7 @@ class _OrthoClinicScreenState extends State<OrthoClinicScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Ortho Clinic',
           icon: Icon(Icons.menu),
         ),

@@ -28,7 +28,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Children Checkup',
           icon: Icon(Icons.menu),
         ),

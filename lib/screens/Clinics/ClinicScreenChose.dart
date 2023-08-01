@@ -26,7 +26,7 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          child: appBardefult(
+          child: appBardefult(context: context,
             data: 'Add Clinic',
             icon: Icon(Icons.menu),
           ),

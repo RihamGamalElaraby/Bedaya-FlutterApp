@@ -77,7 +77,7 @@ class _CardioScreenState extends State<CardioScreen> {
     //PatientAdultModel? patientModel = ModalRoute.of(context)?.settings.arguments as PatientAdultModel? ;
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Cardio Clinic',
           icon: Icon(Icons.menu),
         ),

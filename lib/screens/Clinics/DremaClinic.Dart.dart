@@ -74,7 +74,7 @@ class _DermaClinicScreenState extends State<DermaClinicScreen> {
     PatientAdultModel patient = PatientAdultModel();
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Derma Clinic',
           icon: Icon(Icons.menu),
         ),

@@ -62,7 +62,7 @@ class _FollowUpScreenState extends State<FollowUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
         ),

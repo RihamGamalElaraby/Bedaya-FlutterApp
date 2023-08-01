@@ -75,7 +75,7 @@ class _SurgeryClinicScreenState extends State<SurgeryClinicScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Surgery Clinic',
           icon: Icon(Icons.menu),
         ),

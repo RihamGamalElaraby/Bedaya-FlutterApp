@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/my_button.dart';
 
 class SearchScreen extends StatelessWidget {
-  static const String screenRoute = 'search screen';
+  static const String screenRoute = 'SearchScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -79,12 +79,7 @@ class SearchScreen extends StatelessWidget {
                 x: Colors.white,
                 title: 'Patient Adult',
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AdultSearch(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, AdultSearch.screenRoute);
                 },
               ),
             ),
@@ -99,12 +94,8 @@ class SearchScreen extends StatelessWidget {
                 x: Colors.white,
                 title: 'Patient Children',
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ChildrenSearch(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, ChildrenSearch.screenRoute);
+
                 },
               ),
             ),

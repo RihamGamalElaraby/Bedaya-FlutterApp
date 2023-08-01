@@ -74,7 +74,7 @@ class _OphthaClinicScreenState extends State<OphthaClinicScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Ophthalmology Clinic',
           icon: Icon(Icons.menu),
         ),

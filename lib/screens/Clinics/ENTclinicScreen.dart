@@ -74,7 +74,7 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
     PatientAdultModel patient = PatientAdultModel();
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'ENT Clinic',
           icon: Icon(Icons.menu),
         ),

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChildrenSearch extends StatelessWidget {
-  static const String screenRoute = 'children search';
+  static const String screenRoute = 'ChildrenSearch';
 
   @override
   Widget build(BuildContext context) {

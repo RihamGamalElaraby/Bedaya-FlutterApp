@@ -135,7 +135,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
         ),

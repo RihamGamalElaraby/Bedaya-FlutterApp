@@ -129,7 +129,7 @@ class _urineLabscreenState extends State<urineLabscreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           // grby hna text field
 
           data: 'Urine Lab',

@@ -1,337 +1,3 @@
-// class PatientAdultModel {
-//   String? idAdultPatient;
-//   String? chosenDay;      //done
-//   String? nameAdultPatient; //done
-//   String? codeAdultPatient; //done
-//   String? sexAdultPatient; //done
-//   int? houseNumberAdultPatient; //done
-//   int? mobileNumberAdultPatient; //done
-//   int? agePatientAdult; // done
-//   String? occupationAdultPatient; //done
-//   String? maritalStatus; //done
-//   int? childrenNumber; //done
-//   int? ageOfYoungChild; //done
-//   String? educationLevelAdultPatient; //done
-//   String? smokingAdultPatient; // done
-//   String? rateSmoking; // done
-//   String? typeSmoking; // done
-//   String? otherHabitsSmoking; // done
-//   String? smokingCessationsStatus; // done
-//   String? DurationSmokingCessations; // done
-//   String? smokingCessations; // done
-//   int? gravidaNumber; // done
-//   int? abortionNumber; // done
-//   String? contracebtion; // done
-//   String? methodContracebtion; // done
-//   String? othercontracebtion; // done
-//   List<ComplaintsModel>? complaintsList; //*******************important            --------->>>>>>> lesa mt3mlsh
-//   List<String>? medicalPastHistory; // done
-//   String? otherMedicalPastHistory; // done
-//   String? allergyPastHistory; // done
-//   String? specifyAllergyPastHistory; // done
-//   String? bloodTransfusionPastHistory; // done
-//   String? durationBloodTransfusionPastHistory; // done
-//   String? surgicalPastHistory; // done
-//   String? operationSurgicalPastHistory; // done
-//   List<String>? drugsOfChronicDiseases; // done
-//   String? othersDrugsOfChronicDiseases; // done
-//   List<String>? familyHistory; // done
-//   String? othersFamilyHistory; // done
-//   //VitalDataGeneralExamination? vitalDataGeneralExamination;// change that
-//   double? BP1Vital; // done
-//   double? BP2Vital; // done
-//   double? mmHg1Vital; // done
-//   double? mmHg2Vital; // done
-//   double? hrVital; // done
-//   double? tempVital; // done
-//   double? randomBloodSugarVital; // done
-//   double? o2Saturationvital; // done
-//   List<String>? complexionGenerallExamination; // done
-//   List<String>? ReferralOfConvoyClinics; // done
-//   String? followUp; // done
-//   String? goHome; // done
-//   String? communityDevelopment; // done
-//   List<String>? screening; // done
-//
-//   PatientAdultModel({
-//     this.goHome,
-//     this.communityDevelopment,
-//     this.screening,
-//     this.idAdultPatient = "",
-//     this.chosenDay,
-//     this.nameAdultPatient,
-//     this.codeAdultPatient,
-//     this.sexAdultPatient,
-//     this.houseNumberAdultPatient,
-//     this.mobileNumberAdultPatient,
-//     this.agePatientAdult,
-//     this.occupationAdultPatient,
-//     this.maritalStatus,
-//     this.childrenNumber,
-//     this.ageOfYoungChild,
-//     this.educationLevelAdultPatient,
-//     this.smokingAdultPatient,
-//     this.rateSmoking,
-//     this.typeSmoking,
-//     this.otherHabitsSmoking,
-//     this.smokingCessationsStatus,
-//     this.DurationSmokingCessations,
-//     this.smokingCessations,
-//     this.gravidaNumber,
-//     this.abortionNumber,
-//     this.contracebtion,
-//     this.methodContracebtion,
-//     this.othercontracebtion,
-//     this.complaintsList,
-//     this.medicalPastHistory,
-//     this.otherMedicalPastHistory,
-//     this.allergyPastHistory,
-//     this.specifyAllergyPastHistory,
-//     this.bloodTransfusionPastHistory,
-//     this.durationBloodTransfusionPastHistory,
-//     this.surgicalPastHistory,
-//     this.operationSurgicalPastHistory,
-//     this.drugsOfChronicDiseases,
-//     this.othersDrugsOfChronicDiseases,
-//     this.familyHistory,
-//     this.othersFamilyHistory,
-//     // this.vitalDataGeneralExamination,
-//     this.BP1Vital,
-//     this.BP2Vital,
-//     this.mmHg1Vital,
-//     this.mmHg2Vital,
-//     this.hrVital,
-//     this.tempVital,
-//     this.randomBloodSugarVital,
-//     this.complexionGenerallExamination,
-//     this.o2Saturationvital,
-//     this.ReferralOfConvoyClinics,
-//     this.followUp,
-//   });
-//
-//   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
-//       : this(
-//     // ***************
-//     familyHistory: json["familyHistory"] == null?null: List<String>.from(json["familyHistory"]),
-//     drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null?null:  List<String>.from(json["drugsOfChronicDiseases"]),
-//     complexionGenerallExamination: json["complexionGenerallExamination"] == null?null:  List<String>.from(json["complexionGenerallExamination"]),
-//     ReferralOfConvoyClinics : json["ReferralOfConvoyClinics"] == null?null:  List<String>.from(json["ReferralOfConvoyClinics"]),
-//     medicalPastHistory: json["medicalPastHistory"] == null?null:  List<String>.from(json["medicalPastHistory"]),
-//     screening: json["screening"] == null?null:  List<String>.from(json["screening"]),
-//     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6
-//
-//     goHome: json["goHome"],
-//     communityDevelopment: json["communityDevelopment"],
-//    // screening: json["screening"],
-//     idAdultPatient: json["idAdultPatient"],
-//     chosenDay: json["chosenDay"],
-//     nameAdultPatient: json["nameAdultPatient"],
-//     codeAdultPatient: json["codeAdultPatient"],
-//     sexAdultPatient: json["sexAdultPatient"],
-//     houseNumberAdultPatient: json["houseNumberAdultPatient"],
-//     mobileNumberAdultPatient: json["mobileNumberAdultPatient"],
-//     agePatientAdult: json["agePatientAdult"],
-//     occupationAdultPatient: json["occupationAdultPatient"],
-//     maritalStatus: json["maritalStatus"],
-//     childrenNumber: json["childrenNumber"],
-//     ageOfYoungChild: json["ageOfYoungChild"],
-//     educationLevelAdultPatient: json["educationLevelAdultPatient"],
-//     smokingAdultPatient: json["smokingAdultPatient"],
-//     rateSmoking: json["rateSmoking"],
-//     typeSmoking: json["typeSmoking"],
-//     otherHabitsSmoking: json["otherHabitsSmoking"],
-//     smokingCessationsStatus: json["smokingCessationsStatus"],
-//     DurationSmokingCessations: json["DurationSmokingCessations"],
-//     smokingCessations: json["smokingCessations"],
-//     gravidaNumber: json["gravidaNumber"],
-//     abortionNumber: json["abortionNumber"],
-//     contracebtion: json["contracebtion"],
-//     methodContracebtion: json["methodContracebtion"],
-//     othercontracebtion: json["othercontracebtion"],
-//     ///////////////////////////////////
-//     complaintsList: json["complaintsList"] == null?null:List<ComplaintsModel>.from(
-//         json["complaintsList"].map((e) => ComplaintsModel.fromFire(e))),
-//     /////////////////////////////////////
-//     //medicalPastHistory: json["medicalPastHistory"] ,
-//     otherMedicalPastHistory: json["otherMedicalPastHistory"],
-//     allergyPastHistory: json["allergyPastHistory"],
-//     specifyAllergyPastHistory: json["specifyAllergyPastHistory"],
-//     bloodTransfusionPastHistory: json["bloodTransfusionPastHistory"],
-//     durationBloodTransfusionPastHistory:
-//     json["durationBloodTransfusionPastHistory"],
-//     surgicalPastHistory: json["surgicalPastHistory"],
-//     operationSurgicalPastHistory: json["operationSurgicalPastHistory"],
-//     othersDrugsOfChronicDiseases: json["othersDrugsOfChronicDiseases"],
-//     othersFamilyHistory: json["othersFamilyHistory"],
-//     // vitalDataGeneralExamination: json["vitalDataGeneralExamination"],
-//     BP1Vital: json["BP1Vital"] ,
-//     BP2Vital: json["BP2Vital"],
-//     mmHg1Vital: json["mmHg1Vital"],
-//     mmHg2Vital: json["mmHg2Vital"],
-//     hrVital: json["hrVital"],
-//     tempVital: json["tempVital"],
-//     randomBloodSugarVital : json["randomBloodSugarVital"],
-//     o2Saturationvital:
-//     json["o2Saturationvital"],
-//     //ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"],
-//     followUp: json["followUp"],
-//   );
-//
-//   Map<String, dynamic> toFireStore() {
-//     return {
-//       "goHome":goHome,
-//       "communityDevelopment":communityDevelopment,
-//       "screening":screening,
-//       "idAdultPatient": idAdultPatient,
-//       "chosenDay": chosenDay,
-//       "nameAdultPatient": nameAdultPatient,
-//       "codeAdultPatient": codeAdultPatient,
-//       "sexAdultPatient": sexAdultPatient,
-//       "houseNumberAdultPatient": houseNumberAdultPatient,
-//       "mobileNumberAdultPatient": mobileNumberAdultPatient,
-//       "agePatientAdult": agePatientAdult,
-//       "occupationAdultPatient": occupationAdultPatient,
-//       "maritalStatus": maritalStatus,
-//       "childrenNumber": childrenNumber,
-//       "ageOfYoungChild": ageOfYoungChild,
-//       "educationLevelAdultPatient": educationLevelAdultPatient,
-//       "smokingAdultPatient": smokingAdultPatient,
-//       "rateSmoking": rateSmoking,
-//       "typeSmoking": typeSmoking,
-//       "otherHabitsSmoking": otherHabitsSmoking,
-//       "smokingCessationsStatus": smokingCessationsStatus,
-//       "DurationSmokingCessations": DurationSmokingCessations,
-//       "smokingCessations": smokingCessations,
-//       "gravidaNumber": gravidaNumber,
-//       "abortionNumber": abortionNumber,
-//       "contracebtion": contracebtion,
-//       "methodContracebtion": methodContracebtion,
-//       "othercontracebtion": othercontracebtion,
-//       // "complaintsList": complaintsList,
-//       'complaintsList': complaintsList?.map((v) => v.toFire()).toList(),
-//       "medicalPastHistory": medicalPastHistory,
-//       "otherMedicalPastHistory": otherMedicalPastHistory,
-//       "allergyPastHistory": allergyPastHistory,
-//       "specifyAllergyPastHistory": specifyAllergyPastHistory,
-//       "bloodTransfusionPastHistory": bloodTransfusionPastHistory,
-//       "durationBloodTransfusionPastHistory":
-//       durationBloodTransfusionPastHistory,
-//       "surgicalPastHistory": surgicalPastHistory,
-//       "operationSurgicalPastHistory": operationSurgicalPastHistory,
-//       "drugsOfChronicDiseases": drugsOfChronicDiseases,
-//       "othersDrugsOfChronicDiseases": othersDrugsOfChronicDiseases,
-//       "familyHistory": familyHistory,
-//       "othersFamilyHistory": othersFamilyHistory,
-//       // "vitalDataGeneralExamination": vitalDataGeneralExamination,
-//       "BP1Vital": BP1Vital ,
-//       "BP2Vital" :  BP2Vital,
-//       "mmHg1Vital" :mmHg1Vital,
-//       "mmHg2Vital"  : mmHg2Vital,
-//       "hrVital" :hrVital,
-//       "tempVital":tempVital,
-//       "randomBloodSugarVital"  :randomBloodSugarVital,
-//
-//       "complexionGenerallExamination": complexionGenerallExamination,
-//       "o2Saturationvital": o2Saturationvital,
-//       "ReferralOfConvoyClinics": ReferralOfConvoyClinics,
-//       "followUp": followUp,
-//     };
-//   }
-// }
-//
-// class ComplaintsModel {
-//   String? complaintName;
-//   String? symptom;
-//   String? onset;
-//   String? course;
-//   String? duration;
-//   String? site;
-//   String? radiation;
-//   String? increasedBy;
-//   String? decreasedBy;
-//   String? previous;
-//
-//   ComplaintsModel({
-//     this.complaintName,
-//     this.symptom,
-//     this.onset,
-//     this.course,
-//     this.duration,
-//     this.site,
-//     this.radiation,
-//     this.increasedBy,
-//     this.decreasedBy,
-//     this.previous,
-//   });
-//
-//   ComplaintsModel.fromFire(Map<String, dynamic> json)
-//       : this(
-//     complaintName: json["complaintName"],
-//     symptom: json["symptom"],
-//     onset: json["onset"],
-//     course: json["course"],
-//     duration: json["duration"],
-//     site: json["site"],
-//     radiation: json["radiation"],
-//     increasedBy: json["increasedBy"],
-//     decreasedBy: json["decreasedBy"],
-//     previous: json["previous"],
-//   );
-//
-//   Map<String, dynamic> toFire() {
-//     return {
-//       "complaintName": complaintName,
-//       "symptom": symptom,
-//       "onset": onset,
-//       "course": course,
-//       "duration": duration,
-//       "site": site,
-//       "radiation": radiation,
-//       "increasedBy": increasedBy,
-//       "decreasedBy": decreasedBy,
-//       "previous": previous,
-//     };
-//   }
-// }
-//
-// // class VitalDataGeneralExamination {
-//
-//
-// //   VitalDataGeneralExamination(
-// //       {
-// //         this.BP1,
-// //       this.BP2,
-// //       this.mmHg1,
-// //       this.mmHg2,
-// //       this.hr,
-// //       this.randomBloodSugar,
-// //       this.temp});
-//
-// //   VitalDataGeneralExamination.fromFireStore(Map<String, dynamic> json)
-// //       : this(
-// //           BP1: json["BP1"],
-// //           BP2: json["BP2"],
-// //           mmHg1: json["mmHg1"],
-// //           mmHg2: json["mmHg2"],
-// //           hr: json["hr"],
-// //           randomBloodSugar: json["randomBloodSugar"],
-// //           temp: json["temp"],
-// //         );
-//
-// //   Map<String, dynamic> toFireStore() {
-// //     return {
-// //       "BP1": BP1,
-// //       "BP2": BP2,
-// //       "mmHg1": mmHg1,
-// //       "mmHg2": mmHg2,
-// //       "hr": hr,
-// //       "randomBloodSugar": randomBloodSugar,
-// //       "temp": temp,
-// //     };
-// //   }
-
-// version 2
-
 class PatientAdultModel {
   String? idAdultPatient;
   String? chosenDay; //done
@@ -463,8 +129,162 @@ class PatientAdultModel {
   String? StoolOdour;
   String? wbcscontroller;
   String? Rbcscontroller;
+  String? bloodCbcWbs; //1
+  String? bloodCbcLymph;
+
+  String? bloodCbcMid;
+
+  String? bloodCbcGran;
+
+  String? bloodCbcLymphH;
+
+  String? bloodCbcGranL;
+
+  String? bloodCbcMidPercent;
+
+  String? bloodCbcRbc;
+
+  String? bloodCbcHgbl;
+
+  String? bloodCbcHctl;
+
+  String? bloodCbcMcvl;
+  String? bloodCbcMchl;
+
+  String? bloodCbcMchc;
+
+  String? bloodCbcRdwcv;
+
+  String? bloodCbcRdwsdl;
+  String? bloodCbcPlth;
+
+  String? bloodCbcMpv;
+
+  String? bloodCbcPdw;
+
+  String? bloodCbcPct;
+
+  String? bloodCbcPlccl;
+
+  String? bloodCbcPlcrl; //21
+  String? bloodEsr;
+
+  String? bloodLipidLdl;
+
+  String? bloodLipidTg;
+
+  String? bloodLipidHdl;
+
+  String? bloodLipidCholesterol;
+
+  String? cbcPttresult; //1
+  String? cbcptpercentage;
+
+  String? cbcptTime;
+
+  String? cbcptINR;
+
+  String? cbcliverDirectbilirubin;
+
+  String? cbcliverTotalbilirubin;
+
+  String? cbcliverAlbumin;
+
+  String? cbcliverAlkalinephosphatase;
+
+  String? cbcliverAST;
+
+  String? cbcliverALTGPT;
+
+  String? bloodotherCRP;
+
+  String? bloodotherASOT;
+
+  String? bloodkidneyCreatinine;
+
+  String? bloodkidneyurea;
+
+  String? bloodkidneyUricacid;
+
+  String? bloodionsK;
+
+  String? bloodionsCa;
+
+  String? bloodionsNa;
+
+  String? bloodglucoseRandom;
+
+  String? bloodglucoseFasting;
+
+  String? bloodglucoseHbA1C;
+
+  String? bloodglucosePostPrandial;
+
+  String? bloodotherBHCG;
+  String? bloodotherHBV;
+  String? bloodotherHCV;
+  String? bloodotherAlfafetoprotein;
+  String? bloodotherPSA;
+  String? bloodotherAntiD;
+
+  String? bloodotherRheumatoidfactor;
 
   PatientAdultModel({
+    this.bloodotherCRP,
+    this.bloodotherASOT,
+    this.bloodotherAlfafetoprotein,
+    this.bloodotherAntiD,
+    this.bloodotherBHCG,
+    this.bloodotherHBV,
+    this.bloodotherHCV,
+    this.bloodotherPSA,
+    this.bloodotherRheumatoidfactor,
+    this.bloodkidneyCreatinine,
+    this.bloodkidneyurea,
+    this.bloodkidneyUricacid,
+    this.bloodionsCa,
+    this.bloodionsK,
+    this.bloodionsNa,
+    this.bloodglucoseFasting,
+    this.bloodglucoseHbA1C,
+    this.bloodglucosePostPrandial,
+    this.bloodglucoseRandom,
+    this.cbcliverAlbumin,
+    this.cbcliverAlkalinephosphatase,
+    this.cbcliverALTGPT,
+    this.cbcliverAST,
+    this.cbcliverDirectbilirubin,
+    this.cbcliverTotalbilirubin,
+    this.cbcptINR,
+    this.cbcptpercentage,
+    this.cbcptTime,
+    this.cbcPttresult,
+    this.bloodEsr,
+    this.bloodLipidCholesterol,
+    this.bloodLipidHdl,
+    this.bloodLipidLdl,
+    this.bloodLipidTg,
+    this.bloodCbcPlcrl, //1
+    this.bloodCbcPlccl,
+    this.bloodCbcPct,
+    this.bloodCbcMchc,
+    this.bloodCbcPdw,
+    this.bloodCbcMpv,
+    this.bloodCbcWbs,
+    this.bloodCbcHgbl,
+    this.bloodCbcHctl,
+    this.bloodCbcMcvl,
+    this.bloodCbcRdwsdl,
+    this.bloodCbcGran,
+    this.bloodCbcGranL,
+    this.bloodCbcLymph,
+    this.bloodCbcLymphH, // 15
+    this.bloodCbcMchl,
+    this.bloodCbcMid,
+    this.bloodCbcMidPercent,
+    this.bloodCbcPlth,
+    this.bloodCbcRbc,
+    this.bloodCbcRdwcv,
     this.urinePhysicalExAspect,
     this.urinePhysicalExColour,
     this.urineChemicalExBlood,
@@ -597,6 +417,64 @@ class PatientAdultModel {
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
+          bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
+          bloodotherAntiD: json["bloodotherAntiD"],
+          bloodotherBHCG: json["bloodotherBHCG"],
+          bloodotherHBV: json["bloodotherHBV"],
+          bloodotherHCV: json["bloodotherHCV"],
+          bloodotherPSA: json["bloodotherPSA"],
+          bloodotherRheumatoidfactor: json["bloodotherRheumatoidfactor"],
+          bloodglucoseFasting: json["bloodglucoseFasting"],
+          bloodglucoseHbA1C: json["bloodglucoseHbA1C"],
+          bloodglucosePostPrandial: json["bloodglucosePostPrandial"],
+          bloodglucoseRandom: json["bloodglucoseRandom"],
+          bloodionsCa: json["bloodionsCa"],
+          bloodionsK: json["bloodionsK"],
+          bloodionsNa: json["bloodionsNa"],
+          bloodkidneyCreatinine: json["bloodkidneyCreatinine"],
+          bloodkidneyurea: json["bloodkidneyurea"],
+          bloodkidneyUricacid: json["bloodkidneyUricacid"],
+          bloodotherASOT: json["bloodotherASOT"],
+          bloodotherCRP: json["bloodotherCRP"],
+          cbcliverAlbumin: json["cbcliverAlbumin"],
+          cbcliverAlkalinephosphatase: json["cbcliverAlkalinephosphatase"],
+          cbcliverALTGPT: json["cbcliverALTGPT"],
+          cbcliverAST: json["cbcliverAST"],
+          cbcliverDirectbilirubin: json["cbcliverDirectbilirubin"],
+          cbcliverTotalbilirubin: json["cbcliverTotalbilirubin"],
+          cbcptINR: json["cbcptINR"],
+          cbcptpercentage: json["cbcptpercentage"],
+          cbcptTime: json["cbcptTime"],
+          cbcPttresult: json["cbcPttresult"],
+
+          bloodEsr: json["bloodEsr"],
+          bloodLipidCholesterol: json["bloodLipidCholesterol"],
+          bloodLipidHdl: json["bloodLipidHdl"],
+          bloodLipidLdl: json["bloodLipidLdl"],
+          bloodLipidTg: json["bloodLipidTg"],
+
+          bloodCbcGran: json["bloodCbcGran"],
+          bloodCbcGranL: json["bloodCbcGranL"],
+          bloodCbcHctl: json["bloodCbcHctl"],
+          bloodCbcHgbl: json["bloodCbcHgbl"],
+          bloodCbcLymph: json["bloodCbcLymph"],
+          bloodCbcLymphH: json["bloodCbcLymphH"],
+          bloodCbcMchc: json["bloodCbcMchc"],
+          bloodCbcMchl: json["bloodCbcMchl"],
+          bloodCbcMcvl: json["bloodCbcMcvl"],
+          bloodCbcMid: json["bloodCbcMid"],
+          bloodCbcMidPercent: json["bloodCbcMidPercent"],
+          bloodCbcMpv: json["bloodCbcMpv"],
+          bloodCbcPct: json["bloodCbcPct"],
+          bloodCbcPdw: json["bloodCbcPdw"],
+          bloodCbcPlccl: json["bloodCbcPlccl"],
+          bloodCbcPlcrl: json["bloodCbcPlcrl"],
+          bloodCbcPlth: json["bloodCbcPlth"],
+          bloodCbcRbc: json["bloodCbcRbc"],
+          bloodCbcRdwcv: json["bloodCbcRdwcv"],
+          bloodCbcRdwsdl: json["bloodCbcRdwsdl"],
+          bloodCbcWbs: json["bloodCbcWbs"],
+
           urineAbnormalFindings: json["urineAbnormalFindings"] == null
               ? null
               : List<String>.from(json["urineAbnormalFindings"]),
@@ -801,6 +679,63 @@ class PatientAdultModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "bloodotherBHCG": bloodotherBHCG,
+      "bloodotherHBV": bloodotherHBV,
+      "bloodotherHCV": bloodotherHCV,
+      "bloodotherAlfafetoprotein": bloodotherAlfafetoprotein,
+      "bloodotherPSA": bloodotherPSA,
+      "bloodotherAntiD": bloodotherAntiD,
+      "bloodotherRheumatoidfactor": bloodotherRheumatoidfactor,
+
+      "bloodotherCRP": bloodotherCRP,
+      "bloodotherASOT": bloodotherASOT,
+      "bloodkidneyCreatinine": bloodkidneyCreatinine,
+      "bloodkidneyurea": bloodkidneyurea,
+      "bloodkidneyUricacid": bloodkidneyUricacid,
+      "bloodionsK": bloodionsK,
+      "bloodionsCa": bloodionsCa,
+      "bloodionsNa": bloodionsNa,
+      "bloodglucoseRandom": bloodglucoseRandom,
+      "bloodglucoseFasting": bloodglucoseFasting,
+      "bloodglucoseHbA1C": bloodglucoseHbA1C,
+      "bloodglucosePostPrandial": bloodglucosePostPrandial,
+      "cbcliverAlbumin": cbcliverAlbumin,
+      "cbcliverAlkalinephosphatase": cbcliverAlkalinephosphatase,
+      "cbcliverALTGPT": cbcliverALTGPT,
+      "cbcliverAST": cbcliverAST,
+      "cbcliverDirectbilirubin": cbcliverDirectbilirubin,
+      "cbcliverTotalbilirubin": cbcliverTotalbilirubin,
+      "cbcptINR": cbcptINR,
+      "cbcptpercentage": cbcptpercentage,
+      "cbcptTime": cbcptTime,
+      "cbcPttresult": cbcPttresult,
+
+      "bloodEsr": bloodEsr,
+      "bloodLipidCholesterol": bloodLipidCholesterol,
+      "bloodLipidHdl": bloodLipidHdl,
+      "bloodLipidLdl": bloodLipidLdl,
+      "bloodLipidTg": bloodLipidTg,
+      "bloodCbcGran": bloodCbcGran,
+      "bloodCbcGranL": bloodCbcGranL,
+      "bloodCbcHctl": bloodCbcHctl,
+      "bloodCbcHgbl": bloodCbcHgbl,
+      "bloodCbcLymph": bloodCbcLymph,
+      "bloodCbcLymphH": bloodCbcLymphH,
+      "bloodCbcMchc": bloodCbcMchc,
+      "bloodCbcMchl": bloodCbcMchl,
+      "bloodCbcMcvl": bloodCbcMcvl,
+      "bloodCbcMid": bloodCbcMid,
+      "bloodCbcMidPercent": bloodCbcMidPercent,
+      "bloodCbcMpv": bloodCbcMpv,
+      "bloodCbcPct": bloodCbcPct,
+      "bloodCbcPdw": bloodCbcPdw,
+      "bloodCbcPlccl": bloodCbcPlccl,
+      "bloodCbcPlcrl": bloodCbcPlcrl,
+      "bloodCbcPlth": bloodCbcPlth,
+      "bloodCbcRbc": bloodCbcRbc,
+      "bloodCbcRdwcv": bloodCbcRdwcv,
+      "bloodCbcRdwsdl": bloodCbcRdwsdl,
+      "bloodCbcWbs": bloodCbcWbs,
       "urineAbnormalFindings": urineAbnormalFindings,
       "urinePhysicalExColour": urinePhysicalExColour,
       "urinePhysicalExAspect": urinePhysicalExAspect,
@@ -993,38 +928,3 @@ class ComplaintsModel {
     };
   }
 }
-
-// class VitalDataGeneralExamination {
-
-//   VitalDataGeneralExamination(
-//       {
-//         this.BP1,
-//       this.BP2,
-//       this.mmHg1,
-//       this.mmHg2,
-//       this.hr,
-//       this.randomBloodSugar,
-//       this.temp});
-
-//   VitalDataGeneralExamination.fromFireStore(Map<String, dynamic> json)
-//       : this(
-//           BP1: json["BP1"],
-//           BP2: json["BP2"],
-//           mmHg1: json["mmHg1"],
-//           mmHg2: json["mmHg2"],
-//           hr: json["hr"],
-//           randomBloodSugar: json["randomBloodSugar"],
-//           temp: json["temp"],
-//         );
-
-//   Map<String, dynamic> toFireStore() {
-//     return {
-//       "BP1": BP1,
-//       "BP2": BP2,
-//       "mmHg1": mmHg1,
-//       "mmHg2": mmHg2,
-//       "hr": hr,
-//       "randomBloodSugar": randomBloodSugar,
-//       "temp": temp,
-//     };
-//}

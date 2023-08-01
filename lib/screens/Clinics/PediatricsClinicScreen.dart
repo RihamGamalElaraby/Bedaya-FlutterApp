@@ -77,7 +77,7 @@ class _PediatricsClinicScreenState extends State<PediatricsClinicScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Pediatrics Clinic',
           icon: Icon(Icons.menu),
         ),

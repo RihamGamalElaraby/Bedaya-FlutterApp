@@ -53,7 +53,10 @@
 //     );
 import 'package:flutter/material.dart';
 
+import '../screens/Search Screen/search_screen.dart';
+
 Widget appBardefult({
+  required BuildContext context,
   required String data,
   required Icon icon,
   Function? leadingFunction,
@@ -95,7 +98,9 @@ Widget appBardefult({
 
           IconButton(
             hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-            onPressed: () => searchFunction!(),
+            onPressed: (){
+            Navigator.pushNamed(context, SearchScreen.screenRoute);
+              },
             icon: Icon(Icons.search),
           ),
 

@@ -113,11 +113,9 @@ class _adultCheckupState extends State<adultCheckup> {
     return Scaffold(
       appBar: PreferredSize(
         child: appBardefult(
+          context: context,
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
-          searchFunction:() {
-            Navigator.pushNamed(context, SearchScreen.screenRoute);
-          },
         ),
         preferredSize: Size(100, 50),
       ),

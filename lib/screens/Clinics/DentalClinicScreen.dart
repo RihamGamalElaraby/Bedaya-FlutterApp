@@ -74,7 +74,7 @@ class _DentalClinicScreenState extends State<DentalClinicScreen> {
     PatientAdultModel patient = PatientAdultModel();
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Dental Clinic',
           icon: Icon(Icons.menu),
         ),

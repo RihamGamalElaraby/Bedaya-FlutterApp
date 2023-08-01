@@ -78,7 +78,7 @@ class _GynClinicScreenState extends State<GynClinicScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(
+        child: appBardefult(context: context,
           data: 'Gynecology Clinic',
           icon: Icon(Icons.menu),
         ),
