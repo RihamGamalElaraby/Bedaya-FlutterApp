@@ -77,7 +77,7 @@ class _AdultSearchState extends State<AdultSearch> {
       ),
       body: SingleChildScrollView(
           child: StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-            stream: MyDataBase.getPatient(codeController.text),
+            stream: MyDataBase.getPatientAdult(codeController.text),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());

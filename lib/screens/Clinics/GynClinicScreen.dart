@@ -160,7 +160,7 @@ class _GynClinicScreenState extends State<GynClinicScreen> {
                   Flexible(
                       flex: 1,
                       child: StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-                        stream: MyDataBase.getPatient(codeController.text),
+                        stream: MyDataBase.getPatientAdult(codeController.text),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {

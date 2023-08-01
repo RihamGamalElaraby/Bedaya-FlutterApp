@@ -19,11 +19,39 @@ bool Day2 = false;
 bool Day3 = false;
 bool Day4 = false;
 bool Day5 = false;
+
+bool married = false;
 bool Male = false;
 bool Female = false;
-bool married = false;
+String sexPatient="";
+
+String educationLevelFather="";
+bool  Illiterate = false ;
+bool  Readandwrite = false ;
+bool  Primary = false ;
+bool  Preparatory = false ;
+bool  Secondary = false ;
+bool  University = false ;
+bool  Postgraduate = false ;
+
+String educationLevelMother="";
+bool  IlliterateM = false ;
+bool  ReadandwriteM = false ;
+bool  PrimaryM = false ;
+bool  PreparatoryM = false ;
+bool  SecondaryM = false ;
+bool  UniversityM = false ;
+bool  PostgraduateM = false ;
 
 class _childrenCheckupState extends State<childrenCheckup> {
+  TextEditingController mobileNuPatient =TextEditingController();
+  TextEditingController namePatient =TextEditingController();
+  TextEditingController codePatient =TextEditingController();
+  TextEditingController houseNuPatient =TextEditingController();
+  TextEditingController agePatient =TextEditingController();
+  TextEditingController fatherOcc =TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,26 +90,26 @@ class _childrenCheckupState extends State<childrenCheckup> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              sizedBoxWidth(width: 10),
-              Flexible(flex: 1, child: defultText(data: 'Code:')),
-              sizedBoxWidth(width: 5),
-              Flexible(
-                  flex: 1, child: defultTextField(text: 'code', width: 100)),
-              sizedBoxWidth(width: 10),
-              Flexible(flex: 1, child: defultText(data: 'House Number:')),
-              sizedBoxWidth(width: 5),
-              Flexible(
-                  flex: 1, child: defultTextField(text: 'H.N', width: 120)),
-              sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Patient Name:')),
               sizedBoxWidth(width: 5),
               Flexible(
                 flex: 1,
                 child: defultTextField(
+                  controller: namePatient,
                   text: 'Name',
                   width: 250,
                 ),
               ),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'Code:')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: defultTextField(text: 'code', width: 100,controller: codePatient)),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'House Number:')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: defultTextField(text: 'H.N', controller: houseNuPatient,width: 120)),
             ],
           ),
           sizedBoxhight(hight: 10),
@@ -93,16 +121,36 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 5),
               Flexible(flex: 1, child: defultText(data: 'male')),
               Flexible(
-                  flex: 1, child: Checkbox(value: Male, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Male, onChanged: (val) {
+                setState(() {
+                  Male =val! ;
+                  Female = false ;
+                });
+                if (val!) {
+                  sexPatient = "male";
+                } else {
+                  sexPatient = "female";
+                }
+              })),
               sizedBoxWidth(width: 5),
               Flexible(flex: 1, child: defultText(data: 'female')),
-              Checkbox(value: Female, onChanged: (val) {}),
+              Checkbox(value: Female, onChanged: (val) {
+                setState(() {
+                  Male = false;
+                  Female = val! ;
+                });
+                if (val!) {
+                  sexPatient = "male";
+                } else {
+                  sexPatient = "female";
+                }
+              }),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Age:')),
               sizedBoxWidth(width: 5),
               Flexible(
                 flex: 1,
-                child: defultTextField(
+                child: defultTextField(controller: agePatient,
                   text: 'age',
                   width: 250,
                 ),
@@ -113,6 +161,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
               Flexible(
                 flex: 2,
                 child: defultTextField(
+                  controller: fatherOcc,
                   text: 'Father Occupation:',
                   width: 250,
                 ),
@@ -122,7 +171,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 5),
               Flexible(
                 flex: 2,
-                child: defultTextField(
+                child: defultTextField(controller: mobileNuPatient,
                   text: 'Mobile Number',
                   width: 250,
                 ),
@@ -138,32 +187,130 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Illiterate', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Illiterate, onChanged: (val) {
+                setState(() {
+                  Illiterate =val! ;
+                  Readandwrite = false ;
+                  Primary= false;
+                  Preparatory = false;
+                  Secondary = false;
+                  University = false;
+                  Postgraduate = false;
+
+                });
+                if (val!) {
+                  educationLevelFather = "Illiterate";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(
                   flex: 1, child: defultText(data: 'Read and write', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Readandwrite, onChanged: (val) {
+                setState(() {
+                  Illiterate =false ;
+                  Readandwrite = val! ;
+                  Primary= false;
+                  Preparatory = false;
+                  Secondary = false;
+                  University = false;
+                  Postgraduate = false;
+
+                });
+                if (val!) {
+                  educationLevelFather = "Read and write";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Primary', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Primary, onChanged: (val) {
+                setState(() {
+                  Illiterate = false;
+                  Readandwrite = false ;
+                  Primary= val!;
+                  Preparatory = false;
+                  Secondary = false;
+                  University = false;
+                  Postgraduate = false;
+
+                });
+                if (val!) {
+                  educationLevelFather = "Primary";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Preparatory', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Preparatory, onChanged: (val) {
+                setState(() {
+                  Illiterate = false;
+                  Readandwrite = false ;
+                  Primary= false;
+                  Preparatory = val!;
+                  Secondary = false;
+                  University = false;
+                  Postgraduate = false;
+
+                });
+                if (val!) {
+                  educationLevelFather = "Preparatory";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Secondary', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Secondary, onChanged: (val) {
+                setState(() {
+                  Illiterate = false;
+                  Readandwrite = false ;
+                  Primary= false;
+                  Preparatory = false;
+                  Secondary = val!;
+                  University = false;
+                  Postgraduate = false;
+
+                });
+                if (val!) {
+                  educationLevelFather = "Secondary";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'University', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: University, onChanged: (val) {
+                setState(() {
+                  Illiterate =false ;
+                  Readandwrite = false ;
+                  Primary= false;
+                  Preparatory = false;
+                  Secondary = false;
+                  University = val!;
+                  Postgraduate = false;
+
+                });
+                if (val!) {
+                  educationLevelFather = "University";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Postgraduate', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Postgraduate, onChanged: (val) {
+                setState(() {
+                  Illiterate =false ;
+                  Readandwrite = false ;
+                  Primary= false;
+                  Preparatory = false;
+                  Secondary = false;
+                  University = false;
+                  Postgraduate = val!;
+
+                });
+                if (val!) {
+                  educationLevelFather = "Postgraduate";
+                }
+              })),
               sizedBoxWidth(width: 10),
             ],
           ),
@@ -176,32 +323,130 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Illiterate', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: IlliterateM, onChanged: (val) {
+                setState(() {
+                  IlliterateM =val! ;
+                  ReadandwriteM = false ;
+                  PrimaryM= false;
+                  PreparatoryM = false;
+                  SecondaryM = false;
+                  UniversityM = false;
+                  PostgraduateM = false;
+
+                });
+                if (val!) {
+                  educationLevelMother = "Illiterate";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(
                   flex: 1, child: defultText(data: 'Read and write', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: ReadandwriteM, onChanged: (val) {
+                setState(() {
+                  IlliterateM =false ;
+                  ReadandwriteM = val! ;
+                  PrimaryM= false;
+                  PreparatoryM = false;
+                  SecondaryM = false;
+                  UniversityM = false;
+                  PostgraduateM = false;
+
+                });
+                if (val!) {
+                  educationLevelMother = 'Read and write';
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Primary', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: PrimaryM, onChanged: (val) {
+                setState(() {
+                  IlliterateM = false ;
+                  ReadandwriteM = false ;
+                  PrimaryM= val!;
+                  PreparatoryM = false;
+                  SecondaryM = false;
+                  UniversityM = false;
+                  PostgraduateM = false;
+
+                });
+                if (val!) {
+                  educationLevelMother = "Primary";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Preparatory', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: PreparatoryM, onChanged: (val) {
+                setState(() {
+                  IlliterateM =false;
+                  ReadandwriteM = false ;
+                  PrimaryM= false;
+                  PreparatoryM = val! ;
+                  SecondaryM = false;
+                  UniversityM = false;
+                  PostgraduateM = false;
+
+                });
+                if (val!) {
+                  educationLevelMother = "Preparatory";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Secondary', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: SecondaryM, onChanged: (val) {
+                setState(() {
+                  IlliterateM =false ;
+                  ReadandwriteM = false ;
+                  PrimaryM= false;
+                  PreparatoryM = false;
+                  SecondaryM = val!;
+                  UniversityM = false;
+                  PostgraduateM = false;
+
+                });
+                if (val!) {
+                  educationLevelMother = "Secondary";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'University', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: UniversityM, onChanged: (val) {
+                setState(() {
+                  IlliterateM =false ;
+                  ReadandwriteM = false ;
+                  PrimaryM= false;
+                  PreparatoryM = false;
+                  SecondaryM = false;
+                  UniversityM = val!;
+                  PostgraduateM = false;
+
+                });
+                if (val!) {
+                  educationLevelMother = "University";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Postgraduate', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: PostgraduateM, onChanged: (val) {
+                setState(() {
+                  IlliterateM =false ;
+                  ReadandwriteM = false ;
+                  PrimaryM= false;
+                  PreparatoryM = false;
+                  SecondaryM = false;
+                  UniversityM = false;
+                  PostgraduateM = val!;
+
+                });
+                if (val!) {
+                  educationLevelMother = "Postgraduate";
+                }
+              })),
               sizedBoxWidth(width: 10),
             ],
           ),

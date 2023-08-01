@@ -1164,9 +1164,6 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                               );
                               complaintsList.add(complaint);
                               patientModel?.complaintsList = complaintsList;
-                              // PatientAdultModel patient = PatientAdultModel(
-                              //     complaintsList: complaintsList
-                              // );
                               print(complaintsList);
                               //complaintsList.clear();
                               // اشطر كتكوت l
