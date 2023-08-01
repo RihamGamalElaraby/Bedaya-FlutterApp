@@ -6,6 +6,9 @@ import 'package:bedaya/widgets/my_button.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
 import 'package:bedaya/component/component.dart';
 
+import '../../../DateModels/PatientAdultModel.dart';
+import '../../../network/my_database.dart';
+
 // import 'package:bedaya/widgets/appbar.dart';
 // import 'wi';
 
@@ -89,6 +92,8 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
 
   @override
   Widget build(BuildContext context) {
+    PatientAdultModel? patient = ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
+
     return Scaffold(
         appBar: PreferredSize(
           child: appBardefult(
@@ -1649,8 +1654,32 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
                       x: Colors.black,
                       title: 'Save&Done',
                       size: 25,
-                      onPressed: () => {
-                        Navigator.pushNamed(context, ChoseLabsScreen.screenRoute)
+                      onPressed: () {
+                        if(checkBlood=="yes"){
+                          patient?.bloodCheckIn = false;
+                        }
+
+                        patient?.bloodkidneyUricacid =bloodkidneyUricacid.text ;
+                        patient?.bloodkidneyurea =bloodkidneyurea.text ;
+                        patient?.bloodkidneyCreatinine =bloodkidneyCreatinine.text ;
+                        patient?.bloodionsNa = bloodionsNa.text;
+                        patient?.bloodionsK = bloodionsK.text;
+                        patient?.bloodionsCa =bloodionsCa.text ;
+                        patient?.bloodglucoseRandom =bloodglucoseRandom.text ;
+                        patient?.bloodglucosePostPrandial =bloodglucosePostPrandial.text ;
+                        patient?.bloodglucoseFasting =bloodglucoseFasting.text ;
+                        patient?.bloodglucoseHbA1C =bloodglucoseHbA1C.text ;
+                        patient?.bloodotherRheumatoidfactor =bloodotherRheumatoidfactor ;
+                        patient?.bloodotherPSA = bloodotherPSA;
+                        patient?.bloodotherCRP = bloodotherCRP.text;
+                        patient?.bloodotherASOT =bloodotherASOT.text ;
+                        patient?.bloodotherAlfafetoprotein =bloodotherAlfafetoprotein ;
+                        patient?.bloodotherAntiD =bloodotherAntiD ;
+                        patient?.bloodotherBHCG =bloodotherBHCG ;
+                        patient?.bloodotherHBV =bloodotherHBV ;
+                        patient?.bloodotherHCV =bloodotherHCV ;
+                        MyDataBase.updatePatientAdult(patient!);
+                        Navigator.pushNamed(context, ChoseLabsScreen.screenRoute);
                       },
                     ),
                     sizedBoxWidth(width: 20),

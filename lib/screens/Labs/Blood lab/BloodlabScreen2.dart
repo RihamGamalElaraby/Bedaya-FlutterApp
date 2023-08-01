@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bedaya/screens/Labs/Blood%20lab/BloodlabScreen2.dart';
 
 import '../../../component/component.dart';
+import '../../../network/my_database.dart';
 import '../../../widgets/appbar.dart';
 import '../../../widgets/my_button.dart';
 import '../../../widgets/text_Filed.dart';
@@ -766,8 +767,19 @@ class _BloodlaponecontiunueState extends State<Bloodlaponecontiunue> {
                       title: 'Save&Continue',
                       size: 25,
                       onPressed: () {
+                        patient?.cbcliverTotalbilirubin = cbcliverTotalbilirubin.text ;
+                        patient?.cbcliverDirectbilirubin = cbcliverDirectbilirubin.text;
+                        patient?.cbcliverAST =cbcliverAST.text ;
+                        patient?.cbcliverALTGPT =cbcliverALTGPT.text ;
+                        patient?.cbcliverAlkalinephosphatase = cbcliverAlkalinephosphatase.text;
+                        patient?.cbcliverAlbumin = cbcliverAlbumin.text;
+                        patient?.cbcptTime =cbcptTime.text ;
+                        patient?.cbcptpercentage = cbcptpercentage.text;
+                        patient?.cbcptINR =cbcptINR.text ;
+                        patient?.cbcPttresult =cbcPttresult.text ;
+                        MyDataBase.updatePatientAdult(patient!);
                         Navigator.pushNamed(
-                            context, bloodLabContinueScreen.screenRoute);
+                            context, bloodLabContinueScreen.screenRoute,arguments: patient);
                       },
                     ),
                   )

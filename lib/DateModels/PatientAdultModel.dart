@@ -184,7 +184,7 @@ class PatientAdultModel {
 
   String? cbcptINR;
 
-  String? cbcliverDirectbilirubin;
+  String? cbcliverDirectbilirubin; //1
 
   String? cbcliverTotalbilirubin;
 
@@ -194,40 +194,28 @@ class PatientAdultModel {
 
   String? cbcliverAST;
 
-  String? cbcliverALTGPT;
+  String? cbcliverALTGPT; // finish
 
-  String? bloodotherCRP;
-
-  String? bloodotherASOT;
 
   String? bloodkidneyCreatinine;
-
   String? bloodkidneyurea;
-
   String? bloodkidneyUricacid;
-
   String? bloodionsK;
-
   String? bloodionsCa;
-
   String? bloodionsNa;
-
   String? bloodglucoseRandom;
-
   String? bloodglucoseFasting;
-
   String? bloodglucoseHbA1C;
-
   String? bloodglucosePostPrandial;
-
   String? bloodotherBHCG;
   String? bloodotherHBV;
   String? bloodotherHCV;
   String? bloodotherAlfafetoprotein;
   String? bloodotherPSA;
   String? bloodotherAntiD;
-
   String? bloodotherRheumatoidfactor;
+  String? bloodotherCRP;
+  String? bloodotherASOT;
 
   PatientAdultModel({
     this.bloodotherCRP,

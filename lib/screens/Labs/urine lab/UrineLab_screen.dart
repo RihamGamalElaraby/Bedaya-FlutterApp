@@ -7,7 +7,6 @@ import 'package:bedaya/widgets/my_button.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
 import 'package:bedaya/screens/Labs/choselabs_screen.dart';
 import 'package:bedaya/screens/Labs/Blood%20lab/BloodLab_screen.dart';
-
 import '../../../DateModels/PatientAdultModel.dart';
 
 class urineLabscreen extends StatefulWidget {
@@ -23,32 +22,46 @@ class _urineLabscreenState extends State<urineLabscreen>
     with SingleTickerProviderStateMixin {
   late PatientAdultModel patient;
 
-  // bool stool = pa/tient.stoolCheckIn;
+  bool cats = false;
+  bool eggs = false;
+  bool Mucus = false;
+  bool Bacteria = false;
+  bool Yeast = false;
+  bool Sperms = false;
+  List<String> ubnormalfindings=[];
+  List<String> selectedubnormalfindings = [];
+
+
   bool yesCheckurine = false;
-
   bool noCheckurine = false;
-
   String checkUrine = "";
 
   List<String> ChosedpositiveCalcium = [
+    'negative',
     'Positive 1',
     'Positive 2',
     'Positive 3'
   ];
-  String selectedpositiveCalcium = 'Positive 1';
+  String selectedpositiveCalcium = 'negative';
 
-  List<String> Chosedpositiveuric = ['Positive 1', 'Positive 2', 'Positive 3'];
-  String selectedpositiveuric = 'Positive 1';
+  List<String> Chosedpositiveuric = ['negative','Positive 1', 'Positive 2', 'Positive 3'];
+  String selectedpositiveuric = 'negative';
+
+
 
   List<String> Chosedpositivetriple = [
+    'negative',
     'Positive 1',
     'Positive 2',
     'Positive 3'
   ];
-  String selectedpositivetriple = 'Positive 1';
+  String selectedpositivetriple = 'negative';
 
-  List<String> ChosedpositiveAmor = ['Positive 1', 'Positive 2', 'Positive 3'];
-  String selectedpositiveAmor = 'Positive 1';
+  List<String> ChosedpositiveAmor = [ "negative",
+  'Positive 1',
+  'Positive 2',
+  'Positive 3'];
+  String selectedpositiveAmor = "negative";
 
   bool Day1 = false;
 
@@ -111,7 +124,18 @@ class _urineLabscreenState extends State<urineLabscreen>
     "1,025",
     "1,030"
   ];
-  var formKey = GlobalKey<FormState>();
+  TextEditingController urinephysicalExcolor = TextEditingController();
+  TextEditingController urinephysicalExaspect  = TextEditingController();
+  TextEditingController urinechemicalExhemoglobin =  TextEditingController();
+  TextEditingController urinechemicalExSpecific =  TextEditingController();
+  TextEditingController urinemicroscopicdataRBCs =TextEditingController();
+  TextEditingController urinemicroscopicdatapusscells =TextEditingController();
+  TextEditingController urinemicroscopicdataEpithelial =TextEditingController();
+  TextEditingController urinealbumin =TextEditingController();
+  TextEditingController urinecreat =TextEditingController();
+  TextEditingController urineAlbuminCreatratio = TextEditingController();
+  TextEditingController urinecomments =TextEditingController();
+
 
   @override
   void initState() {
@@ -129,9 +153,9 @@ class _urineLabscreenState extends State<urineLabscreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(context: context,
+        child: appBardefult(
+          context: context,
           // grby hna text field
-
           data: 'Urine Lab',
           icon: Icon(Icons.menu),
           // searchFunction: (){
@@ -452,6 +476,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urinephysicalExcolor,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -505,6 +530,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urinephysicalExaspect,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -715,7 +741,9 @@ class _urineLabscreenState extends State<urineLabscreen>
                           borderRadius:
                           BorderRadius.all(Radius.circular(15))),
                       child: Center(
-                        child: defultTextField(text: 'result' ,  hight: 50, width: 250 ),
+                        child: defultTextField(
+                          controller: urinechemicalExhemoglobin,
+                            text: 'result' ,  hight: 50, width: 250 ),
                       ),
                     ),
                   ),
@@ -1254,6 +1282,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urinechemicalExSpecific,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -1536,6 +1565,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urinemicroscopicdataRBCs,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -1589,6 +1619,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urinemicroscopicdatapusscells,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -1644,6 +1675,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urinemicroscopicdataEpithelial,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -2056,6 +2088,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urinealbumin,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -2109,6 +2142,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                              controller: urinecreat,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -2167,6 +2201,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                           child: defultTextField(
+                            controller: urineAlbuminCreatratio,
                               max: 4, text: 'result', hight: 50, width: 250)),
                     ),
                   ),
@@ -2249,27 +2284,54 @@ class _urineLabscreenState extends State<urineLabscreen>
                                 child: defultText(
                                     data: 'Casts', x: 17, c: Colors.black)),
                             Flexible(
-                                flex: 1,
-                                child: Checkbox(
-                                    value: Day1, onChanged: (val) {})),
+                                flex: 1, child: Checkbox(value: cats
+                                , onChanged: (val) {
+                              setState(() {
+                                cats = val!;
+                                if (val) {
+                                  ubnormalfindings.add("Casts");
+                                } else {
+                                  selectedubnormalfindings.remove("Casts");
+                                }
+                              });
+
+                            })),
                             sizedBoxWidth(width: 10),
                             Flexible(
                                 flex: 1,
                                 child: defultText(
                                     data: 'Eggs', x: 17, c: Colors.black)),
                             Flexible(
-                                flex: 1,
-                                child: Checkbox(
-                                    value: Day1, onChanged: (val) {})),
+                                flex: 1, child: Checkbox(value: eggs
+                                , onChanged: (val) {
+                                  setState(() {
+                                    eggs = val!;
+                                    if (val) {
+                                      ubnormalfindings.add("Eggs");
+                                    } else {
+                                      selectedubnormalfindings.remove("Eggs");
+                                    }
+                                  });
+
+                                })),
                             sizedBoxWidth(width: 10),
                             Flexible(
                                 flex: 1,
                                 child: defultText(
                                     data: 'Mucus', x: 17, c: Colors.black)),
                             Flexible(
-                                flex: 1,
-                                child: Checkbox(
-                                    value: Day1, onChanged: (val) {})),
+                                flex: 1, child: Checkbox(value: Mucus
+                                , onChanged: (val) {
+                                  setState(() {
+                                    Mucus = val!;
+                                    if (val) {
+                                      ubnormalfindings.add("Mucus");
+                                    } else {
+                                      selectedubnormalfindings.remove("Mucus");
+                                    }
+                                  });
+
+                                })),
                             sizedBoxWidth(width: 10),
                             Flexible(
                                 flex: 1,
@@ -2278,27 +2340,52 @@ class _urineLabscreenState extends State<urineLabscreen>
                                     x: 16,
                                     c: Colors.black)),
                             Flexible(
-                                flex: 1,
-                                child: Checkbox(
-                                    value: Day1, onChanged: (val) {})),
+                                flex: 1, child: Checkbox(value: Bacteria
+                                , onChanged: (val) {
+                                  setState(() {
+                                    Bacteria = val!;
+                                    if (val) {
+                                      ubnormalfindings.add("Bacteria");
+                                    } else {
+                                      selectedubnormalfindings.remove("Bacteria");
+                                    }
+                                  });
+                                })),
                             sizedBoxWidth(width: 10),
                             Flexible(
                                 flex: 1,
                                 child: defultText(
                                     data: 'Yeast', x: 17, c: Colors.black)),
                             Flexible(
-                                flex: 1,
-                                child: Checkbox(
-                                    value: Day1, onChanged: (val) {})),
+                                flex: 1, child: Checkbox(value: Yeast
+                                , onChanged: (val) {
+                                  setState(() {
+                                    Yeast = val!;
+                                    if (val) {
+                                      ubnormalfindings.add("Yeast");
+                                    } else {
+                                      selectedubnormalfindings.remove("Yeast");
+                                    }
+                                  });
+
+                                })),
                             sizedBoxWidth(width: 10),
                             Flexible(
                                 flex: 1,
                                 child: defultText(
                                     data: 'Sperms', x: 17, c: Colors.black)),
                             Flexible(
-                                flex: 1,
-                                child: Checkbox(
-                                    value: Day1, onChanged: (val) {})),
+                                flex: 1, child: Checkbox(value: Sperms
+                                , onChanged: (val) {
+                                  setState(() {
+                                    Sperms = val!;
+                                    if (val) {
+                                      ubnormalfindings.add("Sperms");
+                                    } else {
+                                      selectedubnormalfindings.remove("Sperms");
+                                    }
+                                  });
+                                })),
                             sizedBoxWidth(width: 10),
                           ],
                         ),
@@ -2336,6 +2423,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                             Flexible(
                                 flex: 5,
                                 child: defultTextField(
+                                    controller: urinecomments,
                                     text: 'Comments', width: 550, max: 4))
                           ],
                         ),
@@ -2415,43 +2503,57 @@ class _urineLabscreenState extends State<urineLabscreen>
                           if(checkUrine=="yes"){
                             patient.urineCheckIn = false;
                           }
+                          ubnormalfindings.addAll(selectedubnormalfindings);
+                          selectedubnormalfindings.clear();
+                          patient.urinePhysicalExColour = urinephysicalExcolor.text ;
+                          patient.urinePhysicalExAspect = urinephysicalExaspect.text ;
+                          patient.urineChemicalExBlood = selectedBlood ;
+                          patient.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
+                          patient.urineChemicalExUrobilingen = selectedUrobilinogen ;
+                          patient.urineChemicalExBilirubin = selectedBilirubin ;
+                          patient.urineChemicalExProtien = selectedProtein ;
+                          patient.urineChemicalExNitrite = selectedNitrite ;
+                          patient.urineChemicalExKetone = selectedKetone ;
+                          patient.urineChemicalExGlucose = selectedGlucose ;
+                          patient.urineChemicalExPH = selectedPH ;
+                          patient.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
+                          patient.urineChemicalExLeukocyte = selectedLeukocyte ;
+                          patient.urineChemicalExDensity = selectedDenisty;
+                          patient.urineMicroscopicExRBCs = urinemicroscopicdataRBCs.text ;
+                          patient.urineMicroscopicExPuscells = urinemicroscopicdatapusscells.text ;
+                          patient.urineMicroscopicExEpithelialcells = urinemicroscopicdataEpithelial.text;
+                          patient.urineMicroscopicExCalciumOxalate = selectedpositiveCalcium ;
+                          patient.urineMicroscopicExUricacid = selectedpositiveuric ;
+                          patient.urineMicroscopicExTriplephosphate = selectedpositivetriple ;
+                          patient.urineMicroscopicExAmorphous = selectedpositiveAmor ;
+                          patient.urineAlbumineAlbumine = urinealbumin.text ;
+                          patient.urineAlbumineCreat = urinecreat.text ;
+                          patient.urineAlbumineAlbuminaCreateRatio = urineAlbuminCreatratio.text ;
+                          patient.urineAbnormalFindings = ubnormalfindings ;
+                          patient.urineAdittionalComments = urinecomments.text ;
                           MyDataBase.updatePatientAdult(patient);
                           codeController.clear();
                         }
-
                         // Navigator.pushNamed(
                         //     context, ChoseLabsScreen.screenRoute);
+                    ),
+                  ),
+                  // sizedBoxWidth(width: 20),
+                  // Flexible(
+                  //   flex: 1,
+                  //   child: mysignin(
+                  //     color: Colors.green,
+                  //     x: Colors.black,
+                  //     title: 'Save&BacktoEdit',
+                  //     size: 25,
+                  //     onPressed: () => {
+                  //       Navigator.pushNamed(
+                  //           context, bloodLabScreen.screenRoute)
+                  //     },
+                  //   ),
+                  // ),
+                  sizedBoxWidth(width: 20),
 
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: mysignin(
-                      color: Colors.green,
-                      x: Colors.black,
-                      title: 'Save&BacktoEdit',
-                      size: 25,
-                      onPressed: () => {
-                        Navigator.pushNamed(
-                            context, bloodLabScreen.screenRoute)
-                      },
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: mysignin(
-                      color: Colors.green,
-                      x: Colors.black,
-                      title: 'Save&addNewOne',
-                      size: 25,
-                      onPressed: () => {
-                        Navigator.pushNamed(
-                            context, urineLabscreen.screenRoute)
-                      },
-                    ),
-                  ),
                 ],
               ),
               sizedBoxhight(hight: 40),
@@ -2462,34 +2564,4 @@ class _urineLabscreenState extends State<urineLabscreen>
     );
   }
 
-// Showbottomsheedt() {
-//   return showModalBottomSheet(context: context, builder: (context) {
-//     return Container(
-//       padding: const EdgeInsets.all(20),
-//       height: 300,
-//       width: 500,
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           const Text('Please Write code', style: TextStyle(
-//             fontWeight: FontWeight.bold,
-//             fontSize: 20,
-//           ),),
-//            SizedBox(height: 40,),
-//           defultTextField (
-//               text: 'code',
-//                   controller : codeController
-//           ),
-//           IconButton(
-//             icon: Icon(Icons.search),
-//             onPressed: () {
-//               MyDataBase.getPatient(codeController.text);
-//             },
-//           ),
-//         ],
-//       ),
-//     );
-//   },
-//   );
-//   }
 }

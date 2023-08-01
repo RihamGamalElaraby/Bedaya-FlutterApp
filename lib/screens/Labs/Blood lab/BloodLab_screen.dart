@@ -1806,7 +1806,6 @@ class _bloodLabScreenState extends State<bloodLabScreen> {
             patient.bloodLipidHdl=bloodLipidHdl.text;
             patient.bloodLipidCholesterol=bloodLipidCholesterol.text;
             MyDataBase.updatePatientAdult(patient);
-
             Navigator.pushNamed(
             context, Bloodlaponecontiunue.screenRoute,arguments: patient);
         },
