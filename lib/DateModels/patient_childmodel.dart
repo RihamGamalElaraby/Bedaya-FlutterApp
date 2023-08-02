@@ -1,4 +1,5 @@
 class PatientChildModel {
+  // List<String> >>>  screening
   String? idChildPatient;
   String? nameChildPatient;
   String? codeChildPatient;
@@ -10,27 +11,46 @@ class PatientChildModel {
   String? fatherEduChild;
   String? motherEduChild;
   String? orderOfBirthChild;
+  String? birthTermChild;
   String? pretermEduChild;
   String? weekBirthMode;
   String? consanguinityChild;
   String? nicuChild;
 
   // Complaaaiinnnttsss >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  String? familyHistoryHTNchild;
+  List<ComplaintsModel>? complaintsList;
   String? familyHistoryDMchild;
   String? similarConditionChild;
-  String? geneticDiseaseChild;
+  List<String>? familyHistoryChild; //checkbox ma4y
+
+  List<String>? pastHistoryChild;
   String? pastHistMedicalChild;
   String? pastHistAllergyChild;
   String? pastHistIcuChild;
   String? pastHistSurgicalChild;
   String? pastHistBloodTransChild;
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>second screen
   String? immunizationHistChild;
+
   String? dieteticHistChild;
-  String? developmentalHistChild;
-  String? antenatalHistChild;
+
+  String? developmentalHistGross;
+  String? developmentalHistFine;
+  String? developmentalHistLanguage;
+  String? developmentalHistSocial;
+  String? developmentalHistSphincters;
+
+  String? antenatalHistStorch;
+  String? antenatalHistDisease;
+  String? antenatalHistirradiation;
+  String? antenatalHistTeratogenic;
+  String? antenatalHistHospitalization;
+
   String? natalHistChild;
-  String? neonNatalHistChild;
+
+  List<String>? neonNatalHistChild;
+
   String? vitalHrChild;
   String? vitalRrChild;
   String? vitalBpChild;
@@ -39,14 +59,30 @@ class PatientChildModel {
   String? vitalTempChild;
   String? vitalCrtChild;
   String? vitalRbsChild;
+
+  List<String>? complextionsChild;
+
   String? localExamChild;
   String? cardiacExamChild;
   String? chestExamChild;
   String? abdominalExamChild;
   List<String>? referralClinicsChild;
+  List<String>? screeningChild;
   String? followUpChild;
+  String? goHomeChild;
 
   PatientChildModel({
+    this.goHomeChild,
+    this.screeningChild,
+    this.complextionsChild,
+    this.antenatalHistStorch,
+    this.antenatalHistDisease,
+    this.antenatalHistirradiation,
+    this.antenatalHistTeratogenic,
+    this.antenatalHistHospitalization,
+    this.pastHistoryChild,
+    this.complaintsList,
+    this.birthTermChild,
     this.abdominalExamChild,
     this.nameChildPatient,
     this.codeChildPatient,
@@ -62,10 +98,9 @@ class PatientChildModel {
     this.weekBirthMode,
     this.nicuChild,
     this.consanguinityChild,
-    this.familyHistoryHTNchild,
+    this.familyHistoryChild,
     this.familyHistoryDMchild,
     this.similarConditionChild,
-    this.geneticDiseaseChild,
     this.pastHistMedicalChild,
     this.pastHistAllergyChild,
     this.pastHistIcuChild,
@@ -73,8 +108,11 @@ class PatientChildModel {
     this.pastHistBloodTransChild,
     this.immunizationHistChild,
     this.dieteticHistChild,
-    this.developmentalHistChild,
-    this.antenatalHistChild,
+    this.developmentalHistGross,
+    this.developmentalHistFine,
+    this.developmentalHistLanguage,
+    this.developmentalHistSocial,
+    this.developmentalHistSphincters,
     this.natalHistChild,
     this.neonNatalHistChild,
     this.vitalHrChild,
@@ -95,24 +133,48 @@ class PatientChildModel {
 
   PatientChildModel.fromFireStore(Map<String, dynamic> json)
       : this(
+          screeningChild: json["screeningChild"] == null
+              ? null
+              : List<String>.from(json["screeningChild"]),
+          complextionsChild: json["complextionsChild"] == null
+              ? null
+              : List<String>.from(json["complextionsChild"]),
+          neonNatalHistChild: json["neonNatalHistChild"] == null
+              ? null
+              : List<String>.from(json["neonNatalHistChild"]),
+          pastHistoryChild: json["pastHistoryChild"] == null
+              ? null
+              : List<String>.from(json["pastHistoryChild"]),
+          familyHistoryChild: json["familyHistoryChild"] == null
+              ? null
+              : List<String>.from(json["familyHistoryChild"]),
           referralClinicsChild: json["referralClinicsChild"] == null
               ? null
               : List<String>.from(json["referralClinicsChild"]),
+          goHomeChild: json["goHomeChild"],
+          antenatalHistDisease: json["antenatalHistDisease"],
+          antenatalHistHospitalization: json["antenatalHistHospitalization"],
+          antenatalHistirradiation: json["antenatalHistirradiation"],
+          antenatalHistStorch: json["antenatalHistStorch"],
+          antenatalHistTeratogenic: json["antenatalHistTeratogenic"],
+          developmentalHistFine: json["developmentalHistFine"],
+          developmentalHistGross: json["developmentalHistGross"],
+          developmentalHistLanguage: json["developmentalHistLanguage"],
+          developmentalHistSocial: json["developmentalHistSocial"],
+          developmentalHistSphincters: json["developmentalHistSphincters"],
+          complaintsList: json["complaintsList"],
           abdominalExamChild: json["abdominalExamChild"],
+          birthTermChild: json["birthTermChild"],
           ageChildPatient: json["ageChildPatient"],
-          antenatalHistChild: json["antenatalHistChild"],
           cardiacExamChild: json["cardiacExamChild"],
           chestExamChild: json["chestExamChild"],
           codeChildPatient: json["codeChildPatient"],
           consanguinityChild: json["consanguinityChild"],
-          developmentalHistChild: json["developmentalHistChild"],
           dieteticHistChild: json["dieteticHistChild"],
           familyHistoryDMchild: json["familyHistoryDMchild"],
-          familyHistoryHTNchild: json["familyHistoryHTNchild"],
           fatherCccubationChild: json["fatherCccubationChild"],
           fatherEduChild: json["fatherEduChild"],
           followUpChild: json["followUpChild"],
-          geneticDiseaseChild: json["geneticDiseaseChild"],
           houseNuChildPatient: json["houseNuChildPatient"],
           idChildPatient: json["idChildPatient"],
           immunizationHistChild: json["immunizationHistChild"],
@@ -121,7 +183,6 @@ class PatientChildModel {
           motherEduChild: json["motherEduChild"],
           nameChildPatient: json["nameChildPatient"],
           natalHistChild: json["natalHistChild"],
-          neonNatalHistChild: json["neonNatalHistChild"],
           nicuChild: json["nicuChild"],
           orderOfBirthChild: json["orderOfBirthChild"],
           pastHistAllergyChild: json["pastHistAllergyChild"],
@@ -145,6 +206,22 @@ class PatientChildModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "goHomeChild" : goHomeChild,
+      "screeningChild" : screeningChild,
+      "complextionsChild": complextionsChild,
+      "antenatalHistTeratogenic": antenatalHistTeratogenic,
+      "antenatalHistStorch": antenatalHistStorch,
+      "antenatalHistirradiation": antenatalHistirradiation,
+      "antenatalHistHospitalization": antenatalHistHospitalization,
+      "antenatalHistDisease": antenatalHistDisease,
+      "developmentalHistGross": developmentalHistGross,
+      "developmentalHistFine": developmentalHistFine,
+      "developmentalHistLanguage": developmentalHistLanguage,
+      "developmentalHistSocial": developmentalHistSocial,
+      "developmentalHistSphincters": developmentalHistSphincters,
+      "pastHistoryChild": pastHistoryChild,
+      "complaintsList": complaintsList,
+      "birthTermChild": birthTermChild,
       "abdominalExamChild": abdominalExamChild,
       "nameChildPatient": nameChildPatient,
       "codeChildPatient": codeChildPatient,
@@ -160,10 +237,9 @@ class PatientChildModel {
       "weekBirthMode": weekBirthMode,
       "nicuChild": nicuChild,
       "consanguinityChild": consanguinityChild,
-      "familyHistoryHTNchild": familyHistoryHTNchild,
+      "familyHistoryChild": familyHistoryChild,
       "familyHistoryDMchild": familyHistoryDMchild,
       "similarConditionChild": similarConditionChild,
-      "geneticDiseaseChild": geneticDiseaseChild,
       "pastHistMedicalChild": pastHistMedicalChild,
       "pastHistAllergyChild": pastHistAllergyChild,
       "pastHistIcuChild": pastHistIcuChild,
@@ -171,8 +247,6 @@ class PatientChildModel {
       "pastHistBloodTransChild": pastHistBloodTransChild,
       "immunizationHistChild": immunizationHistChild,
       "dieteticHistChild": dieteticHistChild,
-      "developmentalHistChild": developmentalHistChild,
-      "antenatalHistChild": antenatalHistChild,
       "natalHistChild": natalHistChild,
       "neonNatalHistChild": neonNatalHistChild,
       "vitalHrChild": vitalHrChild,
@@ -189,6 +263,26 @@ class PatientChildModel {
       "idChildPatient": idChildPatient,
       "referralClinicsChild": referralClinicsChild,
       "followUpChild": followUpChild,
+    };
+  }
+}
+
+class ComplaintsModel {
+  String? complaintName;
+  String? complaintDescription;
+
+  ComplaintsModel({this.complaintName, this.complaintDescription});
+
+  ComplaintsModel.fromFire(Map<String, dynamic> json)
+      : this(
+          complaintName: json["complaintName"],
+          complaintDescription: json["complaintDescription"],
+        );
+
+  Map<String, dynamic> toFire() {
+    return {
+      "complaintName": complaintName,
+      "complaintDescription": complaintDescription,
     };
   }
 }

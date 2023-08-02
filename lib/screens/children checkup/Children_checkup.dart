@@ -608,7 +608,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                         height: 50,
                         child: Center(
                             child: defultText(
-                                data: 'Complaint 1:', c: Colors.white)),
+                                data: 'Complaint', c: Colors.white)),
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -681,289 +681,108 @@ class _childrenCheckupState extends State<childrenCheckup> {
                   ))
             ],
           ),
-          sizedBoxhight(hight: 30),
+          sizedBoxhight(hight: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.green,
-                  ),
-                  padding: EdgeInsets.all(10),
-                  height: 220,
-                  width: 300,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 280,
-                        height: 50,
-                        child: Center(
-                            child: defultText(
-                                data: 'Complaint 2:', c: Colors.white)),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 5),
-                            borderRadius: BorderRadius.circular(10)),
-                        width: 280,
-                        height: 120,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            labelText: 'C2',
-                            hoverColor: Colors.black,
-                            focusColor: Colors.green,
-                            fillColor: Colors.green,
-
-                            border: OutlineInputBorder(),
-
-                            // contentPadding:
-                            // EdgeInsets.symmetric(vertical: 150),
-                          ),
-                          maxLines: 14,
-                          minLines: 1,
-                          style: TextStyle(color: Colors.white, fontSize: 13),
-                        ),
-                      ),
-                    ],
-                  ),
+              Center(
+                child: mysignin(
+                  color: Colors.green,
+                  x: Colors.white,
+                  title: 'Save&Add Another Complain',
+                  size: 25,
+                  onPressed: () => {
+                 //   Navigator.pushNamed(context, childrenContinue.screenRoute)
+                  },
                 ),
-              ),
-              sizedBoxWidth(width: 20),
-              Flexible(
-                  flex: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 165, 162, 162)),
-                    padding: EdgeInsets.all(10),
-                    height: 220,
-                    width: 1500,
-                    child: Column(
-                      children: [
-                        Flexible(
-                            flex: 1,
-                            child: SizedBox(
-                                width: 80,
-                                child: defultText(
-                                    data: 'Details:',
-                                    c: Color.fromARGB(255, 2, 43, 3)))),
-                        sizedBoxWidth(width: 20),
-                        Flexible(
-                          flex: 5,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              labelText: 'C2',
-                              hoverColor: Colors.black,
-                              focusColor: Colors.green,
-                              fillColor: Colors.green,
-
-                              border: OutlineInputBorder(),
-
-                              // contentPadding:
-                              // EdgeInsets.symmetric(vertical: 150),
-                            ),
-                            maxLines: 14,
-                            minLines: 1,
-                            style: TextStyle(color: Colors.black, fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
+              )
             ],
           ),
-          sizedBoxhight(hight: 30),
+          sizedBoxhight(hight: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Flexible(flex: 1, child: defultText(data: 'Family History:')),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'DM:')),
+              sizedBoxWidth(width: 5),
               Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.green,
-                  ),
-                  padding: EdgeInsets.all(10),
-                  height: 220,
-                  width: 300,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 280,
-                        height: 50,
-                        child: Center(
-                            child: defultText(
-                                data: 'Complaint 3:', c: Colors.white)),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 5),
-                            borderRadius: BorderRadius.circular(10)),
-                        width: 280,
-                        height: 120,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            labelText: 'C3',
-                            hoverColor: Colors.black,
-                            focusColor: Colors.green,
-                            fillColor: Colors.green,
-
-                            border: OutlineInputBorder(),
-
-                            // contentPadding:
-                            // EdgeInsets.symmetric(vertical: 150),
-                          ),
-                          maxLines: 14,
-                          minLines: 1,
-                          style: TextStyle(color: Colors.white, fontSize: 13),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              sizedBoxWidth(width: 20),
+                  flex: 1, child: defultTextField(text: 'DM', width: 100)),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'Similar Condition')),
+              sizedBoxWidth(width: 5),// el moshkla fel check box
               Flexible(
-                  flex: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 165, 162, 162)),
-                    padding: EdgeInsets.all(10),
-                    height: 220,
-                    width: 1500,
-                    child: Column(
-                      children: [
-                        Flexible(
-                            flex: 1,
-                            child: SizedBox(
-                                width: 80,
-                                child: defultText(
-                                    data: 'Details:',
-                                    c: Color.fromARGB(255, 2, 43, 3)))),
-                        sizedBoxWidth(width: 20),
-                        Flexible(
-                          flex: 5,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              labelText: 'C3',
-                              hoverColor: Colors.black,
-                              focusColor: Colors.green,
-                              fillColor: Colors.green,
-
-                              border: OutlineInputBorder(),
-
-                              // contentPadding:
-                              // EdgeInsets.symmetric(vertical: 150),
-                            ),
-                            maxLines: 14,
-                            minLines: 1,
-                            style: TextStyle(color: Colors.black, fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
+                  flex: 2,
+                  child:
+                  defultTextField(text: 'Similar Condition', width: 100)),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'Genetic Disease')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'HTN')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
             ],
           ),
-          sizedBoxhight(hight: 30),
+          sizedBoxhight(hight: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Flexible(flex: 1, child: defultText(data: 'Past History:')),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'Medical')),
+              sizedBoxWidth(width: 5),
               Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.green,
-                  ),
-                  padding: EdgeInsets.all(10),
-                  height: 220,
-                  width: 300,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 280,
-                        height: 50,
-                        child: Center(
-                            child: defultText(
-                                data: 'Complaint 4:', c: Colors.white)),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 5),
-                            borderRadius: BorderRadius.circular(10)),
-                        width: 280,
-                        height: 120,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            labelText: 'C4',
-                            hoverColor: Colors.black,
-                            focusColor: Colors.green,
-                            fillColor: Colors.green,
-
-                            border: OutlineInputBorder(),
-
-                            // contentPadding:
-                            // EdgeInsets.symmetric(vertical: 150),
-                          ),
-                          maxLines: 14,
-                          minLines: 1,
-                          style: TextStyle(color: Colors.white, fontSize: 13),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              sizedBoxWidth(width: 20),
+                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
               Flexible(
-                  flex: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 165, 162, 162)),
-                    padding: EdgeInsets.all(10),
-                    height: 220,
-                    width: 1500,
-                    child: Column(
-                      children: [
-                        Flexible(
-                            flex: 1,
-                            child: SizedBox(
-                                width: 80,
-                                child: defultText(
-                                    data: 'Details:',
-                                    c: Color.fromARGB(255, 2, 43, 3)))),
-                        sizedBoxWidth(width: 20),
-                        Flexible(
-                          flex: 5,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              labelText: 'C4',
-                              hoverColor: Colors.black,
-                              focusColor: Colors.green,
-                              fillColor: Colors.green,
-
-                              border: OutlineInputBorder(),
-
-                              // contentPadding:
-                              // EdgeInsets.symmetric(vertical: 150),
-                            ),
-                            maxLines: 14,
-                            minLines: 1,
-                            style: TextStyle(color: Colors.black, fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
+                  flex: 2,
+                  child: defultTextField(text: 'Medical', width: 200)),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'Allergy')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+              Flexible(
+                  flex: 2,
+                  child: defultTextField(text: 'Allergy', width: 200)),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'ICU')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+              Flexible(
+                  flex: 2, child: defultTextField(text: 'ICU', width: 200)),
+              sizedBoxWidth(width: 10),
+            ],
+          ),
+          sizedBoxhight(hight: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'Surgical')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+              Flexible(
+                  flex: 2,
+                  child: defultTextField(text: 'Surgical', width: 200)),
+              sizedBoxWidth(width: 10),
+              Flexible(flex: 1, child: defultText(data: 'Blood Transfusion')),
+              sizedBoxWidth(width: 5),
+              Flexible(
+                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+              Flexible(
+                  flex: 2,
+                  child:
+                  defultTextField(text: 'Blood Transfusion', width: 200)),
+              sizedBoxWidth(width: 10),
             ],
           ),
           sizedBoxhight(hight: 40),
@@ -992,12 +811,3 @@ class _childrenCheckupState extends State<childrenCheckup> {
   }
 }
 
-// Flexible(flex: 1, child: defultText(data: 'Sex:')),
-//               sizedBoxWidth(width: 5),
-//               Flexible(flex: 1, child: defultText(data: 'male')),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Male, onChanged: (val) {})),
-//               sizedBoxWidth(width: 5),
-//               Flexible(flex: 1, child: defultText(data: 'female')),
-//               Checkbox(value: Female, onChanged: (val) {}),
-//               sizedBoxWidth(width: 10),

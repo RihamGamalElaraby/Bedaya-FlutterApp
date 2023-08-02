@@ -14,6 +14,20 @@ class childrenContinue extends StatefulWidget {
 }
 
 class _childrenContinueState extends State<childrenContinue> {
+  bool yesGoHome = false;
+  bool noGoHome = false;
+  String GoHome="";
+
+
+  bool Ricketsscreening = false;
+  bool  AnemiaScreening = false;
+  bool  ParasitesScreening = false;
+  bool   PediatricClinicFollowUp = false;
+  bool  Otherclinicsfollowup = false;
+
+  List<String> screening=[];
+  List<String> selectedCheckboxesScreening = [];
+
   bool Day1 = false;
   bool Day2 = false;
   bool Day3 = false;
@@ -55,86 +69,6 @@ class _childrenContinueState extends State<childrenContinue> {
                     ),
                   )),
                 )
-              ],
-            ),
-            sizedBoxhight(hight: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(flex: 1, child: defultText(data: 'Family History:')),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'DM:')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 1, child: defultTextField(text: 'DM', width: 100)),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'HTN')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 1, child: defultTextField(text: 'HTN', width: 100)),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'Similar Condition')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 2,
-                    child:
-                        defultTextField(text: 'Similar Condition', width: 100)),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'Genetic Disease')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 1,
-                    child:
-                        defultTextField(text: 'Genetic Disease', width: 100)),
-                sizedBoxWidth(width: 10),
-              ],
-            ),
-            sizedBoxhight(hight: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(flex: 1, child: defultText(data: 'Past History:')),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'Medical')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 2,
-                    child: defultTextField(text: 'Medical', width: 200)),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'Allergy')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 2,
-                    child: defultTextField(text: 'Allergy', width: 200)),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'ICU')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 2, child: defultTextField(text: 'ICU', width: 200)),
-                sizedBoxWidth(width: 10),
-              ],
-            ),
-            sizedBoxhight(hight: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'Surgical')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 2,
-                    child: defultTextField(text: 'Surgical', width: 200)),
-                sizedBoxWidth(width: 10),
-                Flexible(flex: 1, child: defultText(data: 'Blood Transfusion')),
-                sizedBoxWidth(width: 5),
-                Flexible(
-                    flex: 2,
-                    child:
-                        defultTextField(text: 'Blood Transfusion', width: 200)),
-                sizedBoxWidth(width: 10),
               ],
             ),
             sizedBoxhight(hight: 40),
@@ -350,10 +284,7 @@ class _childrenContinueState extends State<childrenContinue> {
                                   flex: 1,
                                   child: defultTextField(
                                       text: 'Gross Motor', width: 170)),
-                              // Flexible(
-                              //     flex: 1,
-                              //     child: Checkbox(
-                              //         value: Day1, onChanged: (val) {})),
+
                               sizedBoxWidth(width: 7),
                               Flexible(
                                   flex: 1,
@@ -655,50 +586,50 @@ class _childrenContinueState extends State<childrenContinue> {
                               Flexible(
                                   flex: 1,
                                   child: defultText(data: 'NICU', x: 15)),
-                              Flexible(
-                                  flex: 1,
-                                  child: defultTextField(
-                                      text: 'NICU', width: 200)),
                               // Flexible(
                               //     flex: 1,
-                              //     child: Checkbox(
-                              //         value: Day1, onChanged: (val) {})),
+                              //     child: defultTextField(
+                              //         text: 'NICU', width: 200)),
+                              Flexible(
+                                  flex: 1,
+                                  child: Checkbox(
+                                      value: Day1, onChanged: (val) {})),
                               sizedBoxWidth(width: 7),
                               Flexible(
                                   flex: 1,
                                   child: defultText(data: 'Cyanosis', x: 15)),
-                              Flexible(
-                                  flex: 1,
-                                  child: defultTextField(
-                                      text: 'Cyanosis', width: 200)),
                               // Flexible(
                               //     flex: 1,
-                              //     child: Checkbox(
-                              //         value: Day1, onChanged: (val) {})),
+                              //     child: defultTextField(
+                              //         text: 'Cyanosis', width: 200)),
+                              Flexible(
+                                  flex: 1,
+                                  child: Checkbox(
+                                      value: Day1, onChanged: (val) {})),
                               sizedBoxWidth(width: 7),
                               Flexible(
                                   flex: 1,
                                   child: defultText(data: 'Jaundice', x: 15)),
-                              Flexible(
-                                  flex: 1,
-                                  child: defultTextField(
-                                      text: 'Jaundice', width: 200)),
                               // Flexible(
                               //     flex: 1,
-                              //     child: Checkbox(
-                              //         value: Day1, onChanged: (val) {})),
+                              //     child: defultTextField(
+                              //         text: 'Jaundice', width: 200)),
+                              Flexible(
+                                  flex: 1,
+                                  child: Checkbox(
+                                      value: Day1, onChanged: (val) {})),
                               sizedBoxWidth(width: 7),
                               Flexible(
                                   flex: 1,
                                   child: defultText(data: 'Pallor', x: 15)),
-                              Flexible(
-                                  flex: 1,
-                                  child: defultTextField(
-                                      text: 'Pallor', width: 200)),
                               // Flexible(
                               //     flex: 1,
-                              //     child: Checkbox(
-                              //         value: Day1, onChanged: (val) {})),
+                              //     child: defultTextField(
+                              //         text: 'Pallor', width: 200)),
+                              Flexible(
+                                  flex: 1,
+                                  child: Checkbox(
+                                      value: Day1, onChanged: (val) {})),
                               sizedBoxWidth(width: 7),
                               Flexible(
                                   flex: 1,
@@ -706,8 +637,8 @@ class _childrenContinueState extends State<childrenContinue> {
                                       defultText(data: 'Convulsions', x: 15)),
                               Flexible(
                                   flex: 1,
-                                  child: defultTextField(
-                                      text: 'Convulsions', width: 200)),
+                                  child: Checkbox(
+                                      value: Day1, onChanged: (val) {})),
                             ],
                           ),
                         ),
@@ -1096,11 +1027,10 @@ class _childrenContinueState extends State<childrenContinue> {
                                           child: defultText(data: 'Pallor:')),
                                       sizedBoxWidth(width: 10),
                                       Flexible(
-                                          flex: 2,
-                                          child: defultTextField(
-                                              text: 'Pallor:',
-                                              hight: 60,
-                                              width: 250))
+                                          flex: 1,
+                                          child: Checkbox(
+                                              value: Day1,
+                                              onChanged: (val) {})),
                                     ],
                                   ),
                                 ),
@@ -1124,12 +1054,10 @@ class _childrenContinueState extends State<childrenContinue> {
                                           flex: 1,
                                           child: defultText(data: 'Jaundice:')),
                                       Flexible(
-                                        flex: 2,
-                                        child: defultTextField(
-                                            text: 'Jaundice',
-                                            hight: 60,
-                                            width: 250),
-                                      ),
+                                          flex: 1,
+                                          child: Checkbox(
+                                              value: Day1,
+                                              onChanged: (val) {})),
                                     ],
                                   ),
                                 ),
@@ -1827,28 +1755,115 @@ class _childrenContinueState extends State<childrenContinue> {
                 ),
                 sizedBoxWidth(width: 10),
                 Flexible(flex: 2, child: defultTextField(text: 'other')),
-                // Flexible(
-                //     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
-                // sizedBoxWidth(width: 7),
-                // Flexible(
-                //     flex: 1,
-                //     child: defultText(
-                //       data: 'Ortho',
-                //     )),
-                // Flexible(
-                //     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
-                // sizedBoxWidth(width: 7),
-                // Flexible(
-                //     flex: 1,
-                //     child: defultText(
-                //       data: 'Dental',
-                //     )),
-                // Flexible(
-                //     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+
               ],
             ),
             sizedBoxhight(hight: 30),
-            // sizedBoxhight(hight: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 40,
+                  width: 250,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Center(
+                      child: Text(
+                        'Screening',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
+                ),
+              ],),
+            sizedBoxhight(hight: 20),
+            Row(
+              mainAxisAlignment:  MainAxisAlignment.center,
+              children: [
+                Flexible(
+                    flex: 1, child: defultText(data: ' Rickets screening(6m – 5y)', x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(value: Ricketsscreening, onChanged: (val) {
+                      setState(() {
+                        Ricketsscreening = val!;
+                        if (val) {
+                          selectedCheckboxesScreening.add(" Rickets screening(6m – 5y)");
+                        } else {
+                          selectedCheckboxesScreening.remove(" Rickets screening(6m – 5y)");
+                        }
+                      });
+
+                    })),
+                sizedBoxWidth(width: 10),
+                Flexible(
+                    flex: 1, child: defultText(data: "Anemia Screening (2 - 5y)", x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(value: AnemiaScreening, onChanged: (val) {
+                      setState(() {
+                        AnemiaScreening = val!;
+                        if (val) {
+                          selectedCheckboxesScreening.add("Anemia Screening (2 - 5y)");
+                        } else {
+                          selectedCheckboxesScreening.remove("Anemia Screening (2 - 5y)");
+                        }
+                      });
+
+                    })),
+                sizedBoxWidth(width: 10),
+                Flexible(
+                    flex: 1, child: defultText(data: 'Parasites Screening', x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(value: ParasitesScreening, onChanged: (val){
+                      setState(() {
+                        ParasitesScreening = val!;
+                        if (val) {
+                          selectedCheckboxesScreening.add("Parasites Screening");
+                        } else {
+                          selectedCheckboxesScreening.remove("Parasites Screening");
+                        }
+                      });
+
+                    })),
+                sizedBoxWidth(width: 10),
+                Flexible(
+                    flex: 1, child: defultText(data: 'Pediatric Clinic Follow Up', x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(value: PediatricClinicFollowUp, onChanged: (val){
+                      setState(() {
+                        PediatricClinicFollowUp = val!;
+                        if (val) {
+                          selectedCheckboxesScreening.add("Pediatric Clinic Follow Up");
+                        } else {
+                          selectedCheckboxesScreening.remove("Pediatric Clinic Follow Up");
+                        }
+                      });
+
+                    })),
+                sizedBoxWidth(width: 10),
+                Flexible(
+                    flex: 1, child: defultText(data: 'Other clinics follow up', x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(value: Otherclinicsfollowup, onChanged: (val){
+                      setState(() {
+                        Otherclinicsfollowup = val!;
+                        if (val) {
+                          selectedCheckboxesScreening.add("Other clinics follow up");
+                        } else {
+                          selectedCheckboxesScreening.remove("Other clinics follow up");
+                        }
+                      });
+
+                    })),
+              ],
+            ),
+            sizedBoxhight(hight: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -1882,6 +1897,60 @@ class _childrenContinueState extends State<childrenContinue> {
                 Flexible(
                     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
               ],
+            ),
+            sizedBoxhight(hight: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 40,
+                  width: 250,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Center(
+                      child: Text(
+                        'Go Home',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
+                ),
+              ],),
+            Row(
+                mainAxisAlignment:  MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                      flex: 1, child: defultText(data: 'Yes', x: 12)),
+                  Flexible(
+                      flex: 1,
+                      child: Checkbox(value: yesGoHome, onChanged: (val) {
+                        setState(() {
+                          yesGoHome =val! ;
+                          noGoHome = false ;
+                        });
+                        if (val!) {
+                          GoHome = "yes Go Home";
+                        }
+                      })),
+                  sizedBoxWidth(width: 10),
+                  Flexible(
+                      flex: 1, child: defultText(data: "NO", x: 12)),
+                  Flexible(
+                      flex: 1,
+                      child: Checkbox(value: noGoHome, onChanged: (val) {
+                        setState(() {
+                          noGoHome =val! ;
+                          yesGoHome = false ;
+                        });
+                        if (val!) {
+                          GoHome = "No Go Home";
+                        }
+                      })),
+                  sizedBoxWidth(width: 10),
+                ]
+
             ),
             sizedBoxhight(hight: 40),
             Row(
