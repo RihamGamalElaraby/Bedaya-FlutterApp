@@ -18,7 +18,7 @@ class PatientChildModel {
   String? nicuChild;
 
   // Complaaaiinnnttsss >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  List<ComplaintsModel>? complaintsList;
+  List<ComplaintsChildModel>? complaintsList;
   String? familyHistoryDMchild;
   String? similarConditionChild;
   List<String>? familyHistoryChild; //checkbox ma4y
@@ -267,13 +267,13 @@ class PatientChildModel {
   }
 }
 
-class ComplaintsModel {
+class ComplaintsChildModel {
   String? complaintName;
   String? complaintDescription;
 
-  ComplaintsModel({this.complaintName, this.complaintDescription});
+  ComplaintsChildModel({this.complaintName, this.complaintDescription});
 
-  ComplaintsModel.fromFire(Map<String, dynamic> json)
+  ComplaintsChildModel.fromFire(Map<String, dynamic> json)
       : this(
           complaintName: json["complaintName"],
           complaintDescription: json["complaintDescription"],

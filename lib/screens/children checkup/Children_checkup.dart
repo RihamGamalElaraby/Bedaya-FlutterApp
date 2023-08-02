@@ -1,3 +1,5 @@
+import 'package:bedaya/DateModels/patient_childmodel.dart';
+import 'package:bedaya/network/my_database.dart';
 import 'package:bedaya/screens/children%20checkup/Children_continue.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
@@ -43,13 +45,53 @@ bool  SecondaryM = false ;
 bool  UniversityM = false ;
 bool  PostgraduateM = false ;
 
+String termChild = "";
+bool fullTerm = false;
+bool preTerm = false;
+
+String birthMode = "";
+bool VD = false;
+bool CS = false;
+
+
+bool geneticDisease = false;
+bool HTN = false;
+List<String> familyHistory=[];
+List<String> selectedCheckboxesFamilyHistory = [];
+
+bool BloodTransfusion = false;
+bool Surgical = false;
+bool ICU = false;
+bool Medical = false;
+bool Allergy = false;
+
+List<String> pastHistory=[];
+List<String> selectedCheckboxesPastHistory = [];
+
+
 class _childrenCheckupState extends State<childrenCheckup> {
+
+  List<ComplaintsChildModel> complaintsList =[];
   TextEditingController mobileNuPatient =TextEditingController();
   TextEditingController namePatient =TextEditingController();
   TextEditingController codePatient =TextEditingController();
   TextEditingController houseNuPatient =TextEditingController();
   TextEditingController agePatient =TextEditingController();
   TextEditingController fatherOcc =TextEditingController();
+  TextEditingController dmChild =TextEditingController();
+  TextEditingController similarConditionChild =TextEditingController();
+  TextEditingController orderOfBirthController = TextEditingController();
+  TextEditingController preTermchild = TextEditingController();
+  TextEditingController nicuChild =TextEditingController();
+  TextEditingController ConsanguinityChild =TextEditingController();
+  TextEditingController complaintDescription =TextEditingController();
+  TextEditingController complaintName =TextEditingController();
+
+  TextEditingController BloodTransfusionController =TextEditingController();
+  TextEditingController SurgicalController =TextEditingController();
+  TextEditingController ICUController =TextEditingController();
+  TextEditingController MedicalController =TextEditingController();
+  TextEditingController AllergyController =TextEditingController();
 
 
   @override
@@ -460,6 +502,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
               Flexible(
                 flex: 2,
                 child: defultTextField(
+                  controller: orderOfBirthController,
                   text: 'order of Birth',
                   width: 250,
                 ),
@@ -467,15 +510,36 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Full Term', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: fullTerm, onChanged: (val) {
+                setState(() {
+                  fullTerm =val! ;
+                  preTerm = false ;
+                });
+                if (val!) {
+                  termChild = "fullTerm";
+                } else {
+                  termChild = "preTerm";
+                }
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Preterm', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: preTerm, onChanged: (val) {
+                setState(() {
+                  fullTerm = false;
+                  preTerm = val!;
+                });
+                if (val!) {
+                  termChild = "Preterm";
+                } else {
+                  termChild = "fullTerm";
+                }
+              })),
               sizedBoxWidth(width: 5),
               Flexible(
                 flex: 2,
                 child: defultTextField(
+                  controller: preTermchild,
                   text: 'Preterm',
                   width: 250,
                 ),
@@ -489,12 +553,32 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'V.D', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: VD, onChanged: (val) {
+                setState(() {
+                  VD =val! ;
+                  CS = false ;
+                });
+                if (val!) {
+                  birthMode = "V.D";
+                } else {
+                  termChild = "C.S";
+                }
+              })),
               sizedBoxWidth(width: 10),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'C.S', x: 12)),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: CS, onChanged: (val){
+                setState(() {
+                  VD =false ;
+                  CS = val! ;
+                });
+                if (val!) {
+                  birthMode = "C.S";
+                } else {
+                  termChild = "V.D";
+                }
+              })),
               sizedBoxWidth(width: 10),
             ],
           ),
@@ -507,7 +591,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 5),
               Flexible(
                   flex: 1,
-                  child: defultTextField(text: 'Consanguinity:', width: 250)),
+                  child: defultTextField(text: 'Consanguinity:', width: 250,controller: ConsanguinityChild )),
               sizedBoxWidth(width: 10),
               Flexible(
                   flex: 1,
@@ -516,7 +600,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
               sizedBoxWidth(width: 5),
               Flexible(
                 flex: 1,
-                child: defultTextField(
+                child: defultTextField(controller: nicuChild,
                   text: 'NICU',
                   width: 250,
                 ),
@@ -617,6 +701,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                         width: 280,
                         height: 120,
                         child: TextField(
+                          controller: complaintName,
                           decoration: InputDecoration(
                             labelText: 'C1',
                             hoverColor: Colors.black,
@@ -659,7 +744,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                         sizedBoxWidth(width: 20),
                         Flexible(
                           flex: 5,
-                          child: TextField(
+                          child: TextField(controller: complaintDescription,
                             decoration: InputDecoration(
                               labelText: 'C1',
                               hoverColor: Colors.black,
@@ -691,8 +776,17 @@ class _childrenCheckupState extends State<childrenCheckup> {
                   x: Colors.white,
                   title: 'Save&Add Another Complain',
                   size: 25,
-                  onPressed: () => {
-                 //   Navigator.pushNamed(context, childrenContinue.screenRoute)
+                  onPressed: () {
+                    setState(() {
+                      ComplaintsChildModel complaint = ComplaintsChildModel(
+                        complaintName: complaintName.text,
+                        complaintDescription: complaintDescription.text
+                      );
+                      complaintsList.add(complaint);
+                      complaintName.clear();
+                      complaintDescription.clear();
+
+                    });
                   },
                 ),
               )
@@ -708,24 +802,44 @@ class _childrenCheckupState extends State<childrenCheckup> {
               Flexible(flex: 1, child: defultText(data: 'DM:')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: defultTextField(text: 'DM', width: 100)),
+                  flex: 1, child: defultTextField(text: 'DM', width: 100,controller: dmChild)),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Similar Condition')),
               sizedBoxWidth(width: 5),// el moshkla fel check box
               Flexible(
                   flex: 2,
                   child:
-                  defultTextField(text: 'Similar Condition', width: 100)),
+                  defultTextField(text: 'Similar Condition', width: 100,controller: similarConditionChild)),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Genetic Disease')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: geneticDisease, onChanged: (val) {
+                setState(() {
+                  geneticDisease = val!;
+                  if (val) {
+                    selectedCheckboxesFamilyHistory.add("Genetic Disease");
+                  } else {
+                    selectedCheckboxesFamilyHistory.remove("Genetic Disease");
+                  }
+                });
+
+              })),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'HTN')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: HTN, onChanged: (val) {
+                setState(() {
+                  HTN = val!;
+                  if (val) {
+                    selectedCheckboxesFamilyHistory.add("HTN");
+                  } else {
+                    selectedCheckboxesFamilyHistory.remove("HTN");
+                  }
+                });
+
+              })),
             ],
           ),
           sizedBoxhight(hight: 20),
@@ -738,25 +852,55 @@ class _childrenCheckupState extends State<childrenCheckup> {
               Flexible(flex: 1, child: defultText(data: 'Medical')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Medical, onChanged: (val) {
+                setState(() {
+                  Medical = val!;
+                  if (val) {
+                    selectedCheckboxesPastHistory.add("Medical");
+                  } else {
+                    selectedCheckboxesPastHistory.remove("Medical");
+                  }
+                });
+
+              })),
               Flexible(
                   flex: 2,
-                  child: defultTextField(text: 'Medical', width: 200)),
+                  child: defultTextField(text: 'Medical', width: 200,controller: MedicalController)),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Allergy')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Allergy, onChanged: (val) {
+                setState(() {
+                  Allergy = val!;
+                  if (val) {
+                    selectedCheckboxesPastHistory.add("Allergy");
+                  } else {
+                    selectedCheckboxesPastHistory.remove("Allergy");
+                  }
+                });
+
+              })),
               Flexible(
                   flex: 2,
-                  child: defultTextField(text: 'Allergy', width: 200)),
+                  child: defultTextField(text: 'Allergy',controller: AllergyController, width: 200)),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'ICU')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: ICU, onChanged: (val) {
+                setState(() {
+                  ICU = val!;
+                  if (val) {
+                    selectedCheckboxesPastHistory.add("ICU");
+                  } else {
+                    selectedCheckboxesPastHistory.remove("ICU");
+                  }
+                });
+
+              })),
               Flexible(
-                  flex: 2, child: defultTextField(text: 'ICU', width: 200)),
+                  flex: 2, child: defultTextField(text: 'ICU', controller: ICUController,width: 200)),
               sizedBoxWidth(width: 10),
             ],
           ),
@@ -769,19 +913,39 @@ class _childrenCheckupState extends State<childrenCheckup> {
               Flexible(flex: 1, child: defultText(data: 'Surgical')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: Surgical, onChanged: (val) {
+                setState(() {
+                  Surgical = val!;
+                  if (val) {
+                    selectedCheckboxesPastHistory.add("Surgical");
+                  } else {
+                    selectedCheckboxesPastHistory.remove("Surgical");
+                  }
+                });
+
+              })),
               Flexible(
                   flex: 2,
-                  child: defultTextField(text: 'Surgical', width: 200)),
+                  child: defultTextField(text: 'Surgical', controller: SurgicalController,width: 200)),
               sizedBoxWidth(width: 10),
               Flexible(flex: 1, child: defultText(data: 'Blood Transfusion')),
               sizedBoxWidth(width: 5),
               Flexible(
-                  flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+                  flex: 1, child: Checkbox(value: BloodTransfusion, onChanged: (val) {
+                setState(() {
+                  BloodTransfusion = val!;
+                  if (val) {
+                    selectedCheckboxesPastHistory.add("Blood Transfusion");
+                  } else {
+                    selectedCheckboxesPastHistory.remove("Blood Transfusion");
+                  }
+                });
+
+              })),
               Flexible(
                   flex: 2,
                   child:
-                  defultTextField(text: 'Blood Transfusion', width: 200)),
+                  defultTextField(text: 'Blood Transfusion', controller: BloodTransfusionController,width: 200)),
               sizedBoxWidth(width: 10),
             ],
           ),
@@ -795,8 +959,53 @@ class _childrenCheckupState extends State<childrenCheckup> {
                   x: Colors.white,
                   title: 'Save&Continue',
                   size: 25,
-                  onPressed: () => {
-                    Navigator.pushNamed(context, childrenContinue.screenRoute)
+                  onPressed: (){
+                    setState(() {
+                      ComplaintsChildModel complaint = ComplaintsChildModel(
+                          complaintName: complaintName.text,
+                          complaintDescription: complaintDescription.text
+                      );
+                      complaintsList.add(complaint);
+                      complaintName.clear();
+                      complaintDescription.clear();
+
+                    });
+                    familyHistory.addAll(selectedCheckboxesFamilyHistory);
+                    selectedCheckboxesFamilyHistory.clear();
+                    pastHistory.addAll(selectedCheckboxesPastHistory);
+                    selectedCheckboxesPastHistory.clear();
+                    int? houseNumber = int.tryParse(houseNuPatient.text);
+                    int? age = int.tryParse(agePatient.text);
+                    int? mobile = int.tryParse(mobileNuPatient.text);
+                    PatientChildModel patient = PatientChildModel(
+                      nameChildPatient: namePatient.text,
+                      sexChildPatient: sexPatient,
+                      codeChildPatient: codePatient.text,
+                      houseNuChildPatient: houseNumber,
+                      ageChildPatient: age,
+                      fatherCccubationChild: fatherOcc.text,
+                      mobileNuChildPatient: mobile,
+                      fatherEduChild: educationLevelFather,
+                      motherEduChild: educationLevelMother,
+                      orderOfBirthChild: orderOfBirthController.text,
+                      pretermEduChild: preTermchild.text,
+                      birthTermChild: termChild,
+                      weekBirthMode: birthMode,
+                      consanguinityChild: ConsanguinityChild.text,
+                      nicuChild: nicuChild.text,
+                      complaintsList: complaintsList,
+                      familyHistoryDMchild: dmChild.text,
+                      similarConditionChild: similarConditionChild.text,
+                      familyHistoryChild: familyHistory,
+                      pastHistoryChild: pastHistory,
+                      pastHistSurgicalChild: SurgicalController.text,
+                      pastHistMedicalChild: MedicalController.text,
+                      pastHistIcuChild: ICUController.text,
+                      pastHistBloodTransChild: BloodTransfusionController.text,
+                      pastHistAllergyChild: AllergyController.text,
+                    );
+                    MyDataBase.addPatientChild(patient);
+                    Navigator.pushNamed(context, childrenContinue.screenRoute);
                   },
                 ),
               )
