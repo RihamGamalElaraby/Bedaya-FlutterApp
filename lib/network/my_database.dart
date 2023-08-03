@@ -81,4 +81,19 @@ class MyDataBase {
     var collection = getCollectionChild();
     return collection.where("codeChildPatient", isEqualTo: code).snapshots();
   }
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildListBlood(bool t) {
+    var collection = getCollectionChild();
+    return collection.where("bloodCheckIn", isEqualTo: t).snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildListUrine(bool t) {
+    var collection = getCollectionChild();
+    return collection.where("urineCheckIn", isEqualTo: t).snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildListStool(bool t) {
+    var collection = getCollectionChild();
+    return collection.where("stoolCheckIn", isEqualTo: t).snapshots();
+  }
 }
