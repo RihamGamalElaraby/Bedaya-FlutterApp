@@ -1,4 +1,5 @@
 class PatientAdultModel {
+  // adult data
   String? idAdultPatient;
   String? chosenDay; //done
   String? nameAdultPatient; //done
@@ -53,6 +54,9 @@ class PatientAdultModel {
   String? goHome; // done
   String? communityDevelopment; // done
   List<String>? screening; // done
+  //adult end >>>>>>>>>>>>>>>>>>>>>52
+
+  //clinics start
   List<String>? Cardiodiagnoses;
   List<String>? CardioTreatment;
   List<String>? Dentaldiagnoses;
@@ -67,16 +71,21 @@ class PatientAdultModel {
   List<String>? imTreatment;
   List<String>? ophthadiagnoses;
   List<String>? ophthaTreatment;
-  List<String>? orthodiagnoses; // ehna 3mlna dol s7 ?
+  List<String>? orthodiagnoses;
   List<String>? orthoTreatment;
   List<String>? peddiagnoses;
   List<String>? pedTreatment;
   List<String>? surgerydiagnoses;
   List<String>? surgeryTreatment;
+
+  //clinic end
+  // checkin
   bool? urineCheckIn;
   bool? bloodCheckIn;
   bool? stoolCheckIn;
 
+//
+  // urine
   String? urinePhysicalExColour;
   String? urinePhysicalExAspect;
   String? urineChemicalExBlood; //1
@@ -101,10 +110,10 @@ class PatientAdultModel {
   String? urineAlbumineAlbumine;
   String? urineAlbumineCreat;
   String? urineAlbumineAlbuminaCreateRatio;
-
   List<String>? urineAbnormalFindings; // lissttttt
   String? urineAdittionalComments;
 
+//stool
   String? consisteny;
   String? Stoollabblood;
   String? Stoollabmucus;
@@ -129,74 +138,44 @@ class PatientAdultModel {
   String? StoolOdour;
   String? wbcscontroller;
   String? Rbcscontroller;
+
+  //blood
   String? bloodCbcWbs; //1
   String? bloodCbcLymph;
-
   String? bloodCbcMid;
-
   String? bloodCbcGran;
-
   String? bloodCbcLymphH;
-
   String? bloodCbcGranL;
-
   String? bloodCbcMidPercent;
-
   String? bloodCbcRbc;
-
   String? bloodCbcHgbl;
-
   String? bloodCbcHctl;
-
   String? bloodCbcMcvl;
   String? bloodCbcMchl;
-
   String? bloodCbcMchc;
-
   String? bloodCbcRdwcv;
-
   String? bloodCbcRdwsdl;
   String? bloodCbcPlth;
-
   String? bloodCbcMpv;
-
   String? bloodCbcPdw;
-
   String? bloodCbcPct;
-
   String? bloodCbcPlccl;
-
   String? bloodCbcPlcrl; //21
   String? bloodEsr;
-
   String? bloodLipidLdl;
-
   String? bloodLipidTg;
-
   String? bloodLipidHdl;
-
   String? bloodLipidCholesterol;
-
   String? cbcPttresult; //1
   String? cbcptpercentage;
-
   String? cbcptTime;
-
   String? cbcptINR;
-
   String? cbcliverDirectbilirubin; //1
-
   String? cbcliverTotalbilirubin;
-
   String? cbcliverAlbumin;
-
   String? cbcliverAlkalinephosphatase;
-
   String? cbcliverAST;
-
   String? cbcliverALTGPT; // finish
-
-
   String? bloodkidneyCreatinine;
   String? bloodkidneyurea;
   String? bloodkidneyUricacid;
@@ -218,6 +197,61 @@ class PatientAdultModel {
   String? bloodotherASOT;
 
   PatientAdultModel({
+    this.goHome,
+    this.communityDevelopment,
+    this.screening,
+    this.idAdultPatient = "",
+    this.chosenDay,
+    this.nameAdultPatient,
+    this.codeAdultPatient,
+    this.sexAdultPatient,
+    this.houseNumberAdultPatient,
+    this.mobileNumberAdultPatient,
+    this.agePatientAdult,
+    this.occupationAdultPatient,
+    this.maritalStatus,
+    this.childrenNumber,
+    this.ageOfYoungChild,
+    this.educationLevelAdultPatient,
+    this.smokingAdultPatient,
+    this.rateSmoking,
+    this.typeSmoking,
+    this.otherHabitsSmoking,
+    this.smokingCessationsStatus,
+    this.DurationSmokingCessations,
+    this.smokingCessations,
+    this.gravidaNumber,
+    this.abortionNumber,
+    this.contracebtion,
+    this.methodContracebtion,
+    this.othercontracebtion,
+    this.complaintsList,
+    this.medicalPastHistory,
+    this.otherMedicalPastHistory,
+    this.allergyPastHistory,
+    this.specifyAllergyPastHistory,
+    this.bloodTransfusionPastHistory,
+    this.durationBloodTransfusionPastHistory,
+    this.surgicalPastHistory,
+    this.operationSurgicalPastHistory,
+    this.drugsOfChronicDiseases,
+    this.othersDrugsOfChronicDiseases,
+    this.familyHistory,
+    this.othersFamilyHistory,
+    this.BP1Vital,
+    this.BP2Vital,
+    this.mmHg1Vital,
+    this.mmHg2Vital,
+    this.hrVital,
+    this.tempVital,
+    this.randomBloodSugarVital,
+    this.complexionGenerallExamination,
+    this.o2Saturationvital,
+    this.ReferralOfConvoyClinics,
+    this.followUp,
+    //personal data end
+
+    //blood start
     this.bloodotherCRP,
     this.bloodotherASOT,
     this.bloodotherAlfafetoprotein,
@@ -273,6 +307,8 @@ class PatientAdultModel {
     this.bloodCbcPlth,
     this.bloodCbcRbc,
     this.bloodCbcRdwcv,
+
+    //blood
     this.urinePhysicalExAspect,
     this.urinePhysicalExColour,
     this.urineChemicalExBlood,
@@ -299,64 +335,15 @@ class PatientAdultModel {
     this.urineAlbumineCreat,
     this.urineAbnormalFindings,
     this.urineAdittionalComments,
+    //urine end
     this.urineCheckIn = false,
     this.bloodCheckIn = false,
     this.stoolCheckIn = false,
+    //check in end
+
+    // clinic  start
     this.orthodiagnoses,
     this.orthoTreatment,
-    this.goHome,
-    this.communityDevelopment,
-    this.screening,
-    this.idAdultPatient = "",
-    this.chosenDay,
-    this.nameAdultPatient,
-    this.codeAdultPatient,
-    this.sexAdultPatient,
-    this.houseNumberAdultPatient,
-    this.mobileNumberAdultPatient,
-    this.agePatientAdult,
-    this.occupationAdultPatient,
-    this.maritalStatus,
-    this.childrenNumber,
-    this.ageOfYoungChild,
-    this.educationLevelAdultPatient,
-    this.smokingAdultPatient,
-    this.rateSmoking,
-    this.typeSmoking,
-    this.otherHabitsSmoking,
-    this.smokingCessationsStatus,
-    this.DurationSmokingCessations,
-    this.smokingCessations,
-    this.gravidaNumber,
-    this.abortionNumber,
-    this.contracebtion,
-    this.methodContracebtion,
-    this.othercontracebtion,
-    this.complaintsList,
-    this.medicalPastHistory,
-    this.otherMedicalPastHistory,
-    this.allergyPastHistory,
-    this.specifyAllergyPastHistory,
-    this.bloodTransfusionPastHistory,
-    this.durationBloodTransfusionPastHistory,
-    this.surgicalPastHistory,
-    this.operationSurgicalPastHistory,
-    this.drugsOfChronicDiseases,
-    this.othersDrugsOfChronicDiseases,
-    this.familyHistory,
-    this.othersFamilyHistory,
-    // this.vitalDataGeneralExamination,
-    this.BP1Vital,
-    this.BP2Vital,
-    this.mmHg1Vital,
-    this.mmHg2Vital,
-    this.hrVital,
-    this.tempVital,
-    this.randomBloodSugarVital,
-    this.complexionGenerallExamination,
-    this.o2Saturationvital,
-    this.ReferralOfConvoyClinics,
-    this.followUp,
     this.Cardiodiagnoses,
     this.CardioTreatment,
     this.Dentaldiagnoses,
@@ -375,6 +362,8 @@ class PatientAdultModel {
     this.pedTreatment,
     this.surgerydiagnoses,
     this.surgeryTreatment,
+    // clinic end
+    //stool start
     this.StoollabHpylori,
     this.Stoollabfecal,
     this.StoollabEhistoliticatrophozite,
@@ -399,12 +388,84 @@ class PatientAdultModel {
     this.StoolOdour,
     this.StoolWorm,
     this.wbcscontroller,
+    //stool end
   });
 
   // اشطر كتكوت في الكتاكيت كلهم ana matettt hn3ml eh tany
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
+          BP1Vital: json["BP1Vital"],
+          BP2Vital: json["BP2Vital"],
+          mmHg1Vital: json["mmHg1Vital"],
+          mmHg2Vital: json["mmHg2Vital"],
+          hrVital: json["hrVital"],
+          tempVital: json["tempVital"],
+          randomBloodSugarVital: json["randomBloodSugarVital"],
+          o2Saturationvital: json["o2Saturationvital"],
+          familyHistory: json["familyHistory"] == null
+              ? null
+              : List<String>.from(json["familyHistory"]),
+          drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null
+              ? null
+              : List<String>.from(json["drugsOfChronicDiseases"]),
+          complexionGenerallExamination:
+              json["complexionGenerallExamination"] == null
+                  ? null
+                  : List<String>.from(json["complexionGenerallExamination"]),
+          ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"] == null
+              ? null
+              : List<String>.from(json["ReferralOfConvoyClinics"]),
+          medicalPastHistory: json["medicalPastHistory"] == null
+              ? null
+              : List<String>.from(json["medicalPastHistory"]),
+          screening: json["screening"] == null
+              ? null
+              : List<String>.from(json["screening"]),
+          goHome: json["goHome"],
+          communityDevelopment: json["communityDevelopment"],
+          idAdultPatient: json["idAdultPatient"],
+          chosenDay: json["chosenDay"],
+          nameAdultPatient: json["nameAdultPatient"],
+          codeAdultPatient: json["codeAdultPatient"],
+          sexAdultPatient: json["sexAdultPatient"],
+          houseNumberAdultPatient: json["houseNumberAdultPatient"],
+          mobileNumberAdultPatient: json["mobileNumberAdultPatient"],
+          agePatientAdult: json["agePatientAdult"],
+          occupationAdultPatient: json["occupationAdultPatient"],
+          maritalStatus: json["maritalStatus"],
+          childrenNumber: json["childrenNumber"],
+          ageOfYoungChild: json["ageOfYoungChild"],
+          educationLevelAdultPatient: json["educationLevelAdultPatient"],
+          smokingAdultPatient: json["smokingAdultPatient"],
+          rateSmoking: json["rateSmoking"],
+          typeSmoking: json["typeSmoking"],
+          otherHabitsSmoking: json["otherHabitsSmoking"],
+          smokingCessationsStatus: json["smokingCessationsStatus"],
+          DurationSmokingCessations: json["DurationSmokingCessations"],
+          smokingCessations: json["smokingCessations"],
+          gravidaNumber: json["gravidaNumber"],
+          abortionNumber: json["abortionNumber"],
+          contracebtion: json["contracebtion"],
+          methodContracebtion: json["methodContracebtion"],
+          othercontracebtion: json["othercontracebtion"],
+          complaintsList: json["complaintsList"] == null
+              ? null
+              : List<ComplaintsModel>.from(json["complaintsList"]
+                  .map((e) => ComplaintsModel.fromFire(e))),
+          otherMedicalPastHistory: json["otherMedicalPastHistory"],
+          allergyPastHistory: json["allergyPastHistory"],
+          specifyAllergyPastHistory: json["specifyAllergyPastHistory"],
+          bloodTransfusionPastHistory: json["bloodTransfusionPastHistory"],
+          durationBloodTransfusionPastHistory:
+              json["durationBloodTransfusionPastHistory"],
+          surgicalPastHistory: json["surgicalPastHistory"],
+          operationSurgicalPastHistory: json["operationSurgicalPastHistory"],
+          othersDrugsOfChronicDiseases: json["othersDrugsOfChronicDiseases"],
+          othersFamilyHistory: json["othersFamilyHistory"],
+          followUp: json["followUp"],
+
+          //blood start
           bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
           bloodotherAntiD: json["bloodotherAntiD"],
           bloodotherBHCG: json["bloodotherBHCG"],
@@ -462,7 +523,8 @@ class PatientAdultModel {
           bloodCbcRdwcv: json["bloodCbcRdwcv"],
           bloodCbcRdwsdl: json["bloodCbcRdwsdl"],
           bloodCbcWbs: json["bloodCbcWbs"],
-
+          //blood end
+          //urine start
           urineAbnormalFindings: json["urineAbnormalFindings"] == null
               ? null
               : List<String>.from(json["urineAbnormalFindings"]),
@@ -496,29 +558,13 @@ class PatientAdultModel {
           urineAlbumineAlbuminaCreateRatio:
               json["urineAlbumineAlbuminaCreateRatio"],
           urineAdittionalComments: json["urineAdittionalComments"],
+          //urine end
+          // screnning start
           bloodCheckIn: json["bloodCheckIn"],
           stoolCheckIn: json["stoolCheckIn"],
           urineCheckIn: json["urineCheckIn"],
+          //screnning end
           // ***************
-          familyHistory: json["familyHistory"] == null
-              ? null
-              : List<String>.from(json["familyHistory"]),
-          drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null
-              ? null
-              : List<String>.from(json["drugsOfChronicDiseases"]),
-          complexionGenerallExamination:
-              json["complexionGenerallExamination"] == null
-                  ? null
-                  : List<String>.from(json["complexionGenerallExamination"]),
-          ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"] == null
-              ? null
-              : List<String>.from(json["ReferralOfConvoyClinics"]),
-          medicalPastHistory: json["medicalPastHistory"] == null
-              ? null
-              : List<String>.from(json["medicalPastHistory"]),
-          screening: json["screening"] == null
-              ? null
-              : List<String>.from(json["screening"]),
           orthodiagnoses: json["orthodiagnoses"] == null
               ? null
               : List<String>.from(json["orthodiagnoses"]),
@@ -581,63 +627,6 @@ class PatientAdultModel {
               ? null
               : List<String>.from(json["surgeryTreatment"]),
           // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6
-
-          goHome: json["goHome"],
-          communityDevelopment: json["communityDevelopment"],
-          // screening: json["screening"],
-          idAdultPatient: json["idAdultPatient"],
-          chosenDay: json["chosenDay"],
-          nameAdultPatient: json["nameAdultPatient"],
-          codeAdultPatient: json["codeAdultPatient"],
-          sexAdultPatient: json["sexAdultPatient"],
-          houseNumberAdultPatient: json["houseNumberAdultPatient"],
-          mobileNumberAdultPatient: json["mobileNumberAdultPatient"],
-          agePatientAdult: json["agePatientAdult"],
-          occupationAdultPatient: json["occupationAdultPatient"],
-          maritalStatus: json["maritalStatus"],
-          childrenNumber: json["childrenNumber"],
-          ageOfYoungChild: json["ageOfYoungChild"],
-          educationLevelAdultPatient: json["educationLevelAdultPatient"],
-          smokingAdultPatient: json["smokingAdultPatient"],
-          rateSmoking: json["rateSmoking"],
-          typeSmoking: json["typeSmoking"],
-          otherHabitsSmoking: json["otherHabitsSmoking"],
-          smokingCessationsStatus: json["smokingCessationsStatus"],
-          DurationSmokingCessations: json["DurationSmokingCessations"],
-          smokingCessations: json["smokingCessations"],
-          gravidaNumber: json["gravidaNumber"],
-          abortionNumber: json["abortionNumber"],
-          contracebtion: json["contracebtion"],
-          methodContracebtion: json["methodContracebtion"],
-          othercontracebtion: json["othercontracebtion"],
-          ///////////////////////////////////
-          complaintsList: json["complaintsList"] == null
-              ? null
-              : List<ComplaintsModel>.from(json["complaintsList"]
-                  .map((e) => ComplaintsModel.fromFire(e))),
-          /////////////////////////////////////
-          //medicalPastHistory: json["medicalPastHistory"] ,
-          otherMedicalPastHistory: json["otherMedicalPastHistory"],
-          allergyPastHistory: json["allergyPastHistory"],
-          specifyAllergyPastHistory: json["specifyAllergyPastHistory"],
-          bloodTransfusionPastHistory: json["bloodTransfusionPastHistory"],
-          durationBloodTransfusionPastHistory:
-              json["durationBloodTransfusionPastHistory"],
-          surgicalPastHistory: json["surgicalPastHistory"],
-          operationSurgicalPastHistory: json["operationSurgicalPastHistory"],
-          othersDrugsOfChronicDiseases: json["othersDrugsOfChronicDiseases"],
-          othersFamilyHistory: json["othersFamilyHistory"],
-          // vitalDataGeneralExamination: json["vitalDataGeneralExamination"],
-          BP1Vital: json["BP1Vital"],
-          BP2Vital: json["BP2Vital"],
-          mmHg1Vital: json["mmHg1Vital"],
-          mmHg2Vital: json["mmHg2Vital"],
-          hrVital: json["hrVital"],
-          tempVital: json["tempVital"],
-          randomBloodSugarVital: json["randomBloodSugarVital"],
-          o2Saturationvital: json["o2Saturationvital"],
-          //ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"],
-          followUp: json["followUp"],
           consisteny: json["consisteny"],
           Stoollabblood: json["Stoollabblood"],
           Stoollabmucus: json["Stoollabmucus"],
@@ -667,6 +656,63 @@ class PatientAdultModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "goHome": goHome,
+      "communityDevelopment": communityDevelopment,
+      "screening": screening,
+      "idAdultPatient": idAdultPatient,
+      "chosenDay": chosenDay,
+      "nameAdultPatient": nameAdultPatient,
+      "codeAdultPatient": codeAdultPatient,
+      "sexAdultPatient": sexAdultPatient,
+      "houseNumberAdultPatient": houseNumberAdultPatient,
+      "mobileNumberAdultPatient": mobileNumberAdultPatient,
+      "agePatientAdult": agePatientAdult,
+      "occupationAdultPatient": occupationAdultPatient,
+      "maritalStatus": maritalStatus,
+      "childrenNumber": childrenNumber,
+      "ageOfYoungChild": ageOfYoungChild,
+      "educationLevelAdultPatient": educationLevelAdultPatient,
+      "smokingAdultPatient": smokingAdultPatient,
+      "rateSmoking": rateSmoking,
+      "typeSmoking": typeSmoking,
+      "otherHabitsSmoking": otherHabitsSmoking,
+      "smokingCessationsStatus": smokingCessationsStatus,
+      "DurationSmokingCessations": DurationSmokingCessations,
+      "smokingCessations": smokingCessations,
+      "gravidaNumber": gravidaNumber,
+      "abortionNumber": abortionNumber,
+      "contracebtion": contracebtion,
+      "methodContracebtion": methodContracebtion,
+      "othercontracebtion": othercontracebtion,
+      'complaintsList': complaintsList?.map((v) => v.toFire()).toList(),
+      "medicalPastHistory": medicalPastHistory,
+      "otherMedicalPastHistory": otherMedicalPastHistory,
+      "allergyPastHistory": allergyPastHistory,
+      "specifyAllergyPastHistory": specifyAllergyPastHistory,
+      "bloodTransfusionPastHistory": bloodTransfusionPastHistory,
+      "durationBloodTransfusionPastHistory":
+          durationBloodTransfusionPastHistory,
+      "surgicalPastHistory": surgicalPastHistory,
+      "operationSurgicalPastHistory": operationSurgicalPastHistory,
+      "drugsOfChronicDiseases": drugsOfChronicDiseases,
+      "othersDrugsOfChronicDiseases": othersDrugsOfChronicDiseases,
+      "familyHistory": familyHistory,
+      "othersFamilyHistory": othersFamilyHistory,
+      "BP1Vital": BP1Vital,
+      "BP2Vital": BP2Vital,
+      "mmHg1Vital": mmHg1Vital,
+      "mmHg2Vital": mmHg2Vital,
+      "hrVital": hrVital,
+      "tempVital": tempVital,
+      "randomBloodSugarVital": randomBloodSugarVital,
+
+      "complexionGenerallExamination": complexionGenerallExamination,
+      "o2Saturationvital": o2Saturationvital,
+      "ReferralOfConvoyClinics": ReferralOfConvoyClinics,
+      "followUp": followUp,
+
+// end >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
       "bloodotherBHCG": bloodotherBHCG,
       "bloodotherHBV": bloodotherHBV,
       "bloodotherHCV": bloodotherHCV,
@@ -674,7 +720,6 @@ class PatientAdultModel {
       "bloodotherPSA": bloodotherPSA,
       "bloodotherAntiD": bloodotherAntiD,
       "bloodotherRheumatoidfactor": bloodotherRheumatoidfactor,
-
       "bloodotherCRP": bloodotherCRP,
       "bloodotherASOT": bloodotherASOT,
       "bloodkidneyCreatinine": bloodkidneyCreatinine,
@@ -758,63 +803,6 @@ class PatientAdultModel {
       "stoolCheckIn": stoolCheckIn,
       "orthoTreatment": orthoTreatment,
       "orthodiagnoses": orthodiagnoses,
-      "goHome": goHome,
-      "communityDevelopment": communityDevelopment,
-      "screening": screening,
-      "idAdultPatient": idAdultPatient,
-      "chosenDay": chosenDay,
-      "nameAdultPatient": nameAdultPatient,
-      "codeAdultPatient": codeAdultPatient,
-      "sexAdultPatient": sexAdultPatient,
-      "houseNumberAdultPatient": houseNumberAdultPatient,
-      "mobileNumberAdultPatient": mobileNumberAdultPatient,
-      "agePatientAdult": agePatientAdult,
-      "occupationAdultPatient": occupationAdultPatient,
-      "maritalStatus": maritalStatus,
-      "childrenNumber": childrenNumber,
-      "ageOfYoungChild": ageOfYoungChild,
-      "educationLevelAdultPatient": educationLevelAdultPatient,
-      "smokingAdultPatient": smokingAdultPatient,
-      "rateSmoking": rateSmoking,
-      "typeSmoking": typeSmoking,
-      "otherHabitsSmoking": otherHabitsSmoking,
-      "smokingCessationsStatus": smokingCessationsStatus,
-      "DurationSmokingCessations": DurationSmokingCessations,
-      "smokingCessations": smokingCessations,
-      "gravidaNumber": gravidaNumber,
-      "abortionNumber": abortionNumber,
-      "contracebtion": contracebtion,
-      "methodContracebtion": methodContracebtion,
-      "othercontracebtion": othercontracebtion,
-      // "complaintsList": complaintsList,
-      'complaintsList': complaintsList?.map((v) => v.toFire()).toList(),
-      "medicalPastHistory": medicalPastHistory,
-      "otherMedicalPastHistory": otherMedicalPastHistory,
-      "allergyPastHistory": allergyPastHistory,
-      "specifyAllergyPastHistory": specifyAllergyPastHistory,
-      "bloodTransfusionPastHistory": bloodTransfusionPastHistory,
-      "durationBloodTransfusionPastHistory":
-          durationBloodTransfusionPastHistory,
-      "surgicalPastHistory": surgicalPastHistory,
-      "operationSurgicalPastHistory": operationSurgicalPastHistory,
-      "drugsOfChronicDiseases": drugsOfChronicDiseases,
-      "othersDrugsOfChronicDiseases": othersDrugsOfChronicDiseases,
-      "familyHistory": familyHistory,
-      "othersFamilyHistory": othersFamilyHistory,
-      // "vitalDataGeneralExamination": vitalDataGeneralExamination,
-      "BP1Vital": BP1Vital,
-      "BP2Vital": BP2Vital,
-      "mmHg1Vital": mmHg1Vital,
-      "mmHg2Vital": mmHg2Vital,
-      "hrVital": hrVital,
-      "tempVital": tempVital,
-      "randomBloodSugarVital": randomBloodSugarVital,
-
-      "complexionGenerallExamination": complexionGenerallExamination,
-      "o2Saturationvital": o2Saturationvital,
-      "ReferralOfConvoyClinics": ReferralOfConvoyClinics,
-      "followUp": followUp,
-
       "Cardiodiagnoses": Cardiodiagnoses,
       "CardioTreatment": CardioTreatment,
       "Dentaldiagnoses": Dentaldiagnoses,

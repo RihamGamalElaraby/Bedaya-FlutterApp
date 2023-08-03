@@ -1005,7 +1005,8 @@ class _childrenCheckupState extends State<childrenCheckup> {
                       pastHistAllergyChild: AllergyController.text,
                     );
                     MyDataBase.addPatientChild(patient);
-                    Navigator.pushNamed(context, childrenContinue.screenRoute);
+                    print("done added child");
+                    Navigator.pushNamed(context, childrenContinue.screenRoute,arguments: patient);
                   },
                 ),
               )
