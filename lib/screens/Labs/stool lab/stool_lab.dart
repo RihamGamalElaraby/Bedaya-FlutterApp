@@ -5,6 +5,7 @@ import 'package:bedaya/component/component.dart';
 import 'package:bedaya/widgets/my_button.dart';
 
 import '../../../DateModels/PatientAdultModel.dart';
+import '../../../DateModels/patient_childmodel.dart';
 import '../../../network/my_database.dart';
 import '../../../widgets/text_Filed.dart';
 
@@ -141,10 +142,14 @@ class _stoolLabState extends State<stoolLab> {
   TextEditingController wbcscontroller = TextEditingController();
   TextEditingController Rbcscontroller = TextEditingController();
   TextEditingController codeController = TextEditingController();
+  bool child = false;
+  bool adult = false;
+  String selectedPatient = "" ;
 
   @override
   Widget build(BuildContext context) {
-    PatientAdultModel patient = PatientAdultModel();
+    PatientAdultModel patientAd = PatientAdultModel();
+    PatientChildModel patientCh = PatientChildModel();
 
     return Scaffold(
       appBar: PreferredSize(
@@ -160,8 +165,79 @@ class _stoolLabState extends State<stoolLab> {
             sizedBoxhight(hight: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Container(
+                      width: 270,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey,
+                      ),
+                      child: Column(
+                        children: [
+                          sizedBoxhight(hight: 10),
+                          Flexible(
+                              flex: 3,
+                              child: defultText(
+                                  data: 'Select patientAd do u need search for', c: Colors.black,x: 15)),
+                          sizedBoxhight(hight: 35),
+                          Flexible(
+                            flex: 1,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                        data: 'Child', c: Colors.white)),
+                                Flexible(
+                                    flex: 1,
+                                    child: Checkbox(
+                                        value: child,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            child = val!;
+                                            adult = false;
+                                            if (val) {
+                                              selectedPatient="ch";
+                                            }
+                                          });
+                                        })),
+                                Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                        data: 'Adult', c: Colors.white)),
+                                Flexible(
+                                    flex: 1,
+                                    child: Checkbox(
+                                        value: adult,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            adult = val!;
+                                            child= false;
+                                            if (val) {
+                                              selectedPatient="ad";
+                                            }
+                                          });
+                                        })),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                  ),
+                )
+              ],
+            ),
+            sizedBoxhight(hight: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Flexible(child: defultText(data: 'Search')),
+                sizedBoxWidth(width: 20),
                 Flexible(
                   child: Container(
                     width: 250,
@@ -182,18 +258,18 @@ class _stoolLabState extends State<stoolLab> {
                 sizedBoxWidth(width: 20),
                 Flexible(
                     child: Container(
-                  width: 100,
-                  height: 50,
-                  child: mysignin(
-                    color: Colors.green,
-                    title: 'search',
-                    size: 18,
-                    onPressed: () {
-                      setState(() {});
-                      print(codeController.text);
-                    },
-                  ),
-                ))
+                      width: 100,
+                      height: 50,
+                      child: mysignin(
+                        color: Colors.green,
+                        title: 'search',
+                        size: 18,
+                        onPressed: () {
+                          setState(() {});
+                          print(codeController.text);
+                        },
+                      ),
+                    ))
               ],
             ),
             sizedBoxhight(hight: 10),
@@ -203,8 +279,11 @@ class _stoolLabState extends State<stoolLab> {
               children: [
                 Flexible(
                     flex: 1,
-                    child: StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-                      stream: MyDataBase.getPatientAdult(codeController.text),
+                    child:
+
+                    selectedPatient=="ad"? StreamBuilder<QuerySnapshot<PatientAdultModel>>(
+                      stream:
+                      MyDataBase.getPatientAdult(codeController.text),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -213,77 +292,53 @@ class _stoolLabState extends State<stoolLab> {
                           return Text('Error: ${snapshot.error}');
                         } else if (!snapshot.hasData ||
                             snapshot.data!.docs.isEmpty) {
-                          return Text('No patient data found!');
+                          return Text('No patientAd data found!');
                         } else {
                           // Access the first patient from the query snapshot
                           //   List<PatientAdultModel> patientList =
                           //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                          patient = snapshot.data!.docs[0].data();
-                          print("data ${patient.screening}");
+                          patientAd = snapshot.data!.docs[0].data();
+                          print("data ${patientAd.screening}");
                           return Container(
                             decoration: BoxDecoration(
                               color: Colors.green,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             width: 1000,
-                            height: 120,
+                            height: 80,
                             child: Center(
-                              child: Column(
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        flex: 4,
-                                        child: defultText(
-                                          data:
-                                              "Patient’s Name: ${patient.nameAdultPatient}",
-                                          c: Colors.black,
-                                          x: 19,
-                                        ),
-                                      ),
-                                      sizedBoxWidth(width: 300),
-                                      Flexible(
-                                        flex: 1,
-                                        child: defultText(
-                                          data:
-                                              'Code: ${patient.codeAdultPatient}',
-                                          c: Colors.black,
-                                          x: 19,
-                                        ),
-                                      ),
-                                      sizedBoxWidth(width: 50),
-                                      Flexible(
-                                        flex: 1,
-                                        child: defultText(
-                                          data:
-                                              'Sex: ${patient.sexAdultPatient}',
-                                          c: Colors.black,
-                                          x: 19,
-                                        ),
-                                      ),
-                                    ],
+                                  Flexible(
+                                    flex: 4,
+                                    child: defultText(
+                                      data:
+                                      "Patient’s Name: ${patientAd.nameAdultPatient}",
+                                      c: Colors.black,
+                                      x: 19,
+                                    ),
                                   ),
-                                  SizedBox(
-                                    height: 20,
+                                  sizedBoxWidth(width: 300),
+                                  Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                      data:
+                                      'Code: ${patientAd.codeAdultPatient}',
+                                      c: Colors.black,
+                                      x: 19,
+                                    ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Flexible(
-                                        flex: 4,
-                                        child: defultText(
-                                          data: patient.stoolCheckIn!
-                                              ? "stool Check In : This patient is still checked in"
-                                              : "stool Check In : This patient checked out or not already chicked in ",
-                                          c: Colors.black,
-                                          x: 19,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8,
+                                  sizedBoxWidth(width: 50),
+                                  Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                      data:
+                                      'Sex: ${patientAd.sexAdultPatient}',
+                                      c: Colors.black,
+                                      x: 19,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -291,7 +346,74 @@ class _stoolLabState extends State<stoolLab> {
                           );
                         }
                       },
-                    )),
+                    )
+                        :  StreamBuilder<QuerySnapshot<PatientChildModel>>(
+                      stream:
+                      MyDataBase.getPatientChild(codeController.text),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.docs.isEmpty) {
+                          return Text('No patientAd data found!');
+                        } else {
+                          // Access the first patient from the query snapshot
+                          //   List<PatientAdultModel> patientList =
+                          //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                          patientCh = snapshot.data!.docs[0].data();
+                          print("data ${patientAd.screening}");
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            width: 1000,
+                            height: 80,
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: [
+                                  Flexible(
+                                    flex: 4,
+                                    child: defultText(
+                                      data:
+                                      "Patient’s Name: ${patientCh.nameChildPatient}",
+                                      c: Colors.black,
+                                      x: 19,
+                                    ),
+                                  ),
+                                  sizedBoxWidth(width: 300),
+                                  Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                      data:
+                                      'Code: ${patientCh.codeChildPatient}',
+                                      c: Colors.black,
+                                      x: 19,
+                                    ),
+                                  ),
+                                  sizedBoxWidth(width: 50),
+                                  Flexible(
+                                    flex: 1,
+                                    child: defultText(
+                                      data:
+                                      'Sex: ${patientCh.sexChildPatient}',
+                                      c: Colors.black,
+                                      x: 19,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    )
+                ),
               ],
             ),
             sizedBoxhight(hight: 20),
@@ -2052,59 +2174,71 @@ class _stoolLabState extends State<stoolLab> {
                       onPressed: () {
                         print(checkStool);
                         if (checkStool == "yes") {
-                          patient.stoolCheckIn = false;
-                          patient.consisteny = consisteny;
-                          patient.Stoollabblood = Stoollabblood;
-                          patient.Stoollabmucus = Stoollabmucus;
-                          patient.Stoollabfasciola = Stoollabfasciola;
-                          patient.Stoollabsch = Stoollabsch;
-                          patient.Stoollabhnana = Stoollabhnana;
-                          patient.Stoollabtinea = Stoollabtinea;
-                          patient.StoollabAscaris = StoollabAscaris;
-                          patient.StoollabTtrichuria = StoollabTtrichuria;
-                          patient.StoollabHookworm = StoollabHookworm;
-                          patient.StoollabHpylori = StoollabHpylori;
-                          patient.Stoollabfecal = Stoollabfecal;
-                          patient.StoollabEntrobious = StoollabEntrobious;
-                          patient.StoollabEcoli = StoollabEcoli;
-                          patient.StoollabEhistolitica = StoollabEhistolitica;
-                          patient.StoollabGiardia = StoollabGiardia;
-                          patient.StoollabStrongyloideslarvae =
+                          patientAd.stoolCheckIn = false;
+                          patientCh.stoolCheckIn=false;
+                          }
+                          patientAd.consisteny = consisteny;
+                          patientAd.Stoollabblood = Stoollabblood;
+                          patientAd.Stoollabmucus = Stoollabmucus;
+                          patientAd.Stoollabfasciola = Stoollabfasciola;
+                          patientAd.Stoollabsch = Stoollabsch;
+                          patientAd.Stoollabhnana = Stoollabhnana;
+                          patientAd.Stoollabtinea = Stoollabtinea;
+                          patientAd.StoollabAscaris = StoollabAscaris;
+                          patientAd.StoollabTtrichuria = StoollabTtrichuria;
+                          patientAd.StoollabHookworm = StoollabHookworm;
+                          patientAd.StoollabHpylori = StoollabHpylori;
+                          patientAd.Stoollabfecal = Stoollabfecal;
+                          patientAd.StoollabEntrobious = StoollabEntrobious;
+                          patientAd.StoollabEcoli = StoollabEcoli;
+                          patientAd.StoollabEhistolitica = StoollabEhistolitica;
+                          patientAd.StoollabGiardia = StoollabGiardia;
+                          patientAd.StoollabStrongyloideslarvae =
                               StoollabStrongyloideslarvae;
-                          patient.StoollabGiardiatrophozozite =
+                          patientAd.StoollabGiardiatrophozozite =
                               StoollabGiardiatrophozozite;
-                          patient.StoollabEhistoliticatrophozite =
+                          patientAd.StoollabEhistoliticatrophozite =
                               StoollabEhistoliticatrophozite;
-                          patient.StoolColor = StoolColor.text;
-                          patient.StoolWorm = StoolWorm.text;
-                          patient.StoolOdour = StoolOdour.text;
-                          patient.StoolColor = wbcscontroller.text;
-                          MyDataBase.updatePatientAdult(patient);
+                          patientAd.StoolColor = StoolColor.text;
+                          patientAd.StoolWorm = StoolWorm.text;
+                          patientAd.StoolOdour = StoolOdour.text;
+                          patientAd.StoolColor = wbcscontroller.text;
+                          MyDataBase.updatePatientAdult(patientAd);
+                          // child
+
+                        patientCh.consisteny = consisteny;
+                        patientCh.Stoollabblood = Stoollabblood;
+                        patientCh.Stoollabmucus = Stoollabmucus;
+                        patientCh.Stoollabfasciola = Stoollabfasciola;
+                        patientCh.Stoollabsch = Stoollabsch;
+                        patientCh.Stoollabhnana = Stoollabhnana;
+                        patientCh.Stoollabtinea = Stoollabtinea;
+                        patientCh.StoollabAscaris = StoollabAscaris;
+                        patientCh.StoollabTtrichuria = StoollabTtrichuria;
+                        patientCh.StoollabHookworm = StoollabHookworm;
+                        patientCh.StoollabHpylori = StoollabHpylori;
+                        patientCh.Stoollabfecal = Stoollabfecal;
+                        patientCh.StoollabEntrobious = StoollabEntrobious;
+                        patientCh.StoollabEcoli = StoollabEcoli;
+                        patientCh.StoollabEhistolitica = StoollabEhistolitica;
+                        patientCh.StoollabGiardia = StoollabGiardia;
+                        patientCh.StoollabStrongyloideslarvae =
+                            StoollabStrongyloideslarvae;
+                        patientCh.StoollabGiardiatrophozozite =
+                            StoollabGiardiatrophozozite;
+                        patientCh.StoollabEhistoliticatrophozite =
+                            StoollabEhistoliticatrophozite;
+                        patientCh.StoolColor = StoolColor.text;
+                        patientCh.StoolWorm = StoolWorm.text;
+                        patientCh.StoolOdour = StoolOdour.text;
+                        patientCh.StoolColor = wbcscontroller.text;
+                        MyDataBase.updatePatientChild(patientCh);
                           codeController.clear();
 
-                          Navigator.pushNamed(context, stoolLab.screenRoute);
-                        }
-                        ;
+                          //Navigator.pushNamed(context, stoolLab.screenRoute);
                       }),
                 ),
                 sizedBoxWidth(width: 20),
-                // mysignin(
-                //   color: Colors.green,
-                //   x: Colors.black,
-                //   title: 'Save&BacktoEdit',
-                //   size: 25,
-                //   onPressed: () =>
-                //       {Navigator.pushNamed(context, stoolLab.screenRoute)},
-                // ),
-                // // sizedBoxWidth(width: 20),
-                // mysignin(
-                //   color: Colors.green,
-                //   x: Colors.black,
-                //   title: 'Save&addNewOne',
-                //   size: 25,
-                //   onPressed: () =>
-                //       {Navigator.pushNamed(context, stoolLab.screenRoute)},
-                // ),
               ],
             ),
           ],

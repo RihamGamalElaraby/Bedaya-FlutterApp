@@ -132,8 +132,8 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                     children: [
                       Center(
                         child: Container(
-                          width: 300,
-                          height: 150,
+                          width: 270,
+                          height: 120,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: Colors.grey,
@@ -144,7 +144,7 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                               Flexible(
                                   flex: 3,
                                   child: defultText(
-                                      data: 'Select patient do u need to search for', c: Colors.white,x: 16)),
+                                      data: 'Select patient do u need search for', c: Colors.black,x: 15)),
                               sizedBoxhight(hight: 35),
                               Flexible(
                                 flex: 1,
@@ -361,15 +361,6 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                           ),
                                         ),
                                         sizedBoxWidth(width: 50),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                            'Sex: ${patientCh.sexChildPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
                                         Flexible(
                                           flex: 1,
                                           child: defultText(

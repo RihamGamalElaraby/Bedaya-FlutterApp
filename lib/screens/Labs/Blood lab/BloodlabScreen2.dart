@@ -1,4 +1,5 @@
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
+import 'package:bedaya/DateModels/patient_childmodel.dart';
 import 'package:bedaya/screens/Labs/Blood%20lab/BloodLab2_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/screens/Labs/Blood%20lab/BloodlabScreen2.dart';
@@ -42,7 +43,12 @@ class _BloodlaponecontiunueState extends State<Bloodlaponecontiunue> {
 
   @override
   Widget build(BuildContext context) {
-    PatientAdultModel? patient = ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
+    final arg = ModalRoute.of(context)!.settings.arguments as Map;
+
+    var patientAd = arg['patientAd'];
+    var patientCh = arg['patientCh'];
+    //PatientAdultModel? patientAd = ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
+   // PatientChildModel? patientch = ModalRoute.of(context)?.settings.arguments as PatientChildModel?;
 
     return Scaffold(
         appBar: PreferredSize(
@@ -767,19 +773,34 @@ class _BloodlaponecontiunueState extends State<Bloodlaponecontiunue> {
                       title: 'Save&Continue',
                       size: 25,
                       onPressed: () {
-                        patient?.cbcliverTotalbilirubin = cbcliverTotalbilirubin.text ;
-                        patient?.cbcliverDirectbilirubin = cbcliverDirectbilirubin.text;
-                        patient?.cbcliverAST =cbcliverAST.text ;
-                        patient?.cbcliverALTGPT =cbcliverALTGPT.text ;
-                        patient?.cbcliverAlkalinephosphatase = cbcliverAlkalinephosphatase.text;
-                        patient?.cbcliverAlbumin = cbcliverAlbumin.text;
-                        patient?.cbcptTime =cbcptTime.text ;
-                        patient?.cbcptpercentage = cbcptpercentage.text;
-                        patient?.cbcptINR =cbcptINR.text ;
-                        patient?.cbcPttresult =cbcPttresult.text ;
-                        MyDataBase.updatePatientAdult(patient!);
+                        patientAd?.cbcliverTotalbilirubin = cbcliverTotalbilirubin.text ;
+                        patientAd?.cbcliverDirectbilirubin = cbcliverDirectbilirubin.text;
+                        patientAd?.cbcliverAST =cbcliverAST.text ;
+                        patientAd?.cbcliverALTGPT =cbcliverALTGPT.text ;
+                        patientAd?.cbcliverAlkalinephosphatase = cbcliverAlkalinephosphatase.text;
+                        patientAd?.cbcliverAlbumin = cbcliverAlbumin.text;
+                        patientAd?.cbcptTime =cbcptTime.text ;
+                        patientAd?.cbcptpercentage = cbcptpercentage.text;
+                        patientAd?.cbcptINR =cbcptINR.text ;
+                        patientAd?.cbcPttresult =cbcPttresult.text ;
+                        MyDataBase.updatePatientAdult(patientAd!);
+                        //child
+                        patientCh?.cbcliverTotalbilirubin = cbcliverTotalbilirubin.text ;
+                        patientCh?.cbcliverDirectbilirubin = cbcliverDirectbilirubin.text;
+                        patientCh?.cbcliverAST =cbcliverAST.text ;
+                        patientCh?.cbcliverALTGPT =cbcliverALTGPT.text ;
+                        patientCh?.cbcliverAlkalinephosphatase = cbcliverAlkalinephosphatase.text;
+                        patientCh?.cbcliverAlbumin = cbcliverAlbumin.text;
+                        patientCh?.cbcptTime =cbcptTime.text ;
+                        patientCh?.cbcptpercentage = cbcptpercentage.text;
+                        patientCh?.cbcptINR =cbcptINR.text ;
+                        patientCh?.cbcPttresult =cbcPttresult.text ;
+                        MyDataBase.updatePatientChild(patientCh!);
                         Navigator.pushNamed(
-                            context, bloodLabContinueScreen.screenRoute,arguments: patient);
+                            context, bloodLabContinueScreen.screenRoute,arguments: {
+                          "patientAd":patientAd,
+                          "patientCh":patientCh
+                        });
                       },
                     ),
                   )

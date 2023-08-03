@@ -8,6 +8,7 @@ import 'package:bedaya/widgets/text_Filed.dart';
 import 'package:bedaya/screens/Labs/choselabs_screen.dart';
 import 'package:bedaya/screens/Labs/Blood%20lab/BloodLab_screen.dart';
 import '../../../DateModels/PatientAdultModel.dart';
+import '../../../DateModels/patient_childmodel.dart';
 
 class urineLabscreen extends StatefulWidget {
   static const String screenRoute = 'urineLabscreen';
@@ -20,7 +21,8 @@ class urineLabscreen extends StatefulWidget {
 
 class _urineLabscreenState extends State<urineLabscreen>
     with SingleTickerProviderStateMixin {
-  late PatientAdultModel patient;
+  PatientAdultModel patientAd = PatientAdultModel();
+  PatientChildModel patientCh = PatientChildModel();
 
   bool cats = false;
   bool eggs = false;
@@ -136,6 +138,10 @@ class _urineLabscreenState extends State<urineLabscreen>
   TextEditingController urineAlbuminCreatratio = TextEditingController();
   TextEditingController urinecomments =TextEditingController();
 
+  bool child = false;
+  bool adult = false;
+  String selectedPatient = "" ;
+
 
   @override
   void initState() {
@@ -171,8 +177,79 @@ class _urineLabscreenState extends State<urineLabscreen>
               sizedBoxhight(hight: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Center(
+                    child: Container(
+                        width: 270,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey,
+                        ),
+                        child: Column(
+                          children: [
+                            sizedBoxhight(hight: 10),
+                            Flexible(
+                                flex: 3,
+                                child: defultText(
+                                    data: 'Select patient do u need search for', c: Colors.black,x: 15)),
+                            sizedBoxhight(hight: 35),
+                            Flexible(
+                              flex: 1,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                          data: 'Child', c: Colors.white)),
+                                  Flexible(
+                                      flex: 1,
+                                      child: Checkbox(
+                                          value: child,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              child = val!;
+                                              adult = false;
+                                              if (val) {
+                                                selectedPatient="ch";
+                                              }
+                                            });
+                                          })),
+                                  Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                          data: 'Adult', c: Colors.white)),
+                                  Flexible(
+                                      flex: 1,
+                                      child: Checkbox(
+                                          value: adult,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              adult = val!;
+                                              child= false;
+                                              if (val) {
+                                                selectedPatient="ad";
+                                              }
+                                            });
+                                          })),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                  )
+                ],
+              ),
+              sizedBoxhight(hight: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Flexible(child: defultText(data: 'Search')),
+                  sizedBoxWidth(width: 20),
                   Flexible(
                     child: Container(
                       width: 250,
@@ -192,13 +269,19 @@ class _urineLabscreenState extends State<urineLabscreen>
                   ),
                   sizedBoxWidth(width: 20),
                   Flexible(
-                      child: mysignin(
-                    color: Colors.green,
-                    title: 'search',
-                    onPressed: () {
-                      setState(() {});
-                    },
-                  ))
+                      child: Container(
+                        width: 100,
+                        height: 50,
+                        child: mysignin(
+                          color: Colors.green,
+                          title: 'search',
+                          size: 18,
+                          onPressed: () {
+                            setState(() {});
+                            print(codeController.text);
+                          },
+                        ),
+                      ))
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -208,8 +291,11 @@ class _urineLabscreenState extends State<urineLabscreen>
                 children: [
                   Flexible(
                       flex: 1,
-                      child: StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-                        stream: MyDataBase.getPatientAdult(codeController.text),
+                      child:
+
+                      selectedPatient=="ad"? StreamBuilder<QuerySnapshot<PatientAdultModel>>(
+                        stream:
+                        MyDataBase.getPatientAdult(codeController.text),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -223,113 +309,123 @@ class _urineLabscreenState extends State<urineLabscreen>
                             // Access the first patient from the query snapshot
                             //   List<PatientAdultModel> patientList =
                             //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                            patient = snapshot.data!.docs[0].data();
-
+                            patientAd = snapshot.data!.docs[0].data();
+                            print("data ${patientAd.screening}");
                             return Container(
                               decoration: BoxDecoration(
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               width: 1000,
-                              height: 120,
+                              height: 80,
                               child: Center(
-                                child: Column(
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          flex: 4,
-                                          child: defultText(
-                                            data:
-                                                "Patient’s Name: ${patient.nameAdultPatient}",
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 300),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                                'Code: ${patient.codeAdultPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 50),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                                'Sex: ${patient.sexAdultPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                      ],
+                                    Flexible(
+                                      flex: 4,
+                                      child: defultText(
+                                        data:
+                                        "Patient’s Name: ${patientAd.nameAdultPatient}",
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 20,
+                                    sizedBoxWidth(width: 300),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data:
+                                        'Code: ${patientAd.codeAdultPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          flex: 4,
-                                          child: defultText(
-                                            data: patient.urineCheckIn!
-                                                ? "Urine’s Check in : This patient is still checked in"
-                                                : "Urine’s Check in : This patient checked out or not already chicked in ",
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                      ],
+                                    sizedBoxWidth(width: 50),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data:
+                                        'Sex: ${patientAd.sexAdultPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    // Row(
-                                    //   mainAxisAlignment: MainAxisAlignment.center,
-                                    //   children: [
-                                    //     Flexible(
-                                    //       flex: 4,
-                                    //       child: defultText(
-                                    //         data:
-                                    //          patient.bloodCheckIn! ? "Blood’s Check in :This patient is still checked in":
-                                    //          "Blood’s Check in :  This patient checked out or not already chicked in  ",
-                                    //         c: Colors.black,
-                                    //         x: 19,
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // SizedBox(height: 8,),
-                                    // Row(
-                                    //   mainAxisAlignment: MainAxisAlignment.center,
-                                    //   children: [
-                                    //     Flexible(
-                                    //       flex: 4,
-                                    //       child: defultText(
-                                    //         data:
-                                    //          patient.stoolCheckIn==true ? "Stool’s Check in : This patient is still checked in ":
-                                    //          "Stool’s Check in :  This patient checked out or not already chicked in  ",
-                                    //         c: Colors.black,
-                                    //         x: 19,
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
                                   ],
                                 ),
                               ),
                             );
                           }
                         },
-                      )),
+                      )
+                          :  StreamBuilder<QuerySnapshot<PatientChildModel>>(
+                        stream:
+                        MyDataBase.getPatientChild(codeController.text),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          } else if (!snapshot.hasData ||
+                              snapshot.data!.docs.isEmpty) {
+                            return Text('No patient data found!');
+                          } else {
+                            // Access the first patient from the query snapshot
+                            //   List<PatientAdultModel> patientList =
+                            //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                            patientCh = snapshot.data!.docs[0].data();
+                            print("data ${patientAd.screening}");
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: 1000,
+                              height: 80,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  children: [
+                                    Flexible(
+                                      flex: 4,
+                                      child: defultText(
+                                        data:
+                                        "Patient’s Name: ${patientCh.nameChildPatient}",
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                    sizedBoxWidth(width: 300),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data:
+                                        'Code: ${patientCh.codeChildPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                    sizedBoxWidth(width: 50),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data:
+                                        'Sex: ${patientCh.sexChildPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      )
+                  ),
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -2501,57 +2597,71 @@ class _urineLabscreenState extends State<urineLabscreen>
                       onPressed: () {
                           print(checkUrine);
                           if(checkUrine=="yes"){
-                            patient.urineCheckIn = false;
+                            patientAd.urineCheckIn = false;
+                            patientCh.urineCheckIn=false;
                           }
                           ubnormalfindings.addAll(selectedubnormalfindings);
                           selectedubnormalfindings.clear();
-                          patient.urinePhysicalExColour = urinephysicalExcolor.text ;
-                          patient.urinePhysicalExAspect = urinephysicalExaspect.text ;
-                          patient.urineChemicalExBlood = selectedBlood ;
-                          patient.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
-                          patient.urineChemicalExUrobilingen = selectedUrobilinogen ;
-                          patient.urineChemicalExBilirubin = selectedBilirubin ;
-                          patient.urineChemicalExProtien = selectedProtein ;
-                          patient.urineChemicalExNitrite = selectedNitrite ;
-                          patient.urineChemicalExKetone = selectedKetone ;
-                          patient.urineChemicalExGlucose = selectedGlucose ;
-                          patient.urineChemicalExPH = selectedPH ;
-                          patient.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
-                          patient.urineChemicalExLeukocyte = selectedLeukocyte ;
-                          patient.urineChemicalExDensity = selectedDenisty;
-                          patient.urineMicroscopicExRBCs = urinemicroscopicdataRBCs.text ;
-                          patient.urineMicroscopicExPuscells = urinemicroscopicdatapusscells.text ;
-                          patient.urineMicroscopicExEpithelialcells = urinemicroscopicdataEpithelial.text;
-                          patient.urineMicroscopicExCalciumOxalate = selectedpositiveCalcium ;
-                          patient.urineMicroscopicExUricacid = selectedpositiveuric ;
-                          patient.urineMicroscopicExTriplephosphate = selectedpositivetriple ;
-                          patient.urineMicroscopicExAmorphous = selectedpositiveAmor ;
-                          patient.urineAlbumineAlbumine = urinealbumin.text ;
-                          patient.urineAlbumineCreat = urinecreat.text ;
-                          patient.urineAlbumineAlbuminaCreateRatio = urineAlbuminCreatratio.text ;
-                          patient.urineAbnormalFindings = ubnormalfindings ;
-                          patient.urineAdittionalComments = urinecomments.text ;
-                          MyDataBase.updatePatientAdult(patient);
+                          patientAd.urinePhysicalExColour = urinephysicalExcolor.text ;
+                          patientAd.urinePhysicalExAspect = urinephysicalExaspect.text ;
+                          patientAd.urineChemicalExBlood = selectedBlood ;
+                          patientAd.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
+                          patientAd.urineChemicalExUrobilingen = selectedUrobilinogen ;
+                          patientAd.urineChemicalExBilirubin = selectedBilirubin ;
+                          patientAd.urineChemicalExProtien = selectedProtein ;
+                          patientAd.urineChemicalExNitrite = selectedNitrite ;
+                          patientAd.urineChemicalExKetone = selectedKetone ;
+                          patientAd.urineChemicalExGlucose = selectedGlucose ;
+                          patientAd.urineChemicalExPH = selectedPH ;
+                          patientAd.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
+                          patientAd.urineChemicalExLeukocyte = selectedLeukocyte ;
+                          patientAd.urineChemicalExDensity = selectedDenisty;
+                          patientAd.urineMicroscopicExRBCs = urinemicroscopicdataRBCs.text ;
+                          patientAd.urineMicroscopicExPuscells = urinemicroscopicdatapusscells.text ;
+                          patientAd.urineMicroscopicExEpithelialcells = urinemicroscopicdataEpithelial.text;
+                          patientAd.urineMicroscopicExCalciumOxalate = selectedpositiveCalcium ;
+                          patientAd.urineMicroscopicExUricacid = selectedpositiveuric ;
+                          patientAd.urineMicroscopicExTriplephosphate = selectedpositivetriple ;
+                          patientAd.urineMicroscopicExAmorphous = selectedpositiveAmor ;
+                          patientAd.urineAlbumineAlbumine = urinealbumin.text ;
+                          patientAd.urineAlbumineCreat = urinecreat.text ;
+                          patientAd.urineAlbumineAlbuminaCreateRatio = urineAlbuminCreatratio.text ;
+                          patientAd.urineAbnormalFindings = ubnormalfindings ;
+                          patientAd.urineAdittionalComments = urinecomments.text ;
+                          MyDataBase.updatePatientAdult(patientAd);
+                          // child
+                          patientCh.urinePhysicalExColour = urinephysicalExcolor.text ;
+                          patientCh.urinePhysicalExAspect = urinephysicalExaspect.text ;
+                          patientCh.urineChemicalExBlood = selectedBlood ;
+                          patientCh.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
+                          patientCh.urineChemicalExUrobilingen = selectedUrobilinogen ;
+                          patientCh.urineChemicalExBilirubin = selectedBilirubin ;
+                          patientCh.urineChemicalExProtien = selectedProtein ;
+                          patientCh.urineChemicalExNitrite = selectedNitrite ;
+                          patientCh.urineChemicalExKetone = selectedKetone ;
+                          patientCh.urineChemicalExGlucose = selectedGlucose ;
+                          patientCh.urineChemicalExPH = selectedPH ;
+                          patientCh.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
+                          patientCh.urineChemicalExLeukocyte = selectedLeukocyte ;
+                          patientCh.urineChemicalExDensity = selectedDenisty;
+                          patientCh.urineMicroscopicExRBCs = urinemicroscopicdataRBCs.text ;
+                          patientCh.urineMicroscopicExPuscells = urinemicroscopicdatapusscells.text ;
+                          patientCh.urineMicroscopicExEpithelialcells = urinemicroscopicdataEpithelial.text;
+                          patientCh.urineMicroscopicExCalciumOxalate = selectedpositiveCalcium ;
+                          patientCh.urineMicroscopicExUricacid = selectedpositiveuric ;
+                          patientCh.urineMicroscopicExTriplephosphate = selectedpositivetriple ;
+                          patientCh.urineMicroscopicExAmorphous = selectedpositiveAmor ;
+                          patientCh.urineAlbumineAlbumine = urinealbumin.text ;
+                          patientCh.urineAlbumineCreat = urinecreat.text ;
+                          patientCh.urineAlbumineAlbuminaCreateRatio = urineAlbuminCreatratio.text ;
+                          patientCh.urineAbnormalFindings = ubnormalfindings ;
+                          patientCh.urineAdittionalComments = urinecomments.text ;
+                          MyDataBase.updatePatientChild(patientCh);
+
                           codeController.clear();
                         }
-                        // Navigator.pushNamed(
-                        //     context, ChoseLabsScreen.screenRoute);
                     ),
                   ),
-                  // sizedBoxWidth(width: 20),
-                  // Flexible(
-                  //   flex: 1,
-                  //   child: mysignin(
-                  //     color: Colors.green,
-                  //     x: Colors.black,
-                  //     title: 'Save&BacktoEdit',
-                  //     size: 25,
-                  //     onPressed: () => {
-                  //       Navigator.pushNamed(
-                  //           context, bloodLabScreen.screenRoute)
-                  //     },
-                  //   ),
-                  // ),
                   sizedBoxWidth(width: 20),
 
                 ],

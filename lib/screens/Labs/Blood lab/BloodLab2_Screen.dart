@@ -92,7 +92,11 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
 
   @override
   Widget build(BuildContext context) {
-    PatientAdultModel? patient = ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
+    final arg = ModalRoute.of(context)!.settings.arguments as Map;
+
+    var patientAd = arg['patientAd'];
+    var patientCh = arg['patientCh'];
+    //PatientAdultModel? patientAd = ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
 
     return Scaffold(
         appBar: PreferredSize(
@@ -1656,29 +1660,52 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
                       size: 25,
                       onPressed: () {
                         if(checkBlood=="yes"){
-                          patient?.bloodCheckIn = false;
+                          patientAd?.bloodCheckIn = false;
+                          patientCh?.bloodCheckIn = false;
                         }
 
-                        patient?.bloodkidneyUricacid =bloodkidneyUricacid.text ;
-                        patient?.bloodkidneyurea =bloodkidneyurea.text ;
-                        patient?.bloodkidneyCreatinine =bloodkidneyCreatinine.text ;
-                        patient?.bloodionsNa = bloodionsNa.text;
-                        patient?.bloodionsK = bloodionsK.text;
-                        patient?.bloodionsCa =bloodionsCa.text ;
-                        patient?.bloodglucoseRandom =bloodglucoseRandom.text ;
-                        patient?.bloodglucosePostPrandial =bloodglucosePostPrandial.text ;
-                        patient?.bloodglucoseFasting =bloodglucoseFasting.text ;
-                        patient?.bloodglucoseHbA1C =bloodglucoseHbA1C.text ;
-                        patient?.bloodotherRheumatoidfactor =bloodotherRheumatoidfactor ;
-                        patient?.bloodotherPSA = bloodotherPSA;
-                        patient?.bloodotherCRP = bloodotherCRP.text;
-                        patient?.bloodotherASOT =bloodotherASOT.text ;
-                        patient?.bloodotherAlfafetoprotein =bloodotherAlfafetoprotein ;
-                        patient?.bloodotherAntiD =bloodotherAntiD ;
-                        patient?.bloodotherBHCG =bloodotherBHCG ;
-                        patient?.bloodotherHBV =bloodotherHBV ;
-                        patient?.bloodotherHCV =bloodotherHCV ;
-                        MyDataBase.updatePatientAdult(patient!);
+                        patientAd?.bloodkidneyUricacid =bloodkidneyUricacid.text ;
+                        patientAd?.bloodkidneyurea =bloodkidneyurea.text ;
+                        patientAd?.bloodkidneyCreatinine =bloodkidneyCreatinine.text ;
+                        patientAd?.bloodionsNa = bloodionsNa.text;
+                        patientAd?.bloodionsK = bloodionsK.text;
+                        patientAd?.bloodionsCa =bloodionsCa.text ;
+                        patientAd?.bloodglucoseRandom =bloodglucoseRandom.text ;
+                        patientAd?.bloodglucosePostPrandial =bloodglucosePostPrandial.text ;
+                        patientAd?.bloodglucoseFasting =bloodglucoseFasting.text ;
+                        patientAd?.bloodglucoseHbA1C =bloodglucoseHbA1C.text ;
+                        patientAd?.bloodotherRheumatoidfactor =bloodotherRheumatoidfactor ;
+                        patientAd?.bloodotherPSA = bloodotherPSA;
+                        patientAd?.bloodotherCRP = bloodotherCRP.text;
+                        patientAd?.bloodotherASOT =bloodotherASOT.text ;
+                        patientAd?.bloodotherAlfafetoprotein =bloodotherAlfafetoprotein ;
+                        patientAd?.bloodotherAntiD =bloodotherAntiD ;
+                        patientAd?.bloodotherBHCG =bloodotherBHCG ;
+                        patientAd?.bloodotherHBV =bloodotherHBV ;
+                        patientAd?.bloodotherHCV =bloodotherHCV ;
+                        MyDataBase.updatePatientAdult(patientAd!);
+                        // child
+
+                        patientCh?.bloodkidneyUricacid =bloodkidneyUricacid.text ;
+                        patientCh?.bloodkidneyurea =bloodkidneyurea.text ;
+                        patientCh?.bloodkidneyCreatinine =bloodkidneyCreatinine.text ;
+                        patientCh?.bloodionsNa = bloodionsNa.text;
+                        patientCh?.bloodionsK = bloodionsK.text;
+                        patientCh?.bloodionsCa =bloodionsCa.text ;
+                        patientCh?.bloodglucoseRandom =bloodglucoseRandom.text ;
+                        patientCh?.bloodglucosePostPrandial =bloodglucosePostPrandial.text ;
+                        patientCh?.bloodglucoseFasting =bloodglucoseFasting.text ;
+                        patientCh?.bloodglucoseHbA1C =bloodglucoseHbA1C.text ;
+                        patientCh?.bloodotherRheumatoidfactor =bloodotherRheumatoidfactor ;
+                        patientCh?.bloodotherPSA = bloodotherPSA;
+                        patientCh?.bloodotherCRP = bloodotherCRP.text;
+                        patientCh?.bloodotherASOT =bloodotherASOT.text ;
+                        patientCh?.bloodotherAlfafetoprotein =bloodotherAlfafetoprotein ;
+                        patientCh?.bloodotherAntiD =bloodotherAntiD ;
+                        patientCh?.bloodotherBHCG =bloodotherBHCG ;
+                        patientCh?.bloodotherHBV =bloodotherHBV ;
+                        patientCh?.bloodotherHCV =bloodotherHCV ;
+                        MyDataBase.updatePatientChild(patientCh!);
                         Navigator.pushNamed(context, ChoseLabsScreen.screenRoute);
                       },
                     ),
