@@ -44,7 +44,7 @@ dependencies:
   multiselect: ^0.1.0
   flutter_lints: ^1.0.0
   printing: ^5.9.0
-  
+  flutter_barcode_scanner: ^2.0.0
 
 dev_dependencies:
   flutter_test:
