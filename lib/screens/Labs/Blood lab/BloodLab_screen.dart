@@ -214,39 +214,59 @@ class _bloodLabScreenState extends State<bloodLabScreen> {
                                   width: 1000,
                                   height: 80,
                                   child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                    child: Column(
                                       children: [
-                                        Flexible(
-                                          flex: 4,
-                                          child: defultText(
-                                            data:
-                                                "Patient’s Name: ${patientAd.nameAdultPatient}",
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Flexible(
+                                              flex: 4,
+                                              child: defultText(
+                                                data:
+                                                    "Patient’s Name: ${patientAd.nameAdultPatient}",
+                                                c: Colors.black,
+                                                x: 19,
+                                              ),
+                                            ),
+                                            sizedBoxWidth(width: 300),
+                                            Flexible(
+                                              flex: 1,
+                                              child: defultText(
+                                                data:
+                                                    'Code: ${patientAd.codeAdultPatient}',
+                                                c: Colors.black,
+                                                x: 19,
+                                              ),
+                                            ),
+                                            sizedBoxWidth(width: 50),
+                                            Flexible(
+                                              flex: 1,
+                                              child: defultText(
+                                                data:
+                                                    'Sex: ${patientAd.sexAdultPatient}',
+                                                c: Colors.black,
+                                                x: 19,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        sizedBoxWidth(width: 300),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                                'Code: ${patientAd.codeAdultPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 50),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                                'Sex: ${patientAd.sexAdultPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
+                                        Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                flex: 4,
+                                                child: defultText(
+                                                  data: patientAd.bloodCheckIn!
+                                                      ? "Blood’s Check in : This patient is still checked in"
+                                                      : "Blood’s Check in : This patient checked out or not already chicked in ",
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                            ],
+                                            ),
                                       ],
                                     ),
                                   ),
@@ -280,39 +300,59 @@ class _bloodLabScreenState extends State<bloodLabScreen> {
                                   width: 1000,
                                   height: 80,
                                   child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                    child: Column(
                                       children: [
-                                        Flexible(
-                                          flex: 4,
-                                          child: defultText(
-                                            data:
-                                                "Patient’s Name: ${patientCh.nameChildPatient}",
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Flexible(
+                                              flex: 4,
+                                              child: defultText(
+                                                data:
+                                                    "Patient’s Name: ${patientCh.nameChildPatient}",
+                                                c: Colors.black,
+                                                x: 19,
+                                              ),
+                                            ),
+                                            sizedBoxWidth(width: 300),
+                                            Flexible(
+                                              flex: 1,
+                                              child: defultText(
+                                                data:
+                                                    'Code: ${patientCh.codeChildPatient}',
+                                                c: Colors.black,
+                                                x: 19,
+                                              ),
+                                            ),
+                                            sizedBoxWidth(width: 50),
+                                            Flexible(
+                                              flex: 1,
+                                              child: defultText(
+                                                data:
+                                                    'Sex: ${patientCh.sexChildPatient}',
+                                                c: Colors.black,
+                                                x: 19,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        sizedBoxWidth(width: 300),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                                'Code: ${patientCh.codeChildPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 50),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                                'Sex: ${patientCh.sexChildPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
+                                        Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                flex: 4,
+                                                child: defultText(
+                                                  data: patientCh.bloodCheckIn!
+                                                      ? "Blood’s Check in : This patient is still checked in"
+                                                      : "Blood’s Check in : This patient checked out or not already checked in ",
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                            ],
+                                            ),
                                       ],
                                     ),
                                   ),

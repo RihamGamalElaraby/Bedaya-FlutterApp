@@ -54,6 +54,7 @@
 import 'package:flutter/material.dart';
 
 import '../screens/Search Screen/search_screen.dart';
+import 'package:bedaya/screens/chose sup team screen/chose2_screen.dart';
 
 Widget appBardefult({
   required BuildContext context,
@@ -78,35 +79,33 @@ Widget appBardefult({
         ),
       ),
       leading:  IconButton(
-              hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-              onPressed: () => leadingFunction!(),
-              icon: icon,
-            ),
+                  hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
+                  onPressed: (){
+                  Navigator.pushNamed(context, SearchScreen.screenRoute);
+                    },
+                  icon: Icon(Icons.search),
+                ),
       actions: [
 
-          IconButton(
-            hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-            onPressed: () => saveFunction!(),
-            icon: Icon(Icons.save),
-          ),
+          // IconButton(
+          //   hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
+          //   onPressed: () => saveFunction!(),
+          //   icon: Icon(Icons.save),
+          // ),
+
+          // IconButton(
+          //   hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
+          //   onPressed: () => addFunction!(),
+          //   icon: Icon(Icons.add),
+          // ),
+
+
 
           IconButton(
             hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-            onPressed: () => addFunction!(),
-            icon: Icon(Icons.add),
-          ),
-
-          IconButton(
-            hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-            onPressed: (){
-            Navigator.pushNamed(context, SearchScreen.screenRoute);
-              },
-            icon: Icon(Icons.search),
-          ),
-
-          IconButton(
-            hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-            onPressed: () => closeFunction!(),
+            onPressed: () {
+              Navigator.pushNamed(context,Chose2_Screen.screenRoute ) ;
+},
             icon: Icon(Icons.close),
           ),
       ],

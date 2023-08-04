@@ -1619,33 +1619,35 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                       patientModel?.communityDevelopment= CommunityDevelopment;
                         MyDataBase.updatePatientAdult(patientModel!);
                         print("updated");
+                        Navigator.pushNamed(
+                            context, continueCheckupAdult.screenRoute,arguments: patientModel);
                       }
                     },
                   ),
                   sizedBoxWidth(width: 20),
-                  mysignin(
-                    color: Colors.green,
-                    x: Colors.white,
-                    title: 'Save&BacktoEdit',
-                    size: 25,
-                    onPressed: () =>
-                    {
-                      Navigator.pushNamed(
-                          context, continueCheckupAdult.screenRoute,arguments: patientModel)
-                    },
-                  ),
+                  // mysignin(
+                  //   color: Colors.green,
+                  //   x: Colors.white,
+                  //   title: 'Save&BacktoEdit',
+                  //   size: 25,
+                  //   onPressed: () =>
+                  //   {
+                  //     Navigator.pushNamed(
+                  //         context, continueCheckupAdult.screenRoute,arguments: patientModel)
+                  //   },
+                  // ),
                   sizedBoxWidth(width: 20),
-                  mysignin(
-                    color: Colors.green,
-                    x: Colors.white,
-                    title: 'Save&GotoFollowup',
-                    size: 25,
-                    onPressed: () =>
-                    {
-                      // Navigator.pushNamed(
-                      //     context, continueCheckupAdult.screenRoute)
-                    },
-                  ),
+                  // mysignin(
+                  //   color: Colors.green,
+                  //   x: Colors.white,
+                  //   title: 'Save&GotoFollowup',
+                  //   size: 25,
+                  //   onPressed: () =>
+                  //   {
+                  //     // Navigator.pushNamed(
+                  //     //     context, continueCheckupAdult.screenRoute)
+                  //   },
+                  // ),
                 ],
               ),
             ],

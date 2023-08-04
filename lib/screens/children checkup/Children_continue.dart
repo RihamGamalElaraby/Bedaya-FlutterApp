@@ -2343,26 +2343,26 @@ class _childrenContinueState extends State<childrenContinue> {
                   },
                 ),
                 sizedBoxWidth(width: 20),
-                mysignin(
-                  color: Colors.green,
-                  x: Colors.white,
-                  title: 'Save&BacktoEdit',
-                  size: 25,
-                  onPressed: () => {
-                    Navigator.pushNamed(context, childrenCheckup.screenRoute)
-                  },
-                ),
-                sizedBoxWidth(width: 20),
-                mysignin(
-                  color: Colors.green,
-                  x: Colors.white,
-                  title: 'Save&GotoFollowup',
-                  size: 25,
-                  onPressed: () {
-                    // Navigator.pushNamed(
-                    //     context, continueCheckupAdult.screenRoute)
-                  },
-                ),
+                // mysignin(
+                //   color: Colors.green,
+                //   x: Colors.white,
+                //   title: 'Save&BacktoEdit',
+                //   size: 25,
+                //   onPressed: () => {
+                //     Navigator.pushNamed(context, childrenCheckup.screenRoute)
+                //   },
+                // ),
+                // sizedBoxWidth(width: 20),
+                // mysignin(
+                //   color: Colors.green,
+                //   x: Colors.white,
+                //   title: 'Save&GotoFollowup',
+                //   size: 25,
+                //   onPressed: () {
+                //     // Navigator.pushNamed(
+                //     //     context, continueCheckupAdult.screenRoute)
+                //   },
+                // ),
               ],
             ),
             sizedBoxhight(hight: 40),

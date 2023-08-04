@@ -8,6 +8,7 @@ import '../../../DateModels/PatientAdultModel.dart';
 import '../../../DateModels/patient_childmodel.dart';
 import '../../../network/my_database.dart';
 import '../../../widgets/text_Filed.dart';
+import '../choselabs_screen.dart';
 
 class stoolLab extends StatefulWidget {
   static const String screenRoute = 'stoolLab';
@@ -307,39 +308,58 @@ class _stoolLabState extends State<stoolLab> {
                             width: 1000,
                             height: 80,
                             child: Center(
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
+                              child: Column(
                                 children: [
-                                  Flexible(
-                                    flex: 4,
-                                    child: defultText(
-                                      data:
-                                      "Patient’s Name: ${patientAd.nameAdultPatient}",
-                                      c: Colors.black,
-                                      x: 19,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    children: [
+                                      Flexible(
+                                        flex: 4,
+                                        child: defultText(
+                                          data:
+                                          "Patient’s Name: ${patientAd.nameAdultPatient}",
+                                          c: Colors.black,
+                                          x: 19,
+                                        ),
+                                      ),
+                                      sizedBoxWidth(width: 300),
+                                      Flexible(
+                                        flex: 1,
+                                        child: defultText(
+                                          data:
+                                          'Code: ${patientAd.codeAdultPatient}',
+                                          c: Colors.black,
+                                          x: 19,
+                                        ),
+                                      ),
+                                      sizedBoxWidth(width: 50),
+                                      Flexible(
+                                        flex: 1,
+                                        child: defultText(
+                                          data:
+                                          'Sex: ${patientAd.sexAdultPatient}',
+                                          c: Colors.black,
+                                          x: 19,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  sizedBoxWidth(width: 300),
-                                  Flexible(
-                                    flex: 1,
-                                    child: defultText(
-                                      data:
-                                      'Code: ${patientAd.codeAdultPatient}',
-                                      c: Colors.black,
-                                      x: 19,
-                                    ),
-                                  ),
-                                  sizedBoxWidth(width: 50),
-                                  Flexible(
-                                    flex: 1,
-                                    child: defultText(
-                                      data:
-                                      'Sex: ${patientAd.sexAdultPatient}',
-                                      c: Colors.black,
-                                      x: 19,
-                                    ),
-                                  ),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          flex: 4,
+                                          child: defultText(
+                                            data: patientAd.stoolCheckIn!
+                                                ? "stool Check In : This patient is still checked in"
+                                                : "stool Check In : This patient checked out or not already chicked in ",
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                      ],
+                                      ),
                                 ],
                               ),
                             ),
@@ -373,39 +393,58 @@ class _stoolLabState extends State<stoolLab> {
                             width: 1000,
                             height: 80,
                             child: Center(
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
+                              child: Column(
                                 children: [
-                                  Flexible(
-                                    flex: 4,
-                                    child: defultText(
-                                      data:
-                                      "Patient’s Name: ${patientCh.nameChildPatient}",
-                                      c: Colors.black,
-                                      x: 19,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    children: [
+                                      Flexible(
+                                        flex: 4,
+                                        child: defultText(
+                                          data:
+                                          "Patient’s Name: ${patientCh.nameChildPatient}",
+                                          c: Colors.black,
+                                          x: 19,
+                                        ),
+                                      ),
+                                      sizedBoxWidth(width: 300),
+                                      Flexible(
+                                        flex: 1,
+                                        child: defultText(
+                                          data:
+                                          'Code: ${patientCh.codeChildPatient}',
+                                          c: Colors.black,
+                                          x: 19,
+                                        ),
+                                      ),
+                                      sizedBoxWidth(width: 50),
+                                      Flexible(
+                                        flex: 1,
+                                        child: defultText(
+                                          data:
+                                          'Sex: ${patientCh.sexChildPatient}',
+                                          c: Colors.black,
+                                          x: 19,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  sizedBoxWidth(width: 300),
-                                  Flexible(
-                                    flex: 1,
-                                    child: defultText(
-                                      data:
-                                      'Code: ${patientCh.codeChildPatient}',
-                                      c: Colors.black,
-                                      x: 19,
-                                    ),
-                                  ),
-                                  sizedBoxWidth(width: 50),
-                                  Flexible(
-                                    flex: 1,
-                                    child: defultText(
-                                      data:
-                                      'Sex: ${patientCh.sexChildPatient}',
-                                      c: Colors.black,
-                                      x: 19,
-                                    ),
-                                  ),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          flex: 4,
+                                          child: defultText(
+                                            data: patientCh.stoolCheckIn!
+                                                ? "stool Check In : This patient is still checked in"
+                                                : "stool Check In : This patient checked out or not already chicked in ",
+                                            c: Colors.black,
+                                            x: 19,
+                                          ),
+                                        ),
+                                      ],
+                                      ),
                                 ],
                               ),
                             ),
@@ -2234,6 +2273,7 @@ class _stoolLabState extends State<stoolLab> {
                         patientCh.StoolColor = wbcscontroller.text;
                         MyDataBase.updatePatientChild(patientCh);
                           codeController.clear();
+                        Navigator.pushNamed(context, ChoseLabsScreen.screenRoute);
 
                           //Navigator.pushNamed(context, stoolLab.screenRoute);
                       }),

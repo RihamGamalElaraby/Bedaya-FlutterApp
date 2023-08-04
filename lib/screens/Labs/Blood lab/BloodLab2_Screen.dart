@@ -1710,26 +1710,6 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
                       },
                     ),
                     sizedBoxWidth(width: 20),
-                    mysignin(
-                      color: Colors.green,
-                      x: Colors.black,
-                      title: 'Save&BacktoEdit',
-                      size: 25,
-                      onPressed: () => {
-                        Navigator.pushNamed(context, bloodLabScreen.screenRoute)
-                      },
-                    ),
-                    sizedBoxWidth(width: 20),
-                    mysignin(
-                      color: Colors.green,
-                      x: Colors.black,
-                      title: 'Save&addNewOne',
-                      size: 25,
-                      onPressed: () => {
-                        Navigator.pushNamed(
-                            context, bloodLabContinueScreen.screenRoute)
-                      },
-                    ),
                   ],
                 ),
                 sizedBoxhight(hight: 40),

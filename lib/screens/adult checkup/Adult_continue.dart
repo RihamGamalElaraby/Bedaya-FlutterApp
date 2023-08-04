@@ -1177,44 +1177,44 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                     ],
                   ),
                   sizedBoxhight(hight: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: mysignin(
-                          color: Color.fromARGB(255, 4, 59, 6),
-                          title: 'Save & Back to Edit',
-                          onPressed: () {
-                            setState(() {
-                              ComplaintsModel complaint = ComplaintsModel(
-                                complaintName: complaintNameController.text,
-                                course: courseComplaintController.text,
-                                decreasedBy: decreasedbyComplaintController.text,
-                                increasedBy: increasedbyComplaintController.text,
-                                duration: durationComplaintController.text,
-                                onset: onsetComplaintController.text,
-                                previous: previousComplaintController.text,
-                                radiation: radiationComplaintController.text,
-                                site: siteComplaintController.text,
-                                symptom: symptomComplaintController.text,
-                              );
-                              complaintsList.add(complaint);
-                              patientModel?.complaintsList = complaintsList;
-                              // PatientAdultModel patient = PatientAdultModel(
-                              //     complaintsList: complaintsList
-                              // );
-                              print(complaintsList);
-                              //complaintsList.clear();
-                              // اشطر كتكوت l
-                            });
-
-                            Navigator.pushNamed(context, adultCheckup.screenRoute,arguments: patientModel);
-                          },
-                          x: Colors.white,
-                        ),
-                      )
-                    ],
-                  )
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   // children: [
+                  //   //   Center(
+                  //   //     child: mysignin(
+                  //   //       color: Color.fromARGB(255, 4, 59, 6),
+                  //   //       title: 'Save & Back to Edit',
+                  //   //       onPressed: () {
+                  //   //         setState(() {
+                  //   //           ComplaintsModel complaint = ComplaintsModel(
+                  //   //             complaintName: complaintNameController.text,
+                  //   //             course: courseComplaintController.text,
+                  //   //             decreasedBy: decreasedbyComplaintController.text,
+                  //   //             increasedBy: increasedbyComplaintController.text,
+                  //   //             duration: durationComplaintController.text,
+                  //   //             onset: onsetComplaintController.text,
+                  //   //             previous: previousComplaintController.text,
+                  //   //             radiation: radiationComplaintController.text,
+                  //   //             site: siteComplaintController.text,
+                  //   //             symptom: symptomComplaintController.text,
+                  //   //           );
+                  //   //           complaintsList.add(complaint);
+                  //   //           patientModel?.complaintsList = complaintsList;
+                  //   //           // PatientAdultModel patient = PatientAdultModel(
+                  //   //           //     complaintsList: complaintsList
+                  //   //           // );
+                  //   //           print(complaintsList);
+                  //   //           //complaintsList.clear();
+                  //   //           // اشطر كتكوت l
+                  //   //         });
+                  //   //
+                  //   //         Navigator.pushNamed(context, adultCheckup.screenRoute,arguments: patientModel);
+                  //   //       },
+                  //   //       x: Colors.white,
+                  //   //     ),
+                  //   //   )
+                  //   ],
+                  // )
                   // wowwww
                 ],
               ),

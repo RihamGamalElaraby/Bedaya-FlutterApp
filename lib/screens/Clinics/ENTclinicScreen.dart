@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bedaya/screens/Clinics/ClinicScreenChose.dart';
 import 'package:multiselect/multiselect.dart';
 import '../../DateModels/PatientAdultModel.dart';
+import '../../DateModels/patient_childmodel.dart';
 import '../../component/component.dart';
 import '../../network/my_database.dart';
 import '../../widgets/appbar.dart';
@@ -68,10 +69,14 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
   TextEditingController  TreatmentController =TextEditingController ();
   List<String> SelectedTreatment = [] ;
 
+  bool child = false;
+  bool adult = false;
+  String selectedPatient = "" ;
 
   @override
   Widget build(BuildContext context) {
-    PatientAdultModel patient = PatientAdultModel();
+    PatientAdultModel patientAd = PatientAdultModel();
+    PatientChildModel patientCh = PatientChildModel();
     return Scaffold(
       appBar: PreferredSize(
         child: appBardefult(context: context,
@@ -112,8 +117,79 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
               sizedBoxhight(hight: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                        width: 270,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey,
+                        ),
+                        child: Column(
+                          children: [
+                            sizedBoxhight(hight: 10),
+                            Flexible(
+                                flex: 3,
+                                child: defultText(
+                                    data: 'Select patientAd do u need search for', c: Colors.black,x: 15)),
+                            sizedBoxhight(hight: 35),
+                            Flexible(
+                              flex: 1,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                          data: 'Child', c: Colors.white)),
+                                  Flexible(
+                                      flex: 1,
+                                      child: Checkbox(
+                                          value: child,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              child = val!;
+                                              adult = false;
+                                              if (val) {
+                                                selectedPatient="ch";
+                                              }
+                                            });
+                                          })),
+                                  Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                          data: 'Adult', c: Colors.white)),
+                                  Flexible(
+                                      flex: 1,
+                                      child: Checkbox(
+                                          value: adult,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              adult = val!;
+                                              child= false;
+                                              if (val) {
+                                                selectedPatient="ad";
+                                              }
+                                            });
+                                          })),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                  )
+                ],
+              ),
+              sizedBoxhight(hight: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Flexible(child: defultText(data: 'Search')),
+                  sizedBoxWidth(width: 20),
                   Flexible(
                     child: Container(
                       width: 250,
@@ -155,8 +231,11 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                 children: [
                   Flexible(
                       flex: 1,
-                      child: StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-                        stream: MyDataBase.getPatientAdult(codeController.text),
+                      child:
+
+                      selectedPatient=="ad"? StreamBuilder<QuerySnapshot<PatientAdultModel>>(
+                        stream:
+                        MyDataBase.getPatientAdult(codeController.text),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -165,13 +244,13 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                             return Text('Error: ${snapshot.error}');
                           } else if (!snapshot.hasData ||
                               snapshot.data!.docs.isEmpty) {
-                            return Text('No patient data found!');
+                            return Text('No patientAd data found!');
                           } else {
                             // Access the first patient from the query snapshot
                             //   List<PatientAdultModel> patientList =
                             //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                             patient = snapshot.data!.docs[0].data();
-                            print("data ${patient.screening}");
+                            patientAd = snapshot.data!.docs[0].data();
+                            print("data ${patientAd.screening}");
                             return Container(
                               decoration: BoxDecoration(
                                 color: Colors.green,
@@ -181,13 +260,14 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                               height: 80,
                               child: Center(
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
                                   children: [
                                     Flexible(
                                       flex: 4,
                                       child: defultText(
                                         data:
-                                        "Patient’s Name: ${patient.nameAdultPatient}",
+                                        "Patient’s Name: ${patientAd.nameAdultPatient}",
                                         c: Colors.black,
                                         x: 19,
                                       ),
@@ -197,7 +277,7 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                                       flex: 1,
                                       child: defultText(
                                         data:
-                                        'Code: ${patient.codeAdultPatient}',
+                                        'Code: ${patientAd.codeAdultPatient}',
                                         c: Colors.black,
                                         x: 19,
                                       ),
@@ -206,7 +286,8 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                                     Flexible(
                                       flex: 1,
                                       child: defultText(
-                                        data: 'Sex: ${patient.sexAdultPatient}',
+                                        data:
+                                        'Sex: ${patientAd.sexAdultPatient}',
                                         c: Colors.black,
                                         x: 19,
                                       ),
@@ -217,7 +298,74 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                             );
                           }
                         },
-                      )),
+                      )
+                          :  StreamBuilder<QuerySnapshot<PatientChildModel>>(
+                        stream:
+                        MyDataBase.getPatientChild(codeController.text),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          } else if (!snapshot.hasData ||
+                              snapshot.data!.docs.isEmpty) {
+                            return Text('No patientAd data found!');
+                          } else {
+                            // Access the first patient from the query snapshot
+                            //   List<PatientAdultModel> patientList =
+                            //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                            patientCh = snapshot.data!.docs[0].data();
+                            print("data ${patientAd.screening}");
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: 1000,
+                              height: 80,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  children: [
+                                    Flexible(
+                                      flex: 4,
+                                      child: defultText(
+                                        data:
+                                        "Patient’s Name: ${patientCh.nameChildPatient}",
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                    sizedBoxWidth(width: 300),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data:
+                                        'Code: ${patientCh.codeChildPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                    sizedBoxWidth(width: 50),
+                                    Flexible(
+                                      flex: 1,
+                                      child: defultText(
+                                        data:
+                                        'Sex: ${patientCh.sexChildPatient}',
+                                        c: Colors.black,
+                                        x: 19,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      )
+                  ),
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -395,9 +543,13 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                           SelectedTreatment.add(TreatmentController.text);
                           SelectedCommondiagnosesforENT.add(entdiagnoseController.text);
                         });
-                        patient.entdiagnoses = SelectedCommondiagnosesforENT;
-                        patient.entTreatment =SelectedTreatment ;
-                        MyDataBase.updatePatientAdult(patient);
+                        patientAd.entdiagnoses = SelectedCommondiagnosesforENT;
+                        patientAd.entTreatment =SelectedTreatment ;
+                        MyDataBase.updatePatientAdult(patientAd);
+                        // child
+                        patientCh.entdiagnoses = SelectedCommondiagnosesforENT;
+                        patientCh.entTreatment =SelectedTreatment ;
+                        MyDataBase.updatePatientChild(patientCh);
                         clearTextField(entdiagnoseController, TreatmentController);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforENT);
                         // Navigator.pushNamed(context, ChoseLabsScreen.screenRoute)
@@ -406,19 +558,7 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                     ),
                   ),
                   sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: mysignin(
-                      color: Colors.green,
-                      x: Colors.black,
-                      title: 'Save&BacktoEdit',
-                      size: 25,
-                      onPressed: () => {
-                        // Navigator.pushNamed(context, bloodLabScreen.screenRoute)
-                      },
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
+
                 ],
               ),
               sizedBoxhight(hight: 30),
