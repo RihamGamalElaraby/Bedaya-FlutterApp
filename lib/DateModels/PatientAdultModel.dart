@@ -39,7 +39,6 @@ class PatientAdultModel {
   String? othersDrugsOfChronicDiseases; // done
   List<String>? familyHistory; // done
   String? othersFamilyHistory; // done
-  //VitalDataGeneralExamination? vitalDataGeneralExamination;// change that
   double? BP1Vital; // done
   double? BP2Vital; // done
   double? mmHg1Vital; // done
