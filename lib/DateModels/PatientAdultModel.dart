@@ -54,6 +54,8 @@ class PatientAdultModel {
   String? communityDevelopment; // done
   List<String>? screening; // done
   //adult end >>>>>>>>>>>>>>>>>>>>>52
+  List<String>? drugsChecked;
+  List<String>? drugsUnChecked;
 
   //clinics start
   List<String>? Cardiodiagnoses;
@@ -249,7 +251,8 @@ class PatientAdultModel {
     this.ReferralOfConvoyClinics,
     this.followUp,
     //personal data end
-
+    this.drugsUnChecked,
+    this.drugsChecked,
     //blood start
     this.bloodotherCRP,
     this.bloodotherASOT,
@@ -463,6 +466,13 @@ class PatientAdultModel {
           othersDrugsOfChronicDiseases: json["othersDrugsOfChronicDiseases"],
           othersFamilyHistory: json["othersFamilyHistory"],
           followUp: json["followUp"],
+          // drugs
+          drugsChecked: json["drugsChecked"] == null
+              ? null
+              : List<String>.from(json["drugsChecked"]),
+          drugsUnChecked: json["drugsUnChecked"] == null
+              ? null
+              : List<String>.from(json["drugsUnChecked"]),
 
           //blood start
           bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
@@ -711,6 +721,9 @@ class PatientAdultModel {
       "followUp": followUp,
 
 // end >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    "drugsUnChecked":drugsUnChecked,
+      "drugsChecked":drugsChecked,
+
 
       "bloodotherBHCG": bloodotherBHCG,
       "bloodotherHBV": bloodotherHBV,

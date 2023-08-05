@@ -1,5 +1,6 @@
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/DateModels/patient_childmodel.dart';
+import 'package:bedaya/DateModels/pharmacy_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyDataBase {
@@ -96,4 +97,41 @@ class MyDataBase {
     var collection = getCollectionChild();
     return collection.where("stoolCheckIn", isEqualTo: t).snapshots();
   }
+
+  // pharmacy >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  static CollectionReference<PharmacyModel> getCollectionPharma() {
+    return FirebaseFirestore.instance
+        .collection("PharmacyDrug")
+        .withConverter<PharmacyModel>(
+      fromFirestore: (snapshot, _) =>
+          PharmacyModel.fromFirebase(snapshot.data()!),
+      toFirestore: (PharmacyModel, options) =>
+          PharmacyModel.toFirebase(),
+    );
+  }
+
+  static Future<void> addDrug(PharmacyModel pharmacyModel) {
+    var collectionRef = getCollectionPharma();
+    var doc = collectionRef.doc(pharmacyModel.codeDrug);
+    return doc.set(pharmacyModel);
+  }
+
+  static Future<void> updateDrug(PharmacyModel pharmacyModel) {
+    var collectionRef = getCollectionPharma();
+    return collectionRef
+        .doc(pharmacyModel.codeDrug)
+        .update(pharmacyModel.toFirebase());
+  }
+
+  static Stream<QuerySnapshot<PharmacyModel>> getDrug(String code) {
+    var collection = getCollectionPharma();
+    return collection.where("codeDrug", isEqualTo: code).snapshots();
+  }
+
+  static Stream<QuerySnapshot<PharmacyModel>> showDrugList(bool t) {
+    var collection = getCollectionPharma();
+    return collection.where("expiry", isEqualTo: t).snapshots();
+  }
+
 }

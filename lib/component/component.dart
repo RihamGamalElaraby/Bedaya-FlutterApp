@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 Widget sizedBoxWidth({required double width}) => SizedBox(
       width: width,
@@ -21,13 +22,22 @@ Widget defultText({
         color: c,
       ),
     );
-void clearTextField(TextEditingController a,TextEditingController b){
+
+void clearTextField(TextEditingController a, TextEditingController b) {
   a.clear();
   b.clear();
 }
-void clearList(List a,List b){
+
+void clearList(List a, List b) {
   a.clear();
   b.clear();
+}
+
+class MyDatetimeUtilies {
+  static String formateDate(DateTime dateTime) {
+    DateFormat formater = DateFormat("dd/MMM/yyyy");
+    return formater.format(dateTime);
+  }
 }
 // Color.fromARGB(255, 1, 70, 2
 // Color(0xFF014602)
