@@ -1,3 +1,5 @@
+import 'package:bedaya/DateModels/pharmacy_model.dart';
+
 class PatientAdultModel {
   // adult data
   String? idAdultPatient;
@@ -54,8 +56,8 @@ class PatientAdultModel {
   String? communityDevelopment; // done
   List<String>? screening; // done
   //adult end >>>>>>>>>>>>>>>>>>>>>52
-  List<String>? drugsChecked;
-  List<String>? drugsUnChecked;
+  List<PharmacyModel>? drugsChecked;
+  List<PharmacyModel>? drugsUnChecked;
 
   //clinics start
   List<String>? Cardiodiagnoses;
@@ -469,10 +471,13 @@ class PatientAdultModel {
           // drugs
           drugsChecked: json["drugsChecked"] == null
               ? null
-              : List<String>.from(json["drugsChecked"]),
+              : List<PharmacyModel>.from(json["drugsChecked"]
+              .map((e) => PharmacyModel.fromFirebase(e))),
+
           drugsUnChecked: json["drugsUnChecked"] == null
               ? null
-              : List<String>.from(json["drugsUnChecked"]),
+              : List<PharmacyModel>.from(json["drugsUnChecked"]
+              .map((e) => PharmacyModel.fromFirebase(e))),
 
           //blood start
           bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],

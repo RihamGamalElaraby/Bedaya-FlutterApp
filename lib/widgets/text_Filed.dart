@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 Widget defultTextField({
   required String text,
+  void onChanged,
   TextEditingController? controller,
   double width = 70,
   double hight = 50,
@@ -14,6 +15,7 @@ Widget defultTextField({
         width: width,
         height: hight,
         child: TextFormField(
+          onChanged: (value) => onChanged,
           controller: controller,
           maxLines: max,
           decoration: InputDecoration(

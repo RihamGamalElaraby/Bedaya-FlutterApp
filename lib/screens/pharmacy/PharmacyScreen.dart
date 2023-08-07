@@ -159,7 +159,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                   size: 16,
                   onPressed: () {
                     scanBarcodeNormal();
-                    codeDrug = scanBarcode as TextEditingController;
+                    codeDrug.text = scanBarcode;
                   })
             ],
           ),
