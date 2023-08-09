@@ -765,8 +765,8 @@ class PatientChildModel {
       "referralClinicsChild": referralClinicsChild,
       "followUpChild": followUpChild,
 
-      "drugsUnChecked": drugsUnChecked,
-      "drugsChecked": drugsChecked,
+      "drugsUnChecked": drugsUnChecked?.map((v) => v.toFirebase()).toList(),
+      "drugsChecked": drugsChecked?.map((v) => v.toFirebase()).toList(),
 
       // start clinics and labs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

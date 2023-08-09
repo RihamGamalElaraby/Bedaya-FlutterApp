@@ -780,9 +780,9 @@ class _AddtreatmentState extends State<Addtreatment> {
                       patientAd.drugsChecked=checkDrug;
                       patientAd.drugsUnChecked=uncheckDrug;
                       MyDataBase.updatePatientAdult(patientAd);
-                      // patientCh.drugsChecked=checkDrug;
-                      // patientCh.drugsUnChecked=uncheckDrug;
-                      // MyDataBase.updatePatientChild(patientCh);
+                      patientCh.drugsChecked=checkDrug;
+                      patientCh.drugsUnChecked=uncheckDrug;
+                      MyDataBase.updatePatientChild(patientCh);
                     }),
                 sizedBoxhight(hight: 30),
               ],
