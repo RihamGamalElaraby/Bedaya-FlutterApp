@@ -34,6 +34,7 @@ class _AddtreatmentState extends State<Addtreatment> {
   TextEditingController nameUnCheckedDrug = TextEditingController();
   List<PharmacyModel>? checkDrug = [];
   List<PharmacyModel>? uncheckDrug = [];
+  DateTime selectedDate = DateUtils.dateOnly(DateTime.now());
 
   List<String> selectedDrug = [];
 
@@ -307,18 +308,19 @@ class _AddtreatmentState extends State<Addtreatment> {
               children: [
                 Column(
                   children: [
-                    Container(
-                      width: 100,
-                      height: 50,
-                      child: TextField(
-                        controller: codeDrug,
-                        onChanged: (value) {
-                          setState(() {
-                            codeDrug.text = value;
-                          });
-                        },
-                      ),
-                    ),
+                    defultTextField(width: 150, text: 'Scanner',controller: codeDrug),
+                    //Container(
+                    //   width: 100,
+                    //   height: 50,
+                    //   child: TextField(
+                    //     controller: codeDrug,
+                    //     onChanged: (value) {
+                    //       setState(() {
+                    //         codeDrug.text = value;
+                    //       });
+                    //     },
+                    //   ),
+                    // ),
                     // defultTextField(
                     //     width: 150,
                     //     text: 'Scanner',
@@ -353,21 +355,7 @@ class _AddtreatmentState extends State<Addtreatment> {
                         title: 'Scan',
                         size: 18,
                         onPressed: () {
-                          // setState(() {
-                          //   if (drugScan.numberDrug == 0) {
-                          //     if (!uncheckDrug.contains(drugScan)) {
-                          //       uncheckDrug.add(drugScan);
-                          //       print("drugsUnCheched");
-                          //     }
-                          //     checkDrug.remove(drugScan);
-                          //   } else {
-                          //     if (!checkDrug.contains(drugScan)) {
-                          //       checkDrug.add(drugScan);
-                          //       print("drugsCheched");
-                          //     }
-                          //     uncheckDrug.remove(drugScan);
-                          //   }
-                          // });
+
                           addToList(drugScan);
                           drugScan.numberDrug = drugScan.numberDrug!-1;
                           MyDataBase.updateDrug(drugScan);
@@ -408,7 +396,7 @@ class _AddtreatmentState extends State<Addtreatment> {
                           //   }
                           // });
                           PharmacyModel namedDrug = PharmacyModel(
-                              codeDrug: "0",nameDrug: nameDrug.text,numberDrug: -1
+                              codeDrug: "0",nameDrug: nameDrug.text,numberDrug: -1,expiryDateDrug: selectedDate
                           );
                           MyDataBase.addDrug(namedDrug);
                           checkDrug?.add(namedDrug);
@@ -652,7 +640,7 @@ class _AddtreatmentState extends State<Addtreatment> {
                         //   }
                         // });
                         PharmacyModel namedDrug = PharmacyModel(
-                          codeDrug: "0",nameDrug: nameUnCheckedDrug.text,numberDrug: -1
+                          codeDrug: "0",nameDrug: nameUnCheckedDrug.text,numberDrug: -1,expiryDateDrug: selectedDate
                         );
                         MyDataBase.addDrug(namedDrug);
                         uncheckDrug?.add(namedDrug);

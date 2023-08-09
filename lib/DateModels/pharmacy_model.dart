@@ -17,7 +17,7 @@ class PharmacyModel {
           expiry: json["expiry"],
           codeDrug: json["codeDrug"],
           expiryDateDrug:
-              DateTime.fromMicrosecondsSinceEpoch(json["expiryDateDrug"]),
+              DateTime?.fromMicrosecondsSinceEpoch(json["expiryDateDrug"]),
           nameDrug: json["nameDrug"],
           numberDrug: json["numberDrug"],
         );

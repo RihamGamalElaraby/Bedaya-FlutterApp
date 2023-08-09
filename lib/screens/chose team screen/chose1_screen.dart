@@ -9,6 +9,7 @@ import '../dashboard/dashboard.dart';
 
 class Chose1_Screen extends StatefulWidget {
   static const String screenRoute = 'chose1_screen';
+
   const Chose1_Screen({super.key});
 
   @override
@@ -19,6 +20,7 @@ class _Chose1_ScreenState extends State<Chose1_Screen> {
   @override
   final _auth = FirebaseAuth.instance;
   late User sigenedInUser;
+
   @override
   void initState() {
     super.initState();
@@ -67,73 +69,76 @@ class _Chose1_ScreenState extends State<Chose1_Screen> {
           backgroundColor: Colors.white,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                  ),
-                  Container(
-                    child: Image.asset('images/logo png.png'),
-                    height: 200,
-                    width: 200,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                  ),
-                  Center(
-                    child: Text(
-                      'Choose your team',
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0),
+            child: SingleChildScrollView(
+              child: Column(children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                    ),
+                    Container(
+                      child: Image.asset('images/logo png.png'),
+                      height: 200,
+                      width: 200,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                    ),
+                    Center(
+                      child: Text(
+                        'Choose your team',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-              ),
-              mysignin(
-                color: Color.fromARGB(255, 1, 70, 2),
-                x: Colors.white,
-                title: 'Data Base',
-                onPressed: () {
-                  Navigator.pushNamed(context, Chose2_Screen.screenRoute);
-                },
-              ),
-              SizedBox(
-                width: double.infinity,
-                height:10,
-              ),
-              mysignin(
-                color: Color.fromARGB(255, 1, 70, 2),
-                x: Colors.white,
-                title: 'DashBoard',
-                onPressed: () {
-                  Navigator.pushNamed(context, DashboaedfirstScreen.screenRoute);
-                },
-              ),
-              SizedBox(
-                width: double.infinity,
-                height:10,
-              ),
-              mysignin(
-                color: Color.fromARGB(255, 255, 255, 255),
-                x: Colors.black,
-                title: 'Other Teams',
-                onPressed: () {
-                  Navigator.pushNamed(context, CahtScreen.screenRoute);
-                },
-              )
-            ]),
+                  ],
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                ),
+                mysignin(
+                  color: Color.fromARGB(255, 1, 70, 2),
+                  x: Colors.white,
+                  title: 'Data Base',
+                  onPressed: () {
+                    Navigator.pushNamed(context, Chose2_Screen.screenRoute);
+                  },
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 10,
+                ),
+                mysignin(
+                  color: Color.fromARGB(255, 1, 70, 2),
+                  x: Colors.white,
+                  title: 'DashBoard',
+                  onPressed: () {
+                    Navigator.pushNamed(
+                        context, DashboaedfirstScreen.screenRoute);
+                  },
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 10,
+                ),
+                mysignin(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  x: Colors.black,
+                  title: 'Other Teams',
+                  onPressed: () {
+                    Navigator.pushNamed(context, CahtScreen.screenRoute);
+                  },
+                )
+              ]),
+            ),
           )),
     );
   }
