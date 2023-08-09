@@ -150,19 +150,19 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             ],
           ),
           sizedBoxhight(hight: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              mysignin(
-                  color: Colors.green,
-                  title: 'Bar Code Scan',
-                  size: 16,
-                  onPressed: () {
-                    scanBarcodeNormal();
-                    codeDrug.text = scanBarcode;
-                  })
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     mysignin(
+          //         color: Colors.green,
+          //         title: 'Bar Code Scan',
+          //         size: 16,
+          //         onPressed: () {
+          //           scanBarcodeNormal();
+          //           codeDrug.text = scanBarcode;
+          //         })
+          //   ],
+          // ),
           sizedBoxhight(hight: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

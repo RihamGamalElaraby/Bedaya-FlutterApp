@@ -1125,9 +1125,6 @@ class _continueCheckupAdultState extends State<continueCheckupAdult> {
                                 symptom: symptomComplaintController.text,
                               );
                               complaintsList.add(complaint);
-                              PatientAdultModel patient = PatientAdultModel(
-                                  complaintsList: complaintsList
-                              );
                               print(complaintsList);
                               //complaintsList.clear();
                               _clearTextFields();

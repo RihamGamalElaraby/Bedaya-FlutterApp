@@ -25,6 +25,7 @@ import 'package:bedaya/screens/chose%20team%20screen/chose1_screen.dart';
 import 'package:bedaya/screens/chose%20sup%20team%20screen/chose2_screen.dart';
 import 'package:bedaya/screens/Labs/choselabs_screen.dart';
 import 'package:bedaya/login%20and%20register/registration_screen.dart';
+import 'package:bedaya/screens/dashboard/dashboard.dart';
 import 'package:bedaya/screens/followUp_Screen.dart';
 import 'package:bedaya/screens/pharmacy/PharmacyScreen.dart';
 import 'package:bedaya/screens/pharmacy/pharamcyaddtreat.dart';
@@ -99,7 +100,9 @@ class MyApp extends StatelessWidget {
         SearchScreen.screenRoute : (context) => SearchScreen(),
         ChildrenSearch.screenRoute : (context) => ChildrenSearch(),
         AdultSearch.screenRoute : (context) => AdultSearch(),
-        Addtreatment.screenRoute: (context) => Addtreatment()
+        Addtreatment.screenRoute: (context) => Addtreatment(),
+        DashboaedfirstScreen.screenRoute: (context) => DashboaedfirstScreen(),
+
       },
     );
   }

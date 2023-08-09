@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:multiselect/multiselect.dart';
 import '../../DateModels/PatientAdultModel.dart';
 import '../../DateModels/patient_childmodel.dart';
 import '../../DateModels/pharmacy_model.dart';
@@ -30,8 +31,11 @@ class _AddtreatmentState extends State<Addtreatment> {
   String scanBarcode = 'BarCode Number';
   TextEditingController codeDrug = TextEditingController();
   TextEditingController nameDrug = TextEditingController();
-  List<PharmacyModel> checkDrug = [];
-  List<PharmacyModel> uncheckDrug = [];
+  TextEditingController nameUnCheckedDrug = TextEditingController();
+  List<PharmacyModel>? checkDrug = [];
+  List<PharmacyModel>? uncheckDrug = [];
+
+  List<String> selectedDrug = [];
 
   @override
   Widget build(BuildContext context) {
@@ -349,21 +353,25 @@ class _AddtreatmentState extends State<Addtreatment> {
                         title: 'Scan',
                         size: 18,
                         onPressed: () {
-                          setState(() {
-                            if (drugScan.numberDrug == 0) {
-                              if (!uncheckDrug.contains(drugScan)) {
-                                uncheckDrug.add(drugScan);
-                                print("drugsUnCheched");
-                              }
-                              checkDrug.remove(drugScan);
-                            } else {
-                              if (!checkDrug.contains(drugScan)) {
-                                checkDrug.add(drugScan);
-                                print("drugsCheched");
-                              }
-                              uncheckDrug.remove(drugScan);
-                            }
-                          });
+                          // setState(() {
+                          //   if (drugScan.numberDrug == 0) {
+                          //     if (!uncheckDrug.contains(drugScan)) {
+                          //       uncheckDrug.add(drugScan);
+                          //       print("drugsUnCheched");
+                          //     }
+                          //     checkDrug.remove(drugScan);
+                          //   } else {
+                          //     if (!checkDrug.contains(drugScan)) {
+                          //       checkDrug.add(drugScan);
+                          //       print("drugsCheched");
+                          //     }
+                          //     uncheckDrug.remove(drugScan);
+                          //   }
+                          // });
+                          addToList(drugScan);
+                          drugScan.numberDrug = drugScan.numberDrug!-1;
+                          MyDataBase.updateDrug(drugScan);
+                          setState(() {});
                         },
                       ),
                     ),
@@ -376,6 +384,38 @@ class _AddtreatmentState extends State<Addtreatment> {
                             nameDrug = val;
                           });
                         }),
+                    Container(
+                      width: 100,
+                      height: 50,
+                      child: mysignin(
+                        color: Colors.green,
+                        title: 'Add',
+                        size: 18,
+                        onPressed: () {
+                          // setState(() {
+                          //   if (drugScan.numberDrug == 0) {
+                          //     if (!uncheckDrug.contains(drugScan)) {
+                          //       uncheckDrug.add(drugScan);
+                          //       print("drugsUnCheched");
+                          //     }
+                          //     checkDrug.remove(drugScan);
+                          //   } else {
+                          //     if (!checkDrug.contains(drugScan)) {
+                          //       checkDrug.add(drugScan);
+                          //       print("drugsCheched");
+                          //     }
+                          //     uncheckDrug.remove(drugScan);
+                          //   }
+                          // });
+                          PharmacyModel namedDrug = PharmacyModel(
+                              codeDrug: "0",nameDrug: nameDrug.text,numberDrug: -1
+                          );
+                          MyDataBase.addDrug(namedDrug);
+                          checkDrug?.add(namedDrug);
+                          setState(() {});
+                        },
+                      ),
+                    ),
                   ],
                 ),
                 sizedBoxWidth(width: 30),
@@ -404,13 +444,11 @@ class _AddtreatmentState extends State<Addtreatment> {
                                   SizedBox(height: offset.pixels),
                                   Expanded(
                                     child: ListView.builder(
-                                      itemCount: checkDrug.length,
+                                      itemCount: checkDrug?.length,
                                       itemBuilder: (BuildContext context, int index) {
-                                        // Convert the Set to a List to access elements by index
-                                        List<PharmacyModel> checkDrugList = checkDrug.toList();
                                         return Container(
                                           height: 50,
-                                          child: Center(child: Text(checkDrugList[index].nameDrug ?? "")),
+                                          child: Center(child: Text(checkDrug![index].nameDrug ?? "")),
                                         );
                                       },
                                     ),
@@ -483,13 +521,7 @@ class _AddtreatmentState extends State<Addtreatment> {
                 ),
               ],
             ),
-            sizedBoxhight(hight: 10),
-            mysignin(
-                color: Colors.green,
-                title: 'Add Drug',
-                size: 16,
-                onPressed: () {}),
-            sizedBoxhight(hight: 10),
+            sizedBoxhight(hight: 20),
             Divider(
               height: 2,
             ),
@@ -498,7 +530,138 @@ class _AddtreatmentState extends State<Addtreatment> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                defultText(data: 'UNcheked Drugs', x: 20),
+                Column(children:[
+                  defultText(data: 'Unchecked Drugs', x: 20),
+                  SizedBox(height: 15,),
+                  // StreamBuilder(
+                  //   stream: MyDataBase.getUnCheckDrugList(),
+                  //   builder: (context, snapshot) {
+                  //     if (snapshot.hasError) {
+                  //       return Center(
+                  //           child: Text(
+                  //             "something went wrong",
+                  //             style: Theme.of(context)
+                  //                 .textTheme
+                  //                 .headlineMedium,
+                  //           ));
+                  //     }
+                  //     if (snapshot.connectionState ==
+                  //         ConnectionState.waiting) {
+                  //       return const Center(
+                  //         child: CircularProgressIndicator(),
+                  //       );
+                  //     } // sania tb
+                  //     List<String>? drug =
+                  //         (snapshot.data?.docs
+                  //             .map((e) => e.data().nameDrug)
+                  //             .toList() ??
+                  //             []).cast<String>();
+                  //      //List<String>? selectedDrug =[];
+                  //
+                  //     return Container(
+                  //       width: 170,
+                  //         height: 60,
+                  //         child: DropDownMultiSelect(
+                  //           options: drug,
+                  //           selectedValues: selectedDrug,
+                  //           onChanged: (value) {
+                  //             selectedDrug = value;
+                  //
+                  //             print('you have selected $selectedDrug fruits.');
+                  //           },
+                  //         ),
+                  //       );
+                  //   },
+                  // ),
+                  // SizedBox(height: 15,),
+                  // Container(
+                  //   width: 100,
+                  //   height: 50,
+                  //   child: mysignin(
+                  //     color: Colors.green,
+                  //     title: 'Add',
+                  //     size: 18,
+                  //     onPressed: () {
+                  //       // setState(() {
+                  //       //   if (drugScan.numberDrug == 0) {
+                  //       //     if (!uncheckDrug.contains(drugScan)) {
+                  //       //       uncheckDrug.add(drugScan);
+                  //       //       print("drugsUnCheched");
+                  //       //     }
+                  //       //     checkDrug.remove(drugScan);
+                  //       //   } else {
+                  //       //     if (!checkDrug.contains(drugScan)) {
+                  //       //       checkDrug.add(drugScan);
+                  //       //       print("drugsCheched");
+                  //       //     }
+                  //       //     uncheckDrug.remove(drugScan);
+                  //       //   }
+                  //       // });
+                  //       uncheckDrug.add(selectedDrug as PharmacyModel);
+                  //
+                  //       drugScan.numberDrug = drugScan.numberDrug!-1;
+                  //       MyDataBase.updateDrug(drugScan);
+                  //       setState(() {});
+                  //     },
+                  //   ),
+                  // ),
+                  // DropdownButton<String>(
+                  //     value: selectedday, // 1-done
+                  //     items: Chosedaylist.map(
+                  //           (day) => DropdownMenuItem(
+                  //         value: day,
+                  //         child: Text(
+                  //           day,
+                  //           style: TextStyle(
+                  //             color: Colors.black,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ).toList(),
+                  //     onChanged: (day) => setState(() => selectedday = day!)),
+                  defultTextField(
+                    width: 150,
+                    text: 'Name Drug',
+                    controller: nameUnCheckedDrug,
+                    onChanged: (val) {
+                      setState(() {
+                        nameUnCheckedDrug = val;
+                      });
+                    }),
+                  Container(
+                    width: 100,
+                    height: 50,
+                    child: mysignin(
+                      color: Colors.green,
+                      title: 'Add',
+                      size: 18,
+                      onPressed: () {
+                        // setState(() {
+                        //   if (drugScan.numberDrug == 0) {
+                        //     if (!uncheckDrug.contains(drugScan)) {
+                        //       uncheckDrug.add(drugScan);
+                        //       print("drugsUnCheched");
+                        //     }
+                        //     checkDrug.remove(drugScan);
+                        //   } else {
+                        //     if (!checkDrug.contains(drugScan)) {
+                        //       checkDrug.add(drugScan);
+                        //       print("drugsCheched");
+                        //     }
+                        //     uncheckDrug.remove(drugScan);
+                        //   }
+                        // });
+                        PharmacyModel namedDrug = PharmacyModel(
+                          codeDrug: "0",nameDrug: nameUnCheckedDrug.text,numberDrug: -1
+                        );
+                        MyDataBase.addDrug(namedDrug);
+                        uncheckDrug?.add(namedDrug);
+                        setState(() {});
+                      },
+                    ),
+                  ),
+
+                ]),
                 sizedBoxWidth(width: 120),
                 Flexible(
                   child: Container(
@@ -510,7 +673,7 @@ class _AddtreatmentState extends State<Addtreatment> {
                     child: Column(
                       children: [
                         defultText(
-                            data: 'List of Checked Drug', c: Colors.white),
+                            data: 'List of UnChecked Drug', c: Colors.white),
                         Divider(
                           color: Colors.white,
                           thickness: 1.5,
@@ -525,15 +688,14 @@ class _AddtreatmentState extends State<Addtreatment> {
                                   SizedBox(height: offset.pixels),
                                   Expanded(
                                     child: ListView.builder(
-                                      itemCount: uncheckDrug.length,
+                                      itemCount: uncheckDrug?.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return Container(
                                           height: 50,
                                           child: Center(
                                               child: Text(
-                                                  uncheckDrug[index].nameDrug ??
-                                                      "")),
+                                                  uncheckDrug![index].nameDrug??"")),
                                         );
                                       },
                                     ),
@@ -610,7 +772,18 @@ class _AddtreatmentState extends State<Addtreatment> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                mysignin(color: Colors.green, title: 'Done', onPressed: () {}),
+                mysignin(
+                    color: Colors.green,
+                    title: 'Add Drug',
+                    size: 16,
+                    onPressed: () {
+                      patientAd.drugsChecked=checkDrug;
+                      patientAd.drugsUnChecked=uncheckDrug;
+                      MyDataBase.updatePatientAdult(patientAd);
+                      // patientCh.drugsChecked=checkDrug;
+                      // patientCh.drugsUnChecked=uncheckDrug;
+                      // MyDataBase.updatePatientChild(patientCh);
+                    }),
                 sizedBoxhight(hight: 30),
               ],
             )
@@ -620,19 +793,27 @@ class _AddtreatmentState extends State<Addtreatment> {
     );
   }
 
-  Future<void> scanBarcodeNormal() async {
-    String barcodeScanRes;
-    try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
-      print(barcodeScanRes);
-    } on PlatformException {
-      barcodeScanRes = 'Failed to get platform version.';
-    }
+  // Future<void> scanBarcodeNormal() async {
+  //   String barcodeScanRes;
+  //   try {
+  //     barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+  //         '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+  //     print(barcodeScanRes);
+  //   } on PlatformException {
+  //     barcodeScanRes = 'Failed to get platform version.';
+  //   }
+  //
+  //   if (!mounted) return;
+  //   setState(() {
+  //     scanBarcode = barcodeScanRes;
+  //   });
+  // }
+  addToList(PharmacyModel drugModel){
+    if(drugModel.numberDrug!>0){
 
-    if (!mounted) return;
-    setState(() {
-      scanBarcode = barcodeScanRes;
-    });
+      checkDrug?.add(drugModel);
+    }else {
+      uncheckDrug?.add(drugModel);
+    }
   }
 }

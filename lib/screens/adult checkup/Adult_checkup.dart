@@ -54,7 +54,7 @@ class _adultCheckupState extends State<adultCheckup> {
   bool regular = false;
   bool irRegular = false;
   bool menopause =false;
-  String isSmokingCessation = "";
+  String Menstruation = "";
 
   String educationLevel="";
   bool  Illiterate = false ;
@@ -67,7 +67,7 @@ class _adultCheckupState extends State<adultCheckup> {
 
 
   bool Male = false;
-   String sex= "";
+  String sex= "";
   bool Female = false;
   bool married = false;
 
@@ -140,11 +140,11 @@ class _adultCheckupState extends State<adultCheckup> {
                       children: [
                         Center(
                             child: Text(
-                          'Chose Day',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                              'Chose Day',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
                       ],
                     ),
                   ),
@@ -157,7 +157,7 @@ class _adultCheckupState extends State<adultCheckup> {
                     child: DropdownButton<String>(
                         value: selectedday, // 1-done
                         items: Chosedaylist.map(
-                          (day) => DropdownMenuItem(
+                              (day) => DropdownMenuItem(
                             value: day,
                             child: Text(
                               day,
@@ -181,11 +181,11 @@ class _adultCheckupState extends State<adultCheckup> {
                     // borderRadius: BorderRadius.all(Radius.circular(15)),
                     child: Center(
                         child: Text(
-                      'Personal Information',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    )),
+                          'Personal Information',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )),
                   )
                 ],
               ),
@@ -215,13 +215,14 @@ class _adultCheckupState extends State<adultCheckup> {
                   Flexible(flex: 1, child: defultText(data: 'Code:',)),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 1, child: defultTextField(text: 'code', width: 80,controller: codePatientController,validator: (String? value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return "Code";
-                    } else {
-                      return null;
-                    }
-                  },)),
+                      flex: 1, child: defultTextField(text: 'code', width: 80,
+                    controller: codePatientController,validator: (String? value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Code";
+                      } else {
+                        return null;
+                      }
+                    },)),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'Sex:')),
                   sizedBoxWidth(width: 5),
@@ -229,16 +230,16 @@ class _adultCheckupState extends State<adultCheckup> {
                   Flexible(
                       flex: 1,
                       child: Checkbox(value: Male, onChanged: (val) {
-                     setState(() {
-                       Male =val! ;
-                       Female = false ;
-                     });
-                     if (val!) {
-                       sex = "male";
-                     } else {
-                       sex = "female";
-                     }
-                     },)),
+                        setState(() {
+                          Male =val! ;
+                          Female = false ;
+                        });
+                        if (val!) {
+                          sex = "male";
+                        } else {
+                          sex = "female";
+                        }
+                      },)),
                   sizedBoxWidth(width: 5),
                   Flexible(flex: 1, child: defultText(data: 'female')),
                   Checkbox(value: Female, onChanged: (val) {
@@ -255,13 +256,7 @@ class _adultCheckupState extends State<adultCheckup> {
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'House Number:')),
                   sizedBoxWidth(width: 5),
-                  Flexible(flex: 1, child: defultTextField(text: 'H.N',controller: houseNuController ,validator: (String? value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return "house nu.";
-                    } else {
-                      return null;
-                    }
-                  },)),
+                  Flexible(flex: 1, child: defultTextField(text: 'H.N',controller: houseNuController ,)),
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -276,13 +271,6 @@ class _adultCheckupState extends State<adultCheckup> {
                     child: defultTextField(
                       text: 'Age',
                       controller: agePatientController,
-                      validator: (String? value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return "Enter Age";
-                        } else {
-                          return null;
-                        }
-                      },
                       width: 140,
                     ),
                   ), sizedBoxWidth(width: 10),
@@ -293,13 +281,6 @@ class _adultCheckupState extends State<adultCheckup> {
                     child: defultTextField(
                       text: 'Occupation',
                       controller: occubationController,
-                      validator: (String? value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return "Enter occupation";
-                        } else {
-                          return null;
-                        }
-                      },
                       width: 140,
                     ),
                   ),
@@ -307,15 +288,8 @@ class _adultCheckupState extends State<adultCheckup> {
                   defultText(data: 'Mobile Number:'),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 1, child: defultTextField(text: 'num', width: 140,controller: mobileNumController,validator: (String? value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return "Mobile Number ";
-                    } else if (value.length < 11) {
-                      return "enter 11 numbers please";
-                    } else {
-                      return null;
-                    }
-                  },))
+                      flex: 1, child: defultTextField(text: 'num', width: 140,controller: mobileNumController,
+                  ))
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -332,7 +306,7 @@ class _adultCheckupState extends State<adultCheckup> {
                       child: DropdownButton<String>(
                           value: SlectedMartialState,
                           items: ChoseMartialState.map(
-                            (MartialState) => DropdownMenuItem(
+                                (MartialState) => DropdownMenuItem(
                               value: MartialState,
                               child: Text(
                                 MartialState,
@@ -343,7 +317,7 @@ class _adultCheckupState extends State<adultCheckup> {
                             ),
                           ).toList(),
                           onChanged: (MartialState) => setState(
-                              () => SlectedMartialState = MartialState!)),
+                                  () => SlectedMartialState = MartialState!)),
                     ),
                   ),
                   sizedBoxWidth(width: 10),
@@ -359,16 +333,9 @@ class _adultCheckupState extends State<adultCheckup> {
                       child: defultText(data: 'Children Number:', x: 12)),
                   sizedBoxWidth(width: 5),
                   Flexible(
-                      flex: 1, child: defultTextField(text: 'Children Number',controller: childrenNumController,
-                      validator: (String? value) {
-                        if(SlectedMartialState == "Married" && (value == null || value.trim().isEmpty))
-                        {
-                          return "children num";
-                        }else {
-                          return null;
-                        }
-                      },
-                        )),
+                      flex: 1, child: defultTextField(text: 'Children Number',
+                    controller: childrenNumController,
+                  )),
                   sizedBoxWidth(width: 10),
                   Flexible(
                       flex: 2,
@@ -376,14 +343,8 @@ class _adultCheckupState extends State<adultCheckup> {
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 1,
-                      child: defultTextField(text: 'Age of the youngest',controller: ageYoungchildController,validator: (String? value) {
-                        if(SlectedMartialState == "Married" && (value == null || value.trim().isEmpty))
-                        {
-                          return "youngest age";
-                        }else {
-                          return null;
-                        }
-                      },)),
+                      child: defultTextField(text: 'Age of the youngest',
+                        controller: ageYoungchildController,)),
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -401,7 +362,7 @@ class _adultCheckupState extends State<adultCheckup> {
                         setState(() {
                           Illiterate =val! ;
                           Readandwrite = false ;
-                           Primary= false;
+                          Primary= false;
                           Preparatory = false;
                           Secondary = false;
                           University = false;
@@ -497,7 +458,7 @@ class _adultCheckupState extends State<adultCheckup> {
                       flex: 1, child: defultText(data: 'University', x: 12)),
                   Flexible(
                       flex: 1,
-                          child: Checkbox(value: University, onChanged: (val) {
+                      child: Checkbox(value: University, onChanged: (val) {
                         setState(() {
                           Illiterate =false ;
                           Readandwrite = false ;
@@ -548,11 +509,11 @@ class _adultCheckupState extends State<adultCheckup> {
                     ),
                     child: Center(
                         child: Text(
-                      'Habits of Medical importance:',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    )),
+                          'Habits of Medical importance:',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )),
                   )
                 ],
               ),
@@ -595,27 +556,14 @@ class _adultCheckupState extends State<adultCheckup> {
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 2,
-                      child: defultTextField(text: 'Rate', width: 140,controller: rateSmokingController,validator: (String? value) {
-                        if(isSmoking == 'Smoke')
-                        {
-                          return "Rate smoking";
-                        }else {
-                          return null;
-                        }
-                      })),
+                      child: defultTextField(text: 'Rate', width: 140,
+                        controller: rateSmokingController,)),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'Type: ')),
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 2,
-                      child: defultTextField(text: 'Type', width: 140,controller: typeSmokingController,validator: (String? value) {
-                        if(isSmoking == 'Smoke')
-                        {
-                          return "Type smoke";
-                        }else {
-                          return null;
-                        }
-                      })),
+                      child: defultTextField(text: 'Type', width: 140,controller: typeSmokingController )),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 2, child: defultText(data: 'Other habits: ')),
                   sizedBoxWidth(width: 5),
@@ -672,13 +620,7 @@ class _adultCheckupState extends State<adultCheckup> {
                   sizedBoxWidth(width: 5),
                   Flexible(
                       flex: 2,
-                      child: defultTextField(text: 'Duration', width: 140,controller: durationCessationController,validator:(String? value) {
-                        if (yesSmokeCessation && (value == null || value.trim().isEmpty)) {
-                      return "Duration smoke cessation";
-                      }else {
-                      return null;
-                      }
-                      })),
+                      child: defultTextField(text: 'Duration', width: 140,controller: durationCessationController)),
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -687,7 +629,7 @@ class _adultCheckupState extends State<adultCheckup> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
-                      flex: 2, child: defultText(data: 'Smoking Cessation:')),
+                      flex: 2, child: defultText(data: 'Menstruation:')),
                   sizedBoxWidth(width: 10),
                   Flexible(
                       flex: 1,
@@ -703,7 +645,7 @@ class _adultCheckupState extends State<adultCheckup> {
                           menopause= false;
                         });
                         if (val!) {
-                          isSmokingCessation = "regular";
+                          Menstruation = "regular";
                         }
                       })),
                   sizedBoxWidth(width: 5),
@@ -721,7 +663,7 @@ class _adultCheckupState extends State<adultCheckup> {
                           menopause= false;
                         });
                         if (val!) {
-                          isSmokingCessation = "irRegular";
+                          Menstruation = "irRegular";
                         }
                       })),
                   sizedBoxWidth(width: 10),
@@ -739,7 +681,7 @@ class _adultCheckupState extends State<adultCheckup> {
                           menopause= val!;
                         });
                         if (val!) {
-                          isSmokingCessation = "menopause";
+                          Menstruation = "menopause";
                         }
                       })),
                   sizedBoxWidth(width: 5),
@@ -749,7 +691,7 @@ class _adultCheckupState extends State<adultCheckup> {
                   Flexible(
                       flex: 2,
                       child:
-                          defultTextField(text: 'Gravida Number', width: 140,controller: gravideNumberController)),
+                      defultTextField(text: 'Gravida Number', width: 140,controller: gravideNumberController)),
                   sizedBoxWidth(width: 10),
                   Flexible(
                       flex: 2, child: defultText(data: 'Abortion Number:')),
@@ -757,7 +699,7 @@ class _adultCheckupState extends State<adultCheckup> {
                   Flexible(
                       flex: 2,
                       child:
-                          defultTextField(text: 'Abortion Number', width: 140,controller: abortionNumberController)),
+                      defultTextField(text: 'Abortion Number', width: 140,controller: abortionNumberController)),
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -891,37 +833,37 @@ class _adultCheckupState extends State<adultCheckup> {
                         int? gravidano = int.tryParse(gravideNumberController.text);
                         if (formKey.currentState!.validate()) {
                           PatientAdultModel patientmodel = PatientAdultModel(
-                            chosenDay: selectedday,
-                            nameAdultPatient: patientNameController.text,
-                            codeAdultPatient: codePatientController.text,
-                            sexAdultPatient: sex,
-                           houseNumberAdultPatient: housn,
-                           mobileNumberAdultPatient: mobilen,
-                           agePatientAdult: agen,
-                            occupationAdultPatient: occubationController.text,
-                            maritalStatus:  SlectedMartialState ,
-                           childrenNumber: chidlnum,
-                           ageOfYoungChild: agryoungch,
-                            educationLevelAdultPatient: educationLevel,
-                            smokingAdultPatient: isSmoking,
-                            rateSmoking: rateSmokingController.text,
-                            typeSmoking: typeSmokingController.text,
-                            otherHabitsSmoking: otherHabitsSmokingController.text,
-                            smokingCessationsStatus: isSmokingCessationStatus,
-                            DurationSmokingCessations: durationCessationController.text,
-                            smokingCessations: isSmokingCessation,
-                           gravidaNumber: gravidano,
-                           abortionNumber: abortionno,
-                            contracebtion: contraception,
-                            methodContracebtion: contraceptionMethod,
-                            othercontracebtion: otherContraceptionController.text
+                              chosenDay: selectedday,
+                              nameAdultPatient: patientNameController.text,
+                              codeAdultPatient: codePatientController.text,
+                              sexAdultPatient: sex,
+                              houseNumberAdultPatient: housn,
+                              mobileNumberAdultPatient: mobilen,
+                              agePatientAdult: agen,
+                              occupationAdultPatient: occubationController.text,
+                              maritalStatus:  SlectedMartialState ,
+                              childrenNumber: chidlnum,
+                              ageOfYoungChild: agryoungch,
+                              educationLevelAdultPatient: educationLevel,
+                              smokingAdultPatient: isSmoking,
+                              rateSmoking: rateSmokingController.text,
+                              typeSmoking: typeSmokingController.text,
+                              otherHabitsSmoking: otherHabitsSmokingController.text,
+                              smokingCessationsStatus: isSmokingCessationStatus,
+                              DurationSmokingCessations: durationCessationController.text,
+                              Menstruation: Menstruation,
+                              gravidaNumber: gravidano,
+                              abortionNumber: abortionno,
+                              contracebtion: contraception,
+                              methodContracebtion: contraceptionMethod,
+                              othercontracebtion: otherContraceptionController.text
                           );
                           print("done");
-                       MyDataBase.addPatientAdult(patientmodel);
+                          MyDataBase.addPatientAdult(patientmodel);
                           Navigator.pushNamed(
-                            context,
-                            continueCheckupAdult.screenRoute,
-                            arguments: patientmodel
+                              context,
+                              continueCheckupAdult.screenRoute,
+                              arguments: patientmodel
                           );
                           print("done");  // bs kda n2ol yarb
                           // MyDataBase.addPatientAdult(patientmodel).then((value) {
@@ -1625,4 +1567,4 @@ class _adultCheckupState extends State<adultCheckup> {
 // sizedBoxWidth(width: 5),
 // Flexible(flex: 1, child: defultText(data: 'Widowed', x: 12)),
 // Flexible(
-//     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
+//     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),

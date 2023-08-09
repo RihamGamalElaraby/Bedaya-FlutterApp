@@ -128,6 +128,10 @@ class MyDataBase {
     var collection = getCollectionPharma();
     return collection.where("codeDrug", isEqualTo: code).snapshots();
   }
+  static Stream<QuerySnapshot<PharmacyModel>> getUnCheckDrugList() {
+    var collection = getCollectionPharma();
+    return collection.where("numberDrug", isLessThan: 1).snapshots();
+  }
 
   static Stream<QuerySnapshot<PharmacyModel>> showDrugList(bool t) {
     var collection = getCollectionPharma();

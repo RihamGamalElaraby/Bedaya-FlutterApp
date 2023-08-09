@@ -270,18 +270,6 @@ class _AdultSearchState extends State<AdultSearch> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          patient.smokingCessations?.trim() == null
-                              ? Container()
-                              : Flexible(
-                            flex: 1,
-                            child: defultText(
-                              data:
-                              'Smoking cessations: ${patient
-                                  .smokingCessations}',
-                              c: Colors.black,
-                              x: 19,
-                            ),
-                          ),
                           sizedBoxWidth(width: 30),
                           patient.smokingCessationsStatus?.trim() == null
                               ? Container()
@@ -488,18 +476,6 @@ class _AdultSearchState extends State<AdultSearch> {
                   ],
                 ),
                 pw.SizedBox(height: 30),
-                pw.Row(
-                  children: [
-                    pw.Flexible(
-                      flex: 1,
-                      child: pw.Text(
-                        "Smoking Cessations: ${patient.smokingCessations ?? 'N/A'}",
-                        style: pw.TextStyle(color: PdfColors.black, fontSize: 19),
-                      ),
-                    ),
-
-                  ],
-                ),
                 pw.SizedBox(height: 30),
                 pw.Row(
                   children: [
@@ -601,9 +577,7 @@ class _AdultSearchState extends State<AdultSearch> {
                 pw.SizedBox(height: 30),
                 pw.Text("Vital Data General Examination:", style: pw.TextStyle(color: PdfColors.black, fontSize: 19, fontWeight: pw.FontWeight.bold)),
                 pw.Text("BP1: ${patient.BP1Vital ?? 'N/A'}"),
-                pw.Text("BP2: ${patient.BP2Vital ?? 'N/A'}"),
                 pw.Text("mmHg1: ${patient.mmHg1Vital ?? 'N/A'}"),
-                pw.Text("mmHg2: ${patient.mmHg2Vital ?? 'N/A'}"),
                 pw.Text("HR: ${patient.hrVital ?? 'N/A'}"),
                 pw.Text("Temp: ${patient.tempVital ?? 'N/A'}"),
                 pw.Text("Random Blood Sugar: ${patient.randomBloodSugarVital ?? 'N/A'}"),

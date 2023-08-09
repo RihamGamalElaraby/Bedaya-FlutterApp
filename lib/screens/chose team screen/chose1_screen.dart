@@ -5,6 +5,8 @@ import 'package:bedaya/screens/chose%20sup%20team%20screen/chose2_screen.dart';
 import 'package:bedaya/widgets/my_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../dashboard/dashboard.dart';
+
 class Chose1_Screen extends StatefulWidget {
   static const String screenRoute = 'chose1_screen';
   const Chose1_Screen({super.key});
@@ -85,7 +87,7 @@ class _Chose1_ScreenState extends State<Chose1_Screen> {
                   ),
                   Center(
                     child: Text(
-                      'Chose your team',
+                      'Choose your team',
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
@@ -106,6 +108,22 @@ class _Chose1_ScreenState extends State<Chose1_Screen> {
                 onPressed: () {
                   Navigator.pushNamed(context, Chose2_Screen.screenRoute);
                 },
+              ),
+              SizedBox(
+                width: double.infinity,
+                height:10,
+              ),
+              mysignin(
+                color: Color.fromARGB(255, 1, 70, 2),
+                x: Colors.white,
+                title: 'DashBoard',
+                onPressed: () {
+                  Navigator.pushNamed(context, DashboaedfirstScreen.screenRoute);
+                },
+              ),
+              SizedBox(
+                width: double.infinity,
+                height:10,
               ),
               mysignin(
                 color: Color.fromARGB(255, 255, 255, 255),

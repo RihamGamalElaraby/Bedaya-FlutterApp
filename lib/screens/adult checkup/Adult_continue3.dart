@@ -800,28 +800,6 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                     flex: 2, child: defultText(data: 'mmHg')),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                    flex: 1, child: defultText(data: 'BP1:')),
-                                Flexible(
-                                  flex: 2,
-                                  child: defultTextField(
-                                      text: 'BP1', width: 60, hight: 50,controller: Bp2Controller),
-                                ),
-                                Flexible(
-                                    flex: 1, child: defultText(data: '/', x: 18)),
-                                Flexible(
-                                  flex: 2,
-                                  child: defultTextField(
-                                      text: 'mmHg', width: 60, hight: 50,controller: mmHG2Controller), // bp222
-                                ),
-
-                                Flexible(
-                                    flex: 2, child: defultText(data: 'mmHg')), // mmhg222
-                              ],
-                            ),
                           ],
                         ),
                       )),
@@ -1581,12 +1559,10 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                       print(clinics);
                       if (formKey.currentState!.validate()) {
                         double? Bp1vital = double.tryParse(Bp1Controller.text);
-                        double? Bp2vital = double.tryParse(Bp2Controller.text);
                         double? o2satvital = double.tryParse(o2satController.text);
                         double? randombloodvital = double.tryParse(randomBloodSugarController.text);
                         double? tempvital = double.tryParse(tempVitalController.text);
                         double? hrvital = double.tryParse(hrVitalController.text);
-                        double? mmhg2Vital = double.tryParse(mmHG2Controller.text);
                         double? mmHg1vital = double.tryParse(mmHG1Controller.text);
 
                         Navigator.pushNamed(context, adultCheckup.screenRoute);
@@ -1604,9 +1580,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                       patientModel?.familyHistory= familyHistory;
                       patientModel?.othersFamilyHistory= otherFamilyHistoryController.text;
                       patientModel?.BP1Vital= Bp1vital;
-                      patientModel?.BP2Vital=Bp2vital;
                       patientModel?.mmHg1Vital= mmHg1vital;
-                      patientModel?.mmHg2Vital= mmhg2Vital;
                       patientModel?.hrVital= hrvital;
                       patientModel?.tempVital= tempvital;
                       patientModel?.randomBloodSugarVital= randombloodvital;
@@ -1620,7 +1594,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         MyDataBase.updatePatientAdult(patientModel!);
                         print("updated");
                         Navigator.pushNamed(
-                            context, continueCheckupAdult.screenRoute,arguments: patientModel);
+                            context, adultCheckup.screenRoute,arguments: patientModel);
                       }
                     },
                   ),
