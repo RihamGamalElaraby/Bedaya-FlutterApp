@@ -100,7 +100,7 @@ class PharmacyScreen extends StatefulWidget {
 class _PharmacyScreenState extends State<PharmacyScreen> {
   TextEditingController numberDrug = TextEditingController();
   TextEditingController nameDrug = TextEditingController();
-  TextEditingController codeDrug =TextEditingController();
+  TextEditingController codeDrug = TextEditingController();
   DateTime selectedDate = DateUtils.dateOnly(DateTime.now());
   String scanBarcode = 'BarCode Number';
 
@@ -169,14 +169,19 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             children: [
               Column(
                 children: [
-                  defultTextField(width: 150, text: 'Name',controller: nameDrug),
+                  defultTextField(
+                      width: 150, text: 'Name', controller: nameDrug),
                   sizedBoxhight(hight: 10),
-                  defultTextField(width: 150, text: 'number',controller: numberDrug),
+                  defultTextField(
+                      width: 150, text: 'number', controller: numberDrug),
                   sizedBoxhight(hight: 10),
                   defultTextField(width: 150, text: '$scanBarcode',controller: codeDrug),
                   sizedBoxhight(hight: 10),
-                  Row(children: [ Text("Select Expiry Date :"),
-                    SizedBox(width: 5,),
+                  Row(children: [
+                    Text("Select Expiry Date :"),
+                    SizedBox(
+                      width: 5,
+                    ),
                     InkWell(
                       onTap: () {
                         showBottomDatePicker();
@@ -186,7 +191,8 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.green),
-                              borderRadius: BorderRadius.circular(5),),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                           padding: const EdgeInsets.all(12),
                           child: Text(
                             //selectedDate.toString().substring(0, 10),
@@ -225,14 +231,27 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             children: [
               Flexible(
                 child: Container(
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(10)),
-                  width: 300,
-                  height: 300,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 450,
                   child: Column(
                     children: [
-                      defultText(data: 'Number', c: Colors.white),
+                      Row(children: [
+                        sizedBoxWidth(width: 10),
+                        Expanded(
+                            child:
+                                defultText(data: 'Quantity', c: Colors.white)),
+                        Expanded(
+                            child: defultText(data: 'Name', c: Colors.white)),
+                        Expanded(
+                            child: defultText(data: 'code', c: Colors.white)),
+                        Expanded(
+                            child: defultText(
+                                data: 'Expiry Date', c: Colors.white)),
+                      ]),
                       Divider(
                         color: Colors.white,
                         thickness: 1.5,
@@ -263,8 +282,13 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                         child: CircularProgressIndicator(),
                                       );
                                     } // sania tb
-                                    List<PharmacyModel> drug = snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                                    drug.sort((a, b) => (a.numberDrug ?? 0).compareTo(b.numberDrug ?? 0));
+                                    List<PharmacyModel> drug = snapshot
+                                            .data?.docs
+                                            .map((e) => e.data())
+                                            .toList() ??
+                                        [];
+                                    drug.sort((a, b) => (a.numberDrug ?? 0)
+                                        .compareTo(b.numberDrug ?? 0));
                                     return drug.isNotEmpty
                                         ? Expanded(
                                             child: ListView.builder(
@@ -272,10 +296,85 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                               itemBuilder:
                                                   (BuildContext context,
                                                       int index) {
-                                                return Container(
+                                                return SizedBox(
                                                   height: 40,
-                                                  child: Center(
-                                                      child: Text(drug[index].numberDrug.toString() ?? "")),
+                                                  child: Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 30.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                                child: Text(drug[
+                                                                        index]
+                                                                    .numberDrug
+                                                                    .toString())),
+                                                            Expanded(
+                                                                child: Text(drug[
+                                                                            index]
+                                                                        .nameDrug ??
+                                                                    "N/A")),
+                                                            Expanded(
+                                                                child: Text(drug[
+                                                                            index]
+                                                                        .codeDrug ??
+                                                                    "N/A")),
+                                                            Expanded(
+                                                                child: Text(MyDatetimeUtilies
+                                                                    .formateDate(
+                                                                        drug[index]
+                                                                            .expiryDateDrug!))),
+                                                            IconButton(
+                                                                onPressed: () {
+                                                                  showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            "Confirm Delete"),
+                                                                        content:
+                                                                            Text("Are you sure you want to delete this medicine?"),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed:
+                                                                                () {
+                                                                              Navigator.of(context).pop(); // Close the dialog
+                                                                            },
+                                                                            child:
+                                                                                Text("No"),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed:
+                                                                                () {
+                                                                                MyDataBase.deleteDrug(drug[index].codeDrug!);
+                                                                              Navigator.of(context).pop(); // Close the dialog
+                                                                            },
+                                                                            child:
+                                                                                Text("Yes"),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                                icon: Icon(Icons
+                                                                    .delete))
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const Divider(
+                                                        color: Colors.white,
+                                                        thickness: 0.8,
+                                                        height: 0,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 );
                                               },
                                             ),
@@ -286,7 +385,6 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                               textAlign: TextAlign.center,
                                               "no drug yet ...",
                                               style: Theme.of(context)
-
                                                   .textTheme
                                                   .bodyMedium
                                                   ?.copyWith(
@@ -307,182 +405,250 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                 ),
               ),
               sizedBoxWidth(width: 20),
-              Flexible(
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(10)),
-                  width: 300,
-                  height: 300,
-                  child: Column(
-                    children: [
-                      defultText(data: 'Drugs Name', c: Colors.white),
-                      Divider(
-                        color: Colors.white,
-                        thickness: 1.5,
-                      ),
-                      Expanded(
-                        child: Scrollable(
-                          axisDirection: AxisDirection.down,
-                          viewportBuilder:
-                              (BuildContext context, ViewportOffset offset) {
-                            return Column(
-                              children: [
-                                SizedBox(height: offset.pixels),
-                                StreamBuilder(
-                                  stream: MyDataBase.showDrugList(false),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasError) {
-                                      return Center(
-                                          child: Text(
-                                        "something went wrong",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineMedium,
-                                      ));
-                                    }
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                        child: CircularProgressIndicator(),
-                                      );
-                                    } // sania tb
-                                    List<PharmacyModel> drug =
-                                        snapshot.data?.docs
-                                                .map((e) => e.data())
-                                                .toList() ??
-                                            [];
-                                    drug.sort((a, b) => (a.numberDrug ?? 0).compareTo(b.numberDrug ?? 0));
-                                    return drug.isNotEmpty
-                                        ? Expanded(
-                                            child: ListView.builder(
-                                              itemCount: drug.length,
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
-                                                return Container(
-                                                  height: 40,
-                                                  child: Center(
-                                                      child: Text(drug[
-                                                                  index]
-                                                              .nameDrug ??
-                                                          "")),
-                                                );
-                                              },
-                                            ),
-                                          )
-                                        : Container(
-                                            margin: EdgeInsets.only(top: 220),
-                                            child: Text(
-                                              textAlign: TextAlign.center,
-                                              "no drug yet ...",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium
-                                                  ?.copyWith(
-                                                      color: Colors.green,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                            ),
-                                          );
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              sizedBoxWidth(width: 20),
-              Flexible(
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(10)),
-                  width: 300,
-                  height: 300,
-                  child: Column(
-                    children: [
-                      defultText(data: 'Code', c: Colors.white),
-                      Divider(
-                        color: Colors.white,
-                        thickness: 1.5,
-                      ),
-                      Expanded(
-                        child: Scrollable(
-                          axisDirection: AxisDirection.down,
-                          viewportBuilder:
-                              (BuildContext context, ViewportOffset offset) {
-                            return Column(
-                              children: [
-                                SizedBox(height: offset.pixels),
-                                StreamBuilder(
-                                  stream: MyDataBase.showDrugList(false),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasError) {
-                                      return Center(
-                                          child: Text(
-                                        "something went wrong",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineMedium,
-                                      ));
-                                    }
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                        child: CircularProgressIndicator(),
-                                      );
-                                    } // sania tb
-                                    List<PharmacyModel> drug =
-                                        snapshot.data?.docs
-                                                .map((e) => e.data())
-                                                .toList() ??
-                                            [];
-                                    drug.sort((a, b) => (a.numberDrug ?? 0).compareTo(b.numberDrug ?? 0));
-                                    return drug.isNotEmpty
-                                        ? Expanded(
-                                            child: ListView.builder(
-                                              itemCount: drug.length,
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
-                                                return Container(
-                                                  height: 40,
-                                                  child: Center(
-                                                      child: Text(drug[
-                                                                  index]
-                                                              .codeDrug ??
-                                                          "")),
-                                                );
-                                              },
-                                            ),
-                                          )
-                                        : Container(
-                                            margin: EdgeInsets.only(top: 220),
-                                            child: Text(
-                                              textAlign: TextAlign.center,
-                                              "no drug yet ...",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                          );
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Flexible(
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //         color: Colors.green,
+              //         borderRadius: BorderRadius.circular(10)),
+              //     width: 300,
+              //     height: 300,
+              //     child: Column(
+              //       children: [
+              //         defultText(data: 'Drugs Name', c: Colors.white),
+              //         Divider(
+              //           color: Colors.white,
+              //           thickness: 1.5,
+              //         ),
+              //         Expanded(
+              //           child: Scrollable(
+              //             axisDirection: AxisDirection.down,
+              //             viewportBuilder:
+              //                 (BuildContext context, ViewportOffset offset) {
+              //               return Column(
+              //                 children: [
+              //                   SizedBox(height: offset.pixels),
+              //                   StreamBuilder(
+              //                     stream: MyDataBase.showDrugList(false),
+              //                     builder: (context, snapshot) {
+              //                       if (snapshot.hasError) {
+              //                         return Center(
+              //                             child: Text(
+              //                           "something went wrong",
+              //                           style: Theme.of(context)
+              //                               .textTheme
+              //                               .headlineMedium,
+              //                         ));
+              //                       }
+              //                       if (snapshot.connectionState ==
+              //                           ConnectionState.waiting) {
+              //                         return const Center(
+              //                           child: CircularProgressIndicator(),
+              //                         );
+              //                       } // sania tb
+              //                       List<PharmacyModel> drug =
+              //                           snapshot.data?.docs
+              //                                   .map((e) => e.data())
+              //                                   .toList() ??
+              //                               [];
+              //                       drug.sort((a, b) => (a.numberDrug ?? 0).compareTo(b.numberDrug ?? 0));
+              //                       return drug.isNotEmpty
+              //                           ? Expanded(
+              //                               child: ListView.builder(
+              //                                 itemCount: drug.length,
+              //                                 itemBuilder:
+              //                                     (BuildContext context,
+              //                                         int index) {
+              //                                   return Container(
+              //                                     height: 40,
+              //                                     child: Center(
+              //                                         child: Text(drug[
+              //                                                     index]
+              //                                                 .nameDrug ??
+              //                                             "")),
+              //                                   );
+              //                                 },
+              //                               ),
+              //                             )
+              //                           : Container(
+              //                               margin: EdgeInsets.only(top: 220),
+              //                               child: Text(
+              //                                 textAlign: TextAlign.center,
+              //                                 "no drug yet ...",
+              //                                 style: Theme.of(context)
+              //                                     .textTheme
+              //                                     .bodyMedium
+              //                                     ?.copyWith(
+              //                                         color: Colors.green,
+              //                                         fontWeight:
+              //                                             FontWeight.bold),
+              //                               ),
+              //                             );
+              //                     },
+              //                   ),
+              //                 ],
+              //               );
+              //             },
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // sizedBoxWidth(width: 20),
+              // Flexible(
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //         color: Colors.green,
+              //         borderRadius: BorderRadius.circular(10)),
+              //     width: 300,
+              //     height: 300,
+              //     child: Column(
+              //       children: [
+              //         defultText(data: 'Code', c: Colors.white),
+              //         Divider(
+              //           color: Colors.white,
+              //           thickness: 1.5,
+              //         ),
+              //         Expanded(
+              //           child: Scrollable(
+              //             axisDirection: AxisDirection.down,
+              //             viewportBuilder:
+              //                 (BuildContext context, ViewportOffset offset) {
+              //               return Column(
+              //                 children: [
+              //                   SizedBox(height: offset.pixels),
+              //                   StreamBuilder(
+              //                     stream: MyDataBase.showDrugList(false),
+              //                     builder: (context, snapshot) {
+              //                       if (snapshot.hasError) {
+              //                         return Center(
+              //                             child: Text(
+              //                           "something went wrong",
+              //                           style: Theme.of(context)
+              //                               .textTheme
+              //                               .headlineMedium,
+              //                         ));
+              //                       }
+              //                       if (snapshot.connectionState ==
+              //                           ConnectionState.waiting) {
+              //                         return const Center(
+              //                           child: CircularProgressIndicator(),
+              //                         );
+              //                       } // sania tb
+              //                       List<PharmacyModel> drug =
+              //                           snapshot.data?.docs
+              //                                   .map((e) => e.data())
+              //                                   .toList() ??
+              //                               [];
+              //                       drug.sort((a, b) => (a.numberDrug ?? 0).compareTo(b.numberDrug ?? 0));
+              //                       return drug.isNotEmpty
+              //                           ? Expanded(
+              //                               child: ListView.builder(
+              //                                 itemCount: drug.length,
+              //                                 itemBuilder:
+              //                                     (BuildContext context,
+              //                                         int index) {
+              //                                   return Container(
+              //                                     height: 40,
+              //                                     child: Center(
+              //                                         child: Text(drug[
+              //                                                     index]
+              //                                                 .codeDrug ??
+              //                                             "")),
+              //                                   );
+              //                                 },
+              //                               ),
+              //                             )
+              //                           : Container(
+              //                               margin: EdgeInsets.only(top: 220),
+              //                               child: Text(
+              //                                 textAlign: TextAlign.center,
+              //                                 "no drug yet ...",
+              //                                 style: TextStyle(
+              //                                     color: Colors.white),
+              //                               ),
+              //                             );
+              //                     },
+              //                   ),
+              //                 ],
+              //               );
+              //             },
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
-          )
+          ),
+          sizedBoxhight(hight: 20),
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     StreamBuilder(
+          //       stream: MyDataBase.showDrugList(false),
+          //       builder: (context, snapshot) {
+          //         if (snapshot.hasError) {
+          //           return Center(
+          //             child: Text(
+          //               "something went wrong",
+          //               style: Theme.of(context).textTheme.headlineMedium,
+          //             ),
+          //           );
+          //         }
+          //         if (snapshot.connectionState == ConnectionState.waiting) {
+          //           return const Center(
+          //             child: CircularProgressIndicator(),
+          //           );
+          //         }
+          //
+          //         List<PharmacyModel> drugList = snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+          //         drugList.sort((a, b) => (a.numberDrug ?? 0).compareTo(b.numberDrug ?? 0));
+          //
+          //         if (drugList.isEmpty) {
+          //           return Center(
+          //             child: Text(
+          //               "no drug yet ...",
+          //               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          //                 color: Colors.green,
+          //                 fontWeight: FontWeight.bold,
+          //               ),
+          //             ),
+          //           );
+          //         }
+          //
+          //         return Expanded(
+          //           child: SingleChildScrollView(
+          //             child: ListView.builder(
+          //               itemCount: drugList.length,
+          //               itemBuilder: (BuildContext context, int index) {
+          //                 PharmacyModel drug = drugList[index];
+          //
+          //                 return Column(
+          //                   mainAxisSize: MainAxisSize.min,
+          //                   children: [
+          //                     Container(
+          //                       height: 40,
+          //                       child: Row(
+          //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                         children: [
+          //                           Text(drug.numberDrug?.toString() ?? ""),
+          //                           Text(drug.nameDrug ?? ""),
+          //                           Text(drug.codeDrug ?? ""),
+          //                         ],
+          //                       ),
+          //                     ),
+          //                   ],
+          //                 );
+          //               },
+          //             ),
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ],
+          // )
         ],
       )),
     );
@@ -493,7 +659,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(const Duration(days:7650 )));
+        lastDate: DateTime.now().add(const Duration(days: 7650)));
     if (chosenDate == null) return;
     setState(() {
       selectedDate = DateUtils.dateOnly(chosenDate);

@@ -103,6 +103,7 @@ class MyApp extends StatelessWidget {
         Addtreatment.screenRoute: (context) => Addtreatment(),
         DashboaedfirstScreen.screenRoute: (context) => DashboaedfirstScreen(),
 
+
       },
     );
   }

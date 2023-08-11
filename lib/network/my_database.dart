@@ -123,6 +123,10 @@ class MyDataBase {
         .doc(pharmacyModel.codeDrug)
         .update(pharmacyModel.toFirebase());
   }
+  static Future<void> deleteDrug(String drugCode) {
+    var collectionRef = getCollectionPharma();
+    return collectionRef.doc(drugCode).delete();
+  }
 
   static Stream<QuerySnapshot<PharmacyModel>> getDrug(String code) {
     var collection = getCollectionPharma();
