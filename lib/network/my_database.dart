@@ -35,6 +35,11 @@ class MyDataBase {
     var collection = getCollectionAdult();
     return collection.where("codeAdultPatient", isEqualTo: code).snapshots();
   }
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultDash(String day) {
+    var collection = getCollectionAdult();
+    return collection.where("chosenDay", isEqualTo: day).snapshots();
+  }
+
 
   static Stream<QuerySnapshot<PatientAdultModel>> getListBlood(bool t) {
     var collection = getCollectionAdult();

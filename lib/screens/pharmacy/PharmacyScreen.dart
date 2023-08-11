@@ -169,13 +169,13 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             children: [
               Column(
                 children: [
+                  defultTextField(width: 150, text: '$scanBarcode',controller: codeDrug),
+                  sizedBoxhight(hight: 10),
                   defultTextField(
                       width: 150, text: 'Name', controller: nameDrug),
                   sizedBoxhight(hight: 10),
                   defultTextField(
-                      width: 150, text: 'number', controller: numberDrug),
-                  sizedBoxhight(hight: 10),
-                  defultTextField(width: 150, text: '$scanBarcode',controller: codeDrug),
+                      width: 150, text: 'Quantity', controller: numberDrug),
                   sizedBoxhight(hight: 10),
                   Row(children: [
                     Text("Select Expiry Date :"),
@@ -254,7 +254,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                       ]),
                       Divider(
                         color: Colors.white,
-                        thickness: 1.5,
+                        thickness: 2,
                       ),
                       Expanded(
                         child: Scrollable(
@@ -364,7 +364,8 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                                                   );
                                                                 },
                                                                 icon: Icon(Icons
-                                                                    .delete))
+                                                                    .delete)),
+                                                            SizedBox(width: 6,),
                                                           ],
                                                         ),
                                                       ),

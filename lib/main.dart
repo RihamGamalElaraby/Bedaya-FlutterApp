@@ -25,6 +25,8 @@ import 'package:bedaya/screens/chose%20team%20screen/chose1_screen.dart';
 import 'package:bedaya/screens/chose%20sup%20team%20screen/chose2_screen.dart';
 import 'package:bedaya/screens/Labs/choselabs_screen.dart';
 import 'package:bedaya/login%20and%20register/registration_screen.dart';
+import 'package:bedaya/screens/adult%20checkup/adult_dash.dart';
+import 'package:bedaya/screens/children%20checkup/child_dash.dart';
 import 'package:bedaya/screens/dashboard/dashboard.dart';
 import 'package:bedaya/screens/followUp_Screen.dart';
 import 'package:bedaya/screens/pharmacy/PharmacyScreen.dart';
@@ -79,8 +81,7 @@ class MyApp extends StatelessWidget {
         childrenCheckup.screenRoute: (context) => childrenCheckup(),
         bloodLabScreen.screenRoute: (context) => bloodLabScreen(),
         childrenContinue.screenRoute: (context) => childrenContinue(),
-        bloodLabContinueScreen.screenRoute: (context) =>
-            bloodLabContinueScreen(),
+        bloodLabContinueScreen.screenRoute: (context) => bloodLabContinueScreen(),
         urineLabscreen.screenRoute: (context) => urineLabscreen(),
         stoolLab.screenRoute: (context) => stoolLab(),
         Bloodlaponecontiunue.screenRoute: (context) => Bloodlaponecontiunue(),
@@ -102,8 +103,8 @@ class MyApp extends StatelessWidget {
         AdultSearch.screenRoute : (context) => AdultSearch(),
         Addtreatment.screenRoute: (context) => Addtreatment(),
         DashboaedfirstScreen.screenRoute: (context) => DashboaedfirstScreen(),
-
-
+        AdultDash.screenRoute : (context) => AdultDash(),
+        ChildDash.screenRoute : (context) =>  ChildDash()
       },
     );
   }
