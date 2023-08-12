@@ -2,6 +2,7 @@ import 'package:bedaya/DateModels/pharmacy_model.dart';
 
 class PatientChildModel {
   String? idChildPatient;
+  String? chosenDay;
   String? nameChildPatient;
   String? codeChildPatient;
   String? sexChildPatient;
@@ -228,6 +229,7 @@ class PatientChildModel {
   String? bloodotherASOT;
 
   PatientChildModel({
+    this.chosenDay,
     this.placeChild,
     this.goHomeChild,
     this.screeningChild,
@@ -432,6 +434,7 @@ class PatientChildModel {
 
   PatientChildModel.fromFireStore(Map<String, dynamic> json)
       : this(
+          chosenDay: json["chosenDay"],
           complaintsList: json["complaintsList"] == null
               ? null
               : List<ComplaintsChildModel>.from(json["complaintsList"]
@@ -706,6 +709,7 @@ class PatientChildModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "chosenDay": chosenDay,
       'complaintsList': complaintsList?.map((v) => v.toFire()).toList(),
       "placeChild": placeChild,
       "goHomeChild": goHomeChild,

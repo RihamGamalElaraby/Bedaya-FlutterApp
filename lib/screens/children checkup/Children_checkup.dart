@@ -94,6 +94,9 @@ class _childrenCheckupState extends State<childrenCheckup> {
   TextEditingController AllergyController =TextEditingController();
 
 
+  List<String> Chosedaylist = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'];
+  String selectedday = 'Day 1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,6 +128,53 @@ class _childrenCheckupState extends State<childrenCheckup> {
                   ),
                 )),
               )
+            ],
+          ),
+          sizedBoxhight(hight: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 40,
+                width: 250,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                        child: Text(
+                          'Choose Day',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: DropdownButton<String>(
+                    value: selectedday, // 1-done
+                    items: Chosedaylist.map(
+                          (day) => DropdownMenuItem(
+                        value: day,
+                        child: Text(
+                          day,
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ).toList(),
+                    onChanged: (day) => setState(() => selectedday = day!)),
+              ),
             ],
           ),
           sizedBoxhight(hight: 10),
@@ -978,6 +1028,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                     int? age = int.tryParse(agePatient.text);
                     int? mobile = int.tryParse(mobileNuPatient.text);
                     PatientChildModel patient = PatientChildModel(
+                      chosenDay: selectedday,
                       nameChildPatient: namePatient.text,
                       sexChildPatient: sexPatient,
                       codeChildPatient: codePatient.text,

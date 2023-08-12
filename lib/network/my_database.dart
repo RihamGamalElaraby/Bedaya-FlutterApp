@@ -30,6 +30,12 @@ class MyDataBase {
         .doc(patientAdultModel.codeAdultPatient)
         .update(patientAdultModel.toFireStore());
   }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultDash(String day) {
+    var collection = getCollectionAdult();
+    return collection.where("chosenDay", isEqualTo: day).snapshots();
+  }
+
   static Stream<QuerySnapshot<PatientAdultModel>> getAllPatientAdult() {
     var collectionRef = getCollectionAdult();
 
@@ -41,16 +47,10 @@ class MyDataBase {
     return collectionRef.doc(code).delete();
   }
 
-
   static Stream<QuerySnapshot<PatientAdultModel>> getPatientAdult(String code) {
     var collection = getCollectionAdult();
     return collection.where("codeAdultPatient", isEqualTo: code).snapshots();
   }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultDash(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).snapshots();
-  }
-
 
   static Stream<QuerySnapshot<PatientAdultModel>> getListBlood(bool t) {
     var collection = getCollectionAdult();
@@ -99,6 +99,22 @@ class MyDataBase {
     return collection.where("codeChildPatient", isEqualTo: code).snapshots();
   }
 
+  static Stream<QuerySnapshot<PatientChildModel>> getChildDash(String day) {
+    var collection = getCollectionChild();
+    return collection.where("chosenDay", isEqualTo: day).snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientChildModel>> getAllPatientChild() {
+    var collectionRef = getCollectionChild();
+
+    return collectionRef.snapshots();
+  }
+
+  static Future<void> deleteChild(String code) {
+    var collectionRef = getCollectionChild();
+    return collectionRef.doc(code).delete();
+  }
+
   static Stream<QuerySnapshot<PatientChildModel>> getChildListBlood(bool t) {
     var collection = getCollectionChild();
     return collection.where("bloodCheckIn", isEqualTo: t).snapshots();
@@ -120,11 +136,10 @@ class MyDataBase {
     return FirebaseFirestore.instance
         .collection("PharmacyDrug")
         .withConverter<PharmacyModel>(
-      fromFirestore: (snapshot, _) =>
-          PharmacyModel.fromFirebase(snapshot.data()!),
-      toFirestore: (PharmacyModel, options) =>
-          PharmacyModel.toFirebase(),
-    );
+          fromFirestore: (snapshot, _) =>
+              PharmacyModel.fromFirebase(snapshot.data()!),
+          toFirestore: (PharmacyModel, options) => PharmacyModel.toFirebase(),
+        );
   }
 
   static Future<void> addDrug(PharmacyModel pharmacyModel) {
@@ -139,6 +154,7 @@ class MyDataBase {
         .doc(pharmacyModel.codeDrug)
         .update(pharmacyModel.toFirebase());
   }
+
   static Future<void> deleteDrug(String drugCode) {
     var collectionRef = getCollectionPharma();
     return collectionRef.doc(drugCode).delete();
@@ -148,6 +164,7 @@ class MyDataBase {
     var collection = getCollectionPharma();
     return collection.where("codeDrug", isEqualTo: code).snapshots();
   }
+
   static Stream<QuerySnapshot<PharmacyModel>> getUnCheckDrugList() {
     var collection = getCollectionPharma();
     return collection.where("numberDrug", isLessThan: 1).snapshots();
@@ -157,16 +174,13 @@ class MyDataBase {
     var collection = getCollectionPharma();
     return collection.where("expiry", isEqualTo: t).snapshots();
   }
+
   static Future<int> getAllDrugs() async {
     var collectionRef = getCollectionPharma();
     var querySnapshot = await collectionRef.get();
 
-    int drugs = querySnapshot.docs
-        .map((doc) => doc.data())
-        .toList().length;
+    int drugs = querySnapshot.docs.map((doc) => doc.data()).toList().length;
 
     return drugs;
   }
-
-
 }
