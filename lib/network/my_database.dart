@@ -30,6 +30,17 @@ class MyDataBase {
         .doc(patientAdultModel.codeAdultPatient)
         .update(patientAdultModel.toFireStore());
   }
+  static Stream<QuerySnapshot<PatientAdultModel>> getAllPatientAdult() {
+    var collectionRef = getCollectionAdult();
+
+    return collectionRef.snapshots();
+  }
+
+  static Future<void> deletePatient(String code) {
+    var collectionRef = getCollectionAdult();
+    return collectionRef.doc(code).delete();
+  }
+
 
   static Stream<QuerySnapshot<PatientAdultModel>> getPatientAdult(String code) {
     var collection = getCollectionAdult();
@@ -146,5 +157,16 @@ class MyDataBase {
     var collection = getCollectionPharma();
     return collection.where("expiry", isEqualTo: t).snapshots();
   }
+  static Future<int> getAllDrugs() async {
+    var collectionRef = getCollectionPharma();
+    var querySnapshot = await collectionRef.get();
+
+    int drugs = querySnapshot.docs
+        .map((doc) => doc.data())
+        .toList().length;
+
+    return drugs;
+  }
+
 
 }

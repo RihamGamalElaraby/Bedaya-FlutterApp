@@ -491,7 +491,10 @@ class _AdultDashState extends State<AdultDash> {
                       child: Column(
                         children: [
                           Row(children: [
-                            sizedBoxWidth(width: 40),
+                            sizedBoxWidth(width: 20),
+                            Expanded(
+                                child:
+                                defultText(data: '#', c: Colors.white)),
                             Expanded(
                                 child:
                                 defultText(data: 'Code', c: Colors.white)),
@@ -519,7 +522,7 @@ class _AdultDashState extends State<AdultDash> {
                                   children: [
                                     SizedBox(height: offset.pixels),
                                     StreamBuilder(
-                                      stream: MyDataBase.getAdultDash(selectedday),
+                                      stream: selectedday=="all"? MyDataBase.getAllPatientAdult(): MyDataBase.getAdultDash(selectedday),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasError) {
                                           return Center(
@@ -548,7 +551,8 @@ class _AdultDashState extends State<AdultDash> {
                                             itemBuilder:
                                                 (BuildContext context,
                                                 int index) {
-                                              return SizedBox(
+                                                  int displayNumber = index + 1;
+                                                  return SizedBox(
                                                 height: 40,
                                                 child: Column(
                                                   children: [
@@ -559,6 +563,7 @@ class _AdultDashState extends State<AdultDash> {
                                                           left: 30.0),
                                                       child: Row(
                                                         children: [
+                                                          Expanded(child: Text("${displayNumber.toString()}")),
                                                           Expanded(
                                                               child: Text(patient[
                                                               index]
@@ -577,44 +582,54 @@ class _AdultDashState extends State<AdultDash> {
                                                           Expanded(
                                                               child: Text("${patient[index]
                                                                   .agePatientAdult!}")),
-                                                          IconButton(
-                                                              onPressed: () {
-                                                                showDialog(
-                                                                  context:
-                                                                  context,
-                                                                  builder:
-                                                                      (BuildContext
-                                                                  context) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          "Confirm Delete"),
-                                                                      content:
-                                                                      Text("Are you sure you want to delete this Patient?"),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed:
-                                                                              () {
-                                                                            Navigator.of(context).pop(); // Close the dialog
+                                                          Expanded(
+                                                            child: Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: IconButton(
+                                                                      onPressed: () {
+                                                                        showDialog(
+                                                                          context:
+                                                                          context,
+                                                                          builder:
+                                                                              (BuildContext
+                                                                          context) {
+                                                                            return AlertDialog(
+                                                                              title: Text(
+                                                                                  "Confirm Delete"),
+                                                                              content:
+                                                                              Text("Are you sure you want to delete this Patient?"),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed:
+                                                                                      () {
+                                                                                    Navigator.of(context).pop(); // Close the dialog
+                                                                                  },
+                                                                                  child:
+                                                                                  Text("No"),
+                                                                                ),
+                                                                                TextButton(
+                                                                                  onPressed:
+                                                                                      () {
+                                                                                   MyDataBase.deletePatient(patient[index].codeAdultPatient!);
+                                                                                    Navigator.of(context).pop(); // Close the dialog
+                                                                                  },
+                                                                                  child:
+                                                                                  Text("Yes"),
+                                                                                ),
+                                                                              ],
+                                                                            );
                                                                           },
-                                                                          child:
-                                                                          Text("No"),
-                                                                        ),
-                                                                        TextButton(
-                                                                          onPressed:
-                                                                              () {
-                                                                         //   MyDataBase.deleteDrug(pa[index].codeDrug!);
-                                                                            Navigator.of(context).pop(); // Close the dialog
-                                                                          },
-                                                                          child:
-                                                                          Text("Yes"),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                              icon: Icon(Icons
-                                                                  .delete)),
+                                                                        );
+                                                                      },
+                                                                      icon: Icon(Icons
+                                                                          .delete)),
+                                                                ),
+                                                                Expanded(child: IconButton(onPressed: () {}, icon: Icon(Icons.edit))),
+                                                                Expanded(child: IconButton(onPressed: () {}, icon: Icon(Icons.smart_display))),
+                                                              ],
+                                                            ),
+                                                          ),
                                                           SizedBox(width: 6,),
                                                         ],
                                                       ),

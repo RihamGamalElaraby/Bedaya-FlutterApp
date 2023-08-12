@@ -225,6 +225,26 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             ],
           ),
           sizedBoxhight(hight: 20),
+          FutureBuilder<int>(
+            future: MyDataBase.getAllDrugs(),
+            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              }
+
+              int drugCount = snapshot.data ?? 0;
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,children: [
+                Center(child: defultText(data: 'Total of Medicine is $drugCount'))
+              ],);
+            },
+          ),
+          sizedBoxhight(hight: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -241,6 +261,9 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                     children: [
                       Row(children: [
                         sizedBoxWidth(width: 10),
+                        Expanded(
+                            child:
+                            defultText(data: '#', c: Colors.white)),
                         Expanded(
                             child:
                                 defultText(data: 'Quantity', c: Colors.white)),
@@ -296,6 +319,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                               itemBuilder:
                                                   (BuildContext context,
                                                       int index) {
+                                                    int displayNumber = index + 1;
                                                 return SizedBox(
                                                   height: 40,
                                                   child: Column(
@@ -307,6 +331,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                                                 left: 30.0),
                                                         child: Row(
                                                           children: [
+                                                            Expanded(child: Text("${displayNumber.toString()}")),
                                                             Expanded(
                                                                 child: Text(drug[
                                                                         index]
@@ -583,6 +608,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             ],
           ),
           sizedBoxhight(hight: 20),
+
           // Row(
           //   crossAxisAlignment: CrossAxisAlignment.center,
           //   mainAxisAlignment: MainAxisAlignment.center,

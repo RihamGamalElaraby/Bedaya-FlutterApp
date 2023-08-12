@@ -308,26 +308,23 @@ class _AddtreatmentState extends State<Addtreatment> {
               children: [
                 Column(
                   children: [
-                    defultTextField(width: 150, text: 'Scanner',controller: codeDrug),
-                    //Container(
-                    //   width: 100,
-                    //   height: 50,
-                    //   child: TextField(
-                    //     controller: codeDrug,
-                    //     onChanged: (value) {
-                    //       setState(() {
-                    //         codeDrug.text = value;
-                    //       });
-                    //     },
-                    //   ),
-                    // ),
-                    // defultTextField(
-                    //     width: 150,
-                    //     text: 'Scanner',
-                    //     controller: codeDrug,
-                    //     onChanged: (val) {
-                    //       codeDrug = val;
-                    //     }),
+                    
+                    //defultTextField(width: 150, text: 'Scanner',controller: codeDrug),
+                    Container(
+                      decoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.circular(8),border: Border.all(color: Colors.green)),
+                      padding: EdgeInsets.all(8),
+                      width: 200,
+                      height: 50,
+                      child: TextField(
+                        controller: codeDrug,
+                        onChanged: (value) {
+                          setState(() {
+                            codeDrug.text = value;
+                          });
+                        },
+                      ),
+                    ),
+                   
                     StreamBuilder<QuerySnapshot<PharmacyModel>>(
                         stream: MyDataBase.getDrug(codeDrug.text),
                         builder: (context, snapshot) {
@@ -355,11 +352,11 @@ class _AddtreatmentState extends State<Addtreatment> {
                         title: 'Scan',
                         size: 18,
                         onPressed: () {
-
+                          setState(() {});
                           addToList(drugScan);
                           drugScan.numberDrug = drugScan.numberDrug!-1;
                           MyDataBase.updateDrug(drugScan);
-                          setState(() {});
+
                         },
                       ),
                     ),
