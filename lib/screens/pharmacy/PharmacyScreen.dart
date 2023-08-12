@@ -79,12 +79,18 @@ import 'dart:io';
 
 import 'package:bedaya/DateModels/pharmacy_model.dart';
 import 'package:bedaya/screens/pharmacy/pharamcyaddtreat.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
  import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcl;
 import '../../DateModels/PatientAdultModel.dart';
 import '../../component/component.dart';
@@ -93,6 +99,10 @@ import '../../widgets/appbar.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/text_Filed.dart';
 
+
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
 class PharmacyScreen extends StatefulWidget {
   static const String screenRoute = 'PharmacyScreen';
@@ -113,6 +123,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
   @override
   Widget build(BuildContext context) {
     PatientAdultModel patient = PatientAdultModel();
+    late List<PharmacyModel> drug ;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -230,6 +241,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
               )
             ],
           ),
+
           sizedBoxhight(hight: 20),
           FutureBuilder<int>(
             future: MyDataBase.getAllDrugs(),
@@ -311,7 +323,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                         child: CircularProgressIndicator(),
                                       );
                                     } // sania tb
-                                    List<PharmacyModel> drug = snapshot
+                                     drug = snapshot
                                             .data?.docs
                                             .map((e) => e.data())
                                             .toList() ??
@@ -613,77 +625,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
               // ),
             ],
           ),
-          sizedBoxhight(hight: 20),
-          //ElevatedButton(onPressed: () {createExceel();}, child: Text("Show Exceel sheet")),
-          SizedBox(height: 20,),
 
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.center,
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     StreamBuilder(
-          //       stream: MyDataBase.showDrugList(false),
-          //       builder: (context, snapshot) {
-          //         if (snapshot.hasError) {
-          //           return Center(
-          //             child: Text(
-          //               "something went wrong",
-          //               style: Theme.of(context).textTheme.headlineMedium,
-          //             ),
-          //           );
-          //         }
-          //         if (snapshot.connectionState == ConnectionState.waiting) {
-          //           return const Center(
-          //             child: CircularProgressIndicator(),
-          //           );
-          //         }
-          //
-          //         List<PharmacyModel> drugList = snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-          //         drugList.sort((a, b) => (a.numberDrug ?? 0).compareTo(b.numberDrug ?? 0));
-          //
-          //         if (drugList.isEmpty) {
-          //           return Center(
-          //             child: Text(
-          //               "no drug yet ...",
-          //               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          //                 color: Colors.green,
-          //                 fontWeight: FontWeight.bold,
-          //               ),
-          //             ),
-          //           );
-          //         }
-          //
-          //         return Expanded(
-          //           child: SingleChildScrollView(
-          //             child: ListView.builder(
-          //               itemCount: drugList.length,
-          //               itemBuilder: (BuildContext context, int index) {
-          //                 PharmacyModel drug = drugList[index];
-          //
-          //                 return Column(
-          //                   mainAxisSize: MainAxisSize.min,
-          //                   children: [
-          //                     Container(
-          //                       height: 40,
-          //                       child: Row(
-          //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                         children: [
-          //                           Text(drug.numberDrug?.toString() ?? ""),
-          //                           Text(drug.nameDrug ?? ""),
-          //                           Text(drug.codeDrug ?? ""),
-          //                         ],
-          //                       ),
-          //                     ),
-          //                   ],
-          //                 );
-          //               },
-          //             ),
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ],
-          // )
+          sizedBoxhight(hight: 20),
+           ElevatedButton(onPressed: () {_requestPermission();}, child: Text("Show Exceel sheet")),
+          SizedBox(height: 20,),
+          ElevatedButton(onPressed: (){createPdf(drug);}, child: Text("Show pdf sheet")),
+
         ],
       )),
     );
@@ -729,4 +676,95 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
   //   await file.writeAsBytes(bytes,flush: true);
   //   OpenFile.open(fileName);
   // }
+
+  Future<void> _requestPermission() async {
+    // Request the permission
+    PermissionStatus status = await Permission.storage.request();
+
+    // Check if the permission is granted or not
+    if (status.isGranted) {
+      // Permission is granted, proceed with writing or reading files
+      print('Permission is granted');
+    } else {
+      // Permission is denied, show a message
+      print('Permission is denied');
+    }
+  }
+
+
+  void createPdf(List<PharmacyModel> drugData) async {
+    final doc = pw.Document();
+    doc.addPage(
+      pw.MultiPage(
+        build: (pw.Context context) {
+          return <pw.Widget>[
+            pw.Column(
+              mainAxisAlignment: pw.MainAxisAlignment.center,
+              crossAxisAlignment: pw.CrossAxisAlignment.center,
+              children: [
+                pw.Row(children: [
+                  pw.SizedBox(width: 10),
+                  pw.Expanded(
+                      child: pw.Text('#', style: pw.TextStyle(color: PdfColors.white))),
+                  pw.Expanded(
+                      child: pw.Text('Quantity', style: pw.TextStyle(color: PdfColors.white))),
+                  pw.Expanded(
+                      child: pw.Text('Name', style: pw.TextStyle(color: PdfColors.white))),
+                  pw.Expanded(
+                      child: pw.Text('code', style: pw.TextStyle(color: PdfColors.white))),
+                  pw.Expanded(
+                      child: pw.Text('Exp. date', style: pw.TextStyle(color: PdfColors.white))),
+                ]),
+                pw.Divider(
+                  color: PdfColors.white,
+                  thickness: 2,
+                ),
+                pw.ListView.builder(
+                  itemCount: drugData.length, // Assuming you have fetched and stored this data
+                  itemBuilder: (pw.Context context, int index) {
+                    int displayNumber = index + 1;
+                    return pw.Container(
+                      height: 40,
+                      child: pw.Column(
+                        children: [
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(left: 30.0),
+                            child: pw.Row(
+                              children: [
+                                pw.Expanded(child: pw.Text("${displayNumber.toString()}")),
+                                pw.Expanded(
+                                    child: pw.Text(drugData[index].numberDrug.toString())),
+                                pw.Expanded(
+                                    child: pw.Text(drugData[index].nameDrug ?? "N/A")),
+                                pw.Expanded(
+                                    child: pw.Text(drugData[index].codeDrug ?? "N/A")),
+                                pw.Expanded(
+                                    child: pw.Text(MyDatetimeUtilies.formateDate(drugData[index].expiryDateDrug!))),
+                                pw.SizedBox(width: 6),
+                              ],
+                            ),
+                          ),
+                          pw.Divider(
+                            color: PdfColors.white,
+                            thickness: 0.8,
+                            height: 0,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )
+          ];
+        },
+        pageFormat: PdfPageFormat.a4,
+      ),
+    );
+
+    await Printing.layoutPdf(onLayout: (PdfPageFormat format) async => doc.save());
+  }
+
+
+
 }

@@ -87,7 +87,6 @@ class _AdultSearchState extends State<AdultSearch> {
                 return Center(child: Text('No patient data found!'));
               } else {
                 patient = snapshot.data!.docs[0].data();
-
                 return Center(
                   child: Column(
                     children: [
