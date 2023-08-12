@@ -75,18 +75,24 @@
 //             ]));
 //   }
 // }
+import 'dart:io';
+
 import 'package:bedaya/DateModels/pharmacy_model.dart';
 import 'package:bedaya/screens/pharmacy/pharamcyaddtreat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+ import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcl;
 import '../../DateModels/PatientAdultModel.dart';
 import '../../component/component.dart';
 import '../../network/my_database.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/text_Filed.dart';
+
 
 class PharmacyScreen extends StatefulWidget {
   static const String screenRoute = 'PharmacyScreen';
@@ -608,6 +614,8 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             ],
           ),
           sizedBoxhight(hight: 20),
+          //ElevatedButton(onPressed: () {createExceel();}, child: Text("Show Exceel sheet")),
+          SizedBox(height: 20,),
 
           // Row(
           //   crossAxisAlignment: CrossAxisAlignment.center,
@@ -708,4 +716,17 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
       scanBarcode = barcodeScanRes;
     });
   }
+
+  // Future<void> createExceel() async{
+  //
+  //   final xcl.Workbook workbook = xcl.Workbook();
+  //   final List<int> bytes = workbook.saveAsStream();
+  //   workbook.dispose();
+  //
+  //   final String path=(await getApplicationSupportDirectory()).path;
+  //   final String fileName = "$path/Output.xlsx" ;
+  //   final File file = File(fileName,);
+  //   await file.writeAsBytes(bytes,flush: true);
+  //   OpenFile.open(fileName);
+  // }
 }
