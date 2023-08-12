@@ -108,7 +108,7 @@ class _childrenContinueState extends State<childrenContinue> {
   bool Ricketsscreening = false;
   bool  AnemiaScreening = false;
   bool  ParasitesScreening = false;
-  bool   PediatricClinicFollowUp = false;
+  bool   DmScreening = false;
   bool  Otherclinicsfollowup = false;
   List<String> screening=[];
   List<String> selectedCheckboxesScreening = [];
@@ -2137,36 +2137,36 @@ class _childrenContinueState extends State<childrenContinue> {
                     })),
                 sizedBoxWidth(width: 10),
                 Flexible(
-                    flex: 1, child: defultText(data: 'Pediatric Clinic Follow Up', x: 12)),
+                    flex: 1, child: defultText(data: 'Dm screening (HbA1c)', x: 12)),
                 Flexible(
                     flex: 1,
-                    child: Checkbox(value: PediatricClinicFollowUp, onChanged: (val){
+                    child: Checkbox(value: DmScreening, onChanged: (val){
                       setState(() {
-                        PediatricClinicFollowUp = val!;
+                        DmScreening = val!;
                         if (val) {
-                          selectedCheckboxesScreening.add("Pediatric Clinic Follow Up");
+                          selectedCheckboxesScreening.add('Dm screening (HbA1c)');
                         } else {
-                          selectedCheckboxesScreening.remove("Pediatric Clinic Follow Up");
+                          selectedCheckboxesScreening.remove('Dm screening (HbA1c)');
                         }
                       });
 
                     })),
-                sizedBoxWidth(width: 10),
-                Flexible(
-                    flex: 1, child: defultText(data: 'Other clinics follow up', x: 12)),
-                Flexible(
-                    flex: 1,
-                    child: Checkbox(value: Otherclinicsfollowup, onChanged: (val){
-                      setState(() {
-                        Otherclinicsfollowup = val!;
-                        if (val) {
-                          selectedCheckboxesScreening.add("Other clinics follow up");
-                        } else {
-                          selectedCheckboxesScreening.remove("Other clinics follow up");
-                        }
-                      });
-
-                    })),
+                // sizedBoxWidth(width: 10),
+                // Flexible(
+                //     flex: 1, child: defultText(data: 'Other clinics follow up', x: 12)),
+                // Flexible(
+                //     flex: 1,
+                //     child: Checkbox(value: Otherclinicsfollowup, onChanged: (val){
+                //       setState(() {
+                //         Otherclinicsfollowup = val!;
+                //         if (val) {
+                //           selectedCheckboxesScreening.add("Other clinics follow up");
+                //         } else {
+                //           selectedCheckboxesScreening.remove("Other clinics follow up");
+                //         }
+                //       });
+                //
+                //     })),
               ],
             ),
             sizedBoxhight(hight: 20),

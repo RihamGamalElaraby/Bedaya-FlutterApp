@@ -614,21 +614,21 @@ class _ChildDashState extends State<ChildDash> {
                                                               Expanded(
                                                                   child: Text(patient[
                                                                           index]
-                                                                      .codeChildPatient!
+                                                                      .codeChildPatient
                                                                       .toString())),
                                                               Expanded(
                                                                   child: Text(
                                                                       patient[index]
-                                                                              .nameChildPatient! ??
+                                                                              .nameChildPatient ??
                                                                           "N/A")),
                                                               Expanded(
                                                                   child: Text(
                                                                       patient[index]
-                                                                              .sexChildPatient! ??
+                                                                              .sexChildPatient ??
                                                                           "N/A")),
                                                               Expanded(
                                                                   child: Text(
-                                                                      "${patient[index].ageChildPatient!}")),
+                                                                      "${patient[index].ageChildPatient}")),
                                                               Expanded(
                                                                 child: Row(
                                                                   children: [

@@ -112,19 +112,19 @@ class _Chose1_ScreenState extends State<Chose1_Screen> {
                     Navigator.pushNamed(context, Chose2_Screen.screenRoute);
                   },
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 10,
-                ),
-                mysignin(
-                  color: Color.fromARGB(255, 1, 70, 2),
-                  x: Colors.white,
-                  title: 'DashBoard',
-                  onPressed: () {
-                    Navigator.pushNamed(
-                        context, DashboaedfirstScreen.screenRoute);
-                  },
-                ),
+                // SizedBox(
+                //   width: double.infinity,
+                //   height: 10,
+               // ),
+                // mysignin(
+                //   color: Color.fromARGB(255, 1, 70, 2),
+                //   x: Colors.white,
+                //   title: 'DashBoard',
+                //   onPressed: () {
+                //     Navigator.pushNamed(
+                //         context, DashboaedfirstScreen.screenRoute);
+                //   },
+                // ),
                 SizedBox(
                   width: double.infinity,
                   height: 10,

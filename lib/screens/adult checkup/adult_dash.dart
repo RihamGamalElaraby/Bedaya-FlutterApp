@@ -567,21 +567,21 @@ class _AdultDashState extends State<AdultDash> {
                                                           Expanded(
                                                               child: Text(patient[
                                                               index]
-                                                                  .codeAdultPatient!
+                                                                  .codeAdultPatient
                                                                   .toString())),
                                                           Expanded(
                                                               child: Text(patient[
                                                               index]
-                                                                  .nameAdultPatient! ??
+                                                                  .nameAdultPatient ??
                                                                   "N/A")),
                                                           Expanded(
                                                               child: Text(patient[
                                                               index]
-                                                                  .sexAdultPatient! ??
+                                                                  .sexAdultPatient ??
                                                                   "N/A")),
                                                           Expanded(
                                                               child: Text("${patient[index]
-                                                                  .agePatientAdult!}")),
+                                                                  .agePatientAdult}")),
                                                           Expanded(
                                                             child: Row(
                                                               children: [

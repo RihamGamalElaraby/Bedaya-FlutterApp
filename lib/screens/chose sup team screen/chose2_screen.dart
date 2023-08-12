@@ -1,7 +1,9 @@
 import 'package:bedaya/screens/adult%20checkup/Adult_checkup.dart';
+import 'package:bedaya/screens/adult%20checkup/adult_dash.dart';
 import 'package:bedaya/screens/children%20checkup/Children_checkup.dart';
 import 'package:bedaya/screens/Clinics/ClinicScreenChose.dart';
 import 'package:bedaya/screens/Clinics/IMClinicScreen.dart';
+import 'package:bedaya/screens/children%20checkup/child_dash.dart';
 import 'package:bedaya/screens/pharmacy/PharmacyScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/screens/Labs/choselabs_screen.dart';
@@ -94,7 +96,7 @@ class _Chose2_ScreenState extends State<Chose2_Screen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => adultCheckup(),
+                      builder: (context) => AdultDash(),
                     ),
                   );
                 },
@@ -110,7 +112,7 @@ class _Chose2_ScreenState extends State<Chose2_Screen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => childrenCheckup(),
+                      builder: (context) => ChildDash(),
                     ),
                   );
                 },
