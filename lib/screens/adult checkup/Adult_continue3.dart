@@ -1,6 +1,7 @@
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/network/my_database.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_checkup.dart';
+import 'package:bedaya/screens/adult%20checkup/adult_dash.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/component/component.dart';
@@ -37,13 +38,13 @@ class _adultCheckThirdState extends State<adultCheckThird> {
   bool Pallor = false;
   bool Jaundice = false;
   bool Central = false;
-  List<String> complextionGeneralExamination=[];
+  List<String> complextionGeneralExamination = [];
   List<String> selectedCheckboxesComplextion = [];
 
   bool OGTT = false;
   bool UTI = false;
   bool Nephropathy = false;
-  List<String> screening=[];
+  List<String> screening = [];
   List<String> selectedCheckboxesScreening = [];
 
   bool IM = false;
@@ -51,15 +52,12 @@ class _adultCheckThirdState extends State<adultCheckThird> {
   bool Ortho = false;
   bool Derma = false;
   bool ENT = false;
-  bool ObsGyn  = false;
+  bool ObsGyn = false;
   bool Ophth = false;
   bool Surgery = false;
   bool Cardio = false;
-  List<String> clinics=[];
+  List<String> clinics = [];
   List<String> selectedCheckboxesClinics = [];
-
-
-
 
   bool no = false;
   bool occasional = false;
@@ -68,23 +66,23 @@ class _adultCheckThirdState extends State<adultCheckThird> {
 
   bool icu = false;
   bool operation = false;
-  String surgical="";
+  String surgical = "";
 
   bool yesAllergy = false;
   bool noAllergy = false;
-  String Allergy="";
+  String Allergy = "";
 
   bool yesFollowup = false;
   bool noFollowup = false;
-  String Followup="";
+  String Followup = "";
 
   bool yesGoHome = false;
   bool noGoHome = false;
-  String GoHome="";
+  String GoHome = "";
 
   bool yesCommdev = false;
   bool noCommdev = false;
-  String CommunityDevelopment="";
+  String CommunityDevelopment = "";
 
   bool antiHTN = false;
   bool oralHypoglycemic = false;
@@ -101,20 +99,20 @@ class _adultCheckThirdState extends State<adultCheckThird> {
   List<String> familyHistory = [];
   List<String> selectedCheckboxesfamily = [];
 
-  TextEditingController Bp1Controller =TextEditingController();
+  TextEditingController Bp1Controller = TextEditingController();
 
-  TextEditingController Bp2Controller =TextEditingController();
+  TextEditingController Bp2Controller = TextEditingController();
 
-  TextEditingController mmHG1Controller =TextEditingController();
+  TextEditingController mmHG1Controller = TextEditingController();
 
-  TextEditingController mmHG2Controller =TextEditingController();
-
+  TextEditingController mmHG2Controller = TextEditingController();
 
   TextEditingController otherMedicalHistoryController = TextEditingController();
 
   TextEditingController specifyAllergyController = TextEditingController();
 
-  TextEditingController durationBloodTransfusionController = TextEditingController();
+  TextEditingController durationBloodTransfusionController =
+      TextEditingController();
 
   TextEditingController operationSurgicalController = TextEditingController();
 
@@ -127,15 +125,184 @@ class _adultCheckThirdState extends State<adultCheckThird> {
   TextEditingController tempVitalController = TextEditingController();
   TextEditingController randomBloodSugarController = TextEditingController();
 
-
+  List<String>? get length => null;
 
   @override
   Widget build(BuildContext context) {
-    PatientAdultModel? patientModel = ModalRoute.of(context)?.settings.arguments as PatientAdultModel? ;
+    PatientAdultModel? patientModel =
+        ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
+    if (patientModel?.goHome != null) {
+      // patientModel!.medicalPastHistory!.contains("Dm") ? dm = true : dm =false ;
+      // patientModel.medicalPastHistory!.contains("RHD") ? rhd = true : rhd =false ;
+      // patientModel.medicalPastHistory!.contains("HCV") ? hcv = true : hcv =false ;
+      // patientModel.medicalPastHistory!.contains("HTN") ? htn = true : htn =false ;
+      // patientModel.familyHistory!.contains("SimilarCondition") ? SimilarCondition=true :SimilarCondition = false ;
+      // patientModel.familyHistory!.contains("HTN") ? Htn=true :Htn = false ;
+      // patientModel.familyHistory!.contains("DM") ? DM=true :DM = false ;
+      // patientModel.familyHistory!.contains("Other family history") ? OtherFamilyHistory=true :OtherFamilyHistory = false ;
+      // patientModel!.drugsOfChronicDiseases!.contains("antiHTN") ? antiHTN =true : antiHTN= false ;
+      // patientModel!.drugsOfChronicDiseases!.contains("Antidiuretic") ? antidiuretic =true : antidiuretic= false ;
+      // patientModel!.drugsOfChronicDiseases!.contains("Antiepileptic") ? antiepileptic =true : antiepileptic= false ;
+      // patientModel!.drugsOfChronicDiseases!.contains("oralHypoglycemic") ? oralHypoglycemic =true : oralHypoglycemic= false ;
+      // patientModel.drugsOfChronicDiseases!.contains("Others") ? otherDrug =true : otherDrug= false ;
+      for (int i = 0; i < patientModel!.drugsOfChronicDiseases!.length; i++) {
+        if (patientModel.medicalPastHistory![i] == "Dm") {
+          dm = true;
+          selectedCheckboxesMedical.add("DM");
+        } else if (patientModel.medicalPastHistory![i] == "HCV") {
+          hcv = true;
+          selectedCheckboxesMedical.add("HCV");
+        } else if (patientModel.medicalPastHistory![i] == "RHD") {
+          rhd = true;
+          selectedCheckboxesMedical.add("RHD");
+        } else if (patientModel.medicalPastHistory![i] == "HTN") {
+          htn = true;
+          selectedCheckboxesMedical.add("HTN");
+        }
+      }
+      otherMedicalHistoryController =
+          TextEditingController(text: patientModel.otherMedicalPastHistory);
+      if (patientModel.allergyPastHistory == "yes Allergy") {
+        yesAllergy = true;
+        Allergy = "yes Allergy";
+      } else if (patientModel.allergyPastHistory == "no Allergy") {
+        noAllergy = true;
+        Allergy = "no Allergy";
+      }
+      specifyAllergyController =
+          TextEditingController(text: patientModel.specifyAllergyPastHistory);
+      if (patientModel.bloodTransfusionPastHistory ==
+          "regular Blood Transfusion") {
+        regular = true;
+        bloodTransfusion = "regular Blood Transfusion";
+      } else if (patientModel.bloodTransfusionPastHistory ==
+          "occasional Blood Transfusion") {
+        occasional = true;
+        bloodTransfusion = "occasional Blood Transfusion";
+      } else if (patientModel.bloodTransfusionPastHistory ==
+          "no Blood Transfusion") {
+        no = true;
+        bloodTransfusion = "no Blood Transfusion";
+      }
+      durationBloodTransfusionController = TextEditingController(
+          text: patientModel.durationBloodTransfusionPastHistory);
+      if (patientModel.surgicalPastHistory == "icu") {
+        icu = true;
+        surgical = "icu";
+      } else if (patientModel.surgicalPastHistory == "operation") {
+        operation = true;
+        surgical = "operation";
+      }
+      operationSurgicalController = TextEditingController(
+          text: patientModel.operationSurgicalPastHistory);
+      for (int i = 0; i < patientModel.drugsOfChronicDiseases!.length; i++) {
+        if (patientModel.drugsOfChronicDiseases![i] == "antiHTN") {
+          antiHTN = true;
+          selectedCheckboxesDrugs.add("antiHTN");
+        } else if (patientModel.drugsOfChronicDiseases![i] == "Antidiuretic") {
+          antidiuretic = true;
+          selectedCheckboxesDrugs.add("Antidiuretic");
+        } else if (patientModel.drugsOfChronicDiseases![i] == "Antiepileptic") {
+          antiepileptic = true;
+          selectedCheckboxesDrugs.add("Antiepileptic");
+        } else if (patientModel.drugsOfChronicDiseases![i] ==
+            "oralHypoglycemic") {
+          oralHypoglycemic = true;
+          selectedCheckboxesDrugs.add("oralHypoglycemic");
+        } else if (patientModel.drugsOfChronicDiseases![i] == "Others") {
+          otherDrug = true;
+          selectedCheckboxesDrugs.add("Others");
+        }
+      }
+      otherDrugController = TextEditingController(
+          text: patientModel.othersDrugsOfChronicDiseases);
+      otherFamilyHistoryController =
+          TextEditingController(text: patientModel.othersFamilyHistory);
+      for (int i = 0; i < patientModel.familyHistory!.length; i++) {
+        if (patientModel.familyHistory![i] == "SimilarCondition") {
+          SimilarCondition = true;
+          selectedCheckboxesfamily.add("SimilarCondition");
+        } else if (patientModel.familyHistory![i] == "HTN") {
+          Htn = true;
+          selectedCheckboxesfamily.add("HTN");
+        } else if (patientModel.familyHistory![i] == "DM") {
+          DM = true;
+          selectedCheckboxesfamily.add("DM");
+        } else if (patientModel.familyHistory![i] == "Other family history") {
+          OtherFamilyHistory = true;
+          selectedCheckboxesfamily.add("Other family history");
+        }
+      }
+      Bp1Controller =
+          TextEditingController(text: patientModel.BP1Vital.toString());
+      mmHG1Controller =
+          TextEditingController(text: patientModel.mmHg1Vital.toString());
+      hrVitalController =
+          TextEditingController(text: patientModel.hrVital.toString());
+      tempVitalController =
+          TextEditingController(text: patientModel.tempVital.toString());
+      randomBloodSugarController = TextEditingController(
+          text: patientModel.randomBloodSugarVital.toString());
+      o2satController = TextEditingController(
+          text: patientModel.o2Saturationvital.toString());
+      for (int i = 0; i < patientModel.screening!.length; i++) {
+        if (patientModel.screening![i] == "OGTT (pregnant)") {
+          OGTT = true;
+          selectedCheckboxesScreening.add("OGTT (pregnant)");
+        } else if (patientModel.screening![i] == "UTI (dipstick urine test)") {
+          UTI = true;
+          selectedCheckboxesScreening.add("UTI (dipstick urine test)");
+        } else if (patientModel.screening![i] == "Nephropathy screening") {
+          Nephropathy = true;
+          selectedCheckboxesScreening.add("Nephropathy screening");
+        }
+      }
+      for (int i = 0; i < patientModel.ReferralOfConvoyClinics!.length; i++) {
+        if (patientModel.ReferralOfConvoyClinics![i] == "Dental") {
+          Dental = true;
+          selectedCheckboxesClinics.add("Dental");
+        } else if (patientModel.ReferralOfConvoyClinics![i] == "Ortho") {
+          Ortho = true;
+          selectedCheckboxesClinics.add("Ortho");
+        } else if (patientModel.ReferralOfConvoyClinics![i] == "Derma") {
+          Derma = true;
+          selectedCheckboxesClinics.add("Derma");
+        } else if (patientModel.ReferralOfConvoyClinics![i] == "ENT") {
+          ENT = true;
+          selectedCheckboxesClinics.add("ENT");
+        } else if (patientModel.ReferralOfConvoyClinics![i] == "Obs. & Gyn") {
+          ObsGyn = true;
+          selectedCheckboxesClinics.add("Obs. & Gyn");
+        } else if (patientModel.ReferralOfConvoyClinics![i] ==
+            "Ophthalmology") {
+          Ophth = true;
+          selectedCheckboxesClinics.add("Ophthalmology");
+        } else if (patientModel.ReferralOfConvoyClinics![i] == "Surgery") {
+          Surgery = true;
+          selectedCheckboxesClinics.add("Surgery");
+        } else if (patientModel.ReferralOfConvoyClinics![i] == "Cardio") {
+          Cardio = true;
+          selectedCheckboxesClinics.add("Cardio");
+        } else if (patientModel.ReferralOfConvoyClinics![i] == "IM") {
+          IM = true;
+          selectedCheckboxesClinics.add("IM");
+        }
+      }
+      patientModel.followUp == "yes Follow Up"
+          ? yesFollowup = true
+          : noFollowup = true;
+
+      patientModel.goHome == "yes Go Home" ? yesGoHome = true : noGoHome = true;
+
+      patientModel.communityDevelopment == "yes Community Development"
+          ? yesCommdev = true
+          : noCommdev = true;
+    }
 
     return Scaffold(
       appBar: PreferredSize(
-        child: appBardefult(context: context,
+        child: appBardefult(
+          context: context,
           data: 'Adult Checkup',
           icon: Icon(Icons.menu),
         ),
@@ -160,11 +327,11 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     child: Center(
                         child: Text(
-                          'Past History',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                      'Past History',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                   ),
                 ],
               ),
@@ -181,62 +348,66 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     Flexible(flex: 1, child: defultText(data: 'HTN', x: 12)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: htn, onChanged: (val) {
-                          setState(() {
-                            htn = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("HTN");
-                            } else {
-                              selectedCheckboxesMedical.remove("HTN");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: htn,
+                            onChanged: (val) {
+                              setState(() {
+                                htn = val!;
+                                if (val) {
+                                  selectedCheckboxesMedical.add("HTN");
+                                } else {
+                                  selectedCheckboxesMedical.remove("HTN");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(flex: 1, child: defultText(data: 'DM', x: 12)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: dm, onChanged: (val) {
-                          setState(() {
-                            dm = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("DM");
-                            } else {
-                              selectedCheckboxesMedical.remove("DM");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: dm,
+                            onChanged: (val) {
+                              setState(() {
+                                dm = val!;
+                                if (val) {
+                                  selectedCheckboxesMedical.add("DM");
+                                } else {
+                                  selectedCheckboxesMedical.remove("DM");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(flex: 1, child: defultText(data: 'HCV', x: 12)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: hcv, onChanged: (val) {
-                          setState(() {
-                            hcv = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("HCV");
-                            } else {
-                              selectedCheckboxesMedical.remove("HCV");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: hcv,
+                            onChanged: (val) {
+                              setState(() {
+                                hcv = val!;
+                                if (val) {
+                                  selectedCheckboxesMedical.add("HCV");
+                                } else {
+                                  selectedCheckboxesMedical.remove("HCV");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(flex: 1, child: defultText(data: 'RHD', x: 12)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: rhd, onChanged: (val) {
-                          setState(() {
-                            rhd = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("RHD");
-                            } else {
-                              selectedCheckboxesMedical.remove("RHD");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: rhd,
+                            onChanged: (val) {
+                              setState(() {
+                                rhd = val!;
+                                if (val) {
+                                  selectedCheckboxesMedical.add("RHD");
+                                } else {
+                                  selectedCheckboxesMedical.remove("RHD");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     // Flexible(
                     //   flex: 1,
@@ -245,13 +416,18 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     //   ),
                     // ),
                     // sizedBoxWidth(width: 10),
-                    Flexible(flex: 1, child: defultText(data: 'Others:', x: 12)),
+                    Flexible(
+                        flex: 1, child: defultText(data: 'Others:', x: 12)),
                     sizedBoxWidth(width: 3),
                     Flexible(
                         flex: 3,
-                        child: defultTextField(text: 'Others', width: 200,controller: otherMedicalHistoryController)),
+                        child: defultTextField(
+                            text: 'Others',
+                            width: 200,
+                            controller: otherMedicalHistoryController)),
                     sizedBoxWidth(width: 5),
-                    Flexible(flex: 2, child: defultText(data: 'Allergy:', x: 12)),
+                    Flexible(
+                        flex: 2, child: defultText(data: 'Allergy:', x: 12)),
                     sizedBoxWidth(width: 5),
 
                     Flexible(
@@ -261,15 +437,17 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         )),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: yesAllergy, onChanged: (val) {
-                          setState(() {
-                            yesAllergy =val! ;
-                            noAllergy = false ;
-                          });
-                          if (val!) {
-                            Allergy = "yes Allergy";
-                          }
-                        })),
+                        child: Checkbox(
+                            value: yesAllergy,
+                            onChanged: (val) {
+                              setState(() {
+                                yesAllergy = val!;
+                                noAllergy = false;
+                              });
+                              if (val!) {
+                                Allergy = "yes Allergy";
+                              }
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(
                         flex: 2,
@@ -278,15 +456,17 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         )),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: noAllergy, onChanged: (val) {
-                          setState(() {
-                            yesAllergy =false ;
-                            noAllergy = val! ;
-                          });
-                          if (val!) {
-                            Allergy = "no Allergy";
-                          }
-                        })),
+                        child: Checkbox(
+                            value: noAllergy,
+                            onChanged: (val) {
+                              setState(() {
+                                yesAllergy = false;
+                                noAllergy = val!;
+                              });
+                              if (val!) {
+                                Allergy = "no Allergy";
+                              }
+                            })),
                     sizedBoxWidth(width: 5),
 
                     Flexible(
@@ -304,13 +484,18 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     Flexible(
                         flex: 3,
-                        child: defultTextField(text: 'Specify', width: 200,controller: specifyAllergyController,validator: (String? value) {
-                          if (yesAllergy && (value == null || value.trim().isEmpty)) {
-                            return "Specify Allergy";
-                          }else {
-                            return null;
-                          }
-                        })),
+                        child: defultTextField(
+                            text: 'Specify',
+                            width: 200,
+                            controller: specifyAllergyController,
+                            validator: (String? value) {
+                              if (yesAllergy &&
+                                  (value == null || value.trim().isEmpty)) {
+                                return "Specify Allergy";
+                              } else {
+                                return null;
+                              }
+                            })),
                   ],
                 ),
               ),
@@ -328,48 +513,54 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     Flexible(flex: 1, child: defultText(data: 'No', x: 12)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: no, onChanged: (val) {
-                          setState(() {
-                            no = val!;
-                            occasional = false;
-                            regular = false;
-                            if (val) {
-                              bloodTransfusion="no Blood Transfusion";
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: no,
+                            onChanged: (val) {
+                              setState(() {
+                                no = val!;
+                                occasional = false;
+                                regular = false;
+                                if (val) {
+                                  bloodTransfusion = "no Blood Transfusion";
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(
                         flex: 1, child: defultText(data: 'Occasional', x: 12)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: occasional, onChanged: (val) {
-                          setState(() {
-                            no = false;
-                            occasional = val!;
-                            regular = false;
-                            if (val) {
-                              bloodTransfusion="occasional Blood Transfusion";
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: occasional,
+                            onChanged: (val) {
+                              setState(() {
+                                no = false;
+                                occasional = val!;
+                                regular = false;
+                                if (val) {
+                                  bloodTransfusion =
+                                      "occasional Blood Transfusion";
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
-                    Flexible(flex: 1, child: defultText(data: 'Regular', x: 12)),
+                    Flexible(
+                        flex: 1, child: defultText(data: 'Regular', x: 12)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: regular, onChanged: (val) {
-                          setState(() {
-                            no = false;
-                            occasional = false;
-                            regular = val!;
-                            if (val) {
-                              bloodTransfusion="regular Blood Transfusion";
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: regular,
+                            onChanged: (val) {
+                              setState(() {
+                                no = false;
+                                occasional = false;
+                                regular = val!;
+                                if (val) {
+                                  bloodTransfusion =
+                                      "regular Blood Transfusion";
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     // Flexible(flex: 1, child: defultText(data: 'RHD', x: 12)),
                     // Flexible(
@@ -389,10 +580,9 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     Flexible(
                         flex: 3,
                         child: defultTextField(
-                          text: 'Duration',
-                          width: 120,
-                          controller: durationBloodTransfusionController
-                        )),
+                            text: 'Duration',
+                            width: 120,
+                            controller: durationBloodTransfusionController)),
                     sizedBoxWidth(width: 5),
                     Flexible(
                         flex: 2, child: defultText(data: 'Surgical:', x: 12)),
@@ -405,16 +595,17 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         )),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: icu, onChanged: (val) {
-                          setState(() {
-                            icu = val!;
-                            operation = false;
-                            if (val) {
-                              surgical="icu";
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: icu,
+                            onChanged: (val) {
+                              setState(() {
+                                icu = val!;
+                                operation = false;
+                                if (val) {
+                                  surgical = "icu";
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(
                         flex: 2,
@@ -423,21 +614,25 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         )),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: operation, onChanged: (val) {
-                          setState(() {
-                            operation = val!;
-                            icu = false;
-                            if (val) {
-                              surgical="operation";
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: operation,
+                            onChanged: (val) {
+                              setState(() {
+                                operation = val!;
+                                icu = false;
+                                if (val) {
+                                  surgical = "operation";
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
 
                     Flexible(
                         flex: 3,
-                        child: defultTextField(text: 'Operation', width: 120,controller: operationSurgicalController)),
+                        child: defultTextField(
+                            text: 'Operation',
+                            width: 120,
+                            controller: operationSurgicalController)),
                   ],
                 ),
               ),
@@ -453,84 +648,96 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         flex: 4,
                         child: defultText(data: 'Drugs for Chronic Diseases:')),
                     sizedBoxWidth(width: 5),
-                    Flexible(flex: 3, child: defultText(data: 'antiHTN', x: 15)),
+                    Flexible(
+                        flex: 3, child: defultText(data: 'antiHTN', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: antiHTN, onChanged: (val) {
-                          setState(() {
-                            antiHTN = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("antiHTN");
-                            } else {
-                              selectedCheckboxesMedical.remove("antiHTN");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: antiHTN,
+                            onChanged: (val) {
+                              setState(() {
+                                antiHTN = val!;
+                                if (val) {
+                                  selectedCheckboxesDrugs.add("antiHTN");
+                                } else {
+                                  selectedCheckboxesDrugs.remove("antiHTN");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(
                         flex: 3,
                         child: defultText(data: 'Oral Hypoglycemic', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: oralHypoglycemic, onChanged: (val) {
-                          setState(() {
-                            oralHypoglycemic = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("oralHypoglycemic");
-                            } else {
-                              selectedCheckboxesMedical.remove("oralHypoglycemic");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: oralHypoglycemic,
+                            onChanged: (val) {
+                              setState(() {
+                                oralHypoglycemic = val!;
+                                if (val) {
+                                  selectedCheckboxesDrugs
+                                      .add("oralHypoglycemic");
+                                } else {
+                                  selectedCheckboxesDrugs
+                                      .remove("oralHypoglycemic");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(
-                        flex: 3, child: defultText(data: 'Antiepileptic', x: 15)),
+                        flex: 3,
+                        child: defultText(data: 'Antiepileptic', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: antiepileptic, onChanged: (val) {
-                          setState(() {
-                            antiepileptic = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("Antiepileptic");
-                            } else {
-                              selectedCheckboxesMedical.remove("Antiepileptic");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: antiepileptic,
+                            onChanged: (val) {
+                              setState(() {
+                                antiepileptic = val!;
+                                if (val) {
+                                  selectedCheckboxesDrugs.add("Antiepileptic");
+                                } else {
+                                  selectedCheckboxesDrugs
+                                      .remove("Antiepileptic");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(
-                        flex: 3, child: defultText(data: 'Antidiuretic', x: 15)),
+                        flex: 3,
+                        child: defultText(data: 'Antidiuretic', x: 15)),
                     Flexible(
                         flex: 2,
-                        child: Checkbox(value: antidiuretic, onChanged: (val) {
-                          setState(() {
-                            antidiuretic = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("Antidiuretic");
-                            } else {
-                              selectedCheckboxesMedical.remove("Antidiuretic");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: antidiuretic,
+                            onChanged: (val) {
+                              setState(() {
+                                antidiuretic = val!;
+                                if (val) {
+                                  selectedCheckboxesDrugs.add("Antidiuretic");
+                                } else {
+                                  selectedCheckboxesDrugs
+                                      .remove("Antidiuretic");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(flex: 1, child: defultText(data: 'Others', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: otherDrug, onChanged: (val) {
-                          setState(() {
-                            otherDrug = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("Others");
-                            } else {
-                              selectedCheckboxesMedical.remove("Others");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: otherDrug,
+                            onChanged: (val) {
+                              setState(() {
+                                otherDrug = val!;
+                                if (val) {
+                                  selectedCheckboxesDrugs.add("Others");
+                                } else {
+                                  selectedCheckboxesDrugs.remove("Others");
+                                }
+                              });
+                            })),
                     Flexible(
                         flex: 2,
                         child: defultTextField(
@@ -597,54 +804,60 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Flexible(flex: 4, child: defultText(data: 'Family History:')),
+                    Flexible(
+                        flex: 4, child: defultText(data: 'Family History:')),
                     sizedBoxWidth(width: 5),
                     Flexible(
                         flex: 3,
                         child: defultText(data: 'Similar Condition', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: SimilarCondition, onChanged: (val) {
-                        setState(() {
-                          SimilarCondition = val!;
-                        if (val) {
-                        selectedCheckboxesMedical.add("SimilarCondition");
-                        } else {
-                        selectedCheckboxesMedical.remove("SimilarCondition");
-                        }
-                        });
-
-                        })),
+                        child: Checkbox(
+                            value: SimilarCondition,
+                            onChanged: (val) {
+                              setState(() {
+                                SimilarCondition = val!;
+                                if (val) {
+                                  selectedCheckboxesfamily
+                                      .add("SimilarCondition");
+                                } else {
+                                  selectedCheckboxesfamily
+                                      .remove("SimilarCondition");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(flex: 3, child: defultText(data: 'HTN', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: Htn, onChanged: (val) {
-                          setState(() {
-                            Htn = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("HTN");
-                            } else {
-                              selectedCheckboxesMedical.remove("HTN");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: Htn,
+                            onChanged: (val) {
+                              setState(() {
+                                Htn = val!;
+                                if (val) {
+                                  selectedCheckboxesfamily.add("HTN");
+                                } else {
+                                  selectedCheckboxesfamily.remove("HTN");
+                                }
+                              });
+                            })),
                     sizedBoxWidth(width: 5),
                     Flexible(flex: 3, child: defultText(data: 'DM', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: DM, onChanged: (val) {
-                          setState(() {
-                            DM = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("DM");
-                            } else {
-                              selectedCheckboxesMedical.remove("DM");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: DM,
+                            onChanged: (val) {
+                              setState(() {
+                                DM = val!;
+                                if (val) {
+                                  selectedCheckboxesfamily.add("DM");
+                                } else {
+                                  selectedCheckboxesfamily.remove("DM");
+                                }
+                              });
+                            })),
                     // sizedBoxWidth(width: 5),
                     // Flexible(
                     //     flex: 3, child: defultText(data: 'Antidiuretic', x: 15)),
@@ -655,24 +868,26 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     Flexible(flex: 1, child: defultText(data: 'Others', x: 15)),
                     Flexible(
                         flex: 1,
-                        child: Checkbox(value: OtherFamilyHistory, onChanged: (val) {
-                          setState(() {
-                            OtherFamilyHistory = val!;
-                            if (val) {
-                              selectedCheckboxesMedical.add("Other family history");
-                            } else {
-                              selectedCheckboxesMedical.remove("Other family history");
-                            }
-                          });
-
-                        })),
+                        child: Checkbox(
+                            value: OtherFamilyHistory,
+                            onChanged: (val) {
+                              setState(() {
+                                OtherFamilyHistory = val!;
+                                if (val) {
+                                  selectedCheckboxesfamily
+                                      .add("Other family history");
+                                } else {
+                                  selectedCheckboxesfamily
+                                      .remove("Other family history");
+                                }
+                              });
+                            })),
                     Flexible(
                         flex: 2,
                         child: defultTextField(
-                          text: 'Others',
-                          width: 120,
-                          controller: otherFamilyHistoryController
-                        )),
+                            text: 'Others',
+                            width: 120,
+                            controller: otherFamilyHistoryController)),
                     // Flexible(flex: 1, child: defultText(data: 'RHD', x: 12)),
                     // Flexible(
                     //     flex: 1,
@@ -737,11 +952,11 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     child: Center(
                         child: Text(
-                          'General Examination',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                      'General Examination',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                   ),
                 ],
               ),
@@ -760,7 +975,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         color: Colors.green,
                       ),
                       child: Center(
-                          child: defultText(data: 'Vital Data', c: Colors.white)),
+                          child:
+                              defultText(data: 'Vital Data', c: Colors.white)),
                     ),
                   ),
                   sizedBoxWidth(width: 10),
@@ -787,14 +1003,21 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 Flexible(
                                   flex: 2,
                                   child: defultTextField(
-                                      text: 'BP1', width: 60, hight: 50,controller: Bp1Controller),
+                                      text: 'BP1',
+                                      width: 60,
+                                      hight: 50,
+                                      controller: Bp1Controller),
                                 ),
                                 Flexible(
-                                    flex: 1, child: defultText(data: '/', x: 18)),
+                                    flex: 1,
+                                    child: defultText(data: '/', x: 18)),
                                 Flexible(
                                   flex: 2,
                                   child: defultTextField(
-                                      text: 'mmHg',controller: mmHG1Controller, width: 60, hight: 50),
+                                      text: 'mmHg',
+                                      controller: mmHG1Controller,
+                                      width: 60,
+                                      hight: 50),
                                 ),
                                 Flexible(
                                     flex: 2, child: defultText(data: 'mmHg')),
@@ -828,7 +1051,10 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                   Flexible(
                                     flex: 2,
                                     child: defultTextField(
-                                        text: 'HR', width: 60, hight: 50,controller: hrVitalController),
+                                        text: 'HR',
+                                        width: 60,
+                                        hight: 50,
+                                        controller: hrVitalController),
                                   ),
                                   Flexible(
                                       flex: 2, child: defultText(data: 'bpm')),
@@ -863,9 +1089,13 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                   Flexible(
                                     flex: 2,
                                     child: defultTextField(
-                                        text: 'Temp', width: 60, hight: 50,controller: tempVitalController),
+                                        text: 'Temp',
+                                        width: 60,
+                                        hight: 50,
+                                        controller: tempVitalController),
                                   ),
-                                  Flexible(flex: 2, child: defultText(data: 'C')),
+                                  Flexible(
+                                      flex: 2, child: defultText(data: 'C')),
                                 ],
                               ),
                             ),
@@ -919,7 +1149,10 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                             sizedBoxhight(hight: 10),
                             Center(
                               child: defultTextField(
-                                  text: 'O2 Saturation', hight: 70,controller: o2satController, width: 120),
+                                  text: 'O2 Saturation',
+                                  hight: 70,
+                                  controller: o2satController,
+                                  width: 120),
                             )
                           ],
                         ),
@@ -941,7 +1174,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         color: Colors.green,
                       ),
                       child: Center(
-                          child: defultText(data: 'Complexion', c: Colors.white)),
+                          child:
+                              defultText(data: 'Complexion', c: Colors.white)),
                     ),
                   ),
                   sizedBoxWidth(width: 10),
@@ -975,17 +1209,20 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                   child: Column(
                                     children: [
                                       defultText(data: 'Peripheral', x: 12),
-                                      Checkbox(value: Peripheral, onChanged: (val) {
-                                        setState(() {
-                                          Peripheral = val!;
-                                          if (val) {
-                                            selectedCheckboxesComplextion.add("Peripheral");
-                                          } else {
-                                            selectedCheckboxesComplextion.remove("Peripheral");
-                                          }
-                                        });
-
-                                      }),
+                                      Checkbox(
+                                          value: Peripheral,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              Peripheral = val!;
+                                              if (val) {
+                                                selectedCheckboxesComplextion
+                                                    .add("Peripheral");
+                                              } else {
+                                                selectedCheckboxesComplextion
+                                                    .remove("Peripheral");
+                                              }
+                                            });
+                                          }),
                                     ],
                                   ),
                                 ),
@@ -997,17 +1234,20 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                   child: Column(
                                     children: [
                                       defultText(data: 'Central', x: 12),
-                                      Checkbox(value: Central, onChanged: (val) {
-                                        setState(() {
-                                          Central = val!;
-                                          if (val) {
-                                            selectedCheckboxesComplextion.add("Central");
-                                          } else {
-                                            selectedCheckboxesComplextion.remove("Central");
-                                          }
-                                        });
-
-                                      }),
+                                      Checkbox(
+                                          value: Central,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              Central = val!;
+                                              if (val) {
+                                                selectedCheckboxesComplextion
+                                                    .add("Central");
+                                              } else {
+                                                selectedCheckboxesComplextion
+                                                    .remove("Central");
+                                              }
+                                            });
+                                          }),
                                     ],
                                   ),
                                 ),
@@ -1039,17 +1279,20 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                               child: Column(
                                 children: [
                                   defultText(data: 'Jaundice', x: 15),
-                                  Checkbox(value: Jaundice, onChanged: (val) {
-                                    setState(() {
-                                      Jaundice = val!;
-                                      if (val) {
-                                        selectedCheckboxesComplextion.add("Jaundice");
-                                      } else {
-                                        selectedCheckboxesComplextion.remove("Jaundice");
-                                      }
-                                    });
-
-                                  }),
+                                  Checkbox(
+                                      value: Jaundice,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          Jaundice = val!;
+                                          if (val) {
+                                            selectedCheckboxesComplextion
+                                                .add("Jaundice");
+                                          } else {
+                                            selectedCheckboxesComplextion
+                                                .remove("Jaundice");
+                                          }
+                                        });
+                                      }),
                                 ],
                               ),
                             ),
@@ -1079,17 +1322,20 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                               child: Column(
                                 children: [
                                   defultText(data: 'Pallor', x: 15),
-                                  Checkbox(value: Pallor, onChanged: (val) {
-                                    setState(() {
-                                      Pallor = val!;
-                                      if (val) {
-                                        selectedCheckboxesComplextion.add("Pallor");
-                                      } else {
-                                        selectedCheckboxesComplextion.remove("Pallor");
-                                      }
-                                    });
-
-                                  }),
+                                  Checkbox(
+                                      value: Pallor,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          Pallor = val!;
+                                          if (val) {
+                                            selectedCheckboxesComplextion
+                                                .add("Pallor");
+                                          } else {
+                                            selectedCheckboxesComplextion
+                                                .remove("Pallor");
+                                          }
+                                        });
+                                      }),
                                 ],
                               ),
                             ),
@@ -1099,7 +1345,6 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                       ),
                     ),
                   ),
-
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -1115,68 +1360,81 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     child: Center(
                         child: Text(
-                          'Screening',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                      'Screening',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                   ),
-                ],),
-              sizedBoxhight(hight: 20),
-              Row(
-                mainAxisAlignment:  MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                      flex: 1, child: defultText(data: 'Nephropathy screening', x: 12)),
-                  Flexible(
-                      flex: 1,
-                      child: Checkbox(value: Nephropathy, onChanged: (val) {
-                        setState(() {
-                          Nephropathy = val!;
-                          if (val) {
-                            selectedCheckboxesScreening.add("Nephropathy screening");
-                          } else {
-                            selectedCheckboxesScreening.remove("Nephropathy screening");
-                          }
-                        });
-
-                      })),
-                  sizedBoxWidth(width: 10),
-                  Flexible(
-                      flex: 1, child: defultText(data: "UTI (dipstick urine test)", x: 12)),
-                  Flexible(
-                      flex: 1,
-                      child: Checkbox(value: UTI, onChanged: (val) {
-                        setState(() {
-                          UTI = val!;
-                          if (val) {
-                            selectedCheckboxesScreening.add("UTI (dipstick urine test)");
-                          } else {
-                            selectedCheckboxesScreening.remove("UTI (dipstick urine test)");
-                          }
-                        });
-
-                      })),
-                  sizedBoxWidth(width: 10),
-                  Flexible(
-                      flex: 1, child: defultText(data: 'OGTT (pregnant)', x: 12)),
-                  Flexible(
-                      flex: 1,
-                      child: Checkbox(value: OGTT, onChanged: (val){
-                        setState(() {
-                          OGTT = val!;
-                          if (val) {
-                            selectedCheckboxesScreening.add("OGTT (pregnant)");
-                          } else {
-                            selectedCheckboxesScreening.remove("OGTT (pregnant)");
-                          }
-                        });
-
-                      })),
                 ],
               ),
               sizedBoxhight(hight: 20),
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                      flex: 1,
+                      child: defultText(data: 'Nephropathy screening', x: 12)),
+                  Flexible(
+                      flex: 1,
+                      child: Checkbox(
+                          value: Nephropathy,
+                          onChanged: (val) {
+                            setState(() {
+                              Nephropathy = val!;
+                              if (val) {
+                                selectedCheckboxesScreening
+                                    .add("Nephropathy screening");
+                              } else {
+                                selectedCheckboxesScreening
+                                    .remove("Nephropathy screening");
+                              }
+                            });
+                          })),
+                  sizedBoxWidth(width: 10),
+                  Flexible(
+                      flex: 1,
+                      child:
+                          defultText(data: "UTI (dipstick urine test)", x: 12)),
+                  Flexible(
+                      flex: 1,
+                      child: Checkbox(
+                          value: UTI,
+                          onChanged: (val) {
+                            setState(() {
+                              UTI = val!;
+                              if (val) {
+                                selectedCheckboxesScreening
+                                    .add("UTI (dipstick urine test)");
+                              } else {
+                                selectedCheckboxesScreening
+                                    .remove("UTI (dipstick urine test)");
+                              }
+                            });
+                          })),
+                  sizedBoxWidth(width: 10),
+                  Flexible(
+                      flex: 1,
+                      child: defultText(data: 'OGTT (pregnant)', x: 12)),
+                  Flexible(
+                      flex: 1,
+                      child: Checkbox(
+                          value: OGTT,
+                          onChanged: (val) {
+                            setState(() {
+                              OGTT = val!;
+                              if (val) {
+                                selectedCheckboxesScreening
+                                    .add("OGTT (pregnant)");
+                              } else {
+                                selectedCheckboxesScreening
+                                    .remove("OGTT (pregnant)");
+                              }
+                            });
+                          })),
+                ],
+              ),
+              sizedBoxhight(hight: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -1189,11 +1447,11 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     child: Center(
                         child: Text(
-                          'Referral of convoy clinics',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                      'Referral of convoy clinics',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                   ),
                 ],
               ),
@@ -1208,17 +1466,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'IM',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: IM, onChanged: (val) {
-                    setState(() {
-                      IM = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("IM");
-                      } else {
-                        selectedCheckboxesClinics.remove("IM");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: IM,
+                          onChanged: (val) {
+                            setState(() {
+                              IM = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("IM");
+                              } else {
+                                selectedCheckboxesClinics.remove("IM");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 1,
@@ -1226,17 +1486,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'Cardio',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Cardio, onChanged: (val) {
-                    setState(() {
-                      Cardio = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("Cardio");
-                      } else {
-                        selectedCheckboxesClinics.remove("Cardio");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: Cardio,
+                          onChanged: (val) {
+                            setState(() {
+                              Cardio = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("Cardio");
+                              } else {
+                                selectedCheckboxesClinics.remove("Cardio");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 1,
@@ -1244,17 +1506,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'Surgery',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Surgery, onChanged: (val) {
-                    setState(() {
-                      Surgery = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("Surgery");
-                      } else {
-                        selectedCheckboxesClinics.remove("Surgery");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: Surgery,
+                          onChanged: (val) {
+                            setState(() {
+                              Surgery = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("Surgery");
+                              } else {
+                                selectedCheckboxesClinics.remove("Surgery");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 2,
@@ -1262,17 +1526,20 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'Ophthalmology',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Ophth, onChanged: (val) {
-                    setState(() {
-                      Ophth = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("Ophthalmology");
-                      } else {
-                        selectedCheckboxesClinics.remove("Ophthalmology");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: Ophth,
+                          onChanged: (val) {
+                            setState(() {
+                              Ophth = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("Ophthalmology");
+                              } else {
+                                selectedCheckboxesClinics
+                                    .remove("Ophthalmology");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 2,
@@ -1280,17 +1547,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'Obs. & Gyn',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: ObsGyn, onChanged: (val) {
-                    setState(() {
-                      ObsGyn = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("Obs. & Gyn");
-                      } else {
-                        selectedCheckboxesClinics.remove("Obs. & Gyn");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: ObsGyn,
+                          onChanged: (val) {
+                            setState(() {
+                              ObsGyn = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("Obs. & Gyn");
+                              } else {
+                                selectedCheckboxesClinics.remove("Obs. & Gyn");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 1,
@@ -1298,17 +1567,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'ENT',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: ENT, onChanged: (val) {
-                    setState(() {
-                      ENT = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("ENT");
-                      } else {
-                        selectedCheckboxesClinics.remove("ENT");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: ENT,
+                          onChanged: (val) {
+                            setState(() {
+                              ENT = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("ENT");
+                              } else {
+                                selectedCheckboxesClinics.remove("ENT");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 1,
@@ -1316,17 +1587,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'Derma',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Derma, onChanged: (val) {
-                    setState(() {
-                      Derma = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("Derma");
-                      } else {
-                        selectedCheckboxesClinics.remove("Derma");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: Derma,
+                          onChanged: (val) {
+                            setState(() {
+                              Derma = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("Derma");
+                              } else {
+                                selectedCheckboxesClinics.remove("Derma");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 1,
@@ -1334,18 +1607,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'Ortho',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Ortho, onChanged: (val) {
-                    setState(() {
-                      Ortho = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("Ortho");
-                      } else {
-                        selectedCheckboxesClinics.remove("Ortho");
-                      }
-                    });
-
-                  })
-                  ),
+                      flex: 1,
+                      child: Checkbox(
+                          value: Ortho,
+                          onChanged: (val) {
+                            setState(() {
+                              Ortho = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("Ortho");
+                              } else {
+                                selectedCheckboxesClinics.remove("Ortho");
+                              }
+                            });
+                          })),
                   sizedBoxWidth(width: 7),
                   Flexible(
                       flex: 1,
@@ -1353,17 +1627,19 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         data: 'Dental',
                       )),
                   Flexible(
-                      flex: 1, child: Checkbox(value: Dental, onChanged: (val) {
-                    setState(() {
-                      Dental = val!;
-                      if (val) {
-                        selectedCheckboxesClinics.add("Dental");
-                      } else {
-                        selectedCheckboxesClinics.remove("Dental");
-                      }
-                    });
-
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: Dental,
+                          onChanged: (val) {
+                            setState(() {
+                              Dental = val!;
+                              if (val) {
+                                selectedCheckboxesClinics.add("Dental");
+                              } else {
+                                selectedCheckboxesClinics.remove("Dental");
+                              }
+                            });
+                          })),
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -1379,43 +1655,48 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     child: Center(
                         child: Text(
-                          'Follow up',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                      'Follow up',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                   ),
                 ],
               ),
               sizedBoxhight(hight: 20),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(flex: 1, child: defultText(data: 'YES', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: yesFollowup, onChanged: (val) {
-                    setState(() {
-                      yesFollowup =val! ;
-                      noFollowup = false ;
-                    });
-                    if (val!) {
-                      Followup = "yes Follow Up";
-                    }
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: yesFollowup,
+                          onChanged: (val) {
+                            setState(() {
+                              yesFollowup = val!;
+                              noFollowup = false;
+                            });
+                            if (val!) {
+                              Followup = "yes Follow Up";
+                            }
+                          })),
                   sizedBoxWidth(width: 5),
                   Flexible(flex: 1, child: defultText(data: 'NO', x: 12)),
                   Flexible(
-                      flex: 1, child: Checkbox(value: noFollowup, onChanged: (val) {
-                    setState(() {
-                      yesFollowup =false ;
-                      noFollowup = val! ;
-                    });
-                    if (val!) {
-                      Followup = "No Follow up";
-                    }
-                  })),
+                      flex: 1,
+                      child: Checkbox(
+                          value: noFollowup,
+                          onChanged: (val) {
+                            setState(() {
+                              yesFollowup = false;
+                              noFollowup = val!;
+                            });
+                            if (val!) {
+                              Followup = "No Follow up";
+                            }
+                          })),
                 ],
               ),
               sizedBoxhight(hight: 20),
@@ -1431,50 +1712,48 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     child: Center(
                         child: Text(
-                          'Go Home',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                      'Go Home',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                   ),
-                ],),
-              sizedBoxhight(hight: 20),
-              Row(
-                mainAxisAlignment:  MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                      flex: 1, child: defultText(data: 'Yes', x: 12)),
-                  Flexible(
-                      flex: 1,
-                      child: Checkbox(value: yesGoHome, onChanged: (val) {
-                        setState(() {
-                          yesGoHome =val! ;
-                          noGoHome = false ;
-                        });
-                        if (val!) {
-                          GoHome = "yes Go Home";
-                        }
-                      })),
-                  sizedBoxWidth(width: 10),
-                  Flexible(
-                      flex: 1, child: defultText(data: "NO", x: 12)),
-                  Flexible(
-                      flex: 1,
-                      child: Checkbox(value: noGoHome, onChanged: (val) {
-                        setState(() {
-                          noGoHome =val! ;
-                          yesGoHome = false ;
-                        });
-                        if (val!) {
-                          GoHome = "No Go Home";
-                        }
-                      })),
-                  sizedBoxWidth(width: 10),
-          ]
-
+                ],
               ),
               sizedBoxhight(hight: 20),
-
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Flexible(flex: 1, child: defultText(data: 'Yes', x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(
+                        value: yesGoHome,
+                        onChanged: (val) {
+                          setState(() {
+                            yesGoHome = val!;
+                            noGoHome = false;
+                          });
+                          if (val!) {
+                            GoHome = "yes Go Home";
+                          }
+                        })),
+                sizedBoxWidth(width: 10),
+                Flexible(flex: 1, child: defultText(data: "NO", x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(
+                        value: noGoHome,
+                        onChanged: (val) {
+                          setState(() {
+                            noGoHome = val!;
+                            yesGoHome = false;
+                          });
+                          if (val!) {
+                            GoHome = "No Go Home";
+                          }
+                        })),
+                sizedBoxWidth(width: 10),
+              ]),
+              sizedBoxhight(hight: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -1487,49 +1766,47 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     ),
                     child: Center(
                         child: Text(
-                          'Community development',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                      'Community development',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                   ),
-                ],),
+                ],
+              ),
               sizedBoxhight(hight: 20),
-              Row(
-                  mainAxisAlignment:  MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                        flex: 1, child: defultText(data: 'Yes', x: 12)),
-                    Flexible(
-                        flex: 1,
-                        child: Checkbox(value: yesCommdev, onChanged: (val) {
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Flexible(flex: 1, child: defultText(data: 'Yes', x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(
+                        value: yesCommdev,
+                        onChanged: (val) {
                           setState(() {
-                            yesCommdev =val! ;
-                            noCommdev = false ;
+                            yesCommdev = val!;
+                            noCommdev = false;
                           });
                           if (val!) {
                             CommunityDevelopment = "yes Community Development";
                           }
                         })),
-                    sizedBoxWidth(width: 10),
-                    Flexible(
-                        flex: 1, child: defultText(data: "NO", x: 12)),
-                    Flexible(
-                        flex: 1,
-                        child: Checkbox(value: noCommdev, onChanged: (val) {
+                sizedBoxWidth(width: 10),
+                Flexible(flex: 1, child: defultText(data: "NO", x: 12)),
+                Flexible(
+                    flex: 1,
+                    child: Checkbox(
+                        value: noCommdev,
+                        onChanged: (val) {
                           setState(() {
-                            noCommdev =val! ;
-                            yesCommdev = false ;
+                            noCommdev = val!;
+                            yesCommdev = false;
                           });
                           if (val!) {
                             CommunityDevelopment = "No Community Development";
                           }
                         })),
-                    sizedBoxWidth(width: 10),
-                  ]
-
-              ),
-
+                sizedBoxWidth(width: 10),
+              ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -1541,14 +1818,15 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                     onPressed: () {
                       medicalPastHistory.addAll(selectedCheckboxesMedical);
                       selectedCheckboxesMedical.clear();
-                   //   print(medicalPastHistory);
+                      //   print(medicalPastHistory);
                       drugsChronicDiseases.addAll(selectedCheckboxesDrugs);
                       selectedCheckboxesDrugs.clear();
-                     // print(drugsChronicDiseases);
+                      // print(drugsChronicDiseases);
                       familyHistory.addAll(selectedCheckboxesfamily);
                       selectedCheckboxesfamily.clear();
                       //print(familyHistory);
-                      complextionGeneralExamination.addAll(selectedCheckboxesComplextion);
+                      complextionGeneralExamination
+                          .addAll(selectedCheckboxesComplextion);
                       selectedCheckboxesComplextion.clear();
                       print(complextionGeneralExamination);
                       screening.addAll(selectedCheckboxesScreening);
@@ -1559,42 +1837,56 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                       print(clinics);
                       if (formKey.currentState!.validate()) {
                         double? Bp1vital = double.tryParse(Bp1Controller.text);
-                        double? o2satvital = double.tryParse(o2satController.text);
-                        double? randombloodvital = double.tryParse(randomBloodSugarController.text);
-                        double? tempvital = double.tryParse(tempVitalController.text);
-                        double? hrvital = double.tryParse(hrVitalController.text);
-                        double? mmHg1vital = double.tryParse(mmHG1Controller.text);
+                        double? o2satvital =
+                            double.tryParse(o2satController.text);
+                        double? randombloodvital =
+                            double.tryParse(randomBloodSugarController.text);
+                        double? tempvital =
+                            double.tryParse(tempVitalController.text);
+                        double? hrvital =
+                            double.tryParse(hrVitalController.text);
+                        double? mmHg1vital =
+                            double.tryParse(mmHG1Controller.text);
 
-                        Navigator.pushNamed(context, adultCheckup.screenRoute);
-                     //   PatientAdultModel patientModel = PatientAdultModel(
-                          patientModel?.medicalPastHistory= medicalPastHistory;
-                        patientModel?.otherMedicalPastHistory= otherMedicalHistoryController.text;
-                      patientModel?.bloodTransfusionPastHistory= bloodTransfusion;
-                      patientModel?.durationBloodTransfusionPastHistory= durationBloodTransfusionController.text;
-                      patientModel?.allergyPastHistory= Allergy;
-                      patientModel?.specifyAllergyPastHistory= specifyAllergyController.text;
-                      patientModel?.surgicalPastHistory= surgical;
-                      patientModel?.operationSurgicalPastHistory= operationSurgicalController.text;
-                      patientModel?.drugsOfChronicDiseases= drugsChronicDiseases;
-                      patientModel?.othersDrugsOfChronicDiseases= otherDrugController.text;
-                      patientModel?.familyHistory= familyHistory;
-                      patientModel?.othersFamilyHistory= otherFamilyHistoryController.text;
-                      patientModel?.BP1Vital= Bp1vital;
-                      patientModel?.mmHg1Vital= mmHg1vital;
-                      patientModel?.hrVital= hrvital;
-                      patientModel?.tempVital= tempvital;
-                      patientModel?.randomBloodSugarVital= randombloodvital;
-                      patientModel?.o2Saturationvital= o2satvital;
-                      patientModel?.complexionGenerallExamination= complextionGeneralExamination;
-                      patientModel?.screening =screening; // gameddddddddddd عاوزة اجرب انا ويتتتتتتتتتتتتتت
-                      patientModel?.ReferralOfConvoyClinics= clinics;
-                      patientModel?.followUp= Followup;
-                      patientModel?.goHome= GoHome;
-                      patientModel?.communityDevelopment= CommunityDevelopment;
+                        // Navigator.pushNamed(context, adultCheckup.screenRoute);
+                        //   PatientAdultModel patientModel = PatientAdultModel(
+                        patientModel?.medicalPastHistory = medicalPastHistory;
+                        patientModel?.otherMedicalPastHistory =
+                            otherMedicalHistoryController.text;
+                        patientModel?.bloodTransfusionPastHistory =
+                            bloodTransfusion;
+                        patientModel?.durationBloodTransfusionPastHistory =
+                            durationBloodTransfusionController.text;
+                        patientModel?.allergyPastHistory = Allergy;
+                        patientModel?.specifyAllergyPastHistory =
+                            specifyAllergyController.text;
+                        patientModel?.surgicalPastHistory = surgical;
+                        patientModel?.operationSurgicalPastHistory =
+                            operationSurgicalController.text;
+                        patientModel?.drugsOfChronicDiseases =
+                            drugsChronicDiseases;
+                        patientModel?.othersDrugsOfChronicDiseases =
+                            otherDrugController.text;
+                        patientModel?.familyHistory = familyHistory;
+                        patientModel?.othersFamilyHistory =
+                            otherFamilyHistoryController.text;
+                        patientModel?.BP1Vital = Bp1vital;
+                        patientModel?.mmHg1Vital = mmHg1vital;
+                        patientModel?.hrVital = hrvital;
+                        patientModel?.tempVital = tempvital;
+                        patientModel?.randomBloodSugarVital = randombloodvital;
+                        patientModel?.o2Saturationvital = o2satvital;
+                        patientModel?.complexionGenerallExamination =
+                            complextionGeneralExamination;
+                        patientModel?.screening =
+                            screening; // gameddddddddddd عاوزة اجرب انا ويتتتتتتتتتتتتتت
+                        patientModel?.ReferralOfConvoyClinics = clinics;
+                        patientModel?.followUp = Followup==null ? patientModel.followUp : Followup;
+                        patientModel?.goHome =  GoHome==null ? patientModel.goHome : GoHome;
+                        patientModel?.communityDevelopment = CommunityDevelopment==null ? patientModel.communityDevelopment : CommunityDevelopment;
                         MyDataBase.updatePatientAdult(patientModel!);
-                        print("updated");
-                        Navigator.pushNamed(
-                            context, adultCheckup.screenRoute,arguments: patientModel);
+                        // print("updated");
+                        Navigator.pushNamed(context, AdultDash.screenRoute);
                       }
                     },
                   ),

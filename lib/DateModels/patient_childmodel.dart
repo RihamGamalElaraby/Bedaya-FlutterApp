@@ -128,7 +128,7 @@ class PatientChildModel {
   String? urineChemicalExPH;
   String? urineChemicalExGlucose;
   String? urineChemicalExKetone;
-  String? urineChemicalExHemoglobin;
+  //String? urineChemicalExHemoglobin;
   String? urineChemicalExLeukocyte;
   String? urineChemicalExSpecificgravity;
   String? urineChemicalExDensity; //12
@@ -360,7 +360,7 @@ class PatientChildModel {
     this.urineChemicalExPH,
     this.urineChemicalExGlucose,
     this.urineChemicalExKetone,
-    this.urineChemicalExHemoglobin,
+    //this.urineChemicalExHemoglobin,
     this.urineChemicalExLeukocyte,
     this.urineChemicalExSpecificgravity,
     this.urineChemicalExDensity,
@@ -601,7 +601,7 @@ class PatientChildModel {
           urineChemicalExNitrite: json["urineChemicalExNitrite"],
           urineChemicalExLeukocyte: json["urineChemicalExLeukocyte"],
           urineChemicalExKetone: json["urineChemicalExKetone"],
-          urineChemicalExHemoglobin: json["urineChemicalExHemoglobin"],
+          //urineChemicalExHemoglobin: json["urineChemicalExHemoglobin"],
           urineChemicalExGlucose: json["urineChemicalExGlucose"],
           urineChemicalExDensity: json["urineChemicalExDensity"],
           urineChemicalExBlood: json["urineChemicalExBlood"],
@@ -847,7 +847,7 @@ class PatientChildModel {
       "urineChemicalExNitrite": urineChemicalExNitrite,
       "urineChemicalExLeukocyte": urineChemicalExLeukocyte,
       "urineChemicalExKetone": urineChemicalExKetone,
-      "urineChemicalExHemoglobin": urineChemicalExHemoglobin,
+      //"urineChemicalExHemoglobin": urineChemicalExHemoglobin,
       "urineChemicalExGlucose": urineChemicalExGlucose,
       "urineChemicalExDensity": urineChemicalExDensity,
       "urineChemicalExBlood": urineChemicalExBlood,

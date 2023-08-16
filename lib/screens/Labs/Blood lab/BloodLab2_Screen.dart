@@ -1608,7 +1608,7 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
                       Flexible(
                           flex: 1,
                           child: defultText(
-                              data: 'Checked out :', x: 17, c: Colors.white)),
+                              data: 'Checked out Blood :', x: 17, c: Colors.white)),
                       sizedBoxWidth(width: 10),
                       Flexible(
                           flex: 1,

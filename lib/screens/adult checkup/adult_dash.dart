@@ -625,7 +625,9 @@ class _AdultDashState extends State<AdultDash> {
                                                                       icon: Icon(Icons
                                                                           .delete)),
                                                                 ),
-                                                                Expanded(child: IconButton(onPressed: () {}, icon: Icon(Icons.edit))),
+                                                                Expanded(child: IconButton(onPressed: () {
+                                                                  Navigator.pushNamed(context, adultCheckup.screenRoute,arguments: patient[index]);
+                                                                }, icon: Icon(Icons.edit))),
                                                                 Expanded(child: IconButton(onPressed: () {}, icon: Icon(Icons.smart_display))),
                                                               ],
                                                             ),

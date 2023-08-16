@@ -847,61 +847,61 @@ class _urineLabscreenState extends State<urineLabscreen>
                 ],
               ),
               sizedBoxhight(hight: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 14, 64, 15),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                        child: defultText(
-                            data: 'Hemoglobin:', c: Colors.white, x: 18),
-                      ),
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 193, 191, 191),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                        child: defultTextField(
-                          controller: urinechemicalExhemoglobin,
-                            text: 'result' ,  hight: 50, width: 250 ),
-                      ),
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 14, 64, 15),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                        child:
-                        defultText(data: '-ve', c: Colors.white, x: 18),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              sizedBoxhight(hight: 30),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Flexible(
+              //       flex: 1,
+              //       child: Container(
+              //         height: 70,
+              //         width: 350,
+              //         decoration: BoxDecoration(
+              //             color: Color.fromARGB(255, 14, 64, 15),
+              //             borderRadius:
+              //             BorderRadius.all(Radius.circular(15))),
+              //         child: Center(
+              //           child: defultText(
+              //               data: 'Hemoglobin:', c: Colors.white, x: 18),
+              //         ),
+              //       ),
+              //     ),
+              //     sizedBoxWidth(width: 20),
+              //     Flexible(
+              //       flex: 1,
+              //       child: Container(
+              //         height: 70,
+              //         width: 350,
+              //         decoration: BoxDecoration(
+              //             color: Color.fromARGB(255, 193, 191, 191),
+              //             borderRadius:
+              //             BorderRadius.all(Radius.circular(15))),
+              //         child: Center(
+              //           child: defultTextField(
+              //             controller: urinechemicalExhemoglobin,
+              //               text: 'result' ,  hight: 50, width: 250 ),
+              //         ),
+              //       ),
+              //     ),
+              //     sizedBoxWidth(width: 20),
+              //     Flexible(
+              //       flex: 1,
+              //       child: Container(
+              //         height: 70,
+              //         width: 350,
+              //         decoration: BoxDecoration(
+              //             color: Color.fromARGB(255, 14, 64, 15),
+              //             borderRadius:
+              //             BorderRadius.all(Radius.circular(15))),
+              //         child: Center(
+              //           child:
+              //           defultText(data: '-ve', c: Colors.white, x: 18),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              //sizedBoxhight(hight: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1102,7 +1102,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                         child: defultText(
-                            data: 'Amber yellow', c: Colors.white, x: 18),
+                            data: '-', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -2583,7 +2583,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                     Flexible(
                         flex: 1,
                         child: defultText(
-                            data: 'Checked out :', x: 17, c: Colors.white)),
+                            data: 'Checked out Urine :', x: 17, c: Colors.white)),
                     sizedBoxWidth(width: 10),
                     Flexible(
                         flex: 1,
@@ -2645,7 +2645,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                           patientAd.urinePhysicalExColour = urinephysicalExcolor.text ;
                           patientAd.urinePhysicalExAspect = urinephysicalExaspect.text ;
                           patientAd.urineChemicalExBlood = selectedBlood ;
-                          patientAd.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
+                          //patientAd.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
                           patientAd.urineChemicalExUrobilingen = selectedUrobilinogen ;
                           patientAd.urineChemicalExBilirubin = selectedBilirubin ;
                           patientAd.urineChemicalExProtien = selectedProtein ;
@@ -2673,7 +2673,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                           patientCh.urinePhysicalExColour = urinephysicalExcolor.text ;
                           patientCh.urinePhysicalExAspect = urinephysicalExaspect.text ;
                           patientCh.urineChemicalExBlood = selectedBlood ;
-                          patientCh.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
+                          //patientCh.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
                           patientCh.urineChemicalExUrobilingen = selectedUrobilinogen ;
                           patientCh.urineChemicalExBilirubin = selectedBilirubin ;
                           patientCh.urineChemicalExProtien = selectedProtein ;

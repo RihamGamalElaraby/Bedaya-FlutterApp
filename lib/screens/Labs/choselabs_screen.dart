@@ -1,6 +1,9 @@
 import 'package:bedaya/DateModels/patient_childmodel.dart';
 import 'package:bedaya/component/component.dart';
 import 'package:bedaya/screens/Labs/Blood%20lab/BloodLab_screen.dart';
+import 'package:bedaya/screens/Labs/SelectLab.dart';
+import 'package:bedaya/screens/Labs/labcheckin.dart';
+import 'package:bedaya/screens/Labs/labcheckout.dart';
 import 'package:bedaya/screens/Labs/urine%20lab/UrineLab_screen.dart';
 import 'package:bedaya/screens/chose%20team%20screen/chose1_screen.dart';
 import 'package:bedaya/screens/Labs/stool%20lab/stool_lab.dart';
@@ -76,7 +79,7 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                   sizedBoxhight(hight: 30),
                   Center(
                     child: Text(
-                      'Chose your team',
+                      'Chose your Location',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -95,10 +98,10 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                       Flexible(
                         child: mysignin(
                           color: Color.fromARGB(255, 1, 70, 2),
-                          title: 'Urine',
+                          title: 'Checkin',
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, urineLabscreen.screenRoute);
+                                context, LabCheckin.screenRoute);
                           },
                         ),
                       ),
@@ -106,9 +109,9 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                       Flexible(
                         child: mysignin(
                           color: Color.fromARGB(255, 1, 70, 2),
-                          title: 'Stool',
+                          title: 'CheckOut',
                           onPressed: () {
-                            Navigator.pushNamed(context, stoolLab.screenRoute);
+                            Navigator.pushNamed(context, LabCheckout.screenRoute);
                           },
                         ),
                       ),
@@ -116,16 +119,54 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                       Flexible(
                         child: mysignin(
                           color: Color.fromARGB(255, 1, 70, 2),
-                          title: 'Blood',
+                          title: 'Results',
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, bloodLabScreen.screenRoute);
+                                context, SelectLab.screenRoute);
                           },
                         ),
                       )
                     ],
                   ),
-                  sizedBoxhight(hight: 8),
+
+                 // Row(
+                 //    mainAxisAlignment: MainAxisAlignment.center,
+                 //    crossAxisAlignment: CrossAxisAlignment.center,
+                 //    children: [
+                 //      Flexible(
+                 //        child: mysignin(
+                 //          color: Color.fromARGB(255, 1, 70, 2),
+                 //          title: 'Urine',
+                 //          onPressed: () {
+                 //            Navigator.pushNamed(
+                 //                context, urineLabscreen.screenRoute);
+                 //          },
+                 //        ),
+                 //      ),
+                 //      sizedBoxWidth(width: 20),
+                 //      Flexible(
+                 //        child: mysignin(
+                 //          color: Color.fromARGB(255, 1, 70, 2),
+                 //          title: 'Stool',
+                 //          onPressed: () {
+                 //            Navigator.pushNamed(context, stoolLab.screenRoute);
+                 //          },
+                 //        ),
+                 //      ),
+                 //      sizedBoxWidth(width: 20),
+                 //      Flexible(
+                 //        child: mysignin(
+                 //          color: Color.fromARGB(255, 1, 70, 2),
+                 //          title: 'Blood',
+                 //          onPressed: () {
+                 //            Navigator.pushNamed(
+                 //                context, bloodLabScreen.screenRoute);
+                 //          },
+                 //        ),
+                 //      )
+                 //    ],
+                 //  ),
+                 //  sizedBoxhight(hight: 8),
 /////////////////////////////////////////
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -384,125 +425,136 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                     width: double.infinity,
                     height: 10,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(10)),
-                    width: 400,
-                    height: 170,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          child: Column(
-                            children: [
-                              sizedBoxhight(hight: 30),
-                              defultText(
-                                  data: 'Check in Patient', c: Colors.white),
-                              sizedBoxhight(hight: 15),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Flexible(
-                                      flex: 1,
-                                      child: defultText(
-                                          data: 'Blood', c: Colors.white)),
-                                  Flexible(
-                                      flex: 1,
-                                      child: Checkbox(
-                                          value: blood,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              blood = val!;
-                                              if (val) {
-                                                selectedLab.add("blood");
-                                              } else {
-                                                selectedLab.remove("blood");
-                                              }
-                                            });
-                                          })),
-                                  Flexible(
-                                      flex: 1,
-                                      child: defultText(
-                                          data: 'Urine', c: Colors.white)),
-                                  Flexible(
-                                      flex: 1,
-                                      child: Checkbox(
-                                          value: urine,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              urine = val!;
-                                              if (val) {
-                                                selectedLab.add("urine");
-                                              } else {
-                                                selectedLab.remove("urine");
-                                              }
-                                            });
-                                          })),
-                                  Flexible(
-                                      flex: 1,
-                                      child: defultText(
-                                          data: 'Stool', c: Colors.white)),
-                                  Flexible(
-                                      flex: 1,
-                                      child: Checkbox(
-                                          value: stool,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              stool = val!;
-                                              if (val) {
-                                                selectedLab.add("stool");
-                                              } else {
-                                                selectedLab.remove("stool");
-                                              }
-                                            });
-                                          })),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              mysignin(
-                                color: Colors.grey,
-                                title: "Done",
-                                onPressed: () {
-                                  for (int i = 0; i < selectedLab.length; i++) {
-                                    if (selectedLab[i] == "urine") {
-                                      patientAd.urineCheckIn = true;
-                                      patientCh.urineCheckIn=true;
-                                    } else if (selectedLab[i] == "stool") {
-                                      patientAd.stoolCheckIn = true;
-                                      patientCh.stoolCheckIn = true;
-                                    } else if (selectedLab[i] == "blood") {
-                                      patientAd.bloodCheckIn = true;
-                                      patientCh.bloodCheckIn = true;
-                                    }
-                                  }
-                                  MyDataBase.updatePatientAdult(patientAd);
-                                  MyDataBase.updatePatientChild(patientCh);
-                                  setState(() {
-                                    blood = false;
-                                    urine = false;
-                                    stool = false;
-                                  });
-
-                                  print(selectedLab);
-                                  selectedLab.clear();
-                                },
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.green,
+                  //       borderRadius: BorderRadius.circular(10)),
+                  //   width: 400,
+                  //   height: 170,
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     children: [
+                  //       Flexible(
+                  //         flex: 1,
+                  //         child: Column(
+                  //           children: [
+                  //             sizedBoxhight(hight: 30),
+                  //             defultText(
+                  //                 data: 'Check in Patient', c: Colors.white),
+                  //             sizedBoxhight(hight: 15),
+                  //             Row(
+                  //               mainAxisAlignment: MainAxisAlignment.center,
+                  //               crossAxisAlignment: CrossAxisAlignment.center,
+                  //               children: [
+                  //                 Flexible(
+                  //                     flex: 1,
+                  //                     child: defultText(
+                  //                         data: 'Blood', c: Colors.white)),
+                  //                 Flexible(
+                  //                     flex: 1,
+                  //                     child: Checkbox(
+                  //                         value: blood,
+                  //                         onChanged: (val) {
+                  //                           setState(() {
+                  //                             blood = val!;
+                  //                             if (val) {
+                  //                               selectedLab.add("blood");
+                  //                             } else {
+                  //                               selectedLab.remove("blood");
+                  //                             }
+                  //                           });
+                  //                         })),
+                  //                 Flexible(
+                  //                     flex: 1,
+                  //                     child: defultText(
+                  //                         data: 'Urine', c: Colors.white)),
+                  //                 Flexible(
+                  //                     flex: 1,
+                  //                     child: Checkbox(
+                  //                         value: urine,
+                  //                         onChanged: (val) {
+                  //                           setState(() {
+                  //                             urine = val!;
+                  //                             if (val) {
+                  //                               selectedLab.add("urine");
+                  //                             } else {
+                  //                               selectedLab.remove("urine");
+                  //                             }
+                  //                           });
+                  //                         })),
+                  //                 Flexible(
+                  //                     flex: 1,
+                  //                     child: defultText(
+                  //                         data: 'Stool', c: Colors.white)),
+                  //                 Flexible(
+                  //                     flex: 1,
+                  //                     child: Checkbox(
+                  //                         value: stool,
+                  //                         onChanged: (val) {
+                  //                           setState(() {
+                  //                             stool = val!;
+                  //                             if (val) {
+                  //                               selectedLab.add("stool");
+                  //                             } else {
+                  //                               selectedLab.remove("stool");
+                  //                             }
+                  //                           });
+                  //                         })),
+                  //               ],
+                  //             ),
+                  //             SizedBox(
+                  //               height: 10,
+                  //             ),
+                  //             mysignin(
+                  //               color: Colors.grey,
+                  //               title: "Done",
+                  //               onPressed: () {
+                  //                 for (int i = 0; i < selectedLab.length; i++) {
+                  //                   if (selectedLab[i] == "urine") {
+                  //                     patientAd.urineCheckIn = true;
+                  //                     patientCh.urineCheckIn=true;
+                  //                   } else if (selectedLab[i] == "stool") {
+                  //                     patientAd.stoolCheckIn = true;
+                  //                     patientCh.stoolCheckIn = true;
+                  //                   } else if (selectedLab[i] == "blood") {
+                  //                     patientAd.bloodCheckIn = true;
+                  //                     patientCh.bloodCheckIn = true;
+                  //                   }
+                  //                 }
+                  //                 MyDataBase.updatePatientAdult(patientAd);
+                  //                 MyDataBase.updatePatientChild(patientCh);
+                  //                 setState(() {
+                  //                   blood = false;
+                  //                   urine = false;
+                  //                   stool = false;
+                  //                 });
+                  //
+                  //                 print(selectedLab);
+                  //                 selectedLab.clear();
+                  //               },
+                  //             )
+                  //           ],
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
+                  //
+                  //
+                  //
+                  //
+                  // SizedBox(
+                  //   width: double.infinity,
+                  //   height: 30,
+                  // ),
+                  Divider(height: 3,thickness: 4,color: Colors.lightGreenAccent,),
                   SizedBox(
                     width: double.infinity,
-                    height: 30,
+                    height: 15,
                   ),
+                  Text("Adult Patient List",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+                  SizedBox(height: 8,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -796,12 +848,13 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                     height: 15,
                   ),
                   ///////////////////////////////////////////////////////
-                  Divider(height: 2,thickness: 2,color: Colors.lightGreenAccent,),
+                  Divider(height: 3,thickness: 4,color: Colors.lightGreenAccent,),
                   SizedBox(
                     width: double.infinity,
                     height: 15,
                   ),
-                  Text("Child Patient List"),
+                  Text("Child Patient List",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+                  SizedBox(height: 8,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -1089,7 +1142,8 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  sizedBoxhight(hight: 15),
                 ]),
               ),
             ],
