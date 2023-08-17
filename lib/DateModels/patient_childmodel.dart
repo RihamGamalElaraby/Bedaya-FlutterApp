@@ -87,6 +87,9 @@ class PatientChildModel {
   List<PharmacyModel>? drugsUnChecked;
 
   //start clinics and labs
+  String? urlUpperImage;
+  String? urlLowerImage;
+  String? urlTransImage;
 
   //clinics start
   List<String>? Cardiodiagnoses;
@@ -118,6 +121,8 @@ class PatientChildModel {
 
 //
   // urine
+  String? urineCasts;
+  String? urineEggs;
   String? urinePhysicalExColour;
   String? urinePhysicalExAspect;
   String? urineChemicalExBlood; //1
@@ -128,6 +133,7 @@ class PatientChildModel {
   String? urineChemicalExPH;
   String? urineChemicalExGlucose;
   String? urineChemicalExKetone;
+
   //String? urineChemicalExHemoglobin;
   String? urineChemicalExLeukocyte;
   String? urineChemicalExSpecificgravity;
@@ -147,6 +153,7 @@ class PatientChildModel {
 
 //stool
   String? consisteny;
+  String? Stoollabblastosyct;
   String? Stoollabblood;
   String? Stoollabmucus;
   String? Stoollabfasciola;
@@ -293,6 +300,9 @@ class PatientChildModel {
 
     // start clinics and labs
 
+    this.urlTransImage,
+    this.urlLowerImage,
+    this.urlUpperImage,
     this.bloodotherCRP,
     this.bloodotherASOT,
     this.bloodotherAlfafetoprotein,
@@ -350,6 +360,8 @@ class PatientChildModel {
     this.bloodCbcRdwcv,
 
     //blood
+    this.urineEggs,
+    this.urineCasts,
     this.urinePhysicalExAspect,
     this.urinePhysicalExColour,
     this.urineChemicalExBlood,
@@ -405,6 +417,7 @@ class PatientChildModel {
     this.surgeryTreatment,
     // clinic end
     //stool start
+    this.Stoollabblastosyct,
     this.StoollabHpylori,
     this.Stoollabfecal,
     this.StoollabEhistoliticatrophozite,
@@ -519,6 +532,10 @@ class PatientChildModel {
                   .map((e) => PharmacyModel.fromFirebase(e))),
           // start clinics and labs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+          urlLowerImage: json["urlLowerImage"],
+          urlTransImage: json["urlTransImage"],
+          urlUpperImage: json["urlUpperImage"],
+
           bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
           bloodotherAntiD: json["bloodotherAntiD"],
           bloodotherBHCG: json["bloodotherBHCG"],
@@ -578,6 +595,8 @@ class PatientChildModel {
           bloodCbcWbs: json["bloodCbcWbs"],
           //blood end
           //urine start
+          urineCasts: json["urineCasts"],
+          urineEggs: json["urineEggs"],
           urineAbnormalFindings: json["urineAbnormalFindings"] == null
               ? null
               : List<String>.from(json["urineAbnormalFindings"]),
@@ -696,6 +715,7 @@ class PatientChildModel {
           StoollabEcoli: json["StoollabEcoli"],
           StoollabEhistolitica: json["StoollabEhistolitica"],
           StoollabGiardia: json["StoollabGiardia"],
+          Stoollabblastosyct: json["Stoollabblastosyct"],
           StoollabStrongyloideslarvae: json["StoollabStrongyloideslarvae"],
           StoollabGiardiatrophozozite: json["StoollabGiardiatrophozozite"],
           StoollabEhistoliticatrophozite:
@@ -774,6 +794,10 @@ class PatientChildModel {
 
       // start clinics and labs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+      "urlUpperImage": urlUpperImage,
+      "urlTransImage": urlTransImage,
+      "urlLowerImage": urlLowerImage,
+
       "bloodotherBHCG": bloodotherBHCG,
       "bloodotherHBV": bloodotherHBV,
       "bloodotherHCV": bloodotherHCV,
@@ -830,6 +854,9 @@ class PatientChildModel {
       "bloodCbcRdwcv": bloodCbcRdwcv,
       "bloodCbcRdwsdl": bloodCbcRdwsdl,
       "bloodCbcWbs": bloodCbcWbs,
+
+      "urineEggs": urineEggs,
+      "urineCasts": urineCasts,
       "urineAbnormalFindings": urineAbnormalFindings,
       "urinePhysicalExColour": urinePhysicalExColour,
       "urinePhysicalExAspect": urinePhysicalExAspect,
@@ -899,6 +926,7 @@ class PatientChildModel {
       "Stoollabfasciola": Stoollabfasciola,
       "consisteny": consisteny,
       "Rbcscontroller": Rbcscontroller,
+      "Stoollabblastosyct": Stoollabblastosyct,
       "StoolColor": StoolColor,
       "Stoollabblood": Stoollabblood,
       "StoollabEhistolitica": StoollabEhistolitica,

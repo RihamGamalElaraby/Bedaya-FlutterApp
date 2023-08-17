@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/component/component.dart';
@@ -73,9 +72,10 @@ class _adultCheckupState extends State<adultCheckup> {
 
   bool Postgraduate = false;
 
+  bool Female = false;
   bool Male = false;
   String sex = "";
-  bool Female = false;
+
   bool married = false;
 
   TextEditingController patientNameController = TextEditingController();
@@ -112,6 +112,22 @@ class _adultCheckupState extends State<adultCheckup> {
   Widget build(BuildContext context) {
     PatientAdultModel? patientModel =
         ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
+
+    if (patientModel?.sexAdultPatient == "male") {
+      Male = true;
+      Female = false;
+    } else if (patientModel?.sexAdultPatient == "female") {
+      Male = false;
+      Female = true;
+    }
+    // bool Male = patientModel?.sexAdultPatient == "male";
+    // bool Female = patientModel?.sexAdultPatient == "female";
+    // if (patientModel?.sexAdultPatient == "male") {
+    //   Male = true;
+    // } else if (patientModel?.sexAdultPatient == "female") {
+    //   Female = true;
+    // }
+    // patientModel?.sexAdultPatient == "male" ? Male = true : Female = true;
     if (patientModel?.codeAdultPatient != null) {
       patientNameController =
           TextEditingController(text: patientModel?.nameAdultPatient);
@@ -119,14 +135,22 @@ class _adultCheckupState extends State<adultCheckup> {
           TextEditingController(text: patientModel?.occupationAdultPatient);
       codePatientController =
           TextEditingController(text: patientModel?.codeAdultPatient);
-      patientModel?.sexAdultPatient == "male" ? Male = true : Female = true;
       houseNuController = TextEditingController(
           text: patientModel?.houseNumberAdultPatient.toString());
       agePatientController =
           TextEditingController(text: patientModel?.agePatientAdult.toString());
       mobileNumController = TextEditingController(
           text: patientModel?.mobileNumberAdultPatient.toString());
-      patientModel?.maritalStatus = SlectedMartialState;
+      if(patientModel?.maritalStatus =="Single"){
+        SlectedMartialState="Single";
+      }else if(patientModel?.maritalStatus =="Widowed"){
+        SlectedMartialState="Widowed";
+      }else if(patientModel?.maritalStatus =="Divorced"){
+        SlectedMartialState="Divorced";
+      }else if(patientModel?.maritalStatus =="Married"){
+        SlectedMartialState="Married";
+      }
+      //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       childrenNumController =
           TextEditingController(text: patientModel?.childrenNumber.toString());
       ageYoungchildController =
@@ -146,39 +170,61 @@ class _adultCheckupState extends State<adultCheckup> {
       } else if (patientModel?.educationLevelAdultPatient == "Read and write") {
         Readandwrite = true;
       }
-      patientModel?.smokingAdultPatient == "Smoke"
-          ? yesSmoke = true
-          : noSmoke = true;
+
+      if (patientModel?.smokingAdultPatient == "Smoke") {
+        yesSmoke = true;
+        noSmoke = false;
+      } else if (patientModel?.smokingAdultPatient == "No smoke") {
+        yesSmoke = false;
+        noSmoke = true;
+      }
       rateSmokingController =
           TextEditingController(text: patientModel?.rateSmoking);
       typeSmokingController =
           TextEditingController(text: patientModel?.typeSmoking);
       otherHabitsSmokingController =
           TextEditingController(text: patientModel?.otherHabitsSmoking);
-      patientModel?.smokingCessationsStatus == "Smoke cessation"
-          ? yesSmokeCessation = true
-          : noSmokeCessation = true;
-      durationCessationController = TextEditingController(text: patientModel?.DurationSmokingCessations);
-      abortionNumberController = TextEditingController(text: patientModel?.abortionNumber.toString());
-      gravideNumberController = TextEditingController(text: patientModel?.gravidaNumber.toString());
-      if(patientModel?.Menstruation=="regular"){
-        regular=true;
-      }else if (patientModel?.Menstruation=="irRegular"){
-        irRegular=true;
-      }else if(patientModel?.Menstruation=="menopause"){
-        menopause=true;
+      if (patientModel?.smokingCessationsStatus == "Smoke cessation") {
+        yesSmokeCessation = true;
+        noSmokeCessation = false;
+      } else if (patientModel?.smokingCessationsStatus == "No Smoke cessation") {
+        yesSmokeCessation = false;
+        noSmokeCessation = true;
       }
-      patientModel?.contracebtion=="yes contraception" ? yesContraception=true : noContraception=true;
-      otherContraceptionController = TextEditingController(text: patientModel?.othercontracebtion);
 
-      if(patientModel?.methodContracebtion=="IUD Contraception Method"){
+      durationCessationController =
+          TextEditingController(text: patientModel?.DurationSmokingCessations);
+      abortionNumberController =
+          TextEditingController(text: patientModel?.abortionNumber.toString());
+      gravideNumberController =
+          TextEditingController(text: patientModel?.gravidaNumber.toString());
+      if (patientModel?.Menstruation == "regular") {
+        regular = true;
+      } else if (patientModel?.Menstruation == "irRegular") {
+        irRegular = true;
+      } else if (patientModel?.Menstruation == "menopause") {
+        menopause = true;
+      }
+      if (patientModel?.contracebtion == "yes contraception") {
+        yesContraception = true;
+        noContraception = false;
+      } else if (patientModel?.contracebtion == "no contraception") {
+        yesContraception = false;
+        noContraception = true;
+      }
+
+      otherContraceptionController =
+          TextEditingController(text: patientModel?.othercontracebtion);
+
+      if (patientModel?.methodContracebtion == "IUD Contraception Method") {
         iudMethod = true;
-      }else if(patientModel?.methodContracebtion=="Implant Contraception Method"){
-        implantMethod= true;
-      }else if (patientModel?.methodContracebtion=="COC Contraception Method"){
-        cocMethod=true;
+      } else if (patientModel?.methodContracebtion ==
+          "Implant Contraception Method") {
+        implantMethod = true;
+      } else if (patientModel?.methodContracebtion ==
+          "COC Contraception Method") {
+        cocMethod = true;
       }
-
     }
 
     return Scaffold(
@@ -312,34 +358,38 @@ class _adultCheckupState extends State<adultCheckup> {
                   Flexible(
                       flex: 1,
                       child: Checkbox(
-                        value: Male,
+                        value: Male ,
                         onChanged: (val) {
                           setState(() {
                             Male = val!;
                             Female = false;
                           });
+
                           if (val!) {
-                            sex = "male";
+                            patientModel?.sexAdultPatient = "male";
+                            sex="male";
                           } else {
-                            sex = "female";
+                            patientModel?.sexAdultPatient = null;
                           }
                         },
                       )),
                   sizedBoxWidth(width: 5),
                   Flexible(flex: 1, child: defultText(data: 'female')),
                   Checkbox(
-                      value: Female,
-                      onChanged: (val) {
-                        setState(() {
-                          Female = val!;
-                          Male = false;
-                        });
-                        if (val!) {
-                          sex = "female";
-                        } else {
-                          sex = "male";
-                        }
-                      }),
+                    value: Female,
+                    onChanged: (val) {
+                      setState(() {
+                        Female = val!;
+                        Male = false;
+                      });
+                      if (val!) {
+                        patientModel?.sexAdultPatient = "female";
+                        sex="female";
+                      } else {
+                        patientModel?.sexAdultPatient = null;
+                      }
+                    },
+                  ),
                   sizedBoxWidth(width: 10),
                   Flexible(flex: 1, child: defultText(data: 'House Number:')),
                   sizedBoxWidth(width: 5),
@@ -413,8 +463,10 @@ class _adultCheckupState extends State<adultCheckup> {
                               ),
                             ),
                           ).toList(),
-                          onChanged: (MartialState) => setState(
-                              () => SlectedMartialState = MartialState!)),
+                          onChanged: (MartialState) => setState(() {
+                            patientModel?.maritalStatus=MartialState;
+                            SlectedMartialState = MartialState!;
+                          } )),
                     ),
                   ),
                   sizedBoxWidth(width: 10),
@@ -472,6 +524,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
+                              patientModel?.educationLevelAdultPatient = "Illiterate";
                               educationLevel = "Illiterate";
                             }
                           })),
@@ -494,6 +547,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
+                              patientModel?.educationLevelAdultPatient = "Read and write";
                               educationLevel = "Read and write";
                             }
                           })),
@@ -514,6 +568,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
+                              patientModel?.educationLevelAdultPatient = "Primary";
                               educationLevel = "Primary";
                             }
                           })),
@@ -535,6 +590,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
+                              patientModel?.educationLevelAdultPatient = "Preparatory";
                               educationLevel = "Preparatory";
                             }
                           })),
@@ -556,6 +612,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
+                              patientModel?.educationLevelAdultPatient = "Secondary";
                               educationLevel = "Secondary";
                             }
                           })),
@@ -577,6 +634,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
+                              patientModel?.educationLevelAdultPatient = "University";
                               educationLevel = "University";
                             }
                           })),
@@ -598,6 +656,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = val!;
                             });
                             if (val!) {
+                              patientModel?.educationLevelAdultPatient = "Postgraduate";
                               educationLevel = "Postgraduate";
                             }
                           })),
@@ -643,6 +702,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               noSmoke = false;
                             });
                             if (val!) {
+                              patientModel?.smokingAdultPatient = "Smoke";
                               isSmoking = "Smoke";
                             }
                           })),
@@ -658,6 +718,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               noSmoke = val!;
                             });
                             if (val!) {
+                              patientModel?.smokingAdultPatient = "No smoke";
                               isSmoking = "No smoke";
                             }
                           })),
@@ -716,6 +777,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               noSmokeCessation = false;
                             });
                             if (val!) {
+                              patientModel?.smokingCessationsStatus = "Smoke cessation";
                               isSmokingCessationStatus = "Smoke cessation";
                             }
                           })),
@@ -735,6 +797,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               noSmokeCessation = val!;
                             });
                             if (val!) {
+                              patientModel?.smokingCessationsStatus = "No Smoke cessation";
                               isSmokingCessationStatus = "No Smoke cessation";
                             }
                           })),
@@ -774,6 +837,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               menopause = false;
                             });
                             if (val!) {
+                              patientModel?.Menstruation = "regular";
                               Menstruation = "regular";
                             }
                           })),
@@ -794,6 +858,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               menopause = false;
                             });
                             if (val!) {
+                              patientModel?.Menstruation = "irRegular";
                               Menstruation = "irRegular";
                             }
                           })),
@@ -814,6 +879,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               menopause = val!;
                             });
                             if (val!) {
+                              patientModel?.Menstruation = "menopause";
                               Menstruation = "menopause";
                             }
                           })),
@@ -861,6 +927,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               noContraception = false;
                             });
                             if (val!) {
+                              patientModel?.contracebtion = "yes contraception";
                               contraception = "yes contraception";
                             }
                           })),
@@ -880,6 +947,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               noContraception = val!;
                             });
                             if (val!) {
+                              patientModel?.contracebtion = "no contraception";
                               contraception = "no contraception";
                             }
                           })),
@@ -904,6 +972,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               cocMethod = false;
                             });
                             if (val!) {
+                              patientModel?.methodContracebtion="IUD Contraception Method";
                               contraceptionMethod = "IUD Contraception Method";
                             }
                           })),
@@ -924,6 +993,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               cocMethod = false;
                             });
                             if (val!) {
+                              patientModel?.methodContracebtion= "Implant Contraception Method";
                               contraceptionMethod =
                                   "Implant Contraception Method";
                             }
@@ -945,6 +1015,7 @@ class _adultCheckupState extends State<adultCheckup> {
                               cocMethod = val!;
                             });
                             if (val!) {
+                              patientModel?.methodContracebtion="COC Contraception Method";
                               contraceptionMethod = "COC Contraception Method";
                             }
                           })),
@@ -1034,44 +1105,53 @@ class _adultCheckupState extends State<adultCheckup> {
                       x: Colors.white,
                       title: 'Save the Edit',
                       size: 25,
-                      onPressed: (){
+                      onPressed: () {
                         int? agryoungch =
-                        int.tryParse(ageYoungchildController.text);
+                            int.tryParse(ageYoungchildController.text);
                         int? chidlnum =
-                        int.tryParse(childrenNumController.text);
+                            int.tryParse(childrenNumController.text);
                         // int? code = int.tryParse(codePatientController.text);
                         int? housn = int.tryParse(houseNuController.text);
                         int? mobilen = int.tryParse(mobileNumController.text);
                         int? agen = int.tryParse(agePatientController.text);
                         int? abortionno =
-                        int.tryParse(abortionNumberController.text);
+                            int.tryParse(abortionNumberController.text);
                         int? gravidano =
-                        int.tryParse(gravideNumberController.text);
-                        patientModel?.nameAdultPatient = patientNameController.text;
-                        patientModel?.chosenDay= selectedday;
-                        patientModel?.nameAdultPatient= patientNameController.text;
-                        patientModel?.codeAdultPatient= codePatientController.text;
-                        patientModel?.sexAdultPatient=  sex;
-                        patientModel?.houseNumberAdultPatient= housn;
-                        patientModel?.mobileNumberAdultPatient= mobilen;
-                        patientModel?.agePatientAdult= agen;
-                        patientModel?.occupationAdultPatient= occubationController.text;
-                        patientModel?.maritalStatus= SlectedMartialState;
-                        patientModel?.childrenNumber= chidlnum;
-                        patientModel?.ageOfYoungChild= agryoungch;
-                        patientModel?.educationLevelAdultPatient= educationLevel;
-                        patientModel?.smokingAdultPatient= isSmoking;
-                        patientModel?.rateSmoking= rateSmokingController.text;
-                        patientModel?.typeSmoking= typeSmokingController.text;
-                        patientModel?.otherHabitsSmoking = otherHabitsSmokingController.text;
-                        patientModel?.smokingCessationsStatus= isSmokingCessationStatus;
-                        patientModel?.DurationSmokingCessations =durationCessationController.text;
-                        patientModel?.Menstruation= Menstruation;
-                        patientModel?.gravidaNumber= gravidano;
-                        patientModel?.abortionNumber= abortionno;
-                        patientModel?.contracebtion= contraception;
-                        patientModel?.methodContracebtion= contraceptionMethod;
-                        patientModel?.othercontracebtion= otherContraceptionController.text;
+                            int.tryParse(gravideNumberController.text);
+                        patientModel?.nameAdultPatient =
+                            patientNameController.text;
+                        patientModel?.chosenDay = selectedday;
+                        patientModel?.nameAdultPatient =
+                            patientNameController.text;
+                        patientModel?.codeAdultPatient =
+                            codePatientController.text;
+                        // patientModel?.sexAdultPatient = sex==null ?  patientModel.sexAdultPatient! : sex ;
+                        patientModel?.houseNumberAdultPatient = housn;
+                        patientModel?.mobileNumberAdultPatient = mobilen;
+                        patientModel?.agePatientAdult = agen;
+                        patientModel?.occupationAdultPatient =
+                            occubationController.text;
+                        patientModel?.maritalStatus = SlectedMartialState;
+                        patientModel?.childrenNumber = chidlnum;
+                        patientModel?.ageOfYoungChild = agryoungch;
+                        // patientModel?.educationLevelAdultPatient =
+                        //     educationLevel;
+                        // patientModel?.smokingAdultPatient = isSmoking;
+                        patientModel?.rateSmoking = rateSmokingController.text;
+                        patientModel?.typeSmoking = typeSmokingController.text;
+                        patientModel?.otherHabitsSmoking =
+                            otherHabitsSmokingController.text;
+                        // patientModel?.smokingCessationsStatus =
+                        //     isSmokingCessationStatus;
+                        patientModel?.DurationSmokingCessations =
+                            durationCessationController.text;
+                        //patientModel?.Menstruation = Menstruation;
+                        patientModel?.gravidaNumber = gravidano;
+                        patientModel?.abortionNumber = abortionno;
+                        // patientModel?.contracebtion = contraception;
+                        // patientModel?.methodContracebtion = contraceptionMethod;
+                        patientModel?.othercontracebtion =
+                            otherContraceptionController.text;
                         MyDataBase.updatePatientAdult(patientModel!);
                         Navigator.pushNamed(
                             context, continueCheckupAdult.screenRoute,
@@ -1088,690 +1168,3 @@ class _adultCheckupState extends State<adultCheckup> {
     );
   }
 }
-
-//       backgroundColor: Colors.white,
-//       appBar: AppBar
-//         leading: IconButton(
-//             hoverColor: Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-//             onPressed: () {},
-//             icon: Icon(Icons.menu)),
-//         title: Text(
-//           'Bedaya',
-//           style: TextStyle(
-//             fontFamily: AutofillHints.addressState,
-//             fontSize: 24,
-//             color: Colors.white,
-//           ),
-//         ),
-//         actions: [
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Flexible(
-//                 flex: 1,
-//                 child: IconButton(
-//                     hoverColor:
-//                         Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-//                     onPressed: () {},
-//                     icon: Icon(Icons.save)),
-//               ),
-//               Flexible(
-//                 flex: 1,
-//                 child: IconButton(
-//                     hoverColor:
-//                         Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-//                     onPressed: () {},
-//                     icon: Icon(Icons.add)),
-//               ),
-//               Flexible(
-//                 flex: 1,
-//                 child: IconButton(
-//                     hoverColor:
-//                         Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-//                     onPressed: () {},
-//                     icon: Icon(Icons.search)),
-//               ),
-//               SizedBox(width: 50),
-//               Flexible(
-//                 flex: 1,
-//                 child: IconButton(
-//                     hoverColor:
-//                         Color.fromARGB(255, 31, 214, 71).withOpacity(0.3),
-//                     onPressed: () {},
-//                     icon: Icon(Icons.close)),
-//               ),
-//               SizedBox(width: 50),
-//             ],
-//           )
-//         ],
-//         backgroundColor: Color.fromARGB(255, 1, 124, 5),
-//         centerTitle: true,
-//         elevation: 50.0,
-//       ),
-//       body: Column(
-//         children: [
-//           SizedBox(
-//             height: 20,
-//           ),
-//           Center(
-//             child: Text(
-//               'Add Adult Patient',
-//               style: TextStyle(
-//                 fontSize: 20,
-//                 fontWeight: FontWeight.bold,
-//                 color: Color.fromARGB(255, 0, 0, 0),
-//               ),
-//             ),
-//           ),
-//           SizedBox(
-//             height: 20,
-//           ),
-//           Container(
-//             padding: EdgeInsets.all(10),
-//             child: Row(
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 Flexible(
-//                     flex: 2,
-//                     child: Text(
-//                       'Day1',
-//                       style: TextStyle(
-//                         fontSize: 15,
-//                         fontWeight: FontWeight.bold,
-//                         color: Color.fromARGB(255, 1, 70, 2),
-//                       ),
-//                     )),
-//                 Flexible(
-//                     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
-//                 Flexible(
-//                     flex: 2,
-//                     child: Text(
-//                       'Day2',
-//                       style: TextStyle(
-//                         fontSize: 15,
-//                         fontWeight: FontWeight.bold,
-//                         color: Color.fromARGB(255, 1, 70, 2),
-//                       ),
-//                     )),
-//                 Flexible(
-//                     flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//                 Flexible(
-//                     flex: 2,
-//                     child: Text(
-//                       'Day3',
-//                       style: TextStyle(
-//                         fontSize: 15,
-//                         fontWeight: FontWeight.bold,
-//                         color: Color.fromARGB(255, 1, 70, 2),
-//                       ),
-//                     )),
-//                 Flexible(
-//                     flex: 1, child: Checkbox(value: Day3, onChanged: (val) {})),
-//                 Flexible(
-//                     flex: 2,
-//                     child: Text(
-//                       'Day4',
-//                       style: TextStyle(
-//                         fontSize: 15,
-//                         fontWeight: FontWeight.bold,
-//                         color: Color.fromARGB(255, 1, 70, 2),
-//                       ),
-//                     )),
-//                 Flexible(
-//                     flex: 1, child: Checkbox(value: Day4, onChanged: (val) {})),
-//                 Flexible(
-//                     flex: 2,
-//                     child: Text(
-//                       'Day5',
-//                       style: TextStyle(
-//                         fontSize: 15,
-//                         fontWeight: FontWeight.bold,
-//                         color: Color.fromARGB(255, 1, 70, 2),
-//                       ),
-//                     )),
-//                 Flexible(
-//                     flex: 1, child: Checkbox(value: Day5, onChanged: (val) {})),
-//                 SizedBox(
-//                   width: 10,
-//                 ),
-//               ],
-//             ),
-//           ),
-//           SizedBox(
-//             height: 10,
-//           ),
-//           Row(
-//             mainAxisSize: MainAxisSize.max,
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Flexible(
-//                   flex: 1,
-//                   child: Text(
-//                     'Name',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               SizedBox(width: 10),
-//               Flexible(
-//                 flex: 2,
-//                 child: TextFormField(
-//                   decoration: const InputDecoration(
-//                     hintText: 'Enter Name',
-//                     filled: true,
-//                     contentPadding:
-//                         EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(10))),
-//                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Colors.green, width: 1.0),
-//                       borderRadius: BorderRadius.all(
-//                         Radius.circular(10),
-//                       ),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderSide: BorderSide(
-//                             color: Color.fromARGB(255, 9, 10, 9), width: 2.0),
-//                         borderRadius: BorderRadius.all(
-//                           Radius.circular(10),
-//                         )),
-//                   ),
-//                 ),
-//               ),
-//               sizedBoxWidth(width: 10),
-//               Flexible(
-//                 flex: 2,
-//                 child: Text(
-//                   'Code',
-//                   style: TextStyle(
-//                     fontSize: 15,
-//                     fontWeight: FontWeight.bold,
-//                     color: Color.fromARGB(255, 1, 70, 2),
-//                   ),
-//                 ),
-//               ),
-//               sizedBoxWidth(width: 10),
-//               Flexible(
-//                 flex: 2,
-//                 child: defultTextField(
-//                     text: 'code', width: double.infinity, hight: 90),
-//               )
-//             ],
-//           ),
-//           SizedBox(height: 10),
-//           Row(
-//             mainAxisSize: MainAxisSize.max,
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               SizedBox(
-//                 width: 10,
-//               ),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Male',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Male, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Female',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Female, onChanged: (val) {})),
-//               SizedBox(
-//                 width: 10,
-//               ),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'House Number:',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               SizedBox(
-//                 width: 10,
-//               ),
-//               Flexible(
-//                 child: Flexible(
-//                   flex: 2,
-//                   child: TextFormField(
-//                     decoration: const InputDecoration(
-//                       hintText: 'Enter number',
-//                       filled: true,
-//                       contentPadding:
-//                           EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-//                       border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.all(Radius.circular(10))),
-//                       enabledBorder: OutlineInputBorder(
-//                         borderSide: BorderSide(color: Colors.green, width: 1.0),
-//                         borderRadius: BorderRadius.all(
-//                           Radius.circular(10),
-//                         ),
-//                       ),
-//                       focusedBorder: OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 9, 10, 9), width: 2.0),
-//                           borderRadius: BorderRadius.all(
-//                             Radius.circular(10),
-//                           )),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(
-//                 width: 20,
-//               ),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Mobile Number:',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               SizedBox(
-//                 width: 12,
-//               ),
-//               Flexible(
-//                 flex: 2,
-//                 child: TextFormField(
-//                   decoration: const InputDecoration(
-//                     hintText: 'Mobile Number',
-//                     filled: true,
-//                     contentPadding:
-//                         EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(10))),
-//                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Colors.green, width: 1.0),
-//                       borderRadius: BorderRadius.all(
-//                         Radius.circular(10),
-//                       ),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderSide: BorderSide(
-//                             color: Color.fromARGB(255, 9, 10, 9), width: 2.0),
-//                         borderRadius: BorderRadius.all(
-//                           Radius.circular(10),
-//                         )),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 20,
-//           ),
-//           Row(
-//             mainAxisSize: MainAxisSize.max,
-//             children: [
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Occupation:',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               SizedBox(
-//                 width: 12,
-//               ),
-//               Flexible(
-//                 flex: 1,
-//                 child: TextFormField(
-//                   decoration: const InputDecoration(
-//                     hintText: 'Enter Occupation',
-//                     filled: true,
-//                     contentPadding:
-//                         EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(10))),
-//                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Colors.green, width: 1.0),
-//                       borderRadius: BorderRadius.all(
-//                         Radius.circular(10),
-//                       ),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderSide: BorderSide(
-//                             color: Color.fromARGB(255, 9, 10, 9), width: 2.0),
-//                         borderRadius: BorderRadius.all(
-//                           Radius.circular(10),
-//                         )),
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(
-//                 width: 20,
-//               ),
-//               Flexible(
-//                   child: Text(
-//                 'Marital Status:',
-//                 style: TextStyle(
-//                   fontSize: 15,
-//                   fontWeight: FontWeight.bold,
-//                   color: Color.fromARGB(255, 1, 70, 2),
-//                 ),
-//               )),
-//               Flexible(
-//                   child: Text(
-//                 'Single',
-//                 style: TextStyle(
-//                   fontSize: 15,
-//                   fontWeight: FontWeight.bold,
-//                   color: Color.fromARGB(255, 1, 70, 2),
-//                 ),
-//               )),
-//               Flexible(
-//                   flex: 2,
-//                   child: Checkbox(value: married, onChanged: (Val) {})),
-//               Flexible(
-//                   child: Text(
-//                 'Married',
-//                 style: TextStyle(
-//                   fontSize: 15,
-//                   fontWeight: FontWeight.bold,
-//                   color: Color.fromARGB(255, 1, 70, 2),
-//                 ),
-//               )),
-//               Flexible(
-//                   flex: 2,
-//                   child: Checkbox(value: married, onChanged: (Val) {})),
-//               Flexible(
-//                   child: Text(
-//                 'Divorced',
-//                 style: TextStyle(
-//                   fontSize: 15,
-//                   fontWeight: FontWeight.bold,
-//                   color: Color.fromARGB(255, 1, 70, 2),
-//                 ),
-//               )),
-//               Flexible(
-//                   flex: 2,
-//                   child: Checkbox(value: married, onChanged: (Val) {})),
-//               Flexible(
-//                   child: Text(
-//                 'Widowed',
-//                 style: TextStyle(
-//                   fontSize: 15,
-//                   fontWeight: FontWeight.bold,
-//                   color: Color.fromARGB(255, 1, 70, 2),
-//                 ),
-//               )),
-//               Flexible(
-//                   flex: 2,
-//                   child: Checkbox(value: married, onChanged: (Val) {})),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 20,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             mainAxisSize: MainAxisSize.max,
-//             children: [
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'IFMarried',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Children Number:',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               SizedBox(
-//                 width: 12,
-//               ),
-//               Flexible(
-//                 flex: 1,
-//                 child: TextFormField(
-//                   decoration: const InputDecoration(
-//                     hintText: 'Enter Number',
-//                     filled: true,
-//                     contentPadding:
-//                         EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(10))),
-//                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Colors.green, width: 1.0),
-//                       borderRadius: BorderRadius.all(
-//                         Radius.circular(10),
-//                       ),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderSide: BorderSide(
-//                             color: Color.fromARGB(255, 9, 10, 9), width: 2.0),
-//                         borderRadius: BorderRadius.all(
-//                           Radius.circular(10),
-//                         )),
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(
-//                 width: 20,
-//               ),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Age of the youngest:',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               SizedBox(
-//                 width: 20,
-//               ),
-//               Flexible(
-//                 flex: 2,
-//                 child: TextFormField(
-//                   decoration: const InputDecoration(
-//                     hintText: 'Enter Age',
-//                     filled: true,
-//                     contentPadding:
-//                         EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(10))),
-//                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Colors.green, width: 1.0),
-//                       borderRadius: BorderRadius.all(
-//                         Radius.circular(10),
-//                       ),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderSide: BorderSide(
-//                             color: Color.fromARGB(255, 9, 10, 9), width: 2.0),
-//                         borderRadius: BorderRadius.all(
-//                           Radius.circular(10),
-//                         )),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 20,
-//           ),
-//           Row(
-//             mainAxisSize: MainAxisSize.max,
-//             children: [
-//               Flexible(
-//                 flex: 2,
-//                 child: Text(
-//                   'Education Level',
-//                   style: TextStyle(
-//                     fontSize: 15,
-//                     fontWeight: FontWeight.bold,
-//                     color: Color.fromARGB(255, 1, 70, 2),
-//                   ),
-//                 ),
-//               ),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Day3',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Day3',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Day3',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Day3',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Day3',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Day3',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//               Flexible(
-//                   flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//               Flexible(
-//                   flex: 2,
-//                   child: Text(
-//                     'Day3',
-//                     style: TextStyle(
-//                       fontSize: 15,
-//                       fontWeight: FontWeight.bold,
-//                       color: Color.fromARGB(255, 1, 70, 2),
-//                     ),
-//                   )),
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// Row(
-//   mainAxisAlignment: MainAxisAlignment.center,
-//   children: [
-//     Flexible(flex: 1, child: defultText(data: 'DAY1')),
-//     Flexible(
-//         flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
-//     sizedBoxWidth(width: 10),
-//     Flexible(flex: 1, child: defultText(data: 'DAY2')),
-//     Flexible(
-//         flex: 1, child: Checkbox(value: Day2, onChanged: (val) {})),
-//     sizedBoxWidth(width: 10),
-//     Flexible(flex: 1, child: defultText(data: 'DAY3')),
-//     Flexible(
-//         flex: 1, child: Checkbox(value: Day3, onChanged: (val) {})),
-//     sizedBoxWidth(width: 10),
-//     Flexible(flex: 1, child: defultText(data: 'DAY4')),
-//     Flexible(
-//         flex: 1, child: Checkbox(value: Day4, onChanged: (val) {})),
-//     sizedBoxWidth(width: 10),
-//     Flexible(flex: 1, child: defultText(data: 'DAY5')),
-//     Flexible(
-//         flex: 1, child: Checkbox(value: Day5, onChanged: (val) {})),
-//   ],
-// ),
-
-// Flexible(flex: 1, child: defultText(data: 'Single', x: 12)),
-// Flexible(
-//     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
-// sizedBoxWidth(width: 5),
-// Flexible(flex: 1, child: defultText(data: 'Married', x: 12)),
-// Flexible(
-//     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
-// sizedBoxWidth(width: 5),
-// Flexible(flex: 1, child: defultText(data: 'Divorced', x: 12)),
-// Flexible(
-//     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),
-// sizedBoxWidth(width: 5),
-// Flexible(flex: 1, child: defultText(data: 'Widowed', x: 12)),
-// Flexible(
-//     flex: 1, child: Checkbox(value: Day1, onChanged: (val) {})),

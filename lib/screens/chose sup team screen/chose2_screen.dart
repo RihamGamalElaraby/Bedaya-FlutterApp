@@ -1,3 +1,4 @@
+import 'package:bedaya/followup/Followupchoseclnic.dart';
 import 'package:bedaya/screens/adult%20checkup/Adult_checkup.dart';
 import 'package:bedaya/screens/adult%20checkup/adult_dash.dart';
 import 'package:bedaya/screens/children%20checkup/Children_checkup.dart';
@@ -158,7 +159,7 @@ class _Chose2_ScreenState extends State<Chose2_Screen> {
                 x: Colors.white,
                 title: 'FollowUp',
                 onPressed: () {
-                  Navigator.pushNamed(context, FollowUpScreen.screenRoute);
+                  Navigator.pushNamed(context, FollowupchosseClinic.screenRoute);
                 },
               ),
             ),

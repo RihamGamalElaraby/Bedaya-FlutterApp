@@ -76,6 +76,10 @@ class _stoolLabState extends State<stoolLab> {
   bool StoolTtrichurianeg = false;
 
   String StoollabTtrichuria = '';
+  bool Stoolblastosyctpos = false;
+  bool Stoolblastosyctneg = false;
+
+  String Stoollabblastosyct= '';
 
   bool StoolHookwormpos = false;
 
@@ -1339,6 +1343,81 @@ class _stoolLabState extends State<stoolLab> {
                         color: Colors.green,
                         borderRadius: BorderRadius.all(Radius.circular(15))),
                     child: Center(
+                      child:
+                      defultText(data: 'Blastocyst hominis', c:Colors.black, x: 18),
+                    ),
+                  ),
+                ),
+                sizedBoxWidth(width: 30),
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    height: 70,
+                    width: 600,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 193, 191, 191),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        sizedBoxWidth(width: 30),
+                        Flexible(flex: 1, child: defultText(data: '+VE')),
+                        Flexible(
+                            flex: 1,
+                            child: Checkbox(
+                              value: Stoolblastosyctpos,
+                              onChanged: (val) {
+                                setState(() {
+                                  Stoolblastosyctpos = val!;
+                                  Stoolblastosyctneg = false;
+                                });
+                                if (val!) {
+                                  Stoollabblastosyct = "+VE";
+                                } else {
+                                  Stoollabblastosyct = "-VE";
+                                }
+                              },
+                            )),
+                        sizedBoxWidth(width: 20),
+                        Flexible(flex: 1, child: defultText(data: '-VE')),
+                        Flexible(
+                            flex: 1,
+                            child: Checkbox(
+                              value: Stoolblastosyctneg,
+                              onChanged: (val) {
+                                setState(() {
+                                  Stoolblastosyctneg = val!;
+                                  Stoolblastosyctpos = false;
+                                });
+                                if (val!) {
+                                  Stoollabblastosyct = "-VE";
+                                } else {
+                                  Stoollabblastosyct = "+VE";
+                                }
+                              },
+                            )),
+                        sizedBoxWidth(width: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            sizedBoxhight(hight: 30),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    height: 70,
+                    width: 350,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Center(
                       child: defultText(
                           data: 'Hook worm:', c: Colors.black, x: 18),
                     ),
@@ -2216,6 +2295,7 @@ class _stoolLabState extends State<stoolLab> {
                           patientAd.stoolCheckIn = false;
                           patientCh.stoolCheckIn=false;
                           }
+                        patientAd.Stoollabblastosyct = Stoollabblastosyct;
                           patientAd.consisteny = consisteny;
                           patientAd.Stoollabblood = Stoollabblood;
                           patientAd.Stoollabmucus = Stoollabmucus;
@@ -2261,6 +2341,7 @@ class _stoolLabState extends State<stoolLab> {
                         patientCh.StoollabEcoli = StoollabEcoli;
                         patientCh.StoollabEhistolitica = StoollabEhistolitica;
                         patientCh.StoollabGiardia = StoollabGiardia;
+                        patientCh.Stoollabblastosyct = Stoollabblastosyct;
                         patientCh.StoollabStrongyloideslarvae =
                             StoollabStrongyloideslarvae;
                         patientCh.StoollabGiardiatrophozozite =

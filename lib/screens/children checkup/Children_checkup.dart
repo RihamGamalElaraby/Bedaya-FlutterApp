@@ -1,6 +1,7 @@
 import 'package:bedaya/DateModels/patient_childmodel.dart';
 import 'package:bedaya/network/my_database.dart';
 import 'package:bedaya/screens/children%20checkup/Children_continue.dart';
+import 'package:bedaya/screens/children%20checkup/child_dash.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/widgets/my_button.dart';
@@ -108,6 +109,117 @@ class _childrenCheckupState extends State<childrenCheckup> {
 
   @override
   Widget build(BuildContext context) {
+    PatientChildModel? patientModel =
+        ModalRoute.of(context)?.settings.arguments as PatientChildModel?;
+
+    if (patientModel?.sexChildPatient == "male") {
+      Male = true;
+      Female = false;
+    } else if (patientModel?.sexChildPatient == "female") {
+      Male = false;
+      Female = true;
+    }
+
+    if (patientModel?.codeChildPatient != null) {
+      namePatient = TextEditingController(text: patientModel?.nameChildPatient);
+      codePatient = TextEditingController(text: patientModel?.codeChildPatient);
+      houseNuPatient = TextEditingController(
+          text: patientModel?.houseNuChildPatient.toString());
+      agePatient =
+          TextEditingController(text: patientModel?.ageChildPatient.toString());
+      mobileNuPatient = TextEditingController(
+          text: patientModel?.mobileNuChildPatient.toString());
+      fatherOcc =
+          TextEditingController(text: patientModel?.fatherCccubationChild);
+      if (patientModel?.fatherEduChild == "Illiterate") {
+        Illiterate = true;
+      } else if (patientModel?.fatherEduChild == "Postgraduate") {
+        Postgraduate = true;
+      } else if (patientModel?.fatherEduChild == "University") {
+        University = true;
+      } else if (patientModel?.fatherEduChild == "Secondary") {
+        Secondary = true;
+      } else if (patientModel?.fatherEduChild == "Primary") {
+        Primary = true;
+      } else if (patientModel?.fatherEduChild == "Preparatory") {
+        Preparatory = true;
+      } else if (patientModel?.fatherEduChild == "Read and write") {
+        Readandwrite = true;
+      }
+      if (patientModel?.motherEduChild == "Illiterate") {
+        IlliterateM = true;
+      } else if (patientModel?.motherEduChild == "Postgraduate") {
+        PostgraduateM = true;
+      } else if (patientModel?.motherEduChild == "University") {
+        UniversityM = true;
+      } else if (patientModel?.motherEduChild == "Secondary") {
+        SecondaryM = true;
+      } else if (patientModel?.motherEduChild == "Primary") {
+        PrimaryM = true;
+      } else if (patientModel?.motherEduChild == "Preparatory") {
+        PreparatoryM = true;
+      } else if (patientModel?.motherEduChild == "Read and write") {
+        ReadandwriteM = true;
+      }
+      orderOfBirthController =
+          TextEditingController(text: patientModel?.orderOfBirthChild);
+      if (patientModel?.birthTermChild == "fullTerm") {
+        fullTerm = true;
+        preTerm = false;
+      } else if (patientModel?.sexChildPatient == "preTerm") {
+        fullTerm = false;
+        preTerm = true;
+      }
+      preTermchild = TextEditingController(text: patientModel?.pretermEduChild);
+      if (patientModel?.weekBirthMode == "V.D") {
+        VD = true;
+        CS = false;
+      } else if (patientModel?.weekBirthMode == "C.S") {
+        VD = false;
+        CS = true;
+      }
+      ConsanguinityChild =
+          TextEditingController(text: patientModel?.consanguinityChild);
+      nicuChild = TextEditingController(text: patientModel?.nicuChild);
+      dmChild = TextEditingController(text: patientModel?.familyHistoryDMchild);
+      similarConditionChild =
+          TextEditingController(text: patientModel?.similarConditionChild);
+
+      for (int i = 0; i < patientModel!.familyHistoryChild!.length; i++) {
+        if (patientModel.familyHistoryChild![i] == "HTN") {
+          HTN = true;
+          selectedCheckboxesFamilyHistory.add("HTN");
+        } else if (patientModel.familyHistoryChild![i] == "Genetic Disease") {
+          geneticDisease = true;
+          selectedCheckboxesFamilyHistory.add("Genetic Disease");
+        }
+      }
+      MedicalController=TextEditingController(text: patientModel.pastHistMedicalChild);
+      AllergyController=TextEditingController(text: patientModel.pastHistAllergyChild);
+      ICUController=TextEditingController(text: patientModel.pastHistIcuChild);
+      SurgicalController=TextEditingController(text: patientModel.pastHistSurgicalChild);
+      BloodTransfusionController=TextEditingController(text: patientModel.pastHistBloodTransChild);
+
+      for(int i=0;i<patientModel.pastHistoryChild!.length;i++){
+        if(patientModel.pastHistoryChild![i]=="Blood Transfusion"){
+          BloodTransfusion=true;
+          selectedCheckboxesPastHistory.add("Blood Transfusion");
+        }else if(patientModel.pastHistoryChild![i]=="Surgical"){
+          Surgical=true;
+          selectedCheckboxesPastHistory.add("Surgical");
+        }else if(patientModel.pastHistoryChild![i]=="ICU"){
+          ICU=true;
+          selectedCheckboxesPastHistory.add("ICU");
+        }else if(patientModel.pastHistoryChild![i]=="Allergy"){
+          Allergy=true;
+          selectedCheckboxesPastHistory.add("Allergy");
+        }else if(patientModel.pastHistoryChild![i]=="Medical"){
+          Medical=true;
+          selectedCheckboxesPastHistory.add("Medical");
+        }
+      }
+
+    }
     return Scaffold(
       appBar: PreferredSize(
         child: appBardefult(
@@ -255,9 +367,10 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Female = false;
                           });
                           if (val!) {
+                            patientModel?.sexChildPatient = "male";
                             sexPatient = "male";
                           } else {
-                            sexPatient = "female";
+                            patientModel?.sexChildPatient = null;
                           }
                         })),
                 sizedBoxWidth(width: 5),
@@ -270,9 +383,10 @@ class _childrenCheckupState extends State<childrenCheckup> {
                         Female = val!;
                       });
                       if (val!) {
+                        patientModel?.sexChildPatient = "female";
                         sexPatient = "male";
                       } else {
-                        sexPatient = "female";
+                        patientModel?.sexChildPatient = null;
                       }
                     }),
                 sizedBoxWidth(width: 10),
@@ -334,6 +448,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Postgraduate = false;
                           });
                           if (val!) {
+                            patientModel?.fatherEduChild = "Illiterate";
                             educationLevelFather = "Illiterate";
                           }
                         })),
@@ -355,6 +470,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Postgraduate = false;
                           });
                           if (val!) {
+                            patientModel?.fatherEduChild = "Read and write";
                             educationLevelFather = "Read and write";
                           }
                         })),
@@ -375,6 +491,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Postgraduate = false;
                           });
                           if (val!) {
+                            patientModel?.fatherEduChild = "Primary";
                             educationLevelFather = "Primary";
                           }
                         })),
@@ -396,6 +513,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Postgraduate = false;
                           });
                           if (val!) {
+                            patientModel?.fatherEduChild = "Preparatory";
                             educationLevelFather = "Preparatory";
                           }
                         })),
@@ -416,6 +534,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Postgraduate = false;
                           });
                           if (val!) {
+                            patientModel?.fatherEduChild = "Secondary";
                             educationLevelFather = "Secondary";
                           }
                         })),
@@ -436,6 +555,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Postgraduate = false;
                           });
                           if (val!) {
+                            patientModel?.fatherEduChild = "University";
                             educationLevelFather = "University";
                           }
                         })),
@@ -457,6 +577,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             Postgraduate = val!;
                           });
                           if (val!) {
+                            patientModel?.fatherEduChild = "Postgraduate";
                             educationLevelFather = "Postgraduate";
                           }
                         })),
@@ -486,6 +607,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             PostgraduateM = false;
                           });
                           if (val!) {
+                            patientModel?.motherEduChild = "";
                             educationLevelMother = "Illiterate";
                           }
                         })),
@@ -507,6 +629,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             PostgraduateM = false;
                           });
                           if (val!) {
+                            patientModel?.motherEduChild = "Read and write";
                             educationLevelMother = 'Read and write';
                           }
                         })),
@@ -527,6 +650,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             PostgraduateM = false;
                           });
                           if (val!) {
+                            patientModel?.motherEduChild = "Primary";
                             educationLevelMother = "Primary";
                           }
                         })),
@@ -548,6 +672,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             PostgraduateM = false;
                           });
                           if (val!) {
+                            patientModel?.motherEduChild = "Preparatory";
                             educationLevelMother = "Preparatory";
                           }
                         })),
@@ -568,6 +693,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             PostgraduateM = false;
                           });
                           if (val!) {
+                            patientModel?.motherEduChild = "Secondary";
                             educationLevelMother = "Secondary";
                           }
                         })),
@@ -588,6 +714,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             PostgraduateM = false;
                           });
                           if (val!) {
+                            patientModel?.motherEduChild = "University";
                             educationLevelMother = "University";
                           }
                         })),
@@ -609,6 +736,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             PostgraduateM = val!;
                           });
                           if (val!) {
+                            patientModel?.motherEduChild = "Postgraduate";
                             educationLevelMother = "Postgraduate";
                           }
                         })),
@@ -642,6 +770,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             preTerm = false;
                           });
                           if (val!) {
+                            patientModel?.birthTermChild = "fullTerm";
                             termChild = "fullTerm";
                           } else {
                             termChild = "preTerm";
@@ -659,7 +788,8 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             preTerm = val!;
                           });
                           if (val!) {
-                            termChild = "Preterm";
+                            patientModel?.birthTermChild = "preTerm";
+                            termChild = "preterm";
                           } else {
                             termChild = "fullTerm";
                           }
@@ -691,6 +821,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             CS = false;
                           });
                           if (val!) {
+                            patientModel?.weekBirthMode = "V.D";
                             birthMode = "V.D";
                           } else {
                             termChild = "C.S";
@@ -709,6 +840,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                             CS = val!;
                           });
                           if (val!) {
+                            patientModel?.weekBirthMode = "C.S";
                             birthMode = "C.S";
                           } else {
                             termChild = "V.D";
@@ -1178,16 +1310,61 @@ class _childrenCheckupState extends State<childrenCheckup> {
                           pastHistMedicalChild: MedicalController.text,
                           pastHistIcuChild: ICUController.text,
                           pastHistBloodTransChild:
-                          BloodTransfusionController.text,
+                              BloodTransfusionController.text,
                           pastHistAllergyChild: AllergyController.text,
                         );
                         MyDataBase.addPatientChild(patient);
-                        Navigator.pushNamed(context, childrenContinue.screenRoute,
+                        Navigator.pushNamed(
+                            context, childrenContinue.screenRoute,
                             arguments: patient);
                       }
 
                       print("done added child");
+                    },
+                  ),
+                )
+              ],
+            ),
+            sizedBoxhight(hight: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: mysignin(
+                    color: Colors.green,
+                    x: Colors.white,
+                    title: 'Save the Edit',
+                    size: 25,
+                    onPressed: () {
+                      int? housn = int.tryParse(houseNuPatient.text);
+                      int? mobilen = int.tryParse(mobileNuPatient.text);
+                      int? agen = int.tryParse(agePatient.text);
+                      // int? abortionno = int.tryParse(abortionNumberController.text);
+                      // int? gravidano = int.tryParse(gravideNumberController.text);
+                      patientModel?.nameChildPatient = namePatient.text;
+                      patientModel?.codeChildPatient =codePatient.text;
+                      // patientModel?.sexAdultPatient = sex==null ?  patientModel.sexAdultPatient! : sex ;
+                      patientModel?.houseNuChildPatient = housn;
+                      patientModel?.mobileNuChildPatient = mobilen;
+                      patientModel?.ageChildPatient = agen;
+                      patientModel?.fatherCccubationChild = fatherOcc.text;
+                     patientModel?.orderOfBirthChild=orderOfBirthController.text;
+                     patientModel?.pretermEduChild=preTermchild.text;
+                     patientModel?.consanguinityChild=ConsanguinityChild.text;
+                      patientModel?.nicuChild=nicuChild.text;
+                      patientModel?.familyHistoryDMchild=dmChild.text;
+                      patientModel?.similarConditionChild=similarConditionChild.text;
+                      patientModel?.pastHistBloodTransChild=BloodTransfusionController.text;
+                      patientModel?.pastHistSurgicalChild=SurgicalController.text;
+                      patientModel?.pastHistAllergyChild=AllergyController.text;
+                      patientModel?.pastHistIcuChild=ICUController.text;
+                      patientModel?.pastHistMedicalChild=MedicalController.text;
 
+                      MyDataBase.updatePatientChild(patientModel!);
+                     // Navigator.pushNamed(context,ChildDash.screenRoute);
+                      Navigator.pushNamed(
+                          context, childrenContinue.screenRoute,
+                          arguments: patientModel);
                     },
                   ),
                 )

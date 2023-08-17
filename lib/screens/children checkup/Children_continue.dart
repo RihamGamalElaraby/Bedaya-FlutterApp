@@ -1,6 +1,7 @@
 import 'package:bedaya/DateModels/patient_childmodel.dart';
 import 'package:bedaya/network/my_database.dart';
 import 'package:bedaya/screens/children%20checkup/Children_checkup.dart';
+import 'package:bedaya/screens/children%20checkup/child_dash.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/component/component.dart';
@@ -2339,7 +2340,7 @@ class _childrenContinueState extends State<childrenContinue> {
 
 
 
-                    Navigator.pushNamed(context, childrenCheckup.screenRoute);
+                    Navigator.pushNamed(context, ChildDash.screenRoute);
                   },
                 ),
                 sizedBoxWidth(width: 20),

@@ -1,4 +1,5 @@
 import 'package:bedaya/DateModels/pharmacy_model.dart';
+import 'package:bedaya/screens/Labs/urine%20lab/UrineLab_screen.dart';
 
 class PatientAdultModel {
   // adult data
@@ -54,6 +55,9 @@ class PatientAdultModel {
   String? communityDevelopment; // done
   List<String>? screening; // done
   //adult end >>>>>>>>>>>>>>>>>>>>>52
+  String? urlUpperImage;
+  String? urlLowerImage;
+  String? urlTransImage;
   List<PharmacyModel>? drugsChecked;
   List<PharmacyModel>? drugsUnChecked;
 
@@ -87,6 +91,8 @@ class PatientAdultModel {
 
 //
   // urine
+  String? urineCasts;
+  String? urineEggs;
   String? urinePhysicalExColour;
   String? urinePhysicalExAspect;
   String? urineChemicalExBlood; //1
@@ -125,6 +131,7 @@ class PatientAdultModel {
   String? StoollabAscaris;
   String? StoollabTtrichuria;
   String? StoollabHookworm;
+  String? Stoollabblastosyct;
   String? StoollabHpylori;
   String? Stoollabfecal;
   String? StoollabEntrobious;
@@ -249,6 +256,9 @@ class PatientAdultModel {
     this.ReferralOfConvoyClinics,
     this.followUp,
     //personal data end
+    this.urlTransImage,
+    this.urlLowerImage,
+    this.urlUpperImage,
     this.drugsUnChecked,
     this.drugsChecked,
     //blood start
@@ -309,6 +319,8 @@ class PatientAdultModel {
     this.bloodCbcRdwcv,
 
     //blood
+    this.urineEggs,
+    this.urineCasts,
     this.urinePhysicalExAspect,
     this.urinePhysicalExColour,
     this.urineChemicalExBlood,
@@ -372,6 +384,7 @@ class PatientAdultModel {
     this.StoollabGiardia,
     this.StoollabEcoli,
     this.StoollabHookworm,
+    this.Stoollabblastosyct,
     this.StoollabTtrichuria,
     this.StoollabAscaris,
     this.Stoollabtinea,
@@ -463,6 +476,10 @@ class PatientAdultModel {
     othersFamilyHistory: json["othersFamilyHistory"],
     followUp: json["followUp"],
     // drugs
+    urlLowerImage:json["urlLowerImage"] ,
+    urlTransImage: json["urlTransImage"] ,
+    urlUpperImage: json["urlUpperImage"] ,
+
     drugsChecked: json["drugsChecked"] == null
         ? null
         : List<PharmacyModel>.from(json["drugsChecked"]
@@ -533,6 +550,8 @@ class PatientAdultModel {
     bloodCbcWbs: json["bloodCbcWbs"],
     //blood end
     //urine start
+      urineCasts:json["urineCasts"],
+      urineEggs:json["urineEggs"],
     urineAbnormalFindings: json["urineAbnormalFindings"] == null
         ? null
         : List<String>.from(json["urineAbnormalFindings"]),
@@ -643,7 +662,8 @@ class PatientAdultModel {
     Stoollabhnana: json["Stoollabhnana"],
     Stoollabtinea: json["Stoollabtinea"],
     StoollabAscaris: json["StoollabAscaris"],
-    StoollabTtrichuria: json["StoollabTtrichuria"],
+    Stoollabblastosyct: json["Stoollabblastosyct"],
+    StoollabTtrichuria: json["StoolabTtrichuria"],
     StoollabHookworm: json["StoollabHookworm"],
     StoollabHpylori: json["StoollabHpylori"],
     Stoollabfecal: json["Stoollabfecal"],
@@ -718,6 +738,10 @@ class PatientAdultModel {
       "followUp": followUp,
 
 // end >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    "urlUpperImage":urlUpperImage,
+      "urlTransImage":urlTransImage,
+      "urlLowerImage":urlLowerImage,
+
       "drugsUnChecked":drugsUnChecked?.map((v) => v.toFirebase()).toList(),
       "drugsChecked":drugsChecked?.map((v) => v.toFirebase()).toList(),
 
@@ -778,6 +802,9 @@ class PatientAdultModel {
       "bloodCbcRdwcv": bloodCbcRdwcv,
       "bloodCbcRdwsdl": bloodCbcRdwsdl,
       "bloodCbcWbs": bloodCbcWbs,
+
+      "urineEggs":urineEggs,
+      "urineCasts":urineCasts,
       "urineAbnormalFindings": urineAbnormalFindings,
       "urinePhysicalExColour": urinePhysicalExColour,
       "urinePhysicalExAspect": urinePhysicalExAspect,
@@ -830,7 +857,7 @@ class PatientAdultModel {
       "pedTreatment": pedTreatment,
       "surgerydiagnoses": surgerydiagnoses,
       "surgeryTreatment": surgeryTreatment,
-
+      "Stoollabblastosyct" :Stoollabblastosyct,
       "StoollabHpylori": StoollabHpylori,
       "Stoollabfecal": Stoollabfecal,
       "StoollabEhistoliticatrophozite": StoollabEhistoliticatrophozite,

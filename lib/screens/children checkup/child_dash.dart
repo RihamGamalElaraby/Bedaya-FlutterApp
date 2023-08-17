@@ -665,7 +665,10 @@ class _ChildDashState extends State<ChildDash> {
                                                                     Expanded(
                                                                         child: IconButton(
                                                                             onPressed:
-                                                                                () {},
+                                                                                () {
+                                                                                  Navigator.pushNamed(
+                                                                                      context, childrenCheckup.screenRoute,arguments: patient[index]);
+                                                                                },
                                                                             icon:
                                                                                 Icon(Icons.edit))),
                                                                     Expanded(

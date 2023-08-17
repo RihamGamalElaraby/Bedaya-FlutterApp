@@ -21,11 +21,11 @@ class adultCheckThird extends StatefulWidget {
 class _adultCheckThirdState extends State<adultCheckThird> {
   var formKey = GlobalKey<FormState>();
 
-  bool Day1 = false;
-  bool Day2 = false;
-  bool Day3 = false;
-  bool Day4 = false;
-  bool Day5 = false;
+  // bool Day1 = false;
+  // bool Day2 = false;
+  // bool Day3 = false;
+  // bool Day4 = false;
+  // bool Day5 = false;
 
   bool htn = false;
   bool dm = false;
@@ -131,7 +131,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
   Widget build(BuildContext context) {
     PatientAdultModel? patientModel =
         ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
-    if (patientModel?.goHome != null) {
+    if (patientModel?.tempVital != null) {
       // patientModel!.medicalPastHistory!.contains("Dm") ? dm = true : dm =false ;
       // patientModel.medicalPastHistory!.contains("RHD") ? rhd = true : rhd =false ;
       // patientModel.medicalPastHistory!.contains("HCV") ? hcv = true : hcv =false ;
@@ -164,10 +164,10 @@ class _adultCheckThirdState extends State<adultCheckThird> {
           TextEditingController(text: patientModel.otherMedicalPastHistory);
       if (patientModel.allergyPastHistory == "yes Allergy") {
         yesAllergy = true;
-        Allergy = "yes Allergy";
+        noAllergy = false;
       } else if (patientModel.allergyPastHistory == "no Allergy") {
+        yesAllergy = false;
         noAllergy = true;
-        Allergy = "no Allergy";
       }
       specifyAllergyController =
           TextEditingController(text: patientModel.specifyAllergyPastHistory);
@@ -233,6 +233,26 @@ class _adultCheckThirdState extends State<adultCheckThird> {
           selectedCheckboxesfamily.add("Other family history");
         }
       }
+      for (int i = 0;
+          i < patientModel.complexionGenerallExamination!.length;
+          i++) {
+        if (patientModel.complexionGenerallExamination![i] == "Pallor") {
+          Pallor = true;
+          selectedCheckboxesComplextion.add("Pallor");
+        } else if (patientModel.complexionGenerallExamination![i] ==
+            "Jaundice") {
+          Jaundice = true;
+          selectedCheckboxesComplextion.add("Jaundice");
+        } else if (patientModel.complexionGenerallExamination![i] ==
+            "Central") {
+          Central = true;
+          selectedCheckboxesComplextion.add("Central");
+        } else if (patientModel.complexionGenerallExamination![i] ==
+            "Peripheral") {
+          Peripheral = true;
+          selectedCheckboxesComplextion.add("Peripheral");
+        }
+      }
       Bp1Controller =
           TextEditingController(text: patientModel.BP1Vital.toString());
       mmHG1Controller =
@@ -288,15 +308,30 @@ class _adultCheckThirdState extends State<adultCheckThird> {
           selectedCheckboxesClinics.add("IM");
         }
       }
-      patientModel.followUp == "yes Follow Up"
-          ? yesFollowup = true
-          : noFollowup = true;
 
-      patientModel.goHome == "yes Go Home" ? yesGoHome = true : noGoHome = true;
+      if (patientModel.followUp == "yes Follow Up") {
+        yesFollowup = true;
+        noFollowup = false;
+      } else if (patientModel.followUp == "No Follow up") {
+        yesFollowup = false;
+        noFollowup = true;
+      }
 
-      patientModel.communityDevelopment == "yes Community Development"
-          ? yesCommdev = true
-          : noCommdev = true;
+      if (patientModel.goHome == "yes Go Home") {
+        yesGoHome = true;
+        noGoHome = false;
+      } else if (patientModel.goHome == "No Go Home") {
+        yesGoHome = false;
+        noGoHome = true;
+      }
+
+      if (patientModel.communityDevelopment == "yes Community Development") {
+        yesCommdev = true;
+        noCommdev = false;
+      } else if (patientModel.communityDevelopment == "No Community Development") {
+        yesCommdev = false;
+        noCommdev = true;
+      }
     }
 
     return Scaffold(
@@ -445,6 +480,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 noAllergy = false;
                               });
                               if (val!) {
+                                patientModel?.allergyPastHistory =
+                                    "yes Allergy";
                                 Allergy = "yes Allergy";
                               }
                             })),
@@ -464,6 +501,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 noAllergy = val!;
                               });
                               if (val!) {
+                                patientModel?.allergyPastHistory ==
+                                    "yes Allergy";
                                 Allergy = "no Allergy";
                               }
                             })),
@@ -521,6 +560,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 occasional = false;
                                 regular = false;
                                 if (val) {
+                                  patientModel?.bloodTransfusionPastHistory =
+                                      "no Blood Transfusion";
                                   bloodTransfusion = "no Blood Transfusion";
                                 }
                               });
@@ -538,6 +579,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 occasional = val!;
                                 regular = false;
                                 if (val) {
+                                  patientModel?.bloodTransfusionPastHistory =
+                                      "occasional Blood Transfusion";
                                   bloodTransfusion =
                                       "occasional Blood Transfusion";
                                 }
@@ -556,6 +599,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 occasional = false;
                                 regular = val!;
                                 if (val) {
+                                  patientModel?.bloodTransfusionPastHistory =
+                                      "regular Blood Transfusion";
                                   bloodTransfusion =
                                       "regular Blood Transfusion";
                                 }
@@ -602,6 +647,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 icu = val!;
                                 operation = false;
                                 if (val) {
+                                  patientModel?.surgicalPastHistory = "icu";
                                   surgical = "icu";
                                 }
                               });
@@ -621,6 +667,8 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                                 operation = val!;
                                 icu = false;
                                 if (val) {
+                                  patientModel?.surgicalPastHistory =
+                                      "operation";
                                   surgical = "operation";
                                 }
                               });
@@ -1679,6 +1727,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                               noFollowup = false;
                             });
                             if (val!) {
+                              patientModel?.followUp = "yes Follow Up";
                               Followup = "yes Follow Up";
                             }
                           })),
@@ -1694,6 +1743,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                               noFollowup = val!;
                             });
                             if (val!) {
+                              patientModel?.followUp = "No Follow up";
                               Followup = "No Follow up";
                             }
                           })),
@@ -1733,6 +1783,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                             noGoHome = false;
                           });
                           if (val!) {
+                            patientModel?.goHome = "yes Go Home";
                             GoHome = "yes Go Home";
                           }
                         })),
@@ -1748,6 +1799,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                             yesGoHome = false;
                           });
                           if (val!) {
+                            patientModel?.goHome = "No Go Home";
                             GoHome = "No Go Home";
                           }
                         })),
@@ -1787,6 +1839,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                             noCommdev = false;
                           });
                           if (val!) {
+                            patientModel?.communityDevelopment = "yes Community Development";
                             CommunityDevelopment = "yes Community Development";
                           }
                         })),
@@ -1802,6 +1855,7 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                             yesCommdev = false;
                           });
                           if (val!) {
+                            patientModel?.communityDevelopment = "No Community Development";
                             CommunityDevelopment = "No Community Development";
                           }
                         })),
@@ -1853,14 +1907,14 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         patientModel?.medicalPastHistory = medicalPastHistory;
                         patientModel?.otherMedicalPastHistory =
                             otherMedicalHistoryController.text;
-                        patientModel?.bloodTransfusionPastHistory =
-                            bloodTransfusion;
+                        // patientModel?.bloodTransfusionPastHistory =
+                        //     bloodTransfusion;
                         patientModel?.durationBloodTransfusionPastHistory =
                             durationBloodTransfusionController.text;
-                        patientModel?.allergyPastHistory = Allergy;
+                        // patientModel?.allergyPastHistory = Allergy;
                         patientModel?.specifyAllergyPastHistory =
                             specifyAllergyController.text;
-                        patientModel?.surgicalPastHistory = surgical;
+                        //patientModel?.surgicalPastHistory = surgical;
                         patientModel?.operationSurgicalPastHistory =
                             operationSurgicalController.text;
                         patientModel?.drugsOfChronicDiseases =
@@ -1881,9 +1935,14 @@ class _adultCheckThirdState extends State<adultCheckThird> {
                         patientModel?.screening =
                             screening; // gameddddddddddd عاوزة اجرب انا ويتتتتتتتتتتتتتت
                         patientModel?.ReferralOfConvoyClinics = clinics;
-                        patientModel?.followUp = Followup==null ? patientModel.followUp : Followup;
-                        patientModel?.goHome =  GoHome==null ? patientModel.goHome : GoHome;
-                        patientModel?.communityDevelopment = CommunityDevelopment==null ? patientModel.communityDevelopment : CommunityDevelopment;
+                        // patientModel?.followUp =
+                        //     Followup == null ? patientModel.followUp : Followup;
+                        // patientModel?.goHome =
+                        //     GoHome == null ? patientModel.goHome : GoHome;
+                        // patientModel?.communityDevelopment =
+                        //     CommunityDevelopment == null
+                        //         ? patientModel.communityDevelopment
+                        //         : CommunityDevelopment;
                         MyDataBase.updatePatientAdult(patientModel!);
                         // print("updated");
                         Navigator.pushNamed(context, AdultDash.screenRoute);

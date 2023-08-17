@@ -73,10 +73,13 @@ class _urineLabscreenState extends State<urineLabscreen>
 
   String selectedBlood = "negative";
 
-  List<String> chosenBlood = ["negative", "ca. 5-10", "ca. 50", "ca. 250"];
+  List<String> chosenBlood = [ "negative",
+    'Positive 1',
+    'Positive 2',
+    'Positive 3'];
 
-  String selectedUrobilinogen = "norm";
-  List<String> chosenUrobilinogen = ["norm", "2", "4", "8", "12"];
+  String selectedUrobilinogen = "negative";
+  List<String> chosenUrobilinogen = ["negative", "2", "4", "8", ];
 
   String selectedBilirubin = "negative";
   List<String> chosenBilirubin = [
@@ -90,7 +93,11 @@ class _urineLabscreenState extends State<urineLabscreen>
   List<String> chosenProtein = ["negative", "30", "100", "500"];
 
   String selectedNitrite = "negative";
-  List<String> chosenNitrite = ["negative", "positive"];
+  List<String> chosenNitrite = ["negative",
+    'Positive 1',
+    'Positive 2',
+    'Positive 3',
+  "Positive 4"];
 
   String selectedKetone = "negative";
   List<String> chosenKetone = [
@@ -103,18 +110,23 @@ class _urineLabscreenState extends State<urineLabscreen>
   String selectedGlucose = "negative";
   List<String> chosenGlucose = [
     "negative",
-    "norm",
-    "50",
-    "150",
-    "500",
-    ">=1000"
+    'Positive 1',
+    'Positive 2',
+    'Positive 3',
+    'Positive 4',
+
   ];
 
   String selectedPH = "5";
   List<String> chosenPH = ["5", "6", "7", "8", "9"];
 
-  String selectedLeukocyte = "negative";
-  List<String> chosenLeukocyte = ["negative", "ca. 25", "ca. 75", "ca. 500"];
+  String selectedLeukocyte = "Positive";
+  List<String> chosenLeukocyte = [ "Positive",
+    'Positive 1',
+    'Positive 2',
+    'Positive 3',
+    'Positive 4',
+  ];
 
   String selectedDenisty = "1,000";
   List<String> chosenDenisty = [
@@ -137,6 +149,8 @@ class _urineLabscreenState extends State<urineLabscreen>
   TextEditingController urinecreat =TextEditingController();
   TextEditingController urineAlbuminCreatratio = TextEditingController();
   TextEditingController urinecomments =TextEditingController();
+  TextEditingController eggsController =TextEditingController();
+  TextEditingController castsController =TextEditingController();
 
   bool child = false;
   bool adult = false;
@@ -1384,62 +1398,62 @@ class _urineLabscreenState extends State<urineLabscreen>
                   ),
                 ],
               ),
-              sizedBoxhight(hight: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 14, 64, 15),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                        child: defultText(
-                            data: 'Specific gravity:',
-                            c: Colors.white,
-                            x: 18),
-                      ),
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 193, 191, 191),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                          child: defultTextField(
-                            controller: urinechemicalExSpecific,
-                              max: 4, text: 'result', hight: 50, width: 250)),
-                    ),
-                  ),
-                  sizedBoxWidth(width: 20),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      height: 70,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 14, 64, 15),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(15))),
-                      child: Center(
-                        child: defultText(
-                            data: '1.002-1.022', c: Colors.white, x: 18),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // sizedBoxhight(hight: 30),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Flexible(
+              //       flex: 1,
+              //       child: Container(
+              //         height: 70,
+              //         width: 350,
+              //         decoration: BoxDecoration(
+              //             color: Color.fromARGB(255, 14, 64, 15),
+              //             borderRadius:
+              //                 BorderRadius.all(Radius.circular(15))),
+              //         child: Center(
+              //           child: defultText(
+              //               data: 'Specific gravity:',
+              //               c: Colors.white,
+              //               x: 18),
+              //         ),
+              //       ),
+              //     ),
+              //     sizedBoxWidth(width: 20),
+              //     Flexible(
+              //       flex: 1,
+              //       child: Container(
+              //         height: 70,
+              //         width: 350,
+              //         decoration: BoxDecoration(
+              //             color: Color.fromARGB(255, 193, 191, 191),
+              //             borderRadius:
+              //                 BorderRadius.all(Radius.circular(15))),
+              //         child: Center(
+              //             child: defultTextField(
+              //               controller: urinechemicalExSpecific,
+              //                 max: 4, text: 'result', hight: 50, width: 250)),
+              //       ),
+              //     ),
+              //     sizedBoxWidth(width: 20),
+              //     Flexible(
+              //       flex: 1,
+              //       child: Container(
+              //         height: 70,
+              //         width: 350,
+              //         decoration: BoxDecoration(
+              //             color: Color.fromARGB(255, 14, 64, 15),
+              //             borderRadius:
+              //                 BorderRadius.all(Radius.circular(15))),
+              //         child: Center(
+              //           child: defultText(
+              //               data: '1.002-1.022', c: Colors.white, x: 18),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               sizedBoxhight(hight: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -1527,7 +1541,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               BorderRadius.all(Radius.circular(15))),
                       child: Center(
                         child: defultText(
-                            data: 'Denisty:', c: Colors.white, x: 18),
+                            data: 'Specific gravity:', c: Colors.white, x: 18),
                       ),
                     ),
                   ),
@@ -2406,7 +2420,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                     flex: 1,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.green,
+                          color: Colors.grey,
                           borderRadius: BorderRadius.circular(10)),
                       width: 800,
                       height: 60,
@@ -2432,6 +2446,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                               });
 
                             })),
+                            Flexible(child: defultTextField(text: 'Casts',width: 250,hight: 40,controller: castsController,)),
                             sizedBoxWidth(width: 10),
                             Flexible(
                                 flex: 1,
@@ -2450,6 +2465,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                                   });
 
                                 })),
+                            Flexible(child: defultTextField(text: 'Eggs',width: 250,hight: 40,controller: eggsController)),
                             sizedBoxWidth(width: 10),
                             Flexible(
                                 flex: 1,
@@ -2646,6 +2662,8 @@ class _urineLabscreenState extends State<urineLabscreen>
                           patientAd.urinePhysicalExAspect = urinephysicalExaspect.text ;
                           patientAd.urineChemicalExBlood = selectedBlood ;
                           //patientAd.urineChemicalExHemoglobin = urinechemicalExhemoglobin.text ;
+                          patientAd.urineCasts=castsController.text;
+                          patientAd.urineEggs=eggsController.text;
                           patientAd.urineChemicalExUrobilingen = selectedUrobilinogen ;
                           patientAd.urineChemicalExBilirubin = selectedBilirubin ;
                           patientAd.urineChemicalExProtien = selectedProtein ;
@@ -2653,7 +2671,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                           patientAd.urineChemicalExKetone = selectedKetone ;
                           patientAd.urineChemicalExGlucose = selectedGlucose ;
                           patientAd.urineChemicalExPH = selectedPH ;
-                          patientAd.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
+                         // patientAd.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
                           patientAd.urineChemicalExLeukocyte = selectedLeukocyte ;
                           patientAd.urineChemicalExDensity = selectedDenisty;
                           patientAd.urineMicroscopicExRBCs = urinemicroscopicdataRBCs.text ;
@@ -2681,8 +2699,10 @@ class _urineLabscreenState extends State<urineLabscreen>
                           patientCh.urineChemicalExKetone = selectedKetone ;
                           patientCh.urineChemicalExGlucose = selectedGlucose ;
                           patientCh.urineChemicalExPH = selectedPH ;
-                          patientCh.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
+                          //patientCh.urineChemicalExSpecificgravity = urinechemicalExSpecific.text ;
                           patientCh.urineChemicalExLeukocyte = selectedLeukocyte ;
+                          patientCh.urineCasts=castsController.text;
+                          patientCh.urineEggs=eggsController.text;
                           patientCh.urineChemicalExDensity = selectedDenisty;
                           patientCh.urineMicroscopicExRBCs = urinemicroscopicdataRBCs.text ;
                           patientCh.urineMicroscopicExPuscells = urinemicroscopicdatapusscells.text ;

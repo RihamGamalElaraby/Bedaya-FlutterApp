@@ -39,6 +39,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'followup/ENTFollowUpScreen.dart';
+import 'followup/Followupchoseclnic.dart';
+import 'followup/GynecologyFollowUpscreen.dart';
+import 'followup/Imfollowupscreen.dart';
+import 'followup/OphthalmologyFollowup.dart';
+import 'followup/PediatricFollowupscreen.dart';
+import 'followup/SurgeryFollowupScreen.dart';
 import 'login and register/signin_screen.dart';
 import 'screens/Labs/stool lab/stool_lab.dart';
 import 'screens/Labs/Blood lab/BloodLab2_Screen.dart';
@@ -110,7 +117,14 @@ class MyApp extends StatelessWidget {
         ChildDash.screenRoute : (context) =>  ChildDash(),
         LabCheckin.screenRoute : (context) =>  LabCheckin(),
         LabCheckout.screenRoute : (context) =>  LabCheckout(),
-        SelectLab.screenRoute : (context) =>  SelectLab()
+        SelectLab.screenRoute : (context) =>  SelectLab(),
+        FollowupchosseClinic.screenRoute : (context) =>  FollowupchosseClinic(),
+        ImFollowupScreen.screenRoute : (context) =>  ImFollowupScreen(),
+        SurgeryFollowUpscreen.screenRoute : (context) =>  SurgeryFollowUpscreen(),
+        OphthalmologyFollowupScreen.screenRoute : (context) =>  OphthalmologyFollowupScreen(),
+        PediatricFollowupscreen.screenRoute : (context) =>  PediatricFollowupscreen(),
+        ENTFollowUpscreen.screenRoute : (context) =>  ENTFollowUpscreen(),
+        GynecologyFollowUpscreen.screenRoute : (context) =>  GynecologyFollowUpscreen(),
 
 
       },
