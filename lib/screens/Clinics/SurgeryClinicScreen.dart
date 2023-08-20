@@ -565,10 +565,14 @@ class _SurgeryClinicScreenState extends State<SurgeryClinicScreen> {
                         });
                         patientAd.surgerydiagnoses=SelectedCommondiagnosesforSurgery;
                         patientAd.surgeryTreatment = SelectedTreatment;
+                        patientAd.reportsurgerydiagnoses="done";
+
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.surgerydiagnoses=SelectedCommondiagnosesforSurgery;
                         patientCh.surgeryTreatment = SelectedTreatment;
+                        patientCh.reportsurgerydiagnoses="done";
+
                         MyDataBase.updatePatientChild(patientCh);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforSurgery);
                         clearTextField(TreatmentController, surgerydiagnoseController);

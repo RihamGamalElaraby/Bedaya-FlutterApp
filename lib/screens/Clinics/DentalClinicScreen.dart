@@ -544,10 +544,12 @@ class _DentalClinicScreenState extends State<DentalClinicScreen> {
                         });
                         patientAd.Dentaldiagnoses = SelectedCommondiagnosesforDental;
                         patientAd.DentalTreatment = SelectedTreatment;
+                        patientAd.reportDentaldiagnoses="done";
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.Dentaldiagnoses = SelectedCommondiagnosesforDental;
                         patientCh.DentalTreatment = SelectedTreatment;
+                        patientCh.reportDentaldiagnoses="done";
                         MyDataBase.updatePatientChild(patientCh);
                         clearTextField(TreatmentController, dentaldiagnoseController);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforDental);

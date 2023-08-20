@@ -545,10 +545,13 @@ class _EntClinicScreenState extends State<EntClinicScreen> {
                         });
                         patientAd.entdiagnoses = SelectedCommondiagnosesforENT;
                         patientAd.entTreatment =SelectedTreatment ;
+                        patientAd.reportentdiagnoses="done";
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.entdiagnoses = SelectedCommondiagnosesforENT;
                         patientCh.entTreatment =SelectedTreatment ;
+                        patientCh.reportentdiagnoses="done";
+
                         MyDataBase.updatePatientChild(patientCh);
                         clearTextField(entdiagnoseController, TreatmentController);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforENT);

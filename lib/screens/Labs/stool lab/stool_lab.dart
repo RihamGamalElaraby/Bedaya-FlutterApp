@@ -2322,6 +2322,7 @@ class _stoolLabState extends State<stoolLab> {
                           patientAd.StoolWorm = StoolWorm.text;
                           patientAd.StoolOdour = StoolOdour.text;
                           patientAd.StoolColor = wbcscontroller.text;
+                        patientAd.reportStool="done";
                           MyDataBase.updatePatientAdult(patientAd);
                           // child
 
@@ -2352,6 +2353,7 @@ class _stoolLabState extends State<stoolLab> {
                         patientCh.StoolWorm = StoolWorm.text;
                         patientCh.StoolOdour = StoolOdour.text;
                         patientCh.StoolColor = wbcscontroller.text;
+                        patientCh.reportStool="done";
                         MyDataBase.updatePatientChild(patientCh);
                           codeController.clear();
                         Navigator.pushNamed(context, ChoseLabsScreen.screenRoute);

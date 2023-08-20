@@ -764,9 +764,11 @@ class _AddtreatmentState extends State<Addtreatment> {
                     onPressed: () {
                       patientAd.drugsChecked=checkDrug;
                       patientAd.drugsUnChecked=uncheckDrug;
+                      patientAd.reportPharma="done";
                       MyDataBase.updatePatientAdult(patientAd);
                       patientCh.drugsChecked=checkDrug;
                       patientCh.drugsUnChecked=uncheckDrug;
+                      patientCh.reportPharma="done";
                       MyDataBase.updatePatientChild(patientCh);
                     }),
                 sizedBoxhight(hight: 30),

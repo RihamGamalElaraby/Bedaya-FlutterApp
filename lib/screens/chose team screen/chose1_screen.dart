@@ -1,3 +1,4 @@
+import 'package:bedaya/reports/report_screen.dart';
 import 'package:bedaya/screens/welcome%20screen/welcomescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/screens/chat%20screens/chat_screen.dart';
@@ -110,6 +111,18 @@ class _Chose1_ScreenState extends State<Chose1_Screen> {
                   title: 'Data Base',
                   onPressed: () {
                     Navigator.pushNamed(context, Chose2_Screen.screenRoute);
+                  },
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 10,
+                ),
+                mysignin(
+                  color: Color.fromARGB(255, 1, 70, 2),
+                  x: Colors.white,
+                  title: 'Reports',
+                  onPressed: () {
+                    Navigator.pushNamed(context, ReportsScreen.screenRoute);
                   },
                 ),
                 // SizedBox(

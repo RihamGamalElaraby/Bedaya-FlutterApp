@@ -566,10 +566,13 @@ class _ClinicScreenState extends State<ClinicScreen> {
                         });
                         patientAd.imdiagnoses = SelectedCommondiagnosesforIM;
                         patientAd.imTreatment = SelectedTreatment;
+                        patientAd.reportimdiagnoses="done";
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.imdiagnoses = SelectedCommondiagnosesforIM;
                         patientCh.imTreatment = SelectedTreatment;
+                        patientCh.reportimdiagnoses="done";
+
                         MyDataBase.updatePatientChild(patientCh);
                         clearTextField(TreatmentController, ImdiagnoseController);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforIM);

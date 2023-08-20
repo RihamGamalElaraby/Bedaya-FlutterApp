@@ -563,10 +563,12 @@ class _DermaClinicScreenState extends State<DermaClinicScreen> {
                         });
                         patientAd.Dermadiagnoses = SelectedCommondiagnosesforDerma ;
                         patientAd.DermaTreatment =SelectedTreatment ;
+                        patientAd.reportDermadiagnoses="done";
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.Dermadiagnoses = SelectedCommondiagnosesforDerma ;
                         patientCh.DermaTreatment =SelectedTreatment ;
+                        patientCh.reportDermadiagnoses="done";
                         MyDataBase.updatePatientChild(patientCh);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforDerma);
                         clearTextField(TreatmentController, dermadiagnoseController);

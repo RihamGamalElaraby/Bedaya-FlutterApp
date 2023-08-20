@@ -1,3 +1,4 @@
+import 'package:bedaya/network/storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect/multiselect.dart';
@@ -16,6 +17,8 @@ class SurgeryFollowUpscreen extends StatefulWidget {
   State<SurgeryFollowUpscreen> createState() => _SurgeryClinicScreenState();
 }
 TextEditingController codeController = TextEditingController();
+TextEditingController FollowerNameController = TextEditingController();
+
 
 bool child = false;
 bool adult = false;
@@ -437,7 +440,10 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
               Container(
                   width: 250,
                   height: 70,
-                  child: defultTextField(text: 'Follower Name')),
+                  child: defultTextField(
+                      controller: FollowerNameController,
+
+                      text: 'Follower Name')),
             ],),
           ///////////////////////////////////////
           sizedBoxhight(hight: 5),
@@ -452,11 +458,13 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),) ,
-                  Row(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
+                      InkWell( onTap: (){
+                        uploadImageSurgeryTicket1G();
+                      },  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
                             Icon(Icons.photo_album),
@@ -469,6 +477,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                       SizedBox(width: 200,),
 
                       InkWell(onTap: (){
+                        uploadImageSurgeryTicket1C();
                       }, child: Container( padding: const EdgeInsets.all(10 ),
                         child:  Row(
                           children: [
@@ -496,11 +505,13 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),) ,
-                  Row(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
+                      InkWell( onTap: (){
+                        uploadImageSurgeryTicket2G();
+                      },  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
                             Icon(Icons.photo_album),
@@ -513,6 +524,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                       SizedBox(width: 200,),
 
                       InkWell(onTap: (){
+                        uploadImageSurgeryTicket2C();
                       }, child: Container( padding: const EdgeInsets.all(10 ),
                         child:  Row(
                           children: [
@@ -541,11 +553,13 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),) ,
-                  Row(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
+                      InkWell( onTap: (){
+                        uploadImagesurgerysonarreportG();
+                      },  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
                             Icon(Icons.photo_album),
@@ -557,7 +571,9 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                           ],),),),
                       SizedBox(width: 200,),
 
-                      InkWell(onTap: (){}, child: Container( padding: const EdgeInsets.all(10 ),
+                      InkWell(onTap: (){
+                        uploadImagesurgerysonarreportC();
+                      }, child: Container( padding: const EdgeInsets.all(10 ),
                         child:  Row(
                           children: [
                             Icon(Icons.photo_camera),
@@ -606,7 +622,21 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){})),
+              Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){
+                patientAd.FollowerName = FollowerNameController.text;
+                patientAd.SurgeryFollowupNeeddesicion = SelectedSurgeryFollowupNeeddesicion;
+                patientAd.SurgeryFollowupdontNeeddesicion = SelectedSurgeryFollowupdontNeeddesicion;
+                MyDataBase.updatePatientAdult(patientAd);
+                patientCh.FollowerName = FollowerNameController.text;
+                patientCh.SurgeryFollowupNeeddesicion = SelectedSurgeryFollowupNeeddesicion;
+                patientCh.SurgeryFollowupdontNeeddesicion = SelectedSurgeryFollowupdontNeeddesicion;
+                MyDataBase.updatePatientChild(patientCh);
+                FollowerNameController.clear();
+                SelectedSurgeryFollowupdontNeeddesicion.clear();
+                SelectedSurgeryFollowupNeeddesicion.clear();
+
+
+              })),
             ],),
 
         ]),),

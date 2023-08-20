@@ -2686,6 +2686,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                           patientAd.urineAlbumineAlbuminaCreateRatio = urineAlbuminCreatratio.text ;
                           patientAd.urineAbnormalFindings = ubnormalfindings ;
                           patientAd.urineAdittionalComments = urinecomments.text ;
+                          patientAd.reportUrine="done";
                           MyDataBase.updatePatientAdult(patientAd);
                           // child
                           patientCh.urinePhysicalExColour = urinephysicalExcolor.text ;
@@ -2716,6 +2717,7 @@ class _urineLabscreenState extends State<urineLabscreen>
                           patientCh.urineAlbumineAlbuminaCreateRatio = urineAlbuminCreatratio.text ;
                           patientCh.urineAbnormalFindings = ubnormalfindings ;
                           patientCh.urineAdittionalComments = urinecomments.text ;
+                          patientCh.reportUrine="done";
                           MyDataBase.updatePatientChild(patientCh);
                           Navigator.pushNamed(context, ChoseLabsScreen.screenRoute);
 

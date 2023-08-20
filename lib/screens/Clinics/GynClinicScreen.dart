@@ -567,10 +567,13 @@ class _GynClinicScreenState extends State<GynClinicScreen> {
                         });
                         patientAd.gyndiagnoses = SelectedCommondiagnosesforGyn;
                         patientAd.gynTreatment= SelectedTreatment;
+                        patientAd.reportgyndiagnoses="done";
+
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.gyndiagnoses = SelectedCommondiagnosesforGyn;
                         patientCh.gynTreatment= SelectedTreatment;
+                        patientCh.reportgyndiagnoses="done";
                         MyDataBase.updatePatientChild(patientCh);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforGyn);
                         clearTextField(TreatmentController, gyndiagnoseController);

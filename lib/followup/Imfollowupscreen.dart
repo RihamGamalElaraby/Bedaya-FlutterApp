@@ -21,6 +21,8 @@ class ImFollowupScreen extends StatefulWidget {
 }
 
 TextEditingController codeController = TextEditingController();
+TextEditingController FollowerNameController = TextEditingController();
+
 
 List<String> ImFollowupNeedCAHECKcASES = [
   'Endocrine',
@@ -454,7 +456,9 @@ class _ImFollowupScreenState extends State<ImFollowupScreen> {
               Container(
                   width: 250,
                   height: 70,
-                  child: defultTextField(text: 'Follower Name')),
+                  child: defultTextField(
+                      controller: FollowerNameController,
+                      text: 'Follower Name')),
             ],
           ),
 
@@ -653,7 +657,25 @@ class _ImFollowupScreenState extends State<ImFollowupScreen> {
             children: [
               Container(
                   child: mysignin(
-                      color: Colors.grey, title: 'Upload', onPressed: () {})),
+                      color: Colors.grey, title: 'Upload', onPressed: () {
+                        patientCh.IMfollowUPNEEDinvestigations = SelectedImFollowupNeedinvestigations ;
+                        patientCh.IMfollowUPNEEDdrugs = SelectedImFollowupNeeddrugs ;
+                        patientCh.IMfollowUPNEEDcheckup = SelectedImFollowupNeedCAHECKcASES;
+                        patientCh.FollowerName = FollowerNameController.text;
+                        MyDataBase.updatePatientChild(patientCh);
+                        patientAd.IMfollowUPNEEDinvestigations = SelectedImFollowupNeedinvestigations ;
+                        patientAd.IMfollowUPNEEDdrugs = SelectedImFollowupNeeddrugs ;
+                        patientAd.IMfollowUPNEEDcheckup = SelectedImFollowupNeedCAHECKcASES;
+                        patientAd.FollowerName = FollowerNameController.text;
+                        MyDataBase.updatePatientAdult(patientAd);
+
+                        SelectedImFollowupNeedCAHECKcASES.clear();
+                        SelectedImFollowupNeeddrugs.clear();
+                        SelectedImFollowupNeedinvestigations.clear();
+                        FollowerNameController.clear();
+
+
+                  })),
             ],
           ),
         ]),

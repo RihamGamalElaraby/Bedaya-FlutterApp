@@ -1,6 +1,26 @@
 import 'package:bedaya/DateModels/pharmacy_model.dart';
 
 class PatientChildModel {
+
+
+  List<String>?IMfollowUPNEEDcheckup;
+  List<String>?IMfollowUPNEEDdrugs;
+  List<String>?IMfollowUPNEEDinvestigations;
+  List<String>?pedfollowneedcheckup;
+  List<String>?pedfollowneedinvestigations;
+  List<String>?pedfollowneedoperations;
+  List<String>?SurgeryFollowupNeeddesicion;
+  List<String>?SurgeryFollowupdontNeeddesicion;
+  List<String>?OphthalmologyFollowupNeeddesicion;
+  List<String>?OphthalmologyFollowupdontNeeddesicion;
+  List<String>?GynFollowupNeedinvestigations;
+  List<String>?ENTFollowupNeedinvestigations;
+  List<String>?ENTFollowupNeedoperations;
+  String? OphthalmologyFollowneedglasses ;
+  String? OphthalmologyFollowneedivestigations ;
+  String? FollowerName;
+
+////////////////////
   String? idChildPatient;
   String? chosenDay;
   String? nameChildPatient;
@@ -85,11 +105,30 @@ class PatientChildModel {
 
   List<PharmacyModel>? drugsChecked;
   List<PharmacyModel>? drugsUnChecked;
-
   //start clinics and labs
   String? urlUpperImage;
   String? urlLowerImage;
   String? urlTransImage;
+
+  String? reportFollowUp;
+
+
+  String? reportUrine;
+  String? reportBlood;
+  String? reportStool;
+  String? reportPharma;
+
+  String? reportCardiodiagnoses;
+  String? reportDentaldiagnoses;
+  String? reportDermadiagnoses;
+  String? reportentdiagnoses;
+  String? reportgyndiagnoses;
+  String? reportimdiagnoses;
+  String? reportophthadiagnoses;
+  String? reportorthodiagnoses;
+  String? reportpeddiagnoses;
+  String? reportsurgerydiagnoses;
+
 
   //clinics start
   List<String>? Cardiodiagnoses;
@@ -236,6 +275,24 @@ class PatientChildModel {
   String? bloodotherASOT;
 
   PatientChildModel({
+
+    this.ENTFollowupNeedinvestigations,
+    this.ENTFollowupNeedoperations,
+    this.IMfollowUPNEEDcheckup,
+    this.IMfollowUPNEEDdrugs,
+    this.IMfollowUPNEEDinvestigations,
+    this.pedfollowneedcheckup,
+    this.pedfollowneedinvestigations,
+    this.pedfollowneedoperations,
+    this.SurgeryFollowupdontNeeddesicion,
+    this.SurgeryFollowupNeeddesicion,
+    this.OphthalmologyFollowneedglasses,
+    this.OphthalmologyFollowneedivestigations,
+    this.OphthalmologyFollowupNeeddesicion,
+    this.OphthalmologyFollowupdontNeeddesicion,
+    this.GynFollowupNeedinvestigations,
+    this.FollowerName,
+
     this.chosenDay,
     this.placeChild,
     this.goHomeChild,
@@ -297,8 +354,24 @@ class PatientChildModel {
     this.followUpChild,
     this.drugsUnChecked,
     this.drugsChecked,
-
     // start clinics and labs
+
+    this.reportFollowUp,
+    this.reportPharma,
+    this.reportBlood,
+    this.reportStool,
+    this.reportUrine,
+
+    this.reportCardiodiagnoses,
+    this.reportDentaldiagnoses,
+    this.reportDermadiagnoses,
+    this.reportentdiagnoses,
+    this.reportgyndiagnoses,
+    this.reportimdiagnoses,
+    this.reportophthadiagnoses,
+    this.reportorthodiagnoses,
+    this.reportpeddiagnoses,
+    this.reportsurgerydiagnoses,
 
     this.urlTransImage,
     this.urlLowerImage,
@@ -447,7 +520,68 @@ class PatientChildModel {
 
   PatientChildModel.fromFireStore(Map<String, dynamic> json)
       : this(
-          chosenDay: json["chosenDay"],
+    reportFollowUp: json["reportFollowUp"],
+
+    reportUrine : json["reportUrine"],
+    reportBlood:  json["reportBlood"],
+    reportPharma:  json["reportPharma"],
+    reportStool: json["reportStool"],
+
+    reportsurgerydiagnoses: json["reportsurgerydiagnoses"],
+    reportCardiodiagnoses: json["reportCardiodiagnoses"],
+    reportDentaldiagnoses: json["reportDentaldiagnoses"],
+    reportDermadiagnoses: json["reportDermadiagnoses"],
+    reportentdiagnoses: json["reportentdiagnoses"],
+    reportgyndiagnoses: json["reportgyndiagnoses"],
+    reportimdiagnoses: json["reportimdiagnoses"],
+    reportophthadiagnoses: json["reportophthadiagnoses"],
+    reportorthodiagnoses: json["reportorthodiagnoses"],
+    reportpeddiagnoses: json["reportpeddiagnoses"],
+
+
+    ENTFollowupNeedinvestigations: json["ENTFollowupNeedinvestigations"] == null
+        ? null
+        : List<String>.from(json["ENTFollowupNeedinvestigations"]),
+    ENTFollowupNeedoperations: json["ENTFollowupNeedoperations"] == null
+        ? null
+        : List<String>.from(json["ENTFollowupNeedoperations"]),
+    IMfollowUPNEEDcheckup: json["IMfollowUPNEEDcheckup"] == null
+        ? null
+        : List<String>.from(json["IMfollowUPNEEDcheckup"]),
+    IMfollowUPNEEDdrugs: json["IMfollowUPNEEDdrugs"] == null
+        ? null
+        : List<String>.from(json["IMfollowUPNEEDdrugs"]),
+    IMfollowUPNEEDinvestigations: json["IMfollowUPNEEDinvestigations"] == null
+        ? null
+        : List<String>.from(json["IMfollowUPNEEDinvestigations"]),
+    pedfollowneedcheckup: json["pedfollowneedcheckup"] == null
+        ? null
+        : List<String>.from(json["pedfollowneedcheckup"]),
+    pedfollowneedinvestigations: json["pedfollowneedinvestigations"] == null
+        ? null
+        : List<String>.from(json["pedfollowneedinvestigations"]),
+    pedfollowneedoperations: json["pedfollowneedoperations"] == null
+        ? null
+        : List<String>.from(json["pedfollowneedoperations"]),
+    SurgeryFollowupdontNeeddesicion: json["SurgeryFollowupdontNeeddesicion"] == null
+        ? null
+        : List<String>.from(json["SurgeryFollowupdontNeeddesicion"]),
+    SurgeryFollowupNeeddesicion: json["SurgeryFollowupNeeddesicion"] == null
+        ? null
+        : List<String>.from(json["SurgeryFollowupNeeddesicion"]),
+    OphthalmologyFollowupNeeddesicion: json["OphthalmologyFollowupNeeddesicion"] == null
+        ? null
+        : List<String>.from(json["OphthalmologyFollowupNeeddesicion"]),
+    OphthalmologyFollowupdontNeeddesicion: json["OphthalmologyFollowupdontNeeddesicion"] == null
+        ? null
+        : List<String>.from(json["OphthalmologyFollowupdontNeeddesicion"]),
+    GynFollowupNeedinvestigations: json["GynFollowupNeedinvestigations"] == null
+        ? null
+        : List<String>.from(json["GynFollowupNeedinvestigations"]),
+    OphthalmologyFollowneedglasses: json["OphthalmologyFollowneedglasses"],
+    OphthalmologyFollowneedivestigations: json["OphthalmologyFollowneedivestigations"],
+    FollowerName: json["FollowerName"],
+    chosenDay: json["chosenDay"],
           complaintsList: json["complaintsList"] == null
               ? null
               : List<ComplaintsChildModel>.from(json["complaintsList"]
@@ -729,6 +863,43 @@ class PatientChildModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "ENTFollowupNeedinvestigations": ENTFollowupNeedinvestigations,
+      "ENTFollowupNeedoperations": ENTFollowupNeedoperations,
+      "IMfollowUPNEEDcheckup": IMfollowUPNEEDcheckup,
+      "IMfollowUPNEEDdrugs": IMfollowUPNEEDdrugs,
+      "IMfollowUPNEEDinvestigations": IMfollowUPNEEDinvestigations,
+      "pedfollowneedcheckup": pedfollowneedcheckup,
+      "pedfollowneedinvestigations": pedfollowneedinvestigations,
+      "pedfollowneedoperations": pedfollowneedoperations,
+      "SurgeryFollowupNeeddesicion": SurgeryFollowupNeeddesicion,
+      "SurgeryFollowupdontNeeddesicion": SurgeryFollowupdontNeeddesicion,
+      "OphthalmologyFollowupNeeddesicion": OphthalmologyFollowupNeeddesicion,
+      "OphthalmologyFollowupdontNeeddesicion": OphthalmologyFollowupdontNeeddesicion,
+      "GynFollowupNeedinvestigations": GynFollowupNeedinvestigations,
+      "OphthalmologyFollowneedglasses": OphthalmologyFollowneedglasses,
+      "OphthalmologyFollowneedivestigations": OphthalmologyFollowneedivestigations,
+      "FollowerName": FollowerName,
+
+      "reportFollowUp":reportFollowUp,
+
+      "reportStool" : reportStool ,
+      "reportPharma":reportPharma,
+      "reportBlood" : reportBlood,
+      "reportUrine":reportUrine,
+
+      "reportpeddiagnoses":reportpeddiagnoses,
+      "reportorthodiagnoses":reportorthodiagnoses,
+      "reportophthadiagnoses":reportophthadiagnoses,
+      "reportimdiagnoses":reportimdiagnoses,
+      "reportgyndiagnoses":reportgyndiagnoses,
+      "reportentdiagnoses":reportentdiagnoses,
+      "reportDermadiagnoses":reportDermadiagnoses,
+      "reportDentaldiagnoses":reportDentaldiagnoses,
+      "reportCardiodiagnoses":reportCardiodiagnoses,
+      "reportsurgerydiagnoses":reportsurgerydiagnoses,
+
+
+
       "chosenDay": chosenDay,
       'complaintsList': complaintsList?.map((v) => v.toFire()).toList(),
       "placeChild": placeChild,

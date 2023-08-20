@@ -1,8 +1,9 @@
+import 'package:bedaya/followup/Imfollowupscreen.dart';
+import 'package:bedaya/network/storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect/multiselect.dart';
 import 'package:bedaya/followup/Followupchoseclnic.dart';
-
 import '../DateModels/PatientAdultModel.dart';
 import '../DateModels/patient_childmodel.dart';
 import '../component/component.dart';
@@ -19,7 +20,13 @@ class OphthalmologyFollowupScreen extends StatefulWidget {
   State<OphthalmologyFollowupScreen> createState() => _OphthalmologyFollowupScreenState();
 }
 TextEditingController codeController = TextEditingController();
-bool male = false;
+TextEditingController FollowerNameController = TextEditingController();
+
+bool glasses = false;
+String needglasses = "";
+bool investigations = false;
+String needinvestigations = "";
+
 
 List<String>  OphthalmologyFollowupNeeddesicion =
 ['Cataract','Pterygium','Chalazion (Oculoplasty)'];
@@ -435,7 +442,10 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                   Container(
                       width: 250,
                       height: 70,
-                      child: defultTextField(text: 'Follower Name')),
+                      child: defultTextField(
+                          controller: FollowerNameController,
+
+                          text: 'Follower Name')),
                 ],),
               ////////////
               sizedBoxhight(hight: 5),
@@ -450,11 +460,13 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),) ,
-                      Row(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
+                          InkWell( onTap: (){
+                            uploadImageOphthalmiarevealedophthalmiaG();
+                          },  child: Container( padding: const EdgeInsets.all(10 ),
                             child: Row(
                               children: [
                                 Icon(Icons.photo_album),
@@ -467,6 +479,7 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                           SizedBox(width: 200,),
 
                           InkWell(onTap: (){
+                            uploadImageOphthalmiarevealedophthalmiaC();
                           }, child: Container( padding: const EdgeInsets.all(10 ),
                             child:  Row(
                               children: [
@@ -514,7 +527,23 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){})),
+                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){
+                    patientAd.OphthalmologyFollowupNeeddesicion = SelectedOphthalmologyFollowupNeeddesicion;
+                    patientAd.OphthalmologyFollowupdontNeeddesicion= SelectedOphthalmologyFollowupdontNeeddesicion ;
+                    // patientAd.OphthalmologyFollowneedivestigations = needinvestigations.toString() ;
+
+                    patientAd.FollowerName = FollowerNameController.text;
+                    MyDataBase.updatePatientAdult(patientAd);
+                    patientCh.OphthalmologyFollowupNeeddesicion = SelectedOphthalmologyFollowupNeeddesicion;
+                    patientCh.OphthalmologyFollowupdontNeeddesicion= SelectedOphthalmologyFollowupdontNeeddesicion ;
+                    // patientCh.OphthalmologyFollowneedivestigations = needinvestigations.toString() ;
+                    patientCh.FollowerName = FollowerNameController.text;
+                    MyDataBase.updatePatientChild(patientCh);
+                    SelectedOphthalmologyFollowupNeeddesicion.clear();
+                    SelectedOphthalmologyFollowupdontNeeddesicion.clear();
+                    FollowerNameController.clear();
+
+                  })),
                 ],),
             ]),),
 
@@ -558,7 +587,14 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                                 Flexible(flex: 1, child: defultText(data: 'نظارات', x: 24 , c: Colors.black)),
                                 Flexible(
                                     flex: 1,
-                                    child: Checkbox(value: male, onChanged: (val) {
+                                    child: Checkbox(value: glasses, onChanged: (val)
+                                    {
+                                      setState(() {
+                                        glasses = val! ;
+                                      });
+                                      if (val!) {
+                                        needglasses = 'needglasses';
+                                      }
                                     },)),
                               ],),
                             sizedBoxhight(hight: 10),
@@ -568,7 +604,14 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                                 Flexible(flex: 1, child: defultText(data: 'Investigations',x: 24 , c: Colors.black)),
                                 Flexible(
                                     flex: 1,
-                                    child: Checkbox(value: male, onChanged: (val) {
+                                    child: Checkbox(value: investigations, onChanged: (val)
+                                    {
+                                      setState(() {
+                                        investigations = val! ;
+                                      });
+                                      if (val!) {
+                                        needinvestigations = 'needinvestigations';
+                                      }
 
                                     },)),
                               ],),

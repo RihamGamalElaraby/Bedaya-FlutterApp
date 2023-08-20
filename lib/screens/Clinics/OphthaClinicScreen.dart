@@ -562,10 +562,13 @@ class _OphthaClinicScreenState extends State<OphthaClinicScreen> {
                         });
                         patientAd.ophthadiagnoses = SelectedCommondiagnosesforOphthalmology;
                         patientAd.orthoTreatment=SelectedTreatment;
+                        patientAd.reportophthadiagnoses="done";
+
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.ophthadiagnoses = SelectedCommondiagnosesforOphthalmology;
                         patientCh.orthoTreatment=SelectedTreatment;
+                        patientCh.reportophthadiagnoses="done";
                         MyDataBase.updatePatientChild(patientCh);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforOphthalmology);
                         clearTextField(TreatmentController, ophthadiagnoseController);

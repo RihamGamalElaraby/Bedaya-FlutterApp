@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect/multiselect.dart';
 import 'package:bedaya/followup/Followupchoseclnic.dart';
-
 import '../DateModels/PatientAdultModel.dart';
 import '../DateModels/patient_childmodel.dart';
 import '../component/component.dart';
 import '../network/my_database.dart';
 import '../widgets/my_button.dart';
 import '../widgets/text_Filed.dart';
+import 'package:bedaya/network/storage.dart';
 
 class PediatricFollowupscreen extends StatefulWidget {
   static const String screenRoute = 'PediatricFollowupscreen';
@@ -19,6 +19,8 @@ class PediatricFollowupscreen extends StatefulWidget {
   State<PediatricFollowupscreen> createState() => _PediatricFollowupscreenState();
 }
 TextEditingController codeController = TextEditingController();
+TextEditingController FollowerNameController = TextEditingController();
+
 List<String>  PediatricFollowupNeedcheckup =
 ['Neurology','Nephrology','Nephrology',
 'Psychiatry & Psychology','Nutrition','Immunity','Endocrine','Cardiology','Ortho & Rehabilitation'];
@@ -440,7 +442,9 @@ class _PediatricFollowupscreenState extends State<PediatricFollowupscreen> {
                   Container(
                       width: 250,
                       height: 70,
-                      child: defultTextField(text: 'Follower Name')),
+                      child: defultTextField(
+                          controller: FollowerNameController,
+                          text: 'Follower Name')),
                 ],),
               ///////////////////////
               sizedBoxhight(hight: 5),
@@ -455,11 +459,13 @@ class _PediatricFollowupscreenState extends State<PediatricFollowupscreen> {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),) ,
-                      Row(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
+                          InkWell( onTap: (){
+                            uploadImagebirthcertificateG();
+                          },  child: Container( padding: const EdgeInsets.all(10 ),
                             child: Row(
                               children: [
                                 Icon(Icons.photo_album),
@@ -472,6 +478,7 @@ class _PediatricFollowupscreenState extends State<PediatricFollowupscreen> {
                           SizedBox(width: 200,),
 
                           InkWell(onTap: (){
+                            uploadImagebirthcertificateC();
                           }, child: Container( padding: const EdgeInsets.all(10 ),
                             child:  Row(
                               children: [
@@ -520,7 +527,25 @@ class _PediatricFollowupscreenState extends State<PediatricFollowupscreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){})),
+                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){
+                    patientCh.pedfollowneedoperations= SelectedPediatricFollowupNeedoperation ;
+                    patientCh.pedfollowneedinvestigations = SelectedPediatricFollowupNeedinvestigations ;
+                    patientCh.pedfollowneedcheckup = SelectedPediatricFollowupNeedcheckup ;
+                    patientCh.FollowerName = FollowerNameController.text;
+                    MyDataBase.updatePatientChild(patientCh);
+                    patientAd.pedfollowneedoperations= SelectedPediatricFollowupNeedoperation ;
+                    patientAd.pedfollowneedinvestigations = SelectedPediatricFollowupNeedinvestigations ;
+                    patientAd.pedfollowneedcheckup = SelectedPediatricFollowupNeedcheckup ;
+                    patientAd.FollowerName = FollowerNameController.text;
+                    MyDataBase.updatePatientAdult(patientAd);
+                    SelectedPediatricFollowupNeedoperation.clear();
+                    SelectedPediatricFollowupNeedinvestigations.clear();
+                    SelectedPediatricFollowupNeedcheckup.clear();
+                    FollowerNameController.clear();
+
+
+
+                  })),
                 ],),
 
             ]),),

@@ -31,7 +31,7 @@ List<String> ENTFollowupNeedoperations =
 ['Videopharygescopy','Temporoplasty','Temporoplasty','Excision of preauricular sinus','Tympanoplasty','FESS'];
 List<String> SelectedENTFollowupNeedoperations =[];
 
-
+TextEditingController FollowerNameController = TextEditingController();
 
 
 
@@ -431,7 +431,9 @@ class _ENTFollowUpscreenState extends State<ENTFollowUpscreen> {
                   Container(
                       width: 250,
                       height: 70,
-                      child: defultTextField(text: 'Follower Name')),
+                      child: defultTextField(
+                        controller: FollowerNameController,
+                          text: 'Follower Name')),
                 ],),
               //////////////////////////////
               sizedBoxhight(hight: 15),
@@ -466,7 +468,25 @@ class _ENTFollowUpscreenState extends State<ENTFollowUpscreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){})),
+                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){
+
+
+                    patientAd.ENTFollowupNeedoperations = SelectedENTFollowupNeedoperations ;
+                    patientAd.ENTFollowupNeedinvestigations = SelectedENTFollowupNeedinvestigations ;
+                    patientAd.FollowerName = FollowerNameController.text;
+                    MyDataBase.updatePatientAdult(patientAd);
+                    patientCh.ENTFollowupNeedoperations = SelectedENTFollowupNeedoperations ;
+                    patientCh.ENTFollowupNeedinvestigations = SelectedENTFollowupNeedinvestigations ;
+                    patientCh.FollowerName = FollowerNameController.text;
+                    MyDataBase.updatePatientChild(patientCh);
+                    SelectedENTFollowupNeedoperations.clear();
+                    SelectedENTFollowupNeedinvestigations.clear();
+                    FollowerNameController.clear();
+
+
+
+
+                  })),
                 ],),
             ]),),
     );

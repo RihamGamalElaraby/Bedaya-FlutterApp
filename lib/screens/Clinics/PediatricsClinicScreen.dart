@@ -566,10 +566,13 @@ class _PediatricsClinicScreenState extends State<PediatricsClinicScreen> {
                         });
                         patientAd.peddiagnoses=SelectedCommondiagnosesforPediatrics;
                         patientAd.pedTreatment=SelectedTreatment;
+                        patientAd.reportpeddiagnoses="done";
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.peddiagnoses=SelectedCommondiagnosesforPediatrics;
                         patientCh.pedTreatment=SelectedTreatment;
+                        patientCh.reportpeddiagnoses="done";
+
                         MyDataBase.updatePatientChild(patientCh);
                         clearTextField(peddiagnoseController, TreatmentController);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforPediatrics);

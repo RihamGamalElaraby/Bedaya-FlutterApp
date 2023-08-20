@@ -1,4 +1,5 @@
 import 'package:bedaya/followup/Followupchoseclnic.dart';
+import 'package:bedaya/network/storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect/multiselect.dart';
@@ -18,6 +19,8 @@ class GynecologyFollowUpscreen extends StatefulWidget {
   State<GynecologyFollowUpscreen> createState() => _GynecologyFollowUpscreenState();
 }
 TextEditingController codeController = TextEditingController();
+TextEditingController FollowerNameController = TextEditingController();
+
 
 List<String> GynFollowupNeedinvestigations =
 ['Transvaginal US','Doppler Umbilical','MRI pituitary','MRI contrast',
@@ -439,7 +442,9 @@ class _GynecologyFollowUpscreenState extends State<GynecologyFollowUpscreen> {
                   Container(
                       width: 250,
                       height: 70,
-                      child: defultTextField(text: 'Follower Name')),
+                      child: defultTextField(
+                        controller: FollowerNameController,
+                          text: 'Follower Name')),
                 ],),
               //////////
               sizedBoxhight(hight: 5),
@@ -454,11 +459,13 @@ class _GynecologyFollowUpscreenState extends State<GynecologyFollowUpscreen> {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),) ,
-                      Row(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          InkWell( onTap: (){},  child: Container( padding: const EdgeInsets.all(10 ),
+                          InkWell( onTap: (){
+                            uploadImagGYNWomensreportG();
+                          },  child: Container( padding: const EdgeInsets.all(10 ),
                             child: Row(
                               children: [
                                 Icon(Icons.photo_album),
@@ -471,6 +478,7 @@ class _GynecologyFollowUpscreenState extends State<GynecologyFollowUpscreen> {
                           SizedBox(width: 200,),
 
                           InkWell(onTap: (){
+                            uploadImagGYNWomensreportC();
                           }, child: Container( padding: const EdgeInsets.all(10 ),
                             child:  Row(
                               children: [
@@ -519,7 +527,18 @@ class _GynecologyFollowUpscreenState extends State<GynecologyFollowUpscreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){})),
+                  Container(child: mysignin(color: Colors.grey, title: 'Upload', onPressed: (){
+
+                    patientAd.FollowerName=FollowerNameController.text;
+                    patientAd.GynFollowupNeedinvestigations = SelectedGynFollowupNeedinvestigations ;
+                    MyDataBase.updatePatientAdult(patientAd);
+                    patientCh.FollowerName=FollowerNameController.text;
+                    patientCh.GynFollowupNeedinvestigations = SelectedGynFollowupNeedinvestigations ;
+                    MyDataBase.updatePatientChild(patientCh);
+
+                    SelectedGynFollowupNeedinvestigations.clear();
+                    FollowerNameController.clear();
+                  })),
                 ],),
             ]),),
     );

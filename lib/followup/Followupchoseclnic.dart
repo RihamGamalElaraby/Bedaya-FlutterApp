@@ -10,6 +10,7 @@ import '../DateModels/PatientAdultModel.dart';
 import '../DateModels/patient_childmodel.dart';
 import '../component/component.dart';
 import '../network/my_database.dart';
+import 'package:bedaya/screens/chose sup team screen/chose2_screen.dart';
 // import '../screens/dashboard/dashboard.dart';
 import '../network/storage.dart';
 import '../widgets/my_button.dart';
@@ -43,6 +44,9 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
             ),
           ),
         ),
+        leading:          IconButton(onPressed: () {
+          Navigator.pushNamed(context, Chose2_Screen.screenRoute) ;
+        }, icon: Icon(Icons.close)),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.print)),
           IconButton(onPressed: () {}, icon: Icon(Icons.file_download)),
@@ -536,7 +540,10 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
             mysignin(color: Colors.grey, title: 'Upload', onPressed: (){
-
+              patientAd.reportFollowUp="done";
+              MyDataBase.updatePatientAdult(patientAd);
+              patientCh.reportFollowUp="done";
+              MyDataBase.updatePatientChild(patientCh);
             }),
           ],),
           SizedBox(height: 20,),

@@ -547,10 +547,12 @@ class _OrthoClinicScreenState extends State<OrthoClinicScreen> {
                         });
                         patientAd.orthodiagnoses=SelectedCommondiagnosesforOrtho;
                         patientAd.orthoTreatment=SelectedTreatment;
+                        patientAd.reportorthodiagnoses="done";
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.orthodiagnoses=SelectedCommondiagnosesforOrtho;
                         patientCh.orthoTreatment=SelectedTreatment;
+                        patientCh.reportorthodiagnoses="done";
                         MyDataBase.updatePatientChild(patientCh);
                         clearList(SelectedTreatment, SelectedCommondiagnosesforOrtho);
                         clearTextField(TreatmentController, orthodiagnoseController);

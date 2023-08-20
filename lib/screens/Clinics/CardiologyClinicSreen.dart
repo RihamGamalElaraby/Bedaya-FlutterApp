@@ -551,10 +551,12 @@ class _CardioScreenState extends State<CardioScreen> {
                         });
                          patientAd.Cardiodiagnoses = SelectedCommondiagnosesforCardio ;
                          patientAd.CardioTreatment =  SelectedTreatment;
+                         patientAd.reportCardiodiagnoses="done";
                         MyDataBase.updatePatientAdult(patientAd);
                         // child
                         patientCh.Cardiodiagnoses = SelectedCommondiagnosesforCardio ;
                         patientCh.CardioTreatment =  SelectedTreatment;
+                        patientCh.reportCardiodiagnoses="done";
                         MyDataBase.updatePatientChild(patientCh);
                         clearTextField(TreatmentController, CardiodiagnoseController);
                         SelectedTreatment.clear() ;

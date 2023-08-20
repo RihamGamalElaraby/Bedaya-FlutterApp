@@ -1961,6 +1961,7 @@ class _bloodLabScreenState extends State<bloodLabScreen> {
                       patientAd.bloodLipidHdl = bloodLipidHdl.text;
                       patientAd.bloodLipidCholesterol =
                           bloodLipidCholesterol.text;
+                      patientAd.reportBlood="done";
                       MyDataBase.updatePatientAdult(patientAd);
                       // child
                       patientCh.bloodCbcWbs = bloodCbcWbs.text;
@@ -1990,6 +1991,7 @@ class _bloodLabScreenState extends State<bloodLabScreen> {
                       patientCh.bloodLipidHdl = bloodLipidHdl.text;
                       patientCh.bloodLipidCholesterol =
                           bloodLipidCholesterol.text;
+                      patientCh.reportBlood="done";
                       MyDataBase.updatePatientChild(patientCh);
 
                       Navigator.pushNamed(

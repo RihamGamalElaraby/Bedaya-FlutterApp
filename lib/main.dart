@@ -1,3 +1,4 @@
+import 'package:bedaya/reports/report_screen.dart';
 import 'package:bedaya/screens/Clinics/CardiologyClinicSreen.dart';
 import 'package:bedaya/screens/Clinics/DentalClinicScreen.dart';
 import 'package:bedaya/screens/Clinics/DremaClinic.Dart.dart';
@@ -125,6 +126,7 @@ class MyApp extends StatelessWidget {
         PediatricFollowupscreen.screenRoute : (context) =>  PediatricFollowupscreen(),
         ENTFollowUpscreen.screenRoute : (context) =>  ENTFollowUpscreen(),
         GynecologyFollowUpscreen.screenRoute : (context) =>  GynecologyFollowUpscreen(),
+        ReportsScreen.screenRoute : (context) => ReportsScreen(),
 
 
       },

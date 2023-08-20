@@ -2,6 +2,26 @@ import 'package:bedaya/DateModels/pharmacy_model.dart';
 import 'package:bedaya/screens/Labs/urine%20lab/UrineLab_screen.dart';
 
 class PatientAdultModel {
+  //folow up
+  List<String>? IMfollowUPNEEDcheckup;
+  List<String>? IMfollowUPNEEDdrugs;
+  List<String>? IMfollowUPNEEDinvestigations;
+  List<String>? pedfollowneedcheckup;
+  List<String>? pedfollowneedinvestigations;
+  List<String>? pedfollowneedoperations;
+  List<String>? SurgeryFollowupNeeddesicion;
+  List<String>? SurgeryFollowupdontNeeddesicion;
+  List<String>? OphthalmologyFollowupNeeddesicion;
+  List<String>? OphthalmologyFollowupdontNeeddesicion;
+  List<String>? GynFollowupNeedinvestigations;
+  List<String>? ENTFollowupNeedinvestigations;
+  List<String>? ENTFollowupNeedoperations;
+  String? OphthalmologyFollowneedglasses;
+
+  String? OphthalmologyFollowneedivestigations;
+
+  String? FollowerName;
+
   // adult data
   String? idAdultPatient;
   String? chosenDay; //done
@@ -29,7 +49,7 @@ class PatientAdultModel {
   String? methodContracebtion; // done
   String? othercontracebtion; // done
   List<ComplaintsModel>?
-  complaintsList; //*******************important            --------->>>>>>> lesa mt3mlsh
+      complaintsList; //*******************important            --------->>>>>>> lesa mt3mlsh
   List<String>? medicalPastHistory; // done
   String? otherMedicalPastHistory; // done
   String? allergyPastHistory; // done
@@ -60,6 +80,24 @@ class PatientAdultModel {
   String? urlTransImage;
   List<PharmacyModel>? drugsChecked;
   List<PharmacyModel>? drugsUnChecked;
+
+  String? reportFollowUp;
+
+  String? reportUrine;
+  String? reportBlood;
+  String? reportStool;
+  String? reportPharma;
+
+  String? reportCardiodiagnoses;
+  String? reportDentaldiagnoses;
+  String? reportDermadiagnoses;
+  String? reportentdiagnoses;
+  String? reportgyndiagnoses;
+  String? reportimdiagnoses;
+  String? reportophthadiagnoses;
+  String? reportorthodiagnoses;
+  String? reportpeddiagnoses;
+  String? reportsurgerydiagnoses;
 
   //clinics start
   List<String>? Cardiodiagnoses;
@@ -103,6 +141,7 @@ class PatientAdultModel {
   String? urineChemicalExPH;
   String? urineChemicalExGlucose;
   String? urineChemicalExKetone;
+
   //String? urineChemicalExHemoglobin;
   String? urineChemicalExLeukocyte;
   String? urineChemicalExSpecificgravity;
@@ -205,6 +244,22 @@ class PatientAdultModel {
   String? bloodotherASOT;
 
   PatientAdultModel({
+    this.ENTFollowupNeedinvestigations,
+    this.ENTFollowupNeedoperations,
+    this.IMfollowUPNEEDcheckup,
+    this.IMfollowUPNEEDdrugs,
+    this.IMfollowUPNEEDinvestigations,
+    this.pedfollowneedcheckup,
+    this.pedfollowneedinvestigations,
+    this.pedfollowneedoperations,
+    this.SurgeryFollowupdontNeeddesicion,
+    this.SurgeryFollowupNeeddesicion,
+    this.OphthalmologyFollowneedglasses,
+    this.OphthalmologyFollowneedivestigations,
+    this.OphthalmologyFollowupNeeddesicion,
+    this.OphthalmologyFollowupdontNeeddesicion,
+    this.GynFollowupNeedinvestigations,
+    this.FollowerName,
     this.goHome,
     this.communityDevelopment,
     this.screening,
@@ -256,6 +311,23 @@ class PatientAdultModel {
     this.ReferralOfConvoyClinics,
     this.followUp,
     //personal data end
+    this.reportFollowUp,
+    this.reportPharma,
+    this.reportBlood,
+    this.reportStool,
+    this.reportUrine,
+
+    this.reportCardiodiagnoses,
+    this.reportDentaldiagnoses,
+    this.reportDermadiagnoses,
+    this.reportentdiagnoses,
+    this.reportgyndiagnoses,
+    this.reportimdiagnoses,
+    this.reportophthadiagnoses,
+    this.reportorthodiagnoses,
+    this.reportpeddiagnoses,
+    this.reportsurgerydiagnoses,
+
     this.urlTransImage,
     this.urlLowerImage,
     this.urlUpperImage,
@@ -331,7 +403,7 @@ class PatientAdultModel {
     this.urineChemicalExPH,
     this.urineChemicalExGlucose,
     this.urineChemicalExKetone,
-   // this.urineChemicalExHemoglobin,
+    // this.urineChemicalExHemoglobin,
     this.urineChemicalExLeukocyte,
     this.urineChemicalExSpecificgravity,
     this.urineChemicalExDensity,
@@ -408,282 +480,390 @@ class PatientAdultModel {
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
-    BP1Vital: json["BP1Vital"],
-    mmHg1Vital: json["mmHg1Vital"],
-    hrVital: json["hrVital"],
-    tempVital: json["tempVital"],
-    randomBloodSugarVital: json["randomBloodSugarVital"],
-    o2Saturationvital: json["o2Saturationvital"],
-    familyHistory: json["familyHistory"] == null
-        ? null
-        : List<String>.from(json["familyHistory"]),
-    drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null
-        ? null
-        : List<String>.from(json["drugsOfChronicDiseases"]),
-    complexionGenerallExamination:
-    json["complexionGenerallExamination"] == null
-        ? null
-        : List<String>.from(json["complexionGenerallExamination"]),
-    ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"] == null
-        ? null
-        : List<String>.from(json["ReferralOfConvoyClinics"]),
-    medicalPastHistory: json["medicalPastHistory"] == null
-        ? null
-        : List<String>.from(json["medicalPastHistory"]),
-    screening: json["screening"] == null
-        ? null
-        : List<String>.from(json["screening"]),
-    goHome: json["goHome"],
-    communityDevelopment: json["communityDevelopment"],
-    idAdultPatient: json["idAdultPatient"],
-    chosenDay: json["chosenDay"],
-    nameAdultPatient: json["nameAdultPatient"],
-    codeAdultPatient: json["codeAdultPatient"],
-    sexAdultPatient: json["sexAdultPatient"],
-    houseNumberAdultPatient: json["houseNumberAdultPatient"],
-    mobileNumberAdultPatient: json["mobileNumberAdultPatient"],
-    agePatientAdult: json["agePatientAdult"],
-    occupationAdultPatient: json["occupationAdultPatient"],
-    maritalStatus: json["maritalStatus"],
-    childrenNumber: json["childrenNumber"],
-    ageOfYoungChild: json["ageOfYoungChild"],
-    educationLevelAdultPatient: json["educationLevelAdultPatient"],
-    smokingAdultPatient: json["smokingAdultPatient"],
-    rateSmoking: json["rateSmoking"],
-    typeSmoking: json["typeSmoking"],
-    otherHabitsSmoking: json["otherHabitsSmoking"],
-    smokingCessationsStatus: json["smokingCessationsStatus"],
-    DurationSmokingCessations: json["DurationSmokingCessations"],
-    Menstruation: json["Menstruation"],
-    gravidaNumber: json["gravidaNumber"],
-    abortionNumber: json["abortionNumber"],
-    contracebtion: json["contracebtion"],
-    methodContracebtion: json["methodContracebtion"],
-    othercontracebtion: json["othercontracebtion"],
-    complaintsList: json["complaintsList"] == null
-        ? null
-        : List<ComplaintsModel>.from(json["complaintsList"]
-        .map((e) => ComplaintsModel.fromFire(e))),
-    otherMedicalPastHistory: json["otherMedicalPastHistory"],
-    allergyPastHistory: json["allergyPastHistory"],
-    specifyAllergyPastHistory: json["specifyAllergyPastHistory"],
-    bloodTransfusionPastHistory: json["bloodTransfusionPastHistory"],
-    durationBloodTransfusionPastHistory:
-    json["durationBloodTransfusionPastHistory"],
-    surgicalPastHistory: json["surgicalPastHistory"],
-    operationSurgicalPastHistory: json["operationSurgicalPastHistory"],
-    othersDrugsOfChronicDiseases: json["othersDrugsOfChronicDiseases"],
-    othersFamilyHistory: json["othersFamilyHistory"],
-    followUp: json["followUp"],
-    // drugs
-    urlLowerImage:json["urlLowerImage"] ,
-    urlTransImage: json["urlTransImage"] ,
-    urlUpperImage: json["urlUpperImage"] ,
+    reportFollowUp: json["reportFollowUp"],
+          reportsurgerydiagnoses: json["reportsurgerydiagnoses"],
+          reportCardiodiagnoses: json["reportCardiodiagnoses"],
+          reportDentaldiagnoses: json["reportDentaldiagnoses"],
+          reportDermadiagnoses: json["reportDermadiagnoses"],
+          reportentdiagnoses: json["reportentdiagnoses"],
+          reportgyndiagnoses: json["reportgyndiagnoses"],
+          reportimdiagnoses: json["reportimdiagnoses"],
+          reportophthadiagnoses: json["reportophthadiagnoses"],
+          reportorthodiagnoses: json["reportorthodiagnoses"],
+          reportpeddiagnoses: json["reportpeddiagnoses"],
 
-    drugsChecked: json["drugsChecked"] == null
-        ? null
-        : List<PharmacyModel>.from(json["drugsChecked"]
-        .map((e) => PharmacyModel.fromFirebase(e))),
+          reportUrine: json["reportUrine"],
+          reportBlood: json["reportBlood"],
+          reportPharma: json["reportPharma"],
+          reportStool: json["reportStool"],
+          //
+          ENTFollowupNeedinvestigations:
+              json["ENTFollowupNeedinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["ENTFollowupNeedinvestigations"]),
+          ENTFollowupNeedoperations: json["ENTFollowupNeedoperations"] == null
+              ? null
+              : List<String>.from(json["ENTFollowupNeedoperations"]),
+          IMfollowUPNEEDcheckup: json["IMfollowUPNEEDcheckup"] == null
+              ? null
+              : List<String>.from(json["IMfollowUPNEEDcheckup"]),
+          IMfollowUPNEEDdrugs: json["IMfollowUPNEEDdrugs"] == null
+              ? null
+              : List<String>.from(json["IMfollowUPNEEDdrugs"]),
+          IMfollowUPNEEDinvestigations:
+              json["IMfollowUPNEEDinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["IMfollowUPNEEDinvestigations"]),
+          pedfollowneedcheckup: json["pedfollowneedcheckup"] == null
+              ? null
+              : List<String>.from(json["pedfollowneedcheckup"]),
+          pedfollowneedinvestigations:
+              json["pedfollowneedinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["pedfollowneedinvestigations"]),
+          pedfollowneedoperations: json["pedfollowneedoperations"] == null
+              ? null
+              : List<String>.from(json["pedfollowneedoperations"]),
+          SurgeryFollowupdontNeeddesicion:
+              json["SurgeryFollowupdontNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(json["SurgeryFollowupdontNeeddesicion"]),
+          SurgeryFollowupNeeddesicion:
+              json["SurgeryFollowupNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(json["SurgeryFollowupNeeddesicion"]),
+          OphthalmologyFollowupNeeddesicion:
+              json["OphthalmologyFollowupNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(
+                      json["OphthalmologyFollowupNeeddesicion"]),
+          OphthalmologyFollowupdontNeeddesicion:
+              json["OphthalmologyFollowupdontNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(
+                      json["OphthalmologyFollowupdontNeeddesicion"]),
+          GynFollowupNeedinvestigations:
+              json["GynFollowupNeedinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["GynFollowupNeedinvestigations"]),
+          OphthalmologyFollowneedglasses:
+              json["OphthalmologyFollowneedglasses"],
+          OphthalmologyFollowneedivestigations:
+              json["OphthalmologyFollowneedivestigations"],
+          FollowerName: json["FollowerName"],
 
-    drugsUnChecked: json["drugsUnChecked"] == null
-        ? null
-        : List<PharmacyModel>.from(json["drugsUnChecked"]
-        .map((e) => PharmacyModel.fromFirebase(e))),
+          //
+          BP1Vital: json["BP1Vital"],
+          mmHg1Vital: json["mmHg1Vital"],
+          hrVital: json["hrVital"],
+          tempVital: json["tempVital"],
+          randomBloodSugarVital: json["randomBloodSugarVital"],
+          o2Saturationvital: json["o2Saturationvital"],
+          familyHistory: json["familyHistory"] == null
+              ? null
+              : List<String>.from(json["familyHistory"]),
+          drugsOfChronicDiseases: json["drugsOfChronicDiseases"] == null
+              ? null
+              : List<String>.from(json["drugsOfChronicDiseases"]),
+          complexionGenerallExamination:
+              json["complexionGenerallExamination"] == null
+                  ? null
+                  : List<String>.from(json["complexionGenerallExamination"]),
+          ReferralOfConvoyClinics: json["ReferralOfConvoyClinics"] == null
+              ? null
+              : List<String>.from(json["ReferralOfConvoyClinics"]),
+          medicalPastHistory: json["medicalPastHistory"] == null
+              ? null
+              : List<String>.from(json["medicalPastHistory"]),
+          screening: json["screening"] == null
+              ? null
+              : List<String>.from(json["screening"]),
+          goHome: json["goHome"],
+          communityDevelopment: json["communityDevelopment"],
+          idAdultPatient: json["idAdultPatient"],
+          chosenDay: json["chosenDay"],
+          nameAdultPatient: json["nameAdultPatient"],
+          codeAdultPatient: json["codeAdultPatient"],
+          sexAdultPatient: json["sexAdultPatient"],
+          houseNumberAdultPatient: json["houseNumberAdultPatient"],
+          mobileNumberAdultPatient: json["mobileNumberAdultPatient"],
+          agePatientAdult: json["agePatientAdult"],
+          occupationAdultPatient: json["occupationAdultPatient"],
+          maritalStatus: json["maritalStatus"],
+          childrenNumber: json["childrenNumber"],
+          ageOfYoungChild: json["ageOfYoungChild"],
+          educationLevelAdultPatient: json["educationLevelAdultPatient"],
+          smokingAdultPatient: json["smokingAdultPatient"],
+          rateSmoking: json["rateSmoking"],
+          typeSmoking: json["typeSmoking"],
+          otherHabitsSmoking: json["otherHabitsSmoking"],
+          smokingCessationsStatus: json["smokingCessationsStatus"],
+          DurationSmokingCessations: json["DurationSmokingCessations"],
+          Menstruation: json["Menstruation"],
+          gravidaNumber: json["gravidaNumber"],
+          abortionNumber: json["abortionNumber"],
+          contracebtion: json["contracebtion"],
+          methodContracebtion: json["methodContracebtion"],
+          othercontracebtion: json["othercontracebtion"],
+          complaintsList: json["complaintsList"] == null
+              ? null
+              : List<ComplaintsModel>.from(json["complaintsList"]
+                  .map((e) => ComplaintsModel.fromFire(e))),
+          otherMedicalPastHistory: json["otherMedicalPastHistory"],
+          allergyPastHistory: json["allergyPastHistory"],
+          specifyAllergyPastHistory: json["specifyAllergyPastHistory"],
+          bloodTransfusionPastHistory: json["bloodTransfusionPastHistory"],
+          durationBloodTransfusionPastHistory:
+              json["durationBloodTransfusionPastHistory"],
+          surgicalPastHistory: json["surgicalPastHistory"],
+          operationSurgicalPastHistory: json["operationSurgicalPastHistory"],
+          othersDrugsOfChronicDiseases: json["othersDrugsOfChronicDiseases"],
+          othersFamilyHistory: json["othersFamilyHistory"],
+          followUp: json["followUp"],
+          // drugs
+          urlLowerImage: json["urlLowerImage"],
+          urlTransImage: json["urlTransImage"],
+          urlUpperImage: json["urlUpperImage"],
 
-    //blood start
-    bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
-    bloodotherAntiD: json["bloodotherAntiD"],
-    bloodotherBHCG: json["bloodotherBHCG"],
-    bloodotherHBV: json["bloodotherHBV"],
-    bloodotherHCV: json["bloodotherHCV"],
-    bloodotherPSA: json["bloodotherPSA"],
-    bloodotherRheumatoidfactor: json["bloodotherRheumatoidfactor"],
-    bloodglucoseFasting: json["bloodglucoseFasting"],
-    bloodglucoseHbA1C: json["bloodglucoseHbA1C"],
-    bloodglucosePostPrandial: json["bloodglucosePostPrandial"],
-    bloodglucoseRandom: json["bloodglucoseRandom"],
-    bloodionsCa: json["bloodionsCa"],
-    bloodionsK: json["bloodionsK"],
-    bloodionsNa: json["bloodionsNa"],
-    bloodkidneyCreatinine: json["bloodkidneyCreatinine"],
-    bloodkidneyurea: json["bloodkidneyurea"],
-    bloodkidneyUricacid: json["bloodkidneyUricacid"],
-    bloodotherASOT: json["bloodotherASOT"],
-    bloodotherCRP: json["bloodotherCRP"],
-    cbcliverAlbumin: json["cbcliverAlbumin"],
-    cbcliverAlkalinephosphatase: json["cbcliverAlkalinephosphatase"],
-    cbcliverALTGPT: json["cbcliverALTGPT"],
-    cbcliverAST: json["cbcliverAST"],
-    cbcliverDirectbilirubin: json["cbcliverDirectbilirubin"],
-    cbcliverTotalbilirubin: json["cbcliverTotalbilirubin"],
-    cbcptINR: json["cbcptINR"],
-    cbcptpercentage: json["cbcptpercentage"],
-    cbcptTime: json["cbcptTime"],
-    cbcPttresult: json["cbcPttresult"],
+          drugsChecked: json["drugsChecked"] == null
+              ? null
+              : List<PharmacyModel>.from(json["drugsChecked"]
+                  .map((e) => PharmacyModel.fromFirebase(e))),
 
-    bloodEsr: json["bloodEsr"],
-    bloodLipidCholesterol: json["bloodLipidCholesterol"],
-    bloodLipidHdl: json["bloodLipidHdl"],
-    bloodLipidLdl: json["bloodLipidLdl"],
-    bloodLipidTg: json["bloodLipidTg"],
+          drugsUnChecked: json["drugsUnChecked"] == null
+              ? null
+              : List<PharmacyModel>.from(json["drugsUnChecked"]
+                  .map((e) => PharmacyModel.fromFirebase(e))),
 
-    bloodCbcGran: json["bloodCbcGran"],
-    bloodCbcGranL: json["bloodCbcGranL"],
-    bloodCbcHctl: json["bloodCbcHctl"],
-    bloodCbcHgbl: json["bloodCbcHgbl"],
-    bloodCbcLymph: json["bloodCbcLymph"],
-    bloodCbcLymphH: json["bloodCbcLymphH"],
-    bloodCbcMchc: json["bloodCbcMchc"],
-    bloodCbcMchl: json["bloodCbcMchl"],
-    bloodCbcMcvl: json["bloodCbcMcvl"],
-    bloodCbcMid: json["bloodCbcMid"],
-    bloodCbcMidPercent: json["bloodCbcMidPercent"],
-    bloodCbcMpv: json["bloodCbcMpv"],
-    bloodCbcPct: json["bloodCbcPct"],
-    bloodCbcPdw: json["bloodCbcPdw"],
-    bloodCbcPlccl: json["bloodCbcPlccl"],
-    bloodCbcPlcrl: json["bloodCbcPlcrl"],
-    bloodCbcPlth: json["bloodCbcPlth"],
-    bloodCbcRbc: json["bloodCbcRbc"],
-    bloodCbcRdwcv: json["bloodCbcRdwcv"],
-    bloodCbcRdwsdl: json["bloodCbcRdwsdl"],
-    bloodCbcWbs: json["bloodCbcWbs"],
-    //blood end
-    //urine start
-      urineCasts:json["urineCasts"],
-      urineEggs:json["urineEggs"],
-    urineAbnormalFindings: json["urineAbnormalFindings"] == null
-        ? null
-        : List<String>.from(json["urineAbnormalFindings"]),
-    urinePhysicalExColour: json["urinePhysicalExColour"],
-    urinePhysicalExAspect: json["urinePhysicalExAspect"],
-    urineMicroscopicExUricacid: json["urineMicroscopicExUricacid"],
-    urineMicroscopicExTriplephosphate:
-    json["urineMicroscopicExTriplephosphate"],
-    urineMicroscopicExRBCs: json["urineMicroscopicExRBCs"],
-    urineMicroscopicExPuscells: json["urineMicroscopicExPuscells"],
-    urineMicroscopicExEpithelialcells:
-    json["urineMicroscopicExEpithelialcells"],
-    urineMicroscopicExCalciumOxalate:
-    json["urineMicroscopicExCalciumOxalate"],
-    urineMicroscopicExAmorphous: json["urineMicroscopicExAmorphous"],
-    urineChemicalExUrobilingen: json["urineChemicalExUrobilingen"],
-    urineChemicalExSpecificgravity:
-    json["urineChemicalExSpecificgravity"],
-    urineChemicalExProtien: json["urineChemicalExProtien"],
-    urineChemicalExPH: json["urineChemicalExPH"],
-    urineChemicalExNitrite: json["urineChemicalExNitrite"],
-    urineChemicalExLeukocyte: json["urineChemicalExLeukocyte"],
-    urineChemicalExKetone: json["urineChemicalExKetone"],
-    //urineChemicalExHemoglobin: json["urineChemicalExHemoglobin"],
-    urineChemicalExGlucose: json["urineChemicalExGlucose"],
-    urineChemicalExDensity: json["urineChemicalExDensity"],
-    urineChemicalExBlood: json["urineChemicalExBlood"],
-    urineChemicalExBilirubin: json["urineChemicalExBilirubin"],
-    urineAlbumineCreat: json["urineAlbumineCreat"],
-    urineAlbumineAlbumine: json["urineAlbumineAlbumine"],
-    urineAlbumineAlbuminaCreateRatio:
-    json["urineAlbumineAlbuminaCreateRatio"],
-    urineAdittionalComments: json["urineAdittionalComments"],
-    //urine end
-    // screnning start
-    bloodCheckIn: json["bloodCheckIn"],
-    stoolCheckIn: json["stoolCheckIn"],
-    urineCheckIn: json["urineCheckIn"],
-    //screnning end
-    // ***************
-    orthodiagnoses: json["orthodiagnoses"] == null
-        ? null
-        : List<String>.from(json["orthodiagnoses"]),
-    orthoTreatment: json["orthoTreatment"] == null
-        ? null
-        : List<String>.from(json["orthoTreatment"]),
-    Cardiodiagnoses: json["Cardiodiagnoses"] == null
-        ? null
-        : List<String>.from(json["Cardiodiagnoses"]),
-    // meya meya
-    CardioTreatment: json["CardioTreatment"] == null
-        ? null
-        : List<String>.from(json["CardioTreatment"]),
-    Dentaldiagnoses: json["Dentaldiagnoses"] == null
-        ? null
-        : List<String>.from(json["Dentaldiagnoses"]),
-    DentalTreatment: json["DentalTreatment"] == null
-        ? null
-        : List<String>.from(json["DentalTreatment"]),
-    Dermadiagnoses: json["Dermadiagnoses"] == null
-        ? null
-        : List<String>.from(json["Dermadiagnoses"]),
-    DermaTreatment: json["DermaTreatment"] == null
-        ? null
-        : List<String>.from(json["DermaTreatment"]),
-    entdiagnoses: json["entdiagnoses"] == null
-        ? null
-        : List<String>.from(json["entdiagnoses"]),
-    entTreatment: json["entTreatment"] == null
-        ? null
-        : List<String>.from(json["entTreatment"]),
-    gyndiagnoses: json["gyndiagnoses"] == null
-        ? null
-        : List<String>.from(json["gyndiagnoses"]),
-    gynTreatment: json["gynTreatment"] == null
-        ? null
-        : List<String>.from(json["gynTreatment"]),
-    imdiagnoses: json["imdiagnoses"] == null
-        ? null
-        : List<String>.from(json["imdiagnoses"]),
-    imTreatment: json["imTreatment"] == null
-        ? null
-        : List<String>.from(json["imTreatment"]),
-    ophthadiagnoses: json["ophthadiagnoses"] == null
-        ? null
-        : List<String>.from(json["ophthadiagnoses"]),
-    ophthaTreatment: json["ophthaTreatment"] == null
-        ? null
-        : List<String>.from(json["ophthaTreatment"]),
-    peddiagnoses: json["peddiagnoses"] == null
-        ? null
-        : List<String>.from(json["peddiagnoses"]),
-    pedTreatment: json["pedTreatment"] == null
-        ? null
-        : List<String>.from(json["pedTreatment"]),
-    surgerydiagnoses: json["surgerydiagnoses"] == null
-        ? null
-        : List<String>.from(json["surgerydiagnoses"]),
-    surgeryTreatment: json["surgeryTreatment"] == null
-        ? null
-        : List<String>.from(json["surgeryTreatment"]),
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6
-    consisteny: json["consisteny"],
-    Stoollabblood: json["Stoollabblood"],
-    Stoollabmucus: json["Stoollabmucus"],
-    Stoollabfasciola: json["Stoollabfasciola"],
-    Stoollabsch: json["Stoollabsch"],
-    Stoollabhnana: json["Stoollabhnana"],
-    Stoollabtinea: json["Stoollabtinea"],
-    StoollabAscaris: json["StoollabAscaris"],
-    Stoollabblastosyct: json["Stoollabblastosyct"],
-    StoollabTtrichuria: json["StoolabTtrichuria"],
-    StoollabHookworm: json["StoollabHookworm"],
-    StoollabHpylori: json["StoollabHpylori"],
-    Stoollabfecal: json["Stoollabfecal"],
-    StoollabEntrobious: json["StoollabEntrobious"],
-    StoollabEcoli: json["StoollabEcoli"],
-    StoollabEhistolitica: json["StoollabEhistolitica"],
-    StoollabGiardia: json["StoollabGiardia"],
-    StoollabStrongyloideslarvae: json["StoollabStrongyloideslarvae"],
-    StoollabGiardiatrophozozite: json["StoollabGiardiatrophozozite"],
-    StoollabEhistoliticatrophozite:
-    json["StoollabEhistoliticatrophozite"],
-    StoolColor: json["StoolColor"],
-    StoolWorm: json["StoolWorm"],
-    StoolOdour: json["StoolOdour"],
-    wbcscontroller: json["wbcscontroller"],
-    Rbcscontroller: json["Rbcscontroller"],
-  );
+          //blood start
+          bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
+          bloodotherAntiD: json["bloodotherAntiD"],
+          bloodotherBHCG: json["bloodotherBHCG"],
+          bloodotherHBV: json["bloodotherHBV"],
+          bloodotherHCV: json["bloodotherHCV"],
+          bloodotherPSA: json["bloodotherPSA"],
+          bloodotherRheumatoidfactor: json["bloodotherRheumatoidfactor"],
+          bloodglucoseFasting: json["bloodglucoseFasting"],
+          bloodglucoseHbA1C: json["bloodglucoseHbA1C"],
+          bloodglucosePostPrandial: json["bloodglucosePostPrandial"],
+          bloodglucoseRandom: json["bloodglucoseRandom"],
+          bloodionsCa: json["bloodionsCa"],
+          bloodionsK: json["bloodionsK"],
+          bloodionsNa: json["bloodionsNa"],
+          bloodkidneyCreatinine: json["bloodkidneyCreatinine"],
+          bloodkidneyurea: json["bloodkidneyurea"],
+          bloodkidneyUricacid: json["bloodkidneyUricacid"],
+          bloodotherASOT: json["bloodotherASOT"],
+          bloodotherCRP: json["bloodotherCRP"],
+          cbcliverAlbumin: json["cbcliverAlbumin"],
+          cbcliverAlkalinephosphatase: json["cbcliverAlkalinephosphatase"],
+          cbcliverALTGPT: json["cbcliverALTGPT"],
+          cbcliverAST: json["cbcliverAST"],
+          cbcliverDirectbilirubin: json["cbcliverDirectbilirubin"],
+          cbcliverTotalbilirubin: json["cbcliverTotalbilirubin"],
+          cbcptINR: json["cbcptINR"],
+          cbcptpercentage: json["cbcptpercentage"],
+          cbcptTime: json["cbcptTime"],
+          cbcPttresult: json["cbcPttresult"],
+
+          bloodEsr: json["bloodEsr"],
+          bloodLipidCholesterol: json["bloodLipidCholesterol"],
+          bloodLipidHdl: json["bloodLipidHdl"],
+          bloodLipidLdl: json["bloodLipidLdl"],
+          bloodLipidTg: json["bloodLipidTg"],
+
+          bloodCbcGran: json["bloodCbcGran"],
+          bloodCbcGranL: json["bloodCbcGranL"],
+          bloodCbcHctl: json["bloodCbcHctl"],
+          bloodCbcHgbl: json["bloodCbcHgbl"],
+          bloodCbcLymph: json["bloodCbcLymph"],
+          bloodCbcLymphH: json["bloodCbcLymphH"],
+          bloodCbcMchc: json["bloodCbcMchc"],
+          bloodCbcMchl: json["bloodCbcMchl"],
+          bloodCbcMcvl: json["bloodCbcMcvl"],
+          bloodCbcMid: json["bloodCbcMid"],
+          bloodCbcMidPercent: json["bloodCbcMidPercent"],
+          bloodCbcMpv: json["bloodCbcMpv"],
+          bloodCbcPct: json["bloodCbcPct"],
+          bloodCbcPdw: json["bloodCbcPdw"],
+          bloodCbcPlccl: json["bloodCbcPlccl"],
+          bloodCbcPlcrl: json["bloodCbcPlcrl"],
+          bloodCbcPlth: json["bloodCbcPlth"],
+          bloodCbcRbc: json["bloodCbcRbc"],
+          bloodCbcRdwcv: json["bloodCbcRdwcv"],
+          bloodCbcRdwsdl: json["bloodCbcRdwsdl"],
+          bloodCbcWbs: json["bloodCbcWbs"],
+          //blood end
+          //urine start
+          urineCasts: json["urineCasts"],
+          urineEggs: json["urineEggs"],
+          urineAbnormalFindings: json["urineAbnormalFindings"] == null
+              ? null
+              : List<String>.from(json["urineAbnormalFindings"]),
+          urinePhysicalExColour: json["urinePhysicalExColour"],
+          urinePhysicalExAspect: json["urinePhysicalExAspect"],
+          urineMicroscopicExUricacid: json["urineMicroscopicExUricacid"],
+          urineMicroscopicExTriplephosphate:
+              json["urineMicroscopicExTriplephosphate"],
+          urineMicroscopicExRBCs: json["urineMicroscopicExRBCs"],
+          urineMicroscopicExPuscells: json["urineMicroscopicExPuscells"],
+          urineMicroscopicExEpithelialcells:
+              json["urineMicroscopicExEpithelialcells"],
+          urineMicroscopicExCalciumOxalate:
+              json["urineMicroscopicExCalciumOxalate"],
+          urineMicroscopicExAmorphous: json["urineMicroscopicExAmorphous"],
+          urineChemicalExUrobilingen: json["urineChemicalExUrobilingen"],
+          urineChemicalExSpecificgravity:
+              json["urineChemicalExSpecificgravity"],
+          urineChemicalExProtien: json["urineChemicalExProtien"],
+          urineChemicalExPH: json["urineChemicalExPH"],
+          urineChemicalExNitrite: json["urineChemicalExNitrite"],
+          urineChemicalExLeukocyte: json["urineChemicalExLeukocyte"],
+          urineChemicalExKetone: json["urineChemicalExKetone"],
+          //urineChemicalExHemoglobin: json["urineChemicalExHemoglobin"],
+          urineChemicalExGlucose: json["urineChemicalExGlucose"],
+          urineChemicalExDensity: json["urineChemicalExDensity"],
+          urineChemicalExBlood: json["urineChemicalExBlood"],
+          urineChemicalExBilirubin: json["urineChemicalExBilirubin"],
+          urineAlbumineCreat: json["urineAlbumineCreat"],
+          urineAlbumineAlbumine: json["urineAlbumineAlbumine"],
+          urineAlbumineAlbuminaCreateRatio:
+              json["urineAlbumineAlbuminaCreateRatio"],
+          urineAdittionalComments: json["urineAdittionalComments"],
+          //urine end
+          // screnning start
+          bloodCheckIn: json["bloodCheckIn"],
+          stoolCheckIn: json["stoolCheckIn"],
+          urineCheckIn: json["urineCheckIn"],
+          //screnning end
+          // ***************
+          orthodiagnoses: json["orthodiagnoses"] == null
+              ? null
+              : List<String>.from(json["orthodiagnoses"]),
+          orthoTreatment: json["orthoTreatment"] == null
+              ? null
+              : List<String>.from(json["orthoTreatment"]),
+          Cardiodiagnoses: json["Cardiodiagnoses"] == null
+              ? null
+              : List<String>.from(json["Cardiodiagnoses"]),
+          // meya meya
+          CardioTreatment: json["CardioTreatment"] == null
+              ? null
+              : List<String>.from(json["CardioTreatment"]),
+          Dentaldiagnoses: json["Dentaldiagnoses"] == null
+              ? null
+              : List<String>.from(json["Dentaldiagnoses"]),
+          DentalTreatment: json["DentalTreatment"] == null
+              ? null
+              : List<String>.from(json["DentalTreatment"]),
+          Dermadiagnoses: json["Dermadiagnoses"] == null
+              ? null
+              : List<String>.from(json["Dermadiagnoses"]),
+          DermaTreatment: json["DermaTreatment"] == null
+              ? null
+              : List<String>.from(json["DermaTreatment"]),
+          entdiagnoses: json["entdiagnoses"] == null
+              ? null
+              : List<String>.from(json["entdiagnoses"]),
+          entTreatment: json["entTreatment"] == null
+              ? null
+              : List<String>.from(json["entTreatment"]),
+          gyndiagnoses: json["gyndiagnoses"] == null
+              ? null
+              : List<String>.from(json["gyndiagnoses"]),
+          gynTreatment: json["gynTreatment"] == null
+              ? null
+              : List<String>.from(json["gynTreatment"]),
+          imdiagnoses: json["imdiagnoses"] == null
+              ? null
+              : List<String>.from(json["imdiagnoses"]),
+          imTreatment: json["imTreatment"] == null
+              ? null
+              : List<String>.from(json["imTreatment"]),
+          ophthadiagnoses: json["ophthadiagnoses"] == null
+              ? null
+              : List<String>.from(json["ophthadiagnoses"]),
+          ophthaTreatment: json["ophthaTreatment"] == null
+              ? null
+              : List<String>.from(json["ophthaTreatment"]),
+          peddiagnoses: json["peddiagnoses"] == null
+              ? null
+              : List<String>.from(json["peddiagnoses"]),
+          pedTreatment: json["pedTreatment"] == null
+              ? null
+              : List<String>.from(json["pedTreatment"]),
+          surgerydiagnoses: json["surgerydiagnoses"] == null
+              ? null
+              : List<String>.from(json["surgerydiagnoses"]),
+          surgeryTreatment: json["surgeryTreatment"] == null
+              ? null
+              : List<String>.from(json["surgeryTreatment"]),
+          // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6
+          consisteny: json["consisteny"],
+          Stoollabblood: json["Stoollabblood"],
+          Stoollabmucus: json["Stoollabmucus"],
+          Stoollabfasciola: json["Stoollabfasciola"],
+          Stoollabsch: json["Stoollabsch"],
+          Stoollabhnana: json["Stoollabhnana"],
+          Stoollabtinea: json["Stoollabtinea"],
+          StoollabAscaris: json["StoollabAscaris"],
+          Stoollabblastosyct: json["Stoollabblastosyct"],
+          StoollabTtrichuria: json["StoolabTtrichuria"],
+          StoollabHookworm: json["StoollabHookworm"],
+          StoollabHpylori: json["StoollabHpylori"],
+          Stoollabfecal: json["Stoollabfecal"],
+          StoollabEntrobious: json["StoollabEntrobious"],
+          StoollabEcoli: json["StoollabEcoli"],
+          StoollabEhistolitica: json["StoollabEhistolitica"],
+          StoollabGiardia: json["StoollabGiardia"],
+          StoollabStrongyloideslarvae: json["StoollabStrongyloideslarvae"],
+          StoollabGiardiatrophozozite: json["StoollabGiardiatrophozozite"],
+          StoollabEhistoliticatrophozite:
+              json["StoollabEhistoliticatrophozite"],
+          StoolColor: json["StoolColor"],
+          StoolWorm: json["StoolWorm"],
+          StoolOdour: json["StoolOdour"],
+          wbcscontroller: json["wbcscontroller"],
+          Rbcscontroller: json["Rbcscontroller"],
+        );
 
   Map<String, dynamic> toFireStore() {
     return {
+      "reportFollowUp":reportFollowUp,
+      "reportStool": reportStool,
+      "reportPharma": reportPharma,
+      "reportBlood": reportBlood,
+      "reportUrine": reportUrine,
+
+      "reportpeddiagnoses": reportpeddiagnoses,
+      "reportorthodiagnoses": reportorthodiagnoses,
+      "reportophthadiagnoses": reportophthadiagnoses,
+      "reportimdiagnoses": reportimdiagnoses,
+      "reportgyndiagnoses": reportgyndiagnoses,
+      "reportentdiagnoses": reportentdiagnoses,
+      "reportDermadiagnoses": reportDermadiagnoses,
+      "reportDentaldiagnoses": reportDentaldiagnoses,
+      "reportCardiodiagnoses": reportCardiodiagnoses,
+      "reportsurgerydiagnoses": reportsurgerydiagnoses,
+
+      "ENTFollowupNeedinvestigations": ENTFollowupNeedinvestigations,
+      "ENTFollowupNeedoperations": ENTFollowupNeedoperations,
+      "IMfollowUPNEEDcheckup": IMfollowUPNEEDcheckup,
+      "IMfollowUPNEEDdrugs": IMfollowUPNEEDdrugs,
+      "IMfollowUPNEEDinvestigations": IMfollowUPNEEDinvestigations,
+      "pedfollowneedcheckup": pedfollowneedcheckup,
+      "pedfollowneedinvestigations": pedfollowneedinvestigations,
+      "pedfollowneedoperations": pedfollowneedoperations,
+      "SurgeryFollowupNeeddesicion": SurgeryFollowupNeeddesicion,
+      "SurgeryFollowupdontNeeddesicion": SurgeryFollowupdontNeeddesicion,
+      "OphthalmologyFollowupNeeddesicion": OphthalmologyFollowupNeeddesicion,
+      "OphthalmologyFollowupdontNeeddesicion":
+          OphthalmologyFollowupdontNeeddesicion,
+      "GynFollowupNeedinvestigations": GynFollowupNeedinvestigations,
+      "OphthalmologyFollowneedglasses": OphthalmologyFollowneedglasses,
+      "OphthalmologyFollowneedivestigations":
+          OphthalmologyFollowneedivestigations,
+      "FollowerName": FollowerName,
       "goHome": goHome,
       "communityDevelopment": communityDevelopment,
       "screening": screening,
@@ -719,7 +899,7 @@ class PatientAdultModel {
       "specifyAllergyPastHistory": specifyAllergyPastHistory,
       "bloodTransfusionPastHistory": bloodTransfusionPastHistory,
       "durationBloodTransfusionPastHistory":
-      durationBloodTransfusionPastHistory,
+          durationBloodTransfusionPastHistory,
       "surgicalPastHistory": surgicalPastHistory,
       "operationSurgicalPastHistory": operationSurgicalPastHistory,
       "drugsOfChronicDiseases": drugsOfChronicDiseases,
@@ -738,13 +918,12 @@ class PatientAdultModel {
       "followUp": followUp,
 
 // end >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    "urlUpperImage":urlUpperImage,
-      "urlTransImage":urlTransImage,
-      "urlLowerImage":urlLowerImage,
+      "urlUpperImage": urlUpperImage,
+      "urlTransImage": urlTransImage,
+      "urlLowerImage": urlLowerImage,
 
-      "drugsUnChecked":drugsUnChecked?.map((v) => v.toFirebase()).toList(),
-      "drugsChecked":drugsChecked?.map((v) => v.toFirebase()).toList(),
-
+      "drugsUnChecked": drugsUnChecked?.map((v) => v.toFirebase()).toList(),
+      "drugsChecked": drugsChecked?.map((v) => v.toFirebase()).toList(),
 
       "bloodotherBHCG": bloodotherBHCG,
       "bloodotherHBV": bloodotherHBV,
@@ -803,8 +982,8 @@ class PatientAdultModel {
       "bloodCbcRdwsdl": bloodCbcRdwsdl,
       "bloodCbcWbs": bloodCbcWbs,
 
-      "urineEggs":urineEggs,
-      "urineCasts":urineCasts,
+      "urineEggs": urineEggs,
+      "urineCasts": urineCasts,
       "urineAbnormalFindings": urineAbnormalFindings,
       "urinePhysicalExColour": urinePhysicalExColour,
       "urinePhysicalExAspect": urinePhysicalExAspect,
@@ -857,7 +1036,7 @@ class PatientAdultModel {
       "pedTreatment": pedTreatment,
       "surgerydiagnoses": surgerydiagnoses,
       "surgeryTreatment": surgeryTreatment,
-      "Stoollabblastosyct" :Stoollabblastosyct,
+      "Stoollabblastosyct": Stoollabblastosyct,
       "StoollabHpylori": StoollabHpylori,
       "Stoollabfecal": Stoollabfecal,
       "StoollabEhistoliticatrophozite": StoollabEhistoliticatrophozite,
@@ -913,30 +1092,30 @@ class ComplaintsModel {
 
   ComplaintsModel.fromFire(Map<String, dynamic> json)
       : this(
-    complaintName: json["complaintName"],
-    symptom: json["symptom"],
-    onset: json["onset"],
-    course: json["course"],
-    duration: json["duration"],
-    site: json["site"],
-    radiation: json["radiation"],
-    increasedBy: json["increasedBy"],
-    decreasedBy: json["decreasedBy"],
-    previous: json["previous"],
-  );
+          complaintName: json["complaintName"],
+          symptom: json["symptom"],
+          onset: json["onset"],
+          course: json["course"],
+          duration: json["duration"],
+          site: json["site"],
+          radiation: json["radiation"],
+          increasedBy: json["increasedBy"],
+          decreasedBy: json["decreasedBy"],
+          previous: json["previous"],
+        );
 
   Map<String, dynamic> toFire() {
     return {
-    "complaintName": complaintName,
-    "symptom": symptom,
-    "onset": onset,
-    "course": course,
-    "duration": duration,
-    "site": site,
-    "radiation": radiation,
-    "increasedBy": increasedBy,
-    "decreasedBy": decreasedBy,
-    "previous": previous,
+      "complaintName": complaintName,
+      "symptom": symptom,
+      "onset": onset,
+      "course": course,
+      "duration": duration,
+      "site": site,
+      "radiation": radiation,
+      "increasedBy": increasedBy,
+      "decreasedBy": decreasedBy,
+      "previous": previous,
     };
-    }
+  }
 }
