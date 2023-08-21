@@ -463,7 +463,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell( onTap: (){
-                        uploadImageSurgeryTicket1G();
+                        uploadImageSurgeryTicket1G(patientAd,patientCh);
                       },  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
@@ -477,7 +477,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                       SizedBox(width: 200,),
 
                       InkWell(onTap: (){
-                        uploadImageSurgeryTicket1C();
+                        uploadImageSurgeryTicket1C(patientAd,patientCh);
                       }, child: Container( padding: const EdgeInsets.all(10 ),
                         child:  Row(
                           children: [
@@ -510,7 +510,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell( onTap: (){
-                        uploadImageSurgeryTicket2G();
+                        uploadImageSurgeryTicket2G(patientAd,patientCh);
                       },  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
@@ -524,7 +524,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                       SizedBox(width: 200,),
 
                       InkWell(onTap: (){
-                        uploadImageSurgeryTicket2C();
+                        uploadImageSurgeryTicket2C(patientAd,patientCh);
                       }, child: Container( padding: const EdgeInsets.all(10 ),
                         child:  Row(
                           children: [
@@ -558,7 +558,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell( onTap: (){
-                        uploadImagesurgerysonarreportG();
+                        uploadImagesurgerysonarreportG(patientAd,patientCh);
                       },  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
@@ -572,7 +572,7 @@ class _SurgeryClinicScreenState extends State<SurgeryFollowUpscreen> {
                       SizedBox(width: 200,),
 
                       InkWell(onTap: (){
-                        uploadImagesurgerysonarreportC();
+                        uploadImagesurgerysonarreportC(patientAd,patientCh);
                       }, child: Container( padding: const EdgeInsets.all(10 ),
                         child:  Row(
                           children: [

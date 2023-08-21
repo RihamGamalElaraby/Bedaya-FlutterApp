@@ -487,7 +487,7 @@ class _ImFollowupScreenState extends State<ImFollowupScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          uploadImageImSheet1G();
+                          uploadImageImSheet1G(patientAd,patientCh);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(10),
@@ -513,7 +513,7 @@ class _ImFollowupScreenState extends State<ImFollowupScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          uploadImageImSheet1C();
+                          uploadImageImSheet1C(patientAd,patientCh);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(10),
@@ -564,7 +564,7 @@ class _ImFollowupScreenState extends State<ImFollowupScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          uploadImageImSheet2G();
+                          uploadImageImSheet2G(patientAd,patientCh);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(10),
@@ -590,7 +590,7 @@ class _ImFollowupScreenState extends State<ImFollowupScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          uploadImageImSheet2C();
+                          uploadImageImSheet2C(patientAd,patientCh);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(10),

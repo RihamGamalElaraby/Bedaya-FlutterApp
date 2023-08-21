@@ -1,23 +1,23 @@
 import 'package:bedaya/DateModels/pharmacy_model.dart';
 
 class PatientChildModel {
+  List<String>? IMfollowUPNEEDcheckup;
+  List<String>? IMfollowUPNEEDdrugs;
+  List<String>? IMfollowUPNEEDinvestigations;
+  List<String>? pedfollowneedcheckup;
+  List<String>? pedfollowneedinvestigations;
+  List<String>? pedfollowneedoperations;
+  List<String>? SurgeryFollowupNeeddesicion;
+  List<String>? SurgeryFollowupdontNeeddesicion;
+  List<String>? OphthalmologyFollowupNeeddesicion;
+  List<String>? OphthalmologyFollowupdontNeeddesicion;
+  List<String>? GynFollowupNeedinvestigations;
+  List<String>? ENTFollowupNeedinvestigations;
+  List<String>? ENTFollowupNeedoperations;
+  String? OphthalmologyFollowneedglasses;
 
+  String? OphthalmologyFollowneedivestigations;
 
-  List<String>?IMfollowUPNEEDcheckup;
-  List<String>?IMfollowUPNEEDdrugs;
-  List<String>?IMfollowUPNEEDinvestigations;
-  List<String>?pedfollowneedcheckup;
-  List<String>?pedfollowneedinvestigations;
-  List<String>?pedfollowneedoperations;
-  List<String>?SurgeryFollowupNeeddesicion;
-  List<String>?SurgeryFollowupdontNeeddesicion;
-  List<String>?OphthalmologyFollowupNeeddesicion;
-  List<String>?OphthalmologyFollowupdontNeeddesicion;
-  List<String>?GynFollowupNeedinvestigations;
-  List<String>?ENTFollowupNeedinvestigations;
-  List<String>?ENTFollowupNeedoperations;
-  String? OphthalmologyFollowneedglasses ;
-  String? OphthalmologyFollowneedivestigations ;
   String? FollowerName;
 
 ////////////////////
@@ -105,13 +105,23 @@ class PatientChildModel {
 
   List<PharmacyModel>? drugsChecked;
   List<PharmacyModel>? drugsUnChecked;
+
   //start clinics and labs
   String? urlUpperImage;
   String? urlLowerImage;
   String? urlTransImage;
 
-  String? reportFollowUp;
+  String? urlGynWomen;
+  String? urlImSheet1;
+  String? urlImSheet2;
+  String? urlRickets;
+  String? urlOpthalmia;
+  String? urlBirthCertficate;
+  String? urlSurgerySonar;
+  String? urlSurgeryTicket1;
+  String? urlSurgeryTicket2;
 
+  String? reportFollowUp;
 
   String? reportUrine;
   String? reportBlood;
@@ -128,7 +138,6 @@ class PatientChildModel {
   String? reportorthodiagnoses;
   String? reportpeddiagnoses;
   String? reportsurgerydiagnoses;
-
 
   //clinics start
   List<String>? Cardiodiagnoses;
@@ -275,7 +284,6 @@ class PatientChildModel {
   String? bloodotherASOT;
 
   PatientChildModel({
-
     this.ENTFollowupNeedinvestigations,
     this.ENTFollowupNeedoperations,
     this.IMfollowUPNEEDcheckup,
@@ -292,7 +300,6 @@ class PatientChildModel {
     this.OphthalmologyFollowupdontNeeddesicion,
     this.GynFollowupNeedinvestigations,
     this.FollowerName,
-
     this.chosenDay,
     this.placeChild,
     this.goHomeChild,
@@ -361,7 +368,6 @@ class PatientChildModel {
     this.reportBlood,
     this.reportStool,
     this.reportUrine,
-
     this.reportCardiodiagnoses,
     this.reportDentaldiagnoses,
     this.reportDermadiagnoses,
@@ -372,10 +378,18 @@ class PatientChildModel {
     this.reportorthodiagnoses,
     this.reportpeddiagnoses,
     this.reportsurgerydiagnoses,
-
     this.urlTransImage,
     this.urlLowerImage,
     this.urlUpperImage,
+    this.urlSurgeryTicket2,
+    this.urlSurgeryTicket1,
+    this.urlSurgerySonar,
+    this.urlBirthCertficate,
+    this.urlOpthalmia,
+    this.urlRickets,
+    this.urlImSheet2,
+    this.urlImSheet1,
+    this.urlGynWomen,
     this.bloodotherCRP,
     this.bloodotherASOT,
     this.bloodotherAlfafetoprotein,
@@ -520,68 +534,79 @@ class PatientChildModel {
 
   PatientChildModel.fromFireStore(Map<String, dynamic> json)
       : this(
-    reportFollowUp: json["reportFollowUp"],
+          reportFollowUp: json["reportFollowUp"],
 
-    reportUrine : json["reportUrine"],
-    reportBlood:  json["reportBlood"],
-    reportPharma:  json["reportPharma"],
-    reportStool: json["reportStool"],
+          reportUrine: json["reportUrine"],
+          reportBlood: json["reportBlood"],
+          reportPharma: json["reportPharma"],
+          reportStool: json["reportStool"],
 
-    reportsurgerydiagnoses: json["reportsurgerydiagnoses"],
-    reportCardiodiagnoses: json["reportCardiodiagnoses"],
-    reportDentaldiagnoses: json["reportDentaldiagnoses"],
-    reportDermadiagnoses: json["reportDermadiagnoses"],
-    reportentdiagnoses: json["reportentdiagnoses"],
-    reportgyndiagnoses: json["reportgyndiagnoses"],
-    reportimdiagnoses: json["reportimdiagnoses"],
-    reportophthadiagnoses: json["reportophthadiagnoses"],
-    reportorthodiagnoses: json["reportorthodiagnoses"],
-    reportpeddiagnoses: json["reportpeddiagnoses"],
+          reportsurgerydiagnoses: json["reportsurgerydiagnoses"],
+          reportCardiodiagnoses: json["reportCardiodiagnoses"],
+          reportDentaldiagnoses: json["reportDentaldiagnoses"],
+          reportDermadiagnoses: json["reportDermadiagnoses"],
+          reportentdiagnoses: json["reportentdiagnoses"],
+          reportgyndiagnoses: json["reportgyndiagnoses"],
+          reportimdiagnoses: json["reportimdiagnoses"],
+          reportophthadiagnoses: json["reportophthadiagnoses"],
+          reportorthodiagnoses: json["reportorthodiagnoses"],
+          reportpeddiagnoses: json["reportpeddiagnoses"],
 
-
-    ENTFollowupNeedinvestigations: json["ENTFollowupNeedinvestigations"] == null
-        ? null
-        : List<String>.from(json["ENTFollowupNeedinvestigations"]),
-    ENTFollowupNeedoperations: json["ENTFollowupNeedoperations"] == null
-        ? null
-        : List<String>.from(json["ENTFollowupNeedoperations"]),
-    IMfollowUPNEEDcheckup: json["IMfollowUPNEEDcheckup"] == null
-        ? null
-        : List<String>.from(json["IMfollowUPNEEDcheckup"]),
-    IMfollowUPNEEDdrugs: json["IMfollowUPNEEDdrugs"] == null
-        ? null
-        : List<String>.from(json["IMfollowUPNEEDdrugs"]),
-    IMfollowUPNEEDinvestigations: json["IMfollowUPNEEDinvestigations"] == null
-        ? null
-        : List<String>.from(json["IMfollowUPNEEDinvestigations"]),
-    pedfollowneedcheckup: json["pedfollowneedcheckup"] == null
-        ? null
-        : List<String>.from(json["pedfollowneedcheckup"]),
-    pedfollowneedinvestigations: json["pedfollowneedinvestigations"] == null
-        ? null
-        : List<String>.from(json["pedfollowneedinvestigations"]),
-    pedfollowneedoperations: json["pedfollowneedoperations"] == null
-        ? null
-        : List<String>.from(json["pedfollowneedoperations"]),
-    SurgeryFollowupdontNeeddesicion: json["SurgeryFollowupdontNeeddesicion"] == null
-        ? null
-        : List<String>.from(json["SurgeryFollowupdontNeeddesicion"]),
-    SurgeryFollowupNeeddesicion: json["SurgeryFollowupNeeddesicion"] == null
-        ? null
-        : List<String>.from(json["SurgeryFollowupNeeddesicion"]),
-    OphthalmologyFollowupNeeddesicion: json["OphthalmologyFollowupNeeddesicion"] == null
-        ? null
-        : List<String>.from(json["OphthalmologyFollowupNeeddesicion"]),
-    OphthalmologyFollowupdontNeeddesicion: json["OphthalmologyFollowupdontNeeddesicion"] == null
-        ? null
-        : List<String>.from(json["OphthalmologyFollowupdontNeeddesicion"]),
-    GynFollowupNeedinvestigations: json["GynFollowupNeedinvestigations"] == null
-        ? null
-        : List<String>.from(json["GynFollowupNeedinvestigations"]),
-    OphthalmologyFollowneedglasses: json["OphthalmologyFollowneedglasses"],
-    OphthalmologyFollowneedivestigations: json["OphthalmologyFollowneedivestigations"],
-    FollowerName: json["FollowerName"],
-    chosenDay: json["chosenDay"],
+          ENTFollowupNeedinvestigations:
+              json["ENTFollowupNeedinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["ENTFollowupNeedinvestigations"]),
+          ENTFollowupNeedoperations: json["ENTFollowupNeedoperations"] == null
+              ? null
+              : List<String>.from(json["ENTFollowupNeedoperations"]),
+          IMfollowUPNEEDcheckup: json["IMfollowUPNEEDcheckup"] == null
+              ? null
+              : List<String>.from(json["IMfollowUPNEEDcheckup"]),
+          IMfollowUPNEEDdrugs: json["IMfollowUPNEEDdrugs"] == null
+              ? null
+              : List<String>.from(json["IMfollowUPNEEDdrugs"]),
+          IMfollowUPNEEDinvestigations:
+              json["IMfollowUPNEEDinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["IMfollowUPNEEDinvestigations"]),
+          pedfollowneedcheckup: json["pedfollowneedcheckup"] == null
+              ? null
+              : List<String>.from(json["pedfollowneedcheckup"]),
+          pedfollowneedinvestigations:
+              json["pedfollowneedinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["pedfollowneedinvestigations"]),
+          pedfollowneedoperations: json["pedfollowneedoperations"] == null
+              ? null
+              : List<String>.from(json["pedfollowneedoperations"]),
+          SurgeryFollowupdontNeeddesicion:
+              json["SurgeryFollowupdontNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(json["SurgeryFollowupdontNeeddesicion"]),
+          SurgeryFollowupNeeddesicion:
+              json["SurgeryFollowupNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(json["SurgeryFollowupNeeddesicion"]),
+          OphthalmologyFollowupNeeddesicion:
+              json["OphthalmologyFollowupNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(
+                      json["OphthalmologyFollowupNeeddesicion"]),
+          OphthalmologyFollowupdontNeeddesicion:
+              json["OphthalmologyFollowupdontNeeddesicion"] == null
+                  ? null
+                  : List<String>.from(
+                      json["OphthalmologyFollowupdontNeeddesicion"]),
+          GynFollowupNeedinvestigations:
+              json["GynFollowupNeedinvestigations"] == null
+                  ? null
+                  : List<String>.from(json["GynFollowupNeedinvestigations"]),
+          OphthalmologyFollowneedglasses:
+              json["OphthalmologyFollowneedglasses"],
+          OphthalmologyFollowneedivestigations:
+              json["OphthalmologyFollowneedivestigations"],
+          FollowerName: json["FollowerName"],
+          chosenDay: json["chosenDay"],
           complaintsList: json["complaintsList"] == null
               ? null
               : List<ComplaintsChildModel>.from(json["complaintsList"]
@@ -669,6 +694,15 @@ class PatientChildModel {
           urlLowerImage: json["urlLowerImage"],
           urlTransImage: json["urlTransImage"],
           urlUpperImage: json["urlUpperImage"],
+          urlBirthCertficate: json["urlBirthCertficate"],
+          urlGynWomen: json["urlGynWomen"],
+          urlImSheet1: json["urlImSheet1"],
+          urlImSheet2: json["urlImSheet2"],
+          urlOpthalmia: json["urlOpthalmia"],
+          urlRickets: json["urlRickets"],
+          urlSurgerySonar: json["urlSurgerySonar"],
+          urlSurgeryTicket1: json["urlSurgeryTicket1"],
+          urlSurgeryTicket2: json["urlSurgeryTicket2"],
 
           bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
           bloodotherAntiD: json["bloodotherAntiD"],
@@ -874,31 +908,31 @@ class PatientChildModel {
       "SurgeryFollowupNeeddesicion": SurgeryFollowupNeeddesicion,
       "SurgeryFollowupdontNeeddesicion": SurgeryFollowupdontNeeddesicion,
       "OphthalmologyFollowupNeeddesicion": OphthalmologyFollowupNeeddesicion,
-      "OphthalmologyFollowupdontNeeddesicion": OphthalmologyFollowupdontNeeddesicion,
+      "OphthalmologyFollowupdontNeeddesicion":
+          OphthalmologyFollowupdontNeeddesicion,
       "GynFollowupNeedinvestigations": GynFollowupNeedinvestigations,
       "OphthalmologyFollowneedglasses": OphthalmologyFollowneedglasses,
-      "OphthalmologyFollowneedivestigations": OphthalmologyFollowneedivestigations,
+      "OphthalmologyFollowneedivestigations":
+          OphthalmologyFollowneedivestigations,
       "FollowerName": FollowerName,
 
-      "reportFollowUp":reportFollowUp,
+      "reportFollowUp": reportFollowUp,
 
-      "reportStool" : reportStool ,
-      "reportPharma":reportPharma,
-      "reportBlood" : reportBlood,
-      "reportUrine":reportUrine,
+      "reportStool": reportStool,
+      "reportPharma": reportPharma,
+      "reportBlood": reportBlood,
+      "reportUrine": reportUrine,
 
-      "reportpeddiagnoses":reportpeddiagnoses,
-      "reportorthodiagnoses":reportorthodiagnoses,
-      "reportophthadiagnoses":reportophthadiagnoses,
-      "reportimdiagnoses":reportimdiagnoses,
-      "reportgyndiagnoses":reportgyndiagnoses,
-      "reportentdiagnoses":reportentdiagnoses,
-      "reportDermadiagnoses":reportDermadiagnoses,
-      "reportDentaldiagnoses":reportDentaldiagnoses,
-      "reportCardiodiagnoses":reportCardiodiagnoses,
-      "reportsurgerydiagnoses":reportsurgerydiagnoses,
-
-
+      "reportpeddiagnoses": reportpeddiagnoses,
+      "reportorthodiagnoses": reportorthodiagnoses,
+      "reportophthadiagnoses": reportophthadiagnoses,
+      "reportimdiagnoses": reportimdiagnoses,
+      "reportgyndiagnoses": reportgyndiagnoses,
+      "reportentdiagnoses": reportentdiagnoses,
+      "reportDermadiagnoses": reportDermadiagnoses,
+      "reportDentaldiagnoses": reportDentaldiagnoses,
+      "reportCardiodiagnoses": reportCardiodiagnoses,
+      "reportsurgerydiagnoses": reportsurgerydiagnoses,
 
       "chosenDay": chosenDay,
       'complaintsList': complaintsList?.map((v) => v.toFire()).toList(),
@@ -968,6 +1002,16 @@ class PatientChildModel {
       "urlUpperImage": urlUpperImage,
       "urlTransImage": urlTransImage,
       "urlLowerImage": urlLowerImage,
+
+      "urlSurgeryTicket2": urlSurgeryTicket2,
+      "urlSurgeryTicket1": urlSurgeryTicket1,
+      "urlSurgerySonar": urlSurgerySonar,
+      "urlRickets": urlRickets,
+      "urlOpthalmia": urlOpthalmia,
+      "urlImSheet2": urlImSheet2,
+      "urlImSheet1": urlImSheet1,
+      "urlGynWomen": urlGynWomen,
+      "urlBirthCertficate": urlBirthCertficate,
 
       "bloodotherBHCG": bloodotherBHCG,
       "bloodotherHBV": bloodotherHBV,

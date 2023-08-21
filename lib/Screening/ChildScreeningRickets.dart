@@ -321,7 +321,7 @@ class _ChildScreeningRicketsState extends State<ChildScreeningRickets> {
                       ),),
                     ) ,
                     InkWell( onTap: (){
-                      uploadImageRicketG();
+                      uploadImageRicketG(patientAd,patientCh);
                     },  child: Container( padding: const EdgeInsets.all(10 ),
                       child: Column(
                         children: [
@@ -339,7 +339,7 @@ class _ChildScreeningRicketsState extends State<ChildScreeningRickets> {
                     SizedBox(width: 200,),
 
                     InkWell(onTap: (){
-                      uploadImageRicketc();
+                      uploadImageRicketc(patientAd,patientCh);
                     }, child: Container( padding: const EdgeInsets.all(10 ),
                       child:  Row(
                         children: [

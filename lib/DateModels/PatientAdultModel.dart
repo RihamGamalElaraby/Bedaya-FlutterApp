@@ -75,6 +75,16 @@ class PatientAdultModel {
   String? communityDevelopment; // done
   List<String>? screening; // done
   //adult end >>>>>>>>>>>>>>>>>>>>>52
+  String? urlGynWomen;
+  String? urlImSheet1;
+  String? urlImSheet2;
+  String? urlRickets;
+  String? urlOpthalmia;
+  String? urlBirthCertficate;
+  String? urlSurgerySonar;
+  String? urlSurgeryTicket1;
+  String? urlSurgeryTicket2;
+
   String? urlUpperImage;
   String? urlLowerImage;
   String? urlTransImage;
@@ -327,6 +337,17 @@ class PatientAdultModel {
     this.reportorthodiagnoses,
     this.reportpeddiagnoses,
     this.reportsurgerydiagnoses,
+
+    this.urlSurgeryTicket2,
+    this.urlSurgeryTicket1,
+    this.urlSurgerySonar,
+    this.urlBirthCertficate,
+    this.urlOpthalmia,
+    this.urlRickets,
+    this.urlImSheet2,
+    this.urlImSheet1,
+    this.urlGynWomen,
+
 
     this.urlTransImage,
     this.urlLowerImage,
@@ -621,6 +642,16 @@ class PatientAdultModel {
           othersFamilyHistory: json["othersFamilyHistory"],
           followUp: json["followUp"],
           // drugs
+          urlBirthCertficate: json["urlBirthCertficate"],
+          urlGynWomen: json["urlGynWomen"],
+          urlImSheet1: json["urlImSheet1"],
+          urlImSheet2: json["urlImSheet2"],
+          urlOpthalmia: json["urlOpthalmia"],
+          urlRickets: json["urlRickets"],
+          urlSurgerySonar: json["urlSurgerySonar"],
+          urlSurgeryTicket1: json["urlSurgeryTicket1"],
+          urlSurgeryTicket2: json["urlSurgeryTicket2"],
+
           urlLowerImage: json["urlLowerImage"],
           urlTransImage: json["urlTransImage"],
           urlUpperImage: json["urlUpperImage"],
@@ -918,6 +949,16 @@ class PatientAdultModel {
       "followUp": followUp,
 
 // end >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    "urlSurgeryTicket2": urlSurgeryTicket2,
+      "urlSurgeryTicket1":urlSurgeryTicket1,
+      "urlSurgerySonar":urlSurgerySonar,
+      "urlRickets":urlRickets,
+      "urlOpthalmia":urlOpthalmia,
+      "urlImSheet2":urlImSheet2,
+      "urlImSheet1":urlImSheet1,
+      "urlGynWomen":urlGynWomen,
+      "urlBirthCertficate":urlBirthCertficate,
+
       "urlUpperImage": urlUpperImage,
       "urlTransImage": urlTransImage,
       "urlLowerImage": urlLowerImage,

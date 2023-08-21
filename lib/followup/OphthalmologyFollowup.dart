@@ -465,7 +465,7 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           InkWell( onTap: (){
-                            uploadImageOphthalmiarevealedophthalmiaG();
+                            uploadImageOphthalmiarevealedophthalmiaG(patientAd,patientCh);
                           },  child: Container( padding: const EdgeInsets.all(10 ),
                             child: Row(
                               children: [
@@ -479,7 +479,7 @@ class _OphthalmologyFollowupScreenState extends State<OphthalmologyFollowupScree
                           SizedBox(width: 200,),
 
                           InkWell(onTap: (){
-                            uploadImageOphthalmiarevealedophthalmiaC();
+                            uploadImageOphthalmiarevealedophthalmiaC(patientAd,patientCh);
                           }, child: Container( padding: const EdgeInsets.all(10 ),
                             child:  Row(
                               children: [

@@ -464,7 +464,7 @@ class _GynecologyFollowUpscreenState extends State<GynecologyFollowUpscreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           InkWell( onTap: (){
-                            uploadImagGYNWomensreportG();
+                            uploadImagGYNWomensreportG(patientAd,patientCh);
                           },  child: Container( padding: const EdgeInsets.all(10 ),
                             child: Row(
                               children: [
@@ -478,7 +478,7 @@ class _GynecologyFollowUpscreenState extends State<GynecologyFollowUpscreen> {
                           SizedBox(width: 200,),
 
                           InkWell(onTap: (){
-                            uploadImagGYNWomensreportC();
+                            uploadImagGYNWomensreportC(patientAd,patientCh);
                           }, child: Container( padding: const EdgeInsets.all(10 ),
                             child:  Row(
                               children: [

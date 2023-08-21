@@ -464,7 +464,7 @@ class _PediatricFollowupscreenState extends State<PediatricFollowupscreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           InkWell( onTap: (){
-                            uploadImagebirthcertificateG();
+                            uploadImagebirthcertificateG(patientAd,patientCh);
                           },  child: Container( padding: const EdgeInsets.all(10 ),
                             child: Row(
                               children: [
@@ -478,7 +478,7 @@ class _PediatricFollowupscreenState extends State<PediatricFollowupscreen> {
                           SizedBox(width: 200,),
 
                           InkWell(onTap: (){
-                            uploadImagebirthcertificateC();
+                            uploadImagebirthcertificateC(patientAd,patientCh);
                           }, child: Container( padding: const EdgeInsets.all(10 ),
                             child:  Row(
                               children: [

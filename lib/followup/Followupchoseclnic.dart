@@ -456,7 +456,7 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
                   ) ,
                   Row(
                     children: [
-                      InkWell( onTap: (){uploadImagepersonalIDLowerg();},  child: Container( padding: const EdgeInsets.all(10 ),
+                      InkWell( onTap: (){uploadImagepersonalIDLowerg(patientAd,patientCh);},  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
                             Icon(Icons.photo_album),
@@ -472,7 +472,7 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
                   SizedBox(width: 200,),
 
                   InkWell(onTap: (){
-                    uploadImagepersonalIDLowerc();
+                    uploadImagepersonalIDLowerc(patientAd,patientCh);
                   }, child: Container( padding: const EdgeInsets.all(10 ),
                     child:  Row(
                       children: [
@@ -505,7 +505,7 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
                   ) ,
                   Column(
                     children: [
-                      InkWell( onTap: (){uploadImagepersonalIDTransg();},  child: Container( padding: const EdgeInsets.all(10 ),
+                      InkWell( onTap: (){uploadImagepersonalIDTransg(patientAd,patientCh);},  child: Container( padding: const EdgeInsets.all(10 ),
                         child: Row(
                           children: [
                             Icon(Icons.photo_album),
@@ -517,7 +517,7 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
                           ],),),),
                       SizedBox(width: 200,),
                       InkWell(onTap: (){
-                        uploadImagepersonalIDTransc();
+                        uploadImagepersonalIDTransc(patientAd,patientCh);
                       }, child: Container( padding: const EdgeInsets.all(10 ),
                         child:  Row(
                           children: [

@@ -61,47 +61,7 @@ uploadImagepersonalIDupperg(PatientAdultModel? patientAd,PatientChildModel? pati
   }
 }
 
-
-uploadImageRicketc() async{
-  var imgpicked = await imagepicker.pickImage
-    (source:ImageSource.camera);
-  if(imgpicked!= null) {
-    file = File(imgpicked.path);
-    var nameimage = basename(imgpicked.path);
-    //start upload
-    var refstorge = FirebaseStorage.instance.ref("/Rickets/$nameimage");
-    await refstorge.putFile(file);
-    //لمعرفة عنوان الصورة التي تم رفعها
-    var url = await refstorge.getDownloadURL();
-    print("url : $url");
-    //end upload
-    print("++++++++++++++++++++++++++");
-    print(nameimage);
-  } else {
-    print("please choose image");
-  }
-}
-uploadImageRicketG() async{
-  var imgpicked = await imagepicker.pickImage
-    (source:ImageSource.gallery);
-  if(imgpicked!= null) {
-    file = File(imgpicked.path);
-    var nameimage = basename(imgpicked.path);
-    //start upload
-    var refstorge = FirebaseStorage.instance.ref("/Rickets/$nameimage");
-    await refstorge.putFile(file);
-    //لمعرفة عنوان الصورة التي تم رفعها
-    var url = await refstorge.getDownloadURL();
-    print("url : $url");
-    //end upload
-    print("++++++++++++++++++++++++++");
-    print(nameimage);
-  } else {
-    print("please choose image");
-  }
-}
-
-uploadImagepersonalIDLowerc() async{
+uploadImagepersonalIDLowerc(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
   if(imgpicked!= null) {
@@ -112,6 +72,11 @@ uploadImagepersonalIDLowerc() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlLowerImage=url;
+    patientCh?.urlLowerImage=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -120,7 +85,7 @@ uploadImagepersonalIDLowerc() async{
     print("please choose image");
   }
 }
-uploadImagepersonalIDLowerg() async{
+uploadImagepersonalIDLowerg(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -131,6 +96,11 @@ uploadImagepersonalIDLowerg() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlLowerImage=url;
+    patientCh?.urlLowerImage=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -140,8 +110,7 @@ uploadImagepersonalIDLowerg() async{
   }
 }
 
-
-uploadImagepersonalIDTransc() async{
+uploadImagepersonalIDTransc(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -153,6 +122,11 @@ uploadImagepersonalIDTransc() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlTransImage=url;
+    patientCh?.urlTransImage=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -161,7 +135,7 @@ uploadImagepersonalIDTransc() async{
     print("please choose image");
   }
 }
-uploadImagepersonalIDTransg() async{
+uploadImagepersonalIDTransg(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -172,6 +146,11 @@ uploadImagepersonalIDTransg() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlTransImage=url;
+    patientCh?.urlTransImage=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -181,8 +160,56 @@ uploadImagepersonalIDTransg() async{
   }
 }
 
+uploadImageRicketc(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
+  var imgpicked = await imagepicker.pickImage
+    (source:ImageSource.camera);
+  if(imgpicked!= null) {
+    file = File(imgpicked.path);
+    var nameimage = basename(imgpicked.path);
+    //start upload
+    var refstorge = FirebaseStorage.instance.ref("/Rickets/$nameimage");
+    await refstorge.putFile(file);
+    //لمعرفة عنوان الصورة التي تم رفعها
+    var url = await refstorge.getDownloadURL();
+    patientAd?.urlRickets=url;
+    patientCh?.urlRickets=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
 
-uploadImageImSheet1C() async{
+    print("url : $url");
+    //end upload
+    print("++++++++++++++++++++++++++");
+    print(nameimage);
+  } else {
+    print("please choose image");
+  }
+}
+uploadImageRicketG(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
+  var imgpicked = await imagepicker.pickImage
+    (source:ImageSource.gallery);
+  if(imgpicked!= null) {
+    file = File(imgpicked.path);
+    var nameimage = basename(imgpicked.path);
+    //start upload
+    var refstorge = FirebaseStorage.instance.ref("/Rickets/$nameimage");
+    await refstorge.putFile(file);
+    //لمعرفة عنوان الصورة التي تم رفعها
+    var url = await refstorge.getDownloadURL();
+    patientAd?.urlRickets=url;
+    patientCh?.urlRickets=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
+    print("url : $url");
+    //end upload
+    print("++++++++++++++++++++++++++");
+    print(nameimage);
+  } else {
+    print("please choose image");
+  }
+}
+
+uploadImageImSheet1C(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -194,6 +221,11 @@ uploadImageImSheet1C() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlImSheet1=url;
+    patientCh?.urlImSheet1=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -202,7 +234,7 @@ uploadImageImSheet1C() async{
     print("please choose image");
   }
 }
-uploadImageImSheet1G() async{
+uploadImageImSheet1G(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -213,6 +245,11 @@ uploadImageImSheet1G() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlImSheet1=url;
+    patientCh?.urlImSheet1=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -223,7 +260,7 @@ uploadImageImSheet1G() async{
 }
 
 
-uploadImageImSheet2C() async{
+uploadImageImSheet2C(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -235,6 +272,11 @@ uploadImageImSheet2C() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlImSheet2=url;
+    patientCh?.urlImSheet2=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -243,7 +285,7 @@ uploadImageImSheet2C() async{
     print("please choose image");
   }
 }
-uploadImageImSheet2G() async{
+uploadImageImSheet2G(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -254,6 +296,11 @@ uploadImageImSheet2G() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlImSheet2=url;
+    patientCh?.urlImSheet2=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -264,7 +311,7 @@ uploadImageImSheet2G() async{
 }
 
 
-uploadImagebirthcertificateC() async{
+uploadImagebirthcertificateC(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -276,6 +323,11 @@ uploadImagebirthcertificateC() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlBirthCertficate=url;
+    patientCh?.urlBirthCertficate=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -284,7 +336,7 @@ uploadImagebirthcertificateC() async{
     print("please choose image");
   }
 }
-uploadImagebirthcertificateG() async{
+uploadImagebirthcertificateG(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -295,6 +347,11 @@ uploadImagebirthcertificateG() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlBirthCertficate=url;
+    patientCh?.urlBirthCertficate=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -305,7 +362,7 @@ uploadImagebirthcertificateG() async{
 }
 
 
-uploadImageSurgeryTicket1C() async{
+uploadImageSurgeryTicket1C(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -317,6 +374,11 @@ uploadImageSurgeryTicket1C() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlSurgeryTicket1=url;
+    patientCh?.urlSurgeryTicket1=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -325,7 +387,7 @@ uploadImageSurgeryTicket1C() async{
     print("please choose image");
   }
 }
-uploadImageSurgeryTicket1G() async{
+uploadImageSurgeryTicket1G(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -336,6 +398,11 @@ uploadImageSurgeryTicket1G() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlSurgeryTicket1=url;
+    patientCh?.urlSurgeryTicket1=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -346,7 +413,7 @@ uploadImageSurgeryTicket1G() async{
 }
 
 
-uploadImageSurgeryTicket2C() async{
+uploadImageSurgeryTicket2C(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -358,6 +425,11 @@ uploadImageSurgeryTicket2C() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlSurgeryTicket2=url;
+    patientCh?.urlSurgeryTicket2=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -366,7 +438,7 @@ uploadImageSurgeryTicket2C() async{
     print("please choose image");
   }
 }
-uploadImageSurgeryTicket2G() async{
+uploadImageSurgeryTicket2G(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -377,6 +449,11 @@ uploadImageSurgeryTicket2G() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlSurgeryTicket2=url;
+    patientCh?.urlSurgeryTicket2=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -387,7 +464,7 @@ uploadImageSurgeryTicket2G() async{
 }
 
 
-uploadImagesurgerysonarreportC() async{
+uploadImagesurgerysonarreportC(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -399,6 +476,11 @@ uploadImagesurgerysonarreportC() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlSurgerySonar=url;
+    patientCh?.urlSurgerySonar=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -407,7 +489,7 @@ uploadImagesurgerysonarreportC() async{
     print("please choose image");
   }
 }
-uploadImagesurgerysonarreportG() async{
+uploadImagesurgerysonarreportG(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -418,6 +500,11 @@ uploadImagesurgerysonarreportG() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlSurgerySonar=url;
+    patientCh?.urlSurgerySonar=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -429,7 +516,7 @@ uploadImagesurgerysonarreportG() async{
 
 
 
-uploadImageOphthalmiarevealedophthalmiaC() async{
+uploadImageOphthalmiarevealedophthalmiaC(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -441,6 +528,11 @@ uploadImageOphthalmiarevealedophthalmiaC() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlOpthalmia=url;
+    patientCh?.urlOpthalmia=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -449,7 +541,7 @@ uploadImageOphthalmiarevealedophthalmiaC() async{
     print("please choose image");
   }
 }
-uploadImageOphthalmiarevealedophthalmiaG() async{
+uploadImageOphthalmiarevealedophthalmiaG(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -460,6 +552,11 @@ uploadImageOphthalmiarevealedophthalmiaG() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlOpthalmia=url;
+    patientCh?.urlOpthalmia=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -472,7 +569,7 @@ uploadImageOphthalmiarevealedophthalmiaG() async{
 
 
 
-uploadImagGYNWomensreportC() async{
+uploadImagGYNWomensreportC(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
 
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
@@ -484,6 +581,11 @@ uploadImagGYNWomensreportC() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlGynWomen=url;
+    patientCh?.urlGynWomen=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
@@ -492,7 +594,7 @@ uploadImagGYNWomensreportC() async{
     print("please choose image");
   }
 }
-uploadImagGYNWomensreportG() async{
+uploadImagGYNWomensreportG(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
@@ -503,6 +605,11 @@ uploadImagGYNWomensreportG() async{
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
+    patientAd?.urlGynWomen=url;
+    patientCh?.urlGynWomen=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
     print("url : $url");
     //end upload
     print("++++++++++++++++++++++++++");
