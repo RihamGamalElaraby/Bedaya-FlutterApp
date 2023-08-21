@@ -38,6 +38,13 @@ import 'package:bedaya/screens/pharmacy/pharamcyaddtreat.dart';
 import 'package:bedaya/screens/welcome%20screen/welcomescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Screening/AdultScreeningNephro.dart';
+import 'Screening/AdultScreeningOGTT.dart';
+import 'Screening/AdultScrenningUTI.dart';
+import 'Screening/ChildScreeningAnemia.dart';
+import 'Screening/ChildScreeningRickets.dart';
+import 'Screening/ChildScreeningparaside.dart';
+import 'Screening/ChoseScreningScreen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'followup/ENTFollowUpScreen.dart';
@@ -127,6 +134,13 @@ class MyApp extends StatelessWidget {
         ENTFollowUpscreen.screenRoute : (context) =>  ENTFollowUpscreen(),
         GynecologyFollowUpscreen.screenRoute : (context) =>  GynecologyFollowUpscreen(),
         ReportsScreen.screenRoute : (context) => ReportsScreen(),
+        ChoseScreningScreen.screenRoute : (context) => ChoseScreningScreen(),
+        AdultScreenigNephro.screenRoute : (context) => AdultScreenigNephro(),
+        AdultScrenningUTI.screenRoute : (context) => AdultScrenningUTI(),
+        AdultScreeningOGTT.screenRoute : (context) => AdultScreeningOGTT(),
+        ChildScreeningAnemia.screenRoute : (context) => ChildScreeningAnemia(),
+        ChildScreeningRickets.screenRoute : (context) => ChildScreeningRickets(),
+        ChildScreeningParaside.screenRoute : (context) => ChildScreeningParaside(),
 
 
       },

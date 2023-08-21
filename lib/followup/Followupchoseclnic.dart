@@ -405,7 +405,7 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
                     ),),
                   ) ,
                   InkWell( onTap: (){
-                    uploadImagepersonalIDupperg();
+                    uploadImagepersonalIDupperg(patientAd,patientCh);
                   },  child: Container( padding: const EdgeInsets.all(10 ),
                     child: Column(
                       children: [
@@ -423,7 +423,7 @@ class _FollowupchosseClinicState extends State<FollowupchosseClinic> {
                   SizedBox(width: 200,),
 
                   InkWell(onTap: (){
-                    uploadImagepersonalIDupperc();
+                    uploadImagepersonalIDupperc(patientAd,patientCh);
                   }, child: Container( padding: const EdgeInsets.all(10 ),
                     child:  Row(
                       children: [

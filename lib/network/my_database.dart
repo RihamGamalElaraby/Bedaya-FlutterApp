@@ -37,7 +37,7 @@ class MyDataBase {
   //   return formattedDiagnoses;
   // }
 
-  int getDiagnosisCount(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultIm(QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
@@ -50,11 +50,146 @@ class MyDataBase {
     return count;
   }
 
-  Stream<int> getUserCountWithDiagnosisStream(String targetDiagnosis) {
+  Stream<int> getAdultImDiagnoses(String targetDiagnosis) {
     return getCollectionAdult()
         .snapshots()
-        .map((snapshot) => getDiagnosisCount(snapshot, targetDiagnosis));
+        .map((snapshot) => getDiagnosisCountAdultIm(snapshot, targetDiagnosis));
   }
+
+  int getDiagnosisCountAdultEnt(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? diagnoses = patientData.entdiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultEntDiagnoses(String targetDiagnosis) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountAdultEnt(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountAdultOrtho(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? diagnoses = patientData.orthodiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultOrthoDiagnoses(String targetDiagnosis) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountAdultOrtho(snapshot, targetDiagnosis));
+  }
+
+
+  int getDiagnosisCountAdultCardio(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? diagnoses = patientData.Cardiodiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultCardioDiagnoses(String targetDiagnosis) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountAdultCardio(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountAdultOphtha(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? diagnoses = patientData.ophthadiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultOphthaDiagnoses(String targetDiagnosis) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountAdultOphtha(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountAdultGyn(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? diagnoses = patientData.gyndiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultGynDiagnoses(String targetDiagnosis) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountAdultGyn(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountAdultSurg(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? diagnoses = patientData.surgerydiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultSurgeryDiagnoses(String targetDiagnosis) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountAdultSurg(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountAdultPed(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? diagnoses = patientData.peddiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultPedDiagnoses(String targetDiagnosis) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountAdultPed(snapshot, targetDiagnosis));
+  }
+
 
 
 
@@ -210,6 +345,159 @@ class MyDataBase {
     var collection = getCollectionChild();
     return collection.where("chosenDay", isEqualTo: day).snapshots();
   }
+  int getDiagnosisCountChildIm(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.imdiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildImDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildIm(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountChildENT(QuerySnapshot snapshot, String targetDiagnosis,) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.entdiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildEntDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildENT(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountChildOrtho(QuerySnapshot snapshot, String targetDiagnosis,) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.orthodiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildOrthoDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildOrtho(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountChildCardio(QuerySnapshot snapshot, String targetDiagnosis,) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.Cardiodiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildCardioDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildCardio(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountChildOphtha(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.ophthadiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildOphthaDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildOphtha(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountChildGyn(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.gyndiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildGynDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildGyn(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountChildSurg(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.surgerydiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildSurgeryDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildSurg(snapshot, targetDiagnosis));
+  }
+
+  int getDiagnosisCountChildPed(QuerySnapshot snapshot, String targetDiagnosis) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
+
+      List<String>? diagnoses = patientData.peddiagnoses;
+      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getChildPedDiagnoses(String targetDiagnosis) {
+    return getCollectionChild()
+        .snapshots()
+        .map((snapshot) => getDiagnosisCountChildPed(snapshot, targetDiagnosis));
+  }
+
+
 
 
   static Stream<QuerySnapshot<PatientChildModel>> getChildDentalReport(String day) {

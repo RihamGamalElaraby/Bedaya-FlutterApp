@@ -1,14 +1,18 @@
-
+import 'package:bedaya/network/my_database.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../DateModels/PatientAdultModel.dart';
+import '../DateModels/patient_childmodel.dart';
+
 late File file ;
 var imagepicker = ImagePicker();
+// PatientAdultModel? patientAd = PatientAdultModel();
+// PatientChildModel? patientCh = PatientChildModel();
 
-
-uploadImagepersonalIDupperc() async{
+uploadImagepersonalIDupperc(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.camera);
   if(imgpicked!= null) {
@@ -16,6 +20,56 @@ uploadImagepersonalIDupperc() async{
     var nameimage = basename(imgpicked.path);
     //start upload
     var refstorge = FirebaseStorage.instance.ref("/personal ID upper/$nameimage");
+    await refstorge.putFile(file);
+    //لمعرفة عنوان الصورة التي تم رفعها
+    var url = await refstorge.getDownloadURL();
+    patientAd?.urlUpperImage=url;
+    patientCh?.urlUpperImage=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
+    print("url : $url");
+    //end upload
+    print("++++++++++++++++++++++++++");
+    print(nameimage);
+  } else {
+    print("please choose image");
+  }
+}
+uploadImagepersonalIDupperg(PatientAdultModel? patientAd,PatientChildModel? patientCh) async{
+  var imgpicked = await imagepicker.pickImage
+    (source:ImageSource.gallery);
+  if(imgpicked!= null) {
+    file = File(imgpicked.path);
+    var nameimage = basename(imgpicked.path);
+    //start upload
+    var refstorge = FirebaseStorage.instance.ref("/personal ID upper/$nameimage");
+    await refstorge.putFile(file);
+    //لمعرفة عنوان الصورة التي تم رفعها
+    var url = await refstorge.getDownloadURL();
+    patientAd?.urlUpperImage=url;
+    patientCh?.urlUpperImage=url;
+    MyDataBase.updatePatientAdult(patientAd!);
+    MyDataBase.updatePatientChild(patientCh!);
+
+    print("url : $url");
+    //end upload
+    print("++++++++++++++++++++++++++");
+    print(nameimage);
+  } else {
+    print("please choose image");
+  }
+}
+
+
+uploadImageRicketc() async{
+  var imgpicked = await imagepicker.pickImage
+    (source:ImageSource.camera);
+  if(imgpicked!= null) {
+    file = File(imgpicked.path);
+    var nameimage = basename(imgpicked.path);
+    //start upload
+    var refstorge = FirebaseStorage.instance.ref("/Rickets/$nameimage");
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
@@ -27,14 +81,14 @@ uploadImagepersonalIDupperc() async{
     print("please choose image");
   }
 }
-uploadImagepersonalIDupperg() async{
+uploadImageRicketG() async{
   var imgpicked = await imagepicker.pickImage
     (source:ImageSource.gallery);
   if(imgpicked!= null) {
     file = File(imgpicked.path);
     var nameimage = basename(imgpicked.path);
     //start upload
-    var refstorge = FirebaseStorage.instance.ref("/personal ID upper/$nameimage");
+    var refstorge = FirebaseStorage.instance.ref("/Rickets/$nameimage");
     await refstorge.putFile(file);
     //لمعرفة عنوان الصورة التي تم رفعها
     var url = await refstorge.getDownloadURL();
@@ -454,10 +508,6 @@ uploadImagGYNWomensreportG() async{
     print("++++++++++++++++++++++++++");
     print(nameimage);
   } else {
-    print("please choose image");
+    print("please choose image");
   }
 }
-
-
-
-

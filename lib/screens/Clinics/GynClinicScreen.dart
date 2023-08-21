@@ -29,46 +29,28 @@ class _GynClinicScreenState extends State<GynClinicScreen> {
   TextEditingController codeController = TextEditingController();
   TextEditingController gyndiagnoseController = TextEditingController();
 
-  List<String> gyntreatment = ['misaclor','Cefrone',
-    'ceftriaxone','nercefaxon',
-    'Suprax','CAPOTRIL','Rampecardin','Sinopril 10mg','Sinopril Co','Tritace Comp LS','Triacor','Virustat',
-    'Antizole','bendax suspension 60 ml','Bendax tablet 200mg','vermizole',
-    'Tamsunorm','Alexoprine','moxipen 500','Flumox 500','Augmentin 1g','Augram (Syrup)',
-    'Augram 1 gm','clavimox','Curam','Hibiotic 1gm','hikma', 'Fawar fruit' ,'Trillerg' , 'propamethone',
-    'Top-flam', 'Levofloxacin' ,
-    'Kapron','Extrauma', 'marevan' , 'Antinal',
-    'diasmect','lacteol fort','Lecteol fort','Eucarbon','Betaclotri','Daktacot',
-    'diflucan','fluconazole','lamifen','Monicure 400mg',
-    'monicure NH','Otocort','Treflucan','Viotic','Maxilase', 'megalase',
-    'Tritone 100 mg', 'Tritone 200mg', 'Spasmofree', 'Visceralgine', 'ateno 100mg',
-    'ateno 50mg', 'Zisrocin', 'Azimacron', 'Cyanaro', 'Betaserc', 'Bistol', 'Concor',
-    'bambedil', 'Quibron -T/SR', 'Salbovent 2mg', 'Hi-cal', 'calcium D3F', 'Caldin C',
-    'Cardilol', 'Carvipress', 'Isoptin', 'Norvasc', 'Regcor', 'Vasopine', 'Bilichol',
-    'Cipro 500 mg', 'Bedrevide', 'Ur-aid', 'Urivin', 'URAID-N', 'All-vent', 'Babetone (Syrup)',
-    'Balsam', 'cabella', 'Codaphen-N', 'Phenadone', 'Selgon', 'Windy', 'Co-Avazir', 'Cornergel',
-    'Digenorm', 'spasmodigestin', 'Farcotilium', 'farcotilium', 'gastromotil', 'gastromotil', 'Motilium',
-    'Villdagluse', 'Vildagluse Plus', 'Remowax', 'Neo Minophylline', 'Neo-bronchophane', 'Artelac',
-    'normo- tear', 'Orchatears Plus', 'Poly fresh', 'Tears Guard', 'Efemyo', 'Feburic', 'Fluver',
-    'fluvermal', 'Folic Acid', 'Fuci-Top', 'fusi-top', 'Fusiderm', 'Fusi-zon', 'Convetin', 'gaptin 400mg',
-    'Mucosta', 'Gloriagent', 'Goba', 'Panthenol', 'MEBO', 'Daflon 500mg', 'dexaphen', 'Anallerge', 'levcet',
-    'Levohistam', 'Stugeron', 'xaltec', 'Zyrtec', 'orchazid', 'Texacort', 'povidone', 'Enrich (Syrup)',
-    'Enrich Plus', 'Haemojet', 'Enrich (Drops)', 'gastorelive', 'AllerBan', 'Lactulose', 'Picolax',
-    'Tiralepsy', 'Tavanic', 'Floxabact', 'lignocaine hydrochloride', 'Hipamax Plus', 'Examide',
-    'cidophage', 'Meclopram', 'Amrizole', 'Flagellat forte', 'Flagyl', 'Flagyl 250mg', 'Clear Air',
-    'Kokast', 'Fortymox', 'Fortymox Plus', 'MUCO', 'Mucosol', 'mucotec', 'Neuroton', 'octatron',
-    'Orange-C', 'SiderAl', 'Immuniphar', 'neurovit', 'Octozinc', 'pharovit', 'Kidistars', 'Myofen',
-    'myoflex', 'Orphenadrine Plus', 'Otrivin (Adults)', 'Otrivin (Baby Saline)', 'Otrivin (Children)',
-    'Isopto maxitrol', 'Nanazoxid', 'Mepafuran 100', 'mepafuran 50mg', 'nitro fast retard', 'Brufen 400mg',
-    'Bruffen', 'contafever N', 'Declofenac', 'flotac', 'Indometacin Suppositories', 'megafen N', 'piroxiden',
-    'Reparil-Gel N', 'Romafen', 'romalex', 'DG wash', 'Oracure', 'ORS', 'Hydro-safe salts', 'Adol', 'Cetal',
-    'Paracetamol 500mg', 'Temporal', 'Neximerican 20 mg', 'Neximerican 40 mg', 'Omez 20', 'Pantopi 20',
-    'pantoprazole', 'Vental Compositum', 'vental inhaler', 'Ventolin', 'viasalmol', 'amaryl', 'diavance',
-    'Aggrax', 'Aggrex', 'Calamyl', 'Derma Med', 'Atorstat', 'lipicole 10', 'Lipicole 20', 'Lipona',
-    'lipona 10mg', 'Epimag', 'Septrin D.S.', 'Adcocycline', 'Doxycost 200mg', 'vibramycin 100mg',
-    'Tobrin', 'Tobrin', 'Ambezim-G', 'newbezim', 'Proximol', 'Renal-S', 'Rowatinex', 'Urinex', 'ursochol',
-    'ursofalk', 'Vagyl', 'biovit 12 depot', 'Vidrop', 'Bone care', 'Zinc origin'
-
-  ] ;
+  List<String> gyntreatment =  [
+    "Adcocycline", "Adol", "AggraX", "Aggrex", "Alexoprine", "All-vent", "AllerBan", "Ambezim-G", "Amrizole", "Amryl",
+    "Antinal", "Antizole", "Artelac", "AteNO 100mg", "AteNO 50mg", "Atorstat", "Auggram 1 gm", "Auggram (Syrup)",
+    "Augmentin 1g", "Babetone (Syrup)", "Balaam", "Balsam", "Bambedil", "Bedrevide", "Bendax suspension 60 ml",
+    "Bendax tablet 200mg", "Betaclotri", "Betaserc", "Bistol", "Bruffen", "Brufen 400mg", "Caldin C", "Calcium D3F",
+    "Calfate", "Cardilol", "Cefrone", "Ceftriaxone", "CIDOPHAGE", "Cippro 500 mg", "Codaphen-N", "Concor", "Convetin",
+    "Cyanaro", "Daktacot", "Daflon 500mg", "Declofenac", "Derma Med", "Dexaphen", "Diavance", "Diasmect", "Digenorm",
+    "Doxycost 200mg", "Eucarbon", "Examide", "Extrauma", "Farcotilium", "Flagellat forte", "Flagyl", "Flagyl 250mg",
+    "Fluconazole", "Flumox 500", "Fluver", "Fusi-Top", "Fusiderm", "Gaptin 400mg", "Gastorelive", "Hemojet", "Hiccal",
+    "Hibiotic 1gm", "Hikma", "Isopto maxitrol", "Isoptin", "Kidistars", "Kokast", "Lacteol fort", "Lecteol fort",
+    "Levohistam", "Levofloxacin", "Lignocaine hydrochloride", "Lipicole 10", "Lipicole 20", "Lipona", "Marevan",
+    "Maxilase", "MEBO", "Megalase", "Meclopram", "Megafen N", "Mepafuran 100", "Mepafuran 50mg", "Misaclor",
+    "Moxipen 500", "Mucosta", "Mucosol", "Mucotec", "Nanazoxid", "Neo-bronchophane", "Neo Minophylline", "Neuroton",
+    "Nercefaxon", "Neximerican 20 mg", "Neximerican 40 mg", "Newbezim", "Norvasc", "Octatron", "Octozinc", "OmeZ 20",
+    "Oracure", "Orchatears Plus", "Otrivin (Adults)", "Otrivin (Baby Saline)", "Otrivin (Children)", "Pantopi 20",
+    "Pantoprazole", "Paracetamol 500mg", "Picolax", "Piroxiden", "Poly fresh", "Povidone", "Quibron -T/SR", "Rampecardin",
+    "Regcor", "Remowax", "Renal-S", "Reparil-Gel N", "Romafen", "Romalex", "Rowatinex", "Salbovent 2mg", "Selgon",
+    "SiderAl", "Sinopril 10mg", "Sinopril Co", "Spasmofree", "Suprax", "Tamsunorm", "Tavanic", "Temporal", "Tiralepsy",
+    "Top-flam", "Trillerg", "Tritace Comp LS", "Tritone 100 mg", "Tritone 200mg", "Treflucan", "Uracil", "UrineX",
+    "Urivin", "URAID-N", "Urisofalk", "Urinex", "Vagyl", "Vasopine", "Vermizole", "Viacalm", "Vidrop", "Viralstat",
+    "Visceralgine", "Windy", "Xaltec", "Zisrocin", "Zyrtec"
+  ];
   TextEditingController  TreatmentController =TextEditingController ();
   List<String> SelectedTreatment = [] ;
   bool child = false;
