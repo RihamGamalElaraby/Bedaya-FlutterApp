@@ -1,4 +1,5 @@
-import 'package:bedaya/reports/report_screen.dart';
+import 'package:bedaya/reports/chosereporttday.dart';
+import 'package:bedaya/reports/reportday1.dart';
 import 'package:bedaya/screens/welcome%20screen/welcomescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bedaya/screens/chat%20screens/chat_screen.dart';
@@ -122,7 +123,7 @@ class _Chose1_ScreenState extends State<Chose1_Screen> {
                   x: Colors.white,
                   title: 'Reports',
                   onPressed: () {
-                    Navigator.pushNamed(context, ReportsScreen.screenRoute);
+                    Navigator.pushNamed(context, chosedayreport.screenRoute);
                   },
                 ),
                 // SizedBox(

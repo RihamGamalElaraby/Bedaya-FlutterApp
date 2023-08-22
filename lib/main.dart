@@ -1,4 +1,10 @@
-import 'package:bedaya/reports/report_screen.dart';
+import 'package:bedaya/reports/chosereporttday.dart';
+import 'package:bedaya/reports/reportday1.dart';
+import 'package:bedaya/reports/reportday2.dart';
+import 'package:bedaya/reports/reportday3.dart';
+import 'package:bedaya/reports/reportday4.dart';
+import 'package:bedaya/reports/reportday5.dart';
+import 'package:bedaya/reports/reporttotal.dart';
 import 'package:bedaya/screens/Clinics/CardiologyClinicSreen.dart';
 import 'package:bedaya/screens/Clinics/DentalClinicScreen.dart';
 import 'package:bedaya/screens/Clinics/DremaClinic.Dart.dart';
@@ -133,7 +139,7 @@ class MyApp extends StatelessWidget {
         PediatricFollowupscreen.screenRoute : (context) =>  PediatricFollowupscreen(),
         ENTFollowUpscreen.screenRoute : (context) =>  ENTFollowUpscreen(),
         GynecologyFollowUpscreen.screenRoute : (context) =>  GynecologyFollowUpscreen(),
-        ReportsScreen.screenRoute : (context) => ReportsScreen(),
+        reportday1.screenRoute : (context) => reportday1(),
         ChoseScreningScreen.screenRoute : (context) => ChoseScreningScreen(),
         AdultScreenigNephro.screenRoute : (context) => AdultScreenigNephro(),
         AdultScrenningUTI.screenRoute : (context) => AdultScrenningUTI(),
@@ -141,6 +147,16 @@ class MyApp extends StatelessWidget {
         ChildScreeningAnemia.screenRoute : (context) => ChildScreeningAnemia(),
         ChildScreeningRickets.screenRoute : (context) => ChildScreeningRickets(),
         ChildScreeningParaside.screenRoute : (context) => ChildScreeningParaside(),
+        reportday2.screenRoute : (context) => reportday2(),
+        reportday3.screenRoute : (context) => reportday3(),
+        reportday4.screenRoute : (context) => reportday4(),
+        reportday5.screenRoute : (context) => reportday5(),
+        chosedayreport.screenRoute : (context) => chosedayreport(),
+        reporttotal.screenRoute : (context) => reporttotal(),
+
+
+
+
 
 
       },

@@ -191,6 +191,27 @@ class MyDataBase {
   }
 
 
+  int getCountAdultNephropathy(QuerySnapshot snapshot, String FamilyHist,String screeningDm) {
+    int count = 0;
+    for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
+      PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
+
+      List<String>? Dm = patientData.familyHistory;
+      List<String>? screening =patientData.screening;
+      if (Dm != null && Dm.contains(FamilyHist) && screening!=null &&screening.contains(screeningDm)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  Stream<int> getAdultnephropathy(String FamilyHist,String screeningDm) {
+    return getCollectionAdult()
+        .snapshots()
+        .map((snapshot) => getCountAdultNephropathy(snapshot, FamilyHist,screeningDm));
+  }
+
+
 
 
   static Future<void> addPatientAdult(PatientAdultModel patientAdultModel) {
