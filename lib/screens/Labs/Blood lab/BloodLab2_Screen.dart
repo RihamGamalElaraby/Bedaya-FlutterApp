@@ -1707,6 +1707,21 @@ class _bloodLabContinueScreenState extends State<bloodLabContinueScreen> {
                         patientCh?.bloodotherHCV =bloodotherHCV ;
                         MyDataBase.updatePatientChild(patientCh!);
                         Navigator.pushNamed(context, ChoseLabsScreen.screenRoute);
+                        bloodotherHBVpos = false ;
+                        bloodotherHBVneg = false ;
+                        bloodotherHCVpos = false ;
+                        bloodotherHCVneg = false ;
+                        bloodotherAlfafetoproteinpos = false ;
+                        bloodotherAlfafetoproteinneg = false ;
+                        bloodotherPSApos = false ;
+                        bloodotherPSAneg = false ;
+                        bloodotherBHCGpos = false ;
+                        bloodotherBHCGneg = false ;
+                        bloodotherAntiDpos = false ;
+                        bloodotherAntiDneg = false ;
+                        bloodotherRheumatoidfactorpos = false ;
+                        bloodotherRheumatoidfactorneg = false ;
+
                       },
                     ),
                     sizedBoxWidth(width: 20),

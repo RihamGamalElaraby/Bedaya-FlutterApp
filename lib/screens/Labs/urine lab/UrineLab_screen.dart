@@ -121,7 +121,7 @@ class _urineLabscreenState extends State<urineLabscreen>
   List<String> chosenPH = ["5", "6", "7", "8", "9"];
 
   String selectedLeukocyte = "Positive";
-  List<String> chosenLeukocyte = [ "Positive",
+  List<String> chosenLeukocyte = [  "negative","Positive",
     'Positive 1',
     'Positive 2',
     'Positive 3',

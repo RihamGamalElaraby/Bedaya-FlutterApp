@@ -30,6 +30,10 @@ class _LabCheckoutState extends State<LabCheckout> {
   bool noCheckBlood = false;
   String checkBlood = "";
 
+  bool yesGoHome = false;
+  bool noGoHome = false;
+  String goHome = "";
+
   TextEditingController codeController = TextEditingController();
   // bool blood = false;
   // bool stool = false;
@@ -621,7 +625,68 @@ class _LabCheckoutState extends State<LabCheckout> {
                   ],
                 ),
               ),
-              )
+              ),
+             sizedBoxWidth(width: 10),
+             Flexible(child:
+             Container(
+               decoration: BoxDecoration(
+                   color: Colors.red, borderRadius: BorderRadius.circular(10)),
+               width: 400,
+               height: 150,
+               child: Column(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 crossAxisAlignment: CrossAxisAlignment.center,
+                 children: [
+                   Flexible(
+                       flex: 1,
+                       child: defultText(
+                           data: 'Go Home :', x: 17, c: Colors.white)),
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                     children: [
+                       Flexible(
+                           flex: 1,
+                           child: defultText(data: 'Yes', x: 17, c: Colors.white)),
+                       sizedBoxWidth(width: 50),
+                       Flexible(
+                           flex: 1,
+                           child: Checkbox(
+                               value: yesGoHome,
+                               onChanged: (val) {
+                                 setState(() {
+                                   yesGoHome = val!;
+                                   noGoHome = false;
+                                 });
+                                 if (val!) {
+                                   goHome = "yes";
+                                 }
+                               })),
+                       sizedBoxWidth(width: 60),
+                       Flexible(
+                           flex: 1,
+                           child: defultText(data: 'No', x: 17, c: Colors.white)),
+                       Flexible(
+                           flex: 1,
+                           child: CheckboxListTile(
+                               value: noGoHome,
+                               onChanged: (val) {
+                                 setState(() {
+                                   noGoHome = val!;
+                                   yesGoHome = false;
+                                 });
+                                 if (val!) {
+                                   goHome = "no";
+                                 }
+                               })
+                       ),
+                     ],
+                   ),
+                   sizedBoxWidth(width: 10),
+                 ],
+               ),
+             ),
+             ),
            ],
          ),
           SizedBox(
@@ -635,6 +700,9 @@ class _LabCheckoutState extends State<LabCheckout> {
                 color: Colors.grey,
                 title: "Done",
                 onPressed: () {
+                  patientAd.goHomeLabs=goHome;
+                  patientCh.goHomeLabs=goHome;
+
                   if(checkUrine=="yes"){
                     selectedPatient=="ad"? patientAd.urineCheckIn = false: patientCh.urineCheckIn=false;
                   }

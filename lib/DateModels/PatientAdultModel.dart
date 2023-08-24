@@ -75,6 +75,8 @@ class PatientAdultModel {
   String? communityDevelopment; // done
   List<String>? screening; // done
   //adult end >>>>>>>>>>>>>>>>>>>>>52
+  String? goHomeLabs;
+
   String? urlGynWomen;
   String? urlImSheet1;
   String? urlImSheet2;
@@ -179,10 +181,10 @@ class PatientAdultModel {
   String? Stoollabtinea;
   String? StoollabAscaris;
   String? StoollabTtrichuria;
-  String? StoollabHookworm;
   String? Stoollabblastosyct;
   String? StoollabHpylori;
   String? Stoollabfecal;
+  String? StoollabHookworm;
   String? StoollabEntrobious;
   String? StoollabEcoli;
   String? StoollabEhistolitica;
@@ -321,6 +323,7 @@ class PatientAdultModel {
     this.ReferralOfConvoyClinics,
     this.followUp,
     //personal data end
+    this.goHomeLabs,
     this.reportFollowUp,
     this.reportPharma,
     this.reportBlood,
@@ -572,6 +575,7 @@ class PatientAdultModel {
           OphthalmologyFollowneedivestigations:
               json["OphthalmologyFollowneedivestigations"],
           FollowerName: json["FollowerName"],
+          goHomeLabs: json["goHomeLabs"],
 
           //
           BP1Vital: json["BP1Vital"],
@@ -860,6 +864,7 @@ class PatientAdultModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "goHomeLabs":goHomeLabs,
       "reportFollowUp":reportFollowUp,
       "reportStool": reportStool,
       "reportPharma": reportPharma,

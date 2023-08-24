@@ -167,6 +167,8 @@ class PatientChildModel {
   bool? bloodCheckIn;
   bool? stoolCheckIn;
 
+  String? goHomeLabs;
+
 //
   // urine
   String? urineCasts;
@@ -480,6 +482,7 @@ class PatientChildModel {
     this.bloodCheckIn = false,
     this.stoolCheckIn = false,
     //check in end
+    this.goHomeLabs,
 
     // clinic  start
     this.orthodiagnoses,
@@ -893,10 +896,12 @@ class PatientChildModel {
           StoolOdour: json["StoolOdour"],
           wbcscontroller: json["wbcscontroller"],
           Rbcscontroller: json["Rbcscontroller"],
+      goHomeLabs:json["goHomeLabs"],
         );
 
   Map<String, dynamic> toFireStore() {
     return {
+      "goHomeLabs":goHomeLabs,
       "ENTFollowupNeedinvestigations": ENTFollowupNeedinvestigations,
       "ENTFollowupNeedoperations": ENTFollowupNeedoperations,
       "IMfollowUPNEEDcheckup": IMfollowUPNEEDcheckup,

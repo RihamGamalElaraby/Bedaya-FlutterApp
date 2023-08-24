@@ -589,6 +589,1706 @@ class _reportday3State extends State<reportday3> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
+                          child: defultText(data: "Urine Abnormally", c: Colors.black, x: 22),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Calcium Oxlate :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultUrineAbnormalCalcium("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildUrineAbnormalCalcium("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Uric Acid :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultUrineAbnormalUricacid("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildUrineAbnormalUricacid("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Triple Phosphate :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultUrineAbnormalTriplephosphate("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildUrineAbnormalTriplephosphate("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Amorphous :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultUrineAbnormalAmorphous("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildUrineAbnormalAmorphous("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: defultText(data: "Stool Abnormally", c: Colors.black, x: 22),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Fasciola :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalFasciola("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalFasciola("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Sch. Mansoni :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalSchMansoni("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalSchMansoni("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "H.nana :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalHNana("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalHNana("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Tinea :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalTinea("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalTinea("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Ascaris :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalAscaris("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalAscaris("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "T. trichuria:", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalTtrichuria("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalTtrichuria("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Blastocyst :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalBlostocyt("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalBlostocyt("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Hookworm :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalHookworm("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalHookworm("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Entrobious :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalEntrobious("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalEntrobious("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Ecoli :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalEcoli("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalEcoli("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Ehistolitica :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalEhistolitica("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalEhistolitica("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Giardia :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalGiardia("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalGiardia("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Strongyloides larvae :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalStrongyloideslarvae("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalStrongyloideslarvae("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: "Giardia trophozozite :", c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalGiardiatrophozozite("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalGiardiatrophozozite("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: 'E.histolitica trophozite : ', c: Colors.black, x: 18)),
+                              StreamBuilder(
+                                stream: MyDataBase.getAdultStoolAbnormalEhistoliticatrophozite("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientAd = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientAd.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientAd.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                              StreamBuilder(
+                                stream: MyDataBase.getChildStoolAbnormalEhistoliticatrophozite("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                        child: Text(
+                                          "something went wrong",
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                        ));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } // sania tb
+                                  patientCh = snapshot.data?.docs
+                                      .map((e) => e.data())
+                                      .toList() ??
+                                      [];
+                                  return patientCh!.isNotEmpty
+                                      ? Expanded(
+                                      child: defultText(
+                                          data: " ${patientCh!.length}",
+                                          x: 18,
+                                          c: Colors.black))
+                                      : Expanded(
+                                      child: defultText(
+                                          data: " No patient yet",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: defultText(data: "Parasite", c: Colors.black, x: 22),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              sizedBoxWidth(width: 15),
+                              Expanded(
+                                  child: defultText(
+                                      data: 'Parasite : ', c: Colors.black, x: 18)),
+                              StreamBuilder<int>(
+                                stream: MyDataBase().getChildParasite("Day 3"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    return Text("error");
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    // Handle loading state
+                                    return CircularProgressIndicator();
+                                  }
+
+                                  int userCountWithDiagnosis = snapshot.data ?? 0;
+
+                                  return Expanded(
+                                      child: defultText(
+                                          data: "$userCountWithDiagnosis",
+                                          x: 18,
+                                          c: Colors.black));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                          color: Colors.white,
+                          thickness: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
                           child: defultText(data: "Clinics", c: Colors.black, x: 22),
                         ),
                         const Divider(

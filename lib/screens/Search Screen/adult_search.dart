@@ -24,6 +24,8 @@ class _AdultSearchState extends State<AdultSearch> {
 
   @override
   Widget build(BuildContext context) {
+    PatientAdultModel? patientModel =
+    ModalRoute.of(context)?.settings.arguments as PatientAdultModel?;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -77,7 +79,7 @@ class _AdultSearchState extends State<AdultSearch> {
       ),
       body: SingleChildScrollView(
           child: StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-            stream: MyDataBase.getPatientAdult(codeController.text),
+            stream: MyDataBase.getPatientAdult(patientModel?.codeAdultPatient ?? codeController.text ),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());
@@ -99,7 +101,7 @@ class _AdultSearchState extends State<AdultSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: "Name: ${patient.nameAdultPatient}",
+                              data: "Name: ${patient?.nameAdultPatient}",
                               c: Colors.black,
                               x: 19,
                             ),
@@ -108,7 +110,7 @@ class _AdultSearchState extends State<AdultSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Code: ${patient.codeAdultPatient}',
+                              data: 'Code: ${patient?.codeAdultPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -117,7 +119,7 @@ class _AdultSearchState extends State<AdultSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Sex: ${patient.sexAdultPatient}',
+                              data: 'Sex: ${patient?.sexAdultPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -127,7 +129,7 @@ class _AdultSearchState extends State<AdultSearch> {
                             flex: 1,
                             child: defultText(
                               data:
-                              'Mobile No.: ${patient.mobileNumberAdultPatient}',
+                              'Mobile No.: ${patient?.mobileNumberAdultPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -137,7 +139,7 @@ class _AdultSearchState extends State<AdultSearch> {
                             flex: 1,
                             child: defultText(
                               data: 'House No.: ${patient
-                                  .houseNumberAdultPatient}',
+                                  ?.houseNumberAdultPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -153,7 +155,7 @@ class _AdultSearchState extends State<AdultSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: "Age: ${patient.agePatientAdult}",
+                              data: "Age: ${patient?.agePatientAdult}",
                               c: Colors.black,
                               x: 19,
                             ),
@@ -163,7 +165,7 @@ class _AdultSearchState extends State<AdultSearch> {
                             flex: 1,
                             child: defultText(
                               data: 'Occupation: ${patient
-                                  .occupationAdultPatient}',
+                                  ?.occupationAdultPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -172,30 +174,30 @@ class _AdultSearchState extends State<AdultSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Marital Status: ${patient.maritalStatus}',
+                              data: 'Marital Status: ${patient?.maritalStatus}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 50),
-                          patient.childrenNumber == null
+                          patient?.childrenNumber == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Children No.: ${patient.childrenNumber}',
+                              data: 'Children No.: ${patient?.childrenNumber}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 50),
-                          patient.ageOfYoungChild == null
+                          patient?.ageOfYoungChild == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Age oh young Child.: ${patient.ageOfYoungChild}',
+                              'Age oh young Child.: ${patient?.ageOfYoungChild}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -213,7 +215,7 @@ class _AdultSearchState extends State<AdultSearch> {
                             child: defultText(
                               data:
                               "Education Level: ${patient
-                                  .educationLevelAdultPatient}",
+                                  ?.educationLevelAdultPatient}",
                               c: Colors.black,
                               x: 19,
                             ),
@@ -222,41 +224,41 @@ class _AdultSearchState extends State<AdultSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Smoking: ${patient.smokingAdultPatient}',
+                              data: 'Smoking: ${patient?.smokingAdultPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient.rateSmoking?.trim() == null
+                          patient?.rateSmoking?.trim() == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Rate Smoking: ${patient.rateSmoking}',
+                              data: 'Rate Smoking: ${patient?.rateSmoking}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient.typeSmoking?.trim() == null
+                          patient?.typeSmoking?.trim() == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Type Smoking: ${patient.typeSmoking}',
+                              data: 'Type Smoking: ${patient?.typeSmoking}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient.otherHabitsSmoking?.trim() == null
+                          patient?.otherHabitsSmoking?.trim() == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Other Habits: ${patient.otherHabitsSmoking}',
+                              'Other Habits: ${patient?.otherHabitsSmoking}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -270,25 +272,25 @@ class _AdultSearchState extends State<AdultSearch> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           sizedBoxWidth(width: 30),
-                          patient.smokingCessationsStatus?.trim() == null
+                          patient?.smokingCessationsStatus?.trim() == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Status: ${patient.smokingCessationsStatus}',
+                              'Status: ${patient?.smokingCessationsStatus}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient.DurationSmokingCessations == null
+                          patient?.DurationSmokingCessations == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Duration : ${patient.DurationSmokingCessations}',
+                              'Duration : ${patient?.DurationSmokingCessations}',
                               c: Colors.black,
                               x: 19,
                             ),

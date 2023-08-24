@@ -1,3 +1,4 @@
+import 'package:bedaya/screens/Search%20Screen/children_search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -674,7 +675,10 @@ class _ChildDashState extends State<ChildDash> {
                                                                     Expanded(
                                                                         child: IconButton(
                                                                             onPressed:
-                                                                                () {},
+                                                                                () {
+                                                                                  Navigator.pushNamed(
+                                                                                      context, ChildrenSearch.screenRoute,arguments: patient[index]);
+                                                                                },
                                                                             icon:
                                                                                 Icon(Icons.smart_display))),
                                                                   ],

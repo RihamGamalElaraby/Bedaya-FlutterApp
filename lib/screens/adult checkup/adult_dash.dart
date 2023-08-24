@@ -10,6 +10,7 @@ import '../../DateModels/pharmacy_model.dart';
 import '../../component/component.dart';
 import '../../network/my_database.dart';
 import '../../widgets/my_button.dart';
+import '../Search Screen/adult_search.dart';
 import '../dashboard/dashboard.dart';
 
 class AdultDash extends StatefulWidget {
@@ -23,12 +24,20 @@ class AdultDash extends StatefulWidget {
 
 class _AdultDashState extends State<AdultDash> {
   var formKey = GlobalKey<FormState>();
-  List<String> Chosedaylist = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5' , "all"];
+  List<String> Chosedaylist = [
+    'Day 1',
+    'Day 2',
+    'Day 3',
+    'Day 4',
+    'Day 5',
+    "all"
+  ];
   String selectedday = 'Day 1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.green,
         title: Center(
           child: Text(
@@ -41,8 +50,8 @@ class _AdultDashState extends State<AdultDash> {
           ),
         ),
         actions: [
-          IconButton(onPressed: (){}, icon:Icon(Icons.print)),
-          IconButton(onPressed: (){}, icon:Icon(Icons.file_download)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.print)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.file_download)),
           sizedBoxWidth(width: 60)
         ],
       ),
@@ -52,14 +61,17 @@ class _AdultDashState extends State<AdultDash> {
           child: Column(
             children: [
               sizedBoxhight(hight: 40),
-              Row( mainAxisAlignment: MainAxisAlignment.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  mysignin(color: Colors.green, title: 'Add new Patient',
-
-                      onPressed:() =>  Navigator.pushNamed(context, adultCheckup.screenRoute)
-                  )
-                ],),
+                  mysignin(
+                      color: Colors.green,
+                      title: 'Add new Patient',
+                      onPressed: () => Navigator.pushNamed(
+                          context, adultCheckup.screenRoute))
+                ],
+              ),
               sizedBoxhight(hight: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -157,18 +169,18 @@ class _AdultDashState extends State<AdultDash> {
                   sizedBoxWidth(width: 20),
                   Flexible(
                       child: Container(
-                        width: 100,
-                        height: 50,
-                        child: mysignin(
-                          color: Colors.green,
-                          title: 'search',
-                          size: 18,
-                          onPressed: () {
-                            setState(() {});
-                            print(codeController.text);
-                          },
-                        ),
-                      ))
+                    width: 100,
+                    height: 50,
+                    child: mysignin(
+                      color: Colors.green,
+                      title: 'search',
+                      size: 18,
+                      onPressed: () {
+                        setState(() {});
+                        print(codeController.text);
+                      },
+                    ),
+                  ))
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -180,174 +192,219 @@ class _AdultDashState extends State<AdultDash> {
                       flex: 1,
                       child: selectedPatient == "ad"
                           ? StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-                        stream:
-                        MyDataBase.getPatientAdult(codeController.text),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return CircularProgressIndicator();
-                          } else if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else if (!snapshot.hasData ||
-                              snapshot.data!.docs.isEmpty) {
-                            return Text('No patient data found!');
-                          } else {
-                            // Access the first patient from the query snapshot
-                            //   List<PatientAdultModel> patientList =
-                            //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                            patientAd = snapshot.data!.docs[0].data();
-                            print("data ${patientAd.screening}");
-                            return Container(
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              width: 1000,
-                              height: 80,
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          flex: 4,
-                                          child: defultText(
-                                            data:
-                                            "Patient’s Name: ${patientAd.nameAdultPatient}",
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 300),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                            'Code: ${patientAd.codeAdultPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 50),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                            'Sex: ${patientAd.sexAdultPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                      ],
+                              stream: MyDataBase.getPatientAdult(
+                                  codeController.text),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return CircularProgressIndicator();
+                                } else if (snapshot.hasError) {
+                                  return Text('Error: ${snapshot.error}');
+                                } else if (!snapshot.hasData ||
+                                    snapshot.data!.docs.isEmpty) {
+                                  return Text('No patient data found!');
+                                } else {
+                                  // Access the first patient from the query snapshot
+                                  //   List<PatientAdultModel> patientList =
+                                  //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                                  patientAd = snapshot.data!.docs[0].data();
+                                  print("data ${patientAd.screening}");
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Flexible(child: SizedBox(width: 50, height:  40,
-                                            child: IconButton(onPressed: (){}, icon:Icon(Icons.edit))),),
-                                        sizedBoxWidth(width: 20),
-                                        Flexible(child:SizedBox(width: 50, height:  40,
-                                            child: IconButton(onPressed: (){}, icon:Icon(Icons.delete))),),
-                                        sizedBoxWidth(width: 20),
-                                        Flexible(child: SizedBox(width: 50, height:  40,
-                                            child: IconButton(onPressed: (){}, icon:Icon(Icons.smart_display))),),
-                                        sizedBoxWidth(width: 20),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      )
+                                    width: 1000,
+                                    height: 80,
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                flex: 4,
+                                                child: defultText(
+                                                  data:
+                                                      "Patient’s Name: ${patientAd.nameAdultPatient}",
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                              sizedBoxWidth(width: 300),
+                                              Flexible(
+                                                flex: 1,
+                                                child: defultText(
+                                                  data:
+                                                      'Code: ${patientAd.codeAdultPatient}',
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                              sizedBoxWidth(width: 50),
+                                              Flexible(
+                                                flex: 1,
+                                                child: defultText(
+                                                  data:
+                                                      'Sex: ${patientAd.sexAdultPatient}',
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                child: SizedBox(
+                                                    width: 50,
+                                                    height: 40,
+                                                    child: IconButton(
+                                                        onPressed: () {},
+                                                        icon:
+                                                            Icon(Icons.edit))),
+                                              ),
+                                              sizedBoxWidth(width: 20),
+                                              Flexible(
+                                                child: SizedBox(
+                                                    width: 50,
+                                                    height: 40,
+                                                    child: IconButton(
+                                                        onPressed: () {},
+                                                        icon: Icon(
+                                                            Icons.delete))),
+                                              ),
+                                              sizedBoxWidth(width: 20),
+                                              Flexible(
+                                                child: SizedBox(
+                                                    width: 50,
+                                                    height: 40,
+                                                    child: IconButton(
+                                                        onPressed: () {},
+                                                        icon: Icon(Icons
+                                                            .smart_display))),
+                                              ),
+                                              sizedBoxWidth(width: 20),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                            )
                           : StreamBuilder<QuerySnapshot<PatientChildModel>>(
-                        stream:
-                        MyDataBase.getPatientChild(codeController.text),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return CircularProgressIndicator();
-                          } else if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else if (!snapshot.hasData ||
-                              snapshot.data!.docs.isEmpty) {
-                            return Text('No patient data found!');
-                          } else {
-                            // Access the first patient from the query snapshot
-                            //   List<PatientAdultModel> patientList =
-                            //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                            patientCh = snapshot.data!.docs[0].data();
-                            print("data ${patientAd.screening}");
-                            return Container(
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              width: 1000,
-                              height: 80,
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          flex: 4,
-                                          child: defultText(
-                                            data:
-                                            "Patient’s Name: ${patientCh.nameChildPatient}",
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 300),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                            'Code: ${patientCh.codeChildPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                        sizedBoxWidth(width: 50),
-                                        Flexible(
-                                          flex: 1,
-                                          child: defultText(
-                                            data:
-                                            'Sex: ${patientCh.sexChildPatient}',
-                                            c: Colors.black,
-                                            x: 19,
-                                          ),
-                                        ),
-                                      ],
+                              stream: MyDataBase.getPatientChild(
+                                  codeController.text),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return CircularProgressIndicator();
+                                } else if (snapshot.hasError) {
+                                  return Text('Error: ${snapshot.error}');
+                                } else if (!snapshot.hasData ||
+                                    snapshot.data!.docs.isEmpty) {
+                                  return Text('No patient data found!');
+                                } else {
+                                  // Access the first patient from the query snapshot
+                                  //   List<PatientAdultModel> patientList =
+                                  //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                                  patientCh = snapshot.data!.docs[0].data();
+                                  print("data ${patientAd.screening}");
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(child: SizedBox(width: 50, height:  40,
-                                            child: IconButton(onPressed: (){}, icon:Icon(Icons.edit))),),
-                                        sizedBoxWidth(width: 20),
-                                        Flexible(child:SizedBox(width: 50, height:  40,
-                                            child: IconButton(onPressed: (){}, icon:Icon(Icons.delete))),),
-                                        sizedBoxWidth(width: 20),
-                                        Flexible(child: SizedBox(width: 50, height:  40,
-                                            child: IconButton(onPressed: (){}, icon:Icon(Icons.smart_display))),),
-                                        sizedBoxWidth(width: 20),
-                                      ],)
-
-                                  ],
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      )),
+                                    width: 1000,
+                                    height: 80,
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                flex: 4,
+                                                child: defultText(
+                                                  data:
+                                                      "Patient’s Name: ${patientCh.nameChildPatient}",
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                              sizedBoxWidth(width: 300),
+                                              Flexible(
+                                                flex: 1,
+                                                child: defultText(
+                                                  data:
+                                                      'Code: ${patientCh.codeChildPatient}',
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                              sizedBoxWidth(width: 50),
+                                              Flexible(
+                                                flex: 1,
+                                                child: defultText(
+                                                  data:
+                                                      'Sex: ${patientCh.sexChildPatient}',
+                                                  c: Colors.black,
+                                                  x: 19,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                child: SizedBox(
+                                                    width: 50,
+                                                    height: 40,
+                                                    child: IconButton(
+                                                        onPressed: () {},
+                                                        icon:
+                                                            Icon(Icons.edit))),
+                                              ),
+                                              sizedBoxWidth(width: 20),
+                                              Flexible(
+                                                child: SizedBox(
+                                                    width: 50,
+                                                    height: 40,
+                                                    child: IconButton(
+                                                        onPressed: () {},
+                                                        icon: Icon(
+                                                            Icons.delete))),
+                                              ),
+                                              sizedBoxWidth(width: 20),
+                                              Flexible(
+                                                child: SizedBox(
+                                                    width: 50,
+                                                    height: 40,
+                                                    child: IconButton(
+                                                        onPressed: () {},
+                                                        icon: Icon(Icons
+                                                            .smart_display))),
+                                              ),
+                                              sizedBoxWidth(width: 20),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                            )),
                 ],
               ),
               sizedBoxhight(hight: 10),
@@ -363,19 +420,21 @@ class _AdultDashState extends State<AdultDash> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
+                      children: [
                         const Center(
                             child: Text(
-                              'Chose Day  :',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            )),
-                        SizedBox(width: 5,),
+                          'Chose Day  :',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )),
+                        SizedBox(
+                          width: 5,
+                        ),
                         DropdownButton<String>(
                             value: selectedday, // 1-done
                             items: Chosedaylist.map(
-                                  (day) => DropdownMenuItem(
+                              (day) => DropdownMenuItem(
                                 value: day,
                                 child: Text(
                                   day,
@@ -385,7 +444,8 @@ class _AdultDashState extends State<AdultDash> {
                                 ),
                               ),
                             ).toList(),
-                            onChanged: (day) => setState(() => selectedday = day!)),
+                            onChanged: (day) =>
+                                setState(() => selectedday = day!)),
                       ],
                     ),
                   ),
@@ -493,21 +553,22 @@ class _AdultDashState extends State<AdultDash> {
                           Row(children: [
                             sizedBoxWidth(width: 20),
                             Expanded(
-                                child:
-                                defultText(data: '#', c: Colors.white)),
+                                child: defultText(data: '#', c: Colors.white)),
                             Expanded(
                                 child:
-                                defultText(data: 'Code', c: Colors.white)),
+                                    defultText(data: 'Code', c: Colors.white)),
                             Expanded(
-                                child: defultText(data: 'Name', c: Colors.white)),
+                                child:
+                                    defultText(data: 'Name', c: Colors.white)),
                             Expanded(
-                                child: defultText(data: 'Sex', c: Colors.white)),
+                                child:
+                                    defultText(data: 'Sex', c: Colors.white)),
                             Expanded(
-                                child: defultText(
-                                    data: 'Age', c: Colors.white)),
+                                child:
+                                    defultText(data: 'Age', c: Colors.white)),
                             Expanded(
-                                child: defultText(
-                                    data: '...', c: Colors.white)),
+                                child:
+                                    defultText(data: '...', c: Colors.white)),
                           ]),
                           Divider(
                             color: Colors.white,
@@ -516,22 +577,25 @@ class _AdultDashState extends State<AdultDash> {
                           Expanded(
                             child: Scrollable(
                               axisDirection: AxisDirection.down,
-                              viewportBuilder:
-                                  (BuildContext context, ViewportOffset offset) {
+                              viewportBuilder: (BuildContext context,
+                                  ViewportOffset offset) {
                                 return Column(
                                   children: [
                                     SizedBox(height: offset.pixels),
                                     StreamBuilder(
-                                      stream: selectedday=="all"? MyDataBase.getAllPatientAdult(): MyDataBase.getAdultDash(selectedday),
+                                      stream: selectedday == "all"
+                                          ? MyDataBase.getAllPatientAdult()
+                                          : MyDataBase.getAdultDash(
+                                              selectedday),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasError) {
                                           return Center(
                                               child: Text(
-                                                "something went wrong",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headlineMedium,
-                                              ));
+                                            "something went wrong",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headlineMedium,
+                                          ));
                                         }
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
@@ -539,128 +603,130 @@ class _AdultDashState extends State<AdultDash> {
                                             child: CircularProgressIndicator(),
                                           );
                                         } // sania tb
-                                        List<PatientAdultModel> patient = snapshot
-                                            .data?.docs
-                                            .map((e) => e.data())
-                                            .toList() ??
-                                            [];
+                                        List<PatientAdultModel> patient =
+                                            snapshot.data?.docs
+                                                    .map((e) => e.data())
+                                                    .toList() ??
+                                                [];
                                         return patient.isNotEmpty
                                             ? Expanded(
-                                          child: ListView.builder(
-                                            itemCount: patient.length,
-                                            itemBuilder:
-                                                (BuildContext context,
-                                                int index) {
-                                                  int displayNumber = index + 1;
-                                                  return SizedBox(
-                                                height: 40,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                      const EdgeInsets
-                                                          .only(
-                                                          left: 30.0),
-                                                      child: Row(
+                                                child: ListView.builder(
+                                                  itemCount: patient.length,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    int displayNumber =
+                                                        index + 1;
+                                                    return SizedBox(
+                                                      height: 40,
+                                                      child: Column(
                                                         children: [
-                                                          Expanded(child: Text("${displayNumber.toString()}")),
-                                                          Expanded(
-                                                              child: Text(patient[
-                                                              index]
-                                                                  .codeAdultPatient
-                                                                  .toString())),
-                                                          Expanded(
-                                                              child: Text(patient[
-                                                              index]
-                                                                  .nameAdultPatient ??
-                                                                  "N/A")),
-                                                          Expanded(
-                                                              child: Text(patient[
-                                                              index]
-                                                                  .sexAdultPatient ??
-                                                                  "N/A")),
-                                                          Expanded(
-                                                              child: Text("${patient[index]
-                                                                  .agePatientAdult}")),
-                                                          Expanded(
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 30.0),
                                                             child: Row(
                                                               children: [
                                                                 Expanded(
-                                                                  child: IconButton(
-                                                                      onPressed: () {
-                                                                        showDialog(
-                                                                          context:
-                                                                          context,
-                                                                          builder:
-                                                                              (BuildContext
-                                                                          context) {
-                                                                            return AlertDialog(
-                                                                              title: Text(
-                                                                                  "Confirm Delete"),
-                                                                              content:
-                                                                              Text("Are you sure you want to delete this Patient?"),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed:
-                                                                                      () {
-                                                                                    Navigator.of(context).pop(); // Close the dialog
-                                                                                  },
-                                                                                  child:
-                                                                                  Text("No"),
-                                                                                ),
-                                                                                TextButton(
-                                                                                  onPressed:
-                                                                                      () {
-                                                                                   MyDataBase.deletePatient(patient[index].codeAdultPatient!);
-                                                                                    Navigator.of(context).pop(); // Close the dialog
-                                                                                  },
-                                                                                  child:
-                                                                                  Text("Yes"),
-                                                                                ),
-                                                                              ],
-                                                                            );
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      icon: Icon(Icons
-                                                                          .delete)),
+                                                                    child: Text(
+                                                                        "${displayNumber.toString()}")),
+                                                                Expanded(
+                                                                    child: Text(patient[
+                                                                            index]
+                                                                        .codeAdultPatient
+                                                                        .toString())),
+                                                                Expanded(
+                                                                    child: Text(
+                                                                        patient[index].nameAdultPatient ??
+                                                                            "N/A")),
+                                                                Expanded(
+                                                                    child: Text(
+                                                                        patient[index].sexAdultPatient ??
+                                                                            "N/A")),
+                                                                Expanded(
+                                                                    child: Text(
+                                                                        "${patient[index].agePatientAdult}")),
+                                                                Expanded(
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Expanded(
+                                                                        child: IconButton(
+                                                                            onPressed: () {
+                                                                              showDialog(
+                                                                                context: context,
+                                                                                builder: (BuildContext context) {
+                                                                                  return AlertDialog(
+                                                                                    title: Text("Confirm Delete"),
+                                                                                    content: Text("Are you sure you want to delete this Patient?"),
+                                                                                    actions: [
+                                                                                      TextButton(
+                                                                                        onPressed: () {
+                                                                                          Navigator.of(context).pop(); // Close the dialog
+                                                                                        },
+                                                                                        child: Text("No"),
+                                                                                      ),
+                                                                                      TextButton(
+                                                                                        onPressed: () {
+                                                                                          MyDataBase.deletePatient(patient[index].codeAdultPatient!);
+                                                                                          Navigator.of(context).pop(); // Close the dialog
+                                                                                        },
+                                                                                        child: Text("Yes"),
+                                                                                      ),
+                                                                                    ],
+                                                                                  );
+                                                                                },
+                                                                              );
+                                                                            },
+                                                                            icon: Icon(Icons.delete)),
+                                                                      ),
+                                                                      Expanded(
+                                                                          child: IconButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pushNamed(context, adultCheckup.screenRoute, arguments: patient[index]);
+                                                                              },
+                                                                              icon: Icon(Icons.edit))),
+                                                                      Expanded(
+                                                                          child: IconButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pushNamed(context, AdultSearch.screenRoute, arguments: patient[index]);
+                                                                              },
+                                                                              icon: Icon(Icons.smart_display))),
+                                                                    ],
+                                                                  ),
                                                                 ),
-                                                                Expanded(child: IconButton(onPressed: () {
-                                                                  Navigator.pushNamed(context, adultCheckup.screenRoute,arguments: patient[index]);
-                                                                }, icon: Icon(Icons.edit))),
-                                                                Expanded(child: IconButton(onPressed: () {}, icon: Icon(Icons.smart_display))),
+                                                                SizedBox(
+                                                                  width: 6,
+                                                                ),
                                                               ],
                                                             ),
                                                           ),
-                                                          SizedBox(width: 6,),
+                                                          const Divider(
+                                                            color: Colors.white,
+                                                            thickness: 0.8,
+                                                            height: 0,
+                                                          ),
                                                         ],
                                                       ),
-                                                    ),
-                                                    const Divider(
-                                                      color: Colors.white,
-                                                      thickness: 0.8,
-                                                      height: 0,
-                                                    ),
-                                                  ],
+                                                    );
+                                                  },
+                                                ),
+                                              )
+                                            : Container(
+                                                margin:
+                                                    EdgeInsets.only(top: 220),
+                                                child: Text(
+                                                  textAlign: TextAlign.center,
+                                                  "no patient yet ...",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                          color: Colors.green,
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                 ),
                                               );
-                                            },
-                                          ),
-                                        )
-                                            : Container(
-                                          margin: EdgeInsets.only(top: 220),
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            "no patient yet ...",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium
-                                                ?.copyWith(
-                                                color: Colors.green,
-                                                fontWeight:
-                                                FontWeight.bold),
-                                          ),
-                                        );
                                       },
                                     ),
                                   ],
@@ -675,7 +741,9 @@ class _AdultDashState extends State<AdultDash> {
                   sizedBoxWidth(width: 20),
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.center,
               //   crossAxisAlignment: CrossAxisAlignment.start,
@@ -768,7 +836,6 @@ class _AdultDashState extends State<AdultDash> {
               //     ),
               //   ],
               // ),
-
             ],
           ),
         ),
