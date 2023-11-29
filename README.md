@@ -1,4 +1,4 @@
-# Bedaya - Hospital Management System (Flutter & Firebase)
+# Bedaya - Hospital Management System 
 
 Collaborated with a prominent charity organization at Ain Shams University's Faculty of Medicine to develop a comprehensive Hospital Management System.
 
