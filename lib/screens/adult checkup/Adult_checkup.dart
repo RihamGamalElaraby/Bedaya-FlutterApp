@@ -1,14 +1,11 @@
-
 import 'package:bedaya/DateModels/PatientAdultModel.dart';
 import 'package:bedaya/component/component.dart';
 import 'package:bedaya/network/my_database.dart';
-import 'package:bedaya/screens/Search%20Screen/search_screen.dart';
-import 'package:bedaya/screens/welcome%20screen/welcomescreen.dart';
+import 'package:bedaya/screens/adult%20checkup/Adult_continue.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/widgets/my_button.dart';
-import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
-import 'package:bedaya/screens/adult%20checkup/Adult_continue.dart';
+import 'package:flutter/material.dart';
 
 class adultCheckup extends StatefulWidget {
   static const String screenRoute = 'adultCheckup';
@@ -141,14 +138,14 @@ class _adultCheckupState extends State<adultCheckup> {
           TextEditingController(text: patientModel?.agePatientAdult.toString());
       mobileNumController = TextEditingController(
           text: patientModel?.mobileNumberAdultPatient.toString());
-      if(patientModel?.maritalStatus =="Single"){
-        SlectedMartialState="Single";
-      }else if(patientModel?.maritalStatus =="Widowed"){
-        SlectedMartialState="Widowed";
-      }else if(patientModel?.maritalStatus =="Divorced"){
-        SlectedMartialState="Divorced";
-      }else if(patientModel?.maritalStatus =="Married"){
-        SlectedMartialState="Married";
+      if (patientModel?.maritalStatus == "Single") {
+        SlectedMartialState = "Single";
+      } else if (patientModel?.maritalStatus == "Widowed") {
+        SlectedMartialState = "Widowed";
+      } else if (patientModel?.maritalStatus == "Divorced") {
+        SlectedMartialState = "Divorced";
+      } else if (patientModel?.maritalStatus == "Married") {
+        SlectedMartialState = "Married";
       }
       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       childrenNumController =
@@ -187,7 +184,8 @@ class _adultCheckupState extends State<adultCheckup> {
       if (patientModel?.smokingCessationsStatus == "Smoke cessation") {
         yesSmokeCessation = true;
         noSmokeCessation = false;
-      } else if (patientModel?.smokingCessationsStatus == "No Smoke cessation") {
+      } else if (patientModel?.smokingCessationsStatus ==
+          "No Smoke cessation") {
         yesSmokeCessation = false;
         noSmokeCessation = true;
       }
@@ -358,7 +356,7 @@ class _adultCheckupState extends State<adultCheckup> {
                   Flexible(
                       flex: 1,
                       child: Checkbox(
-                        value: Male ,
+                        value: Male,
                         onChanged: (val) {
                           setState(() {
                             Male = val!;
@@ -367,7 +365,7 @@ class _adultCheckupState extends State<adultCheckup> {
 
                           if (val!) {
                             patientModel?.sexAdultPatient = "male";
-                            sex="male";
+                            sex = "male";
                           } else {
                             patientModel?.sexAdultPatient = null;
                           }
@@ -384,7 +382,7 @@ class _adultCheckupState extends State<adultCheckup> {
                       });
                       if (val!) {
                         patientModel?.sexAdultPatient = "female";
-                        sex="female";
+                        sex = "female";
                       } else {
                         patientModel?.sexAdultPatient = null;
                       }
@@ -464,9 +462,9 @@ class _adultCheckupState extends State<adultCheckup> {
                             ),
                           ).toList(),
                           onChanged: (MartialState) => setState(() {
-                            patientModel?.maritalStatus=MartialState;
-                            SlectedMartialState = MartialState!;
-                          } )),
+                                patientModel?.maritalStatus = MartialState;
+                                SlectedMartialState = MartialState!;
+                              })),
                     ),
                   ),
                   sizedBoxWidth(width: 10),
@@ -524,7 +522,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
-                              patientModel?.educationLevelAdultPatient = "Illiterate";
+                              patientModel?.educationLevelAdultPatient =
+                                  "Illiterate";
                               educationLevel = "Illiterate";
                             }
                           })),
@@ -547,7 +546,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
-                              patientModel?.educationLevelAdultPatient = "Read and write";
+                              patientModel?.educationLevelAdultPatient =
+                                  "Read and write";
                               educationLevel = "Read and write";
                             }
                           })),
@@ -568,7 +568,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
-                              patientModel?.educationLevelAdultPatient = "Primary";
+                              patientModel?.educationLevelAdultPatient =
+                                  "Primary";
                               educationLevel = "Primary";
                             }
                           })),
@@ -590,7 +591,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
-                              patientModel?.educationLevelAdultPatient = "Preparatory";
+                              patientModel?.educationLevelAdultPatient =
+                                  "Preparatory";
                               educationLevel = "Preparatory";
                             }
                           })),
@@ -612,7 +614,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
-                              patientModel?.educationLevelAdultPatient = "Secondary";
+                              patientModel?.educationLevelAdultPatient =
+                                  "Secondary";
                               educationLevel = "Secondary";
                             }
                           })),
@@ -634,7 +637,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = false;
                             });
                             if (val!) {
-                              patientModel?.educationLevelAdultPatient = "University";
+                              patientModel?.educationLevelAdultPatient =
+                                  "University";
                               educationLevel = "University";
                             }
                           })),
@@ -656,7 +660,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               Postgraduate = val!;
                             });
                             if (val!) {
-                              patientModel?.educationLevelAdultPatient = "Postgraduate";
+                              patientModel?.educationLevelAdultPatient =
+                                  "Postgraduate";
                               educationLevel = "Postgraduate";
                             }
                           })),
@@ -777,7 +782,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               noSmokeCessation = false;
                             });
                             if (val!) {
-                              patientModel?.smokingCessationsStatus = "Smoke cessation";
+                              patientModel?.smokingCessationsStatus =
+                                  "Smoke cessation";
                               isSmokingCessationStatus = "Smoke cessation";
                             }
                           })),
@@ -797,7 +803,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               noSmokeCessation = val!;
                             });
                             if (val!) {
-                              patientModel?.smokingCessationsStatus = "No Smoke cessation";
+                              patientModel?.smokingCessationsStatus =
+                                  "No Smoke cessation";
                               isSmokingCessationStatus = "No Smoke cessation";
                             }
                           })),
@@ -972,7 +979,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               cocMethod = false;
                             });
                             if (val!) {
-                              patientModel?.methodContracebtion="IUD Contraception Method";
+                              patientModel?.methodContracebtion =
+                                  "IUD Contraception Method";
                               contraceptionMethod = "IUD Contraception Method";
                             }
                           })),
@@ -993,7 +1001,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               cocMethod = false;
                             });
                             if (val!) {
-                              patientModel?.methodContracebtion= "Implant Contraception Method";
+                              patientModel?.methodContracebtion =
+                                  "Implant Contraception Method";
                               contraceptionMethod =
                                   "Implant Contraception Method";
                             }
@@ -1015,7 +1024,8 @@ class _adultCheckupState extends State<adultCheckup> {
                               cocMethod = val!;
                             });
                             if (val!) {
-                              patientModel?.methodContracebtion="COC Contraception Method";
+                              patientModel?.methodContracebtion =
+                                  "COC Contraception Method";
                               contraceptionMethod = "COC Contraception Method";
                             }
                           })),

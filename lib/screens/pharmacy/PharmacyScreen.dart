@@ -75,34 +75,24 @@
 //             ]));
 //   }
 // }
-import 'dart:io';
 
 import 'package:bedaya/DateModels/pharmacy_model.dart';
 import 'package:bedaya/screens/pharmacy/pharamcyaddtreat.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
- import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcl;
+import 'package:printing/printing.dart';
+
 import '../../DateModels/PatientAdultModel.dart';
 import '../../component/component.dart';
 import '../../network/my_database.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/text_Filed.dart';
-
-
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 
 class PharmacyScreen extends StatefulWidget {
   static const String screenRoute = 'PharmacyScreen';
@@ -123,7 +113,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
   @override
   Widget build(BuildContext context) {
     PatientAdultModel patient = PatientAdultModel();
-    late List<PharmacyModel> drug ;
+    late List<PharmacyModel> drug;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -186,7 +176,8 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
             children: [
               Column(
                 children: [
-                  defultTextField(width: 150, text: '$scanBarcode',controller: codeDrug),
+                  defultTextField(
+                      width: 150, text: '$scanBarcode', controller: codeDrug),
                   sizedBoxhight(hight: 10),
                   defultTextField(
                       width: 150, text: 'Name', controller: nameDrug),
@@ -257,9 +248,14 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
               int drugCount = snapshot.data ?? 0;
 
               return Row(
-                mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,children: [
-                Center(child: defultText(data: 'Total of Medicine is $drugCount'))
-              ],);
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                      child:
+                          defultText(data: 'Total of Medicine is $drugCount'))
+                ],
+              );
             },
           ),
           sizedBoxhight(hight: 20),
@@ -279,9 +275,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                     children: [
                       Row(children: [
                         sizedBoxWidth(width: 10),
-                        Expanded(
-                            child:
-                            defultText(data: '#', c: Colors.white)),
+                        Expanded(child: defultText(data: '#', c: Colors.white)),
                         Expanded(
                             child:
                                 defultText(data: 'Quantity', c: Colors.white)),
@@ -323,8 +317,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                         child: CircularProgressIndicator(),
                                       );
                                     } // sania tb
-                                     drug = snapshot
-                                            .data?.docs
+                                    drug = snapshot.data?.docs
                                             .map((e) => e.data())
                                             .toList() ??
                                         [];
@@ -337,7 +330,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                               itemBuilder:
                                                   (BuildContext context,
                                                       int index) {
-                                                    int displayNumber = index + 1;
+                                                int displayNumber = index + 1;
                                                 return SizedBox(
                                                   height: 40,
                                                   child: Column(
@@ -345,11 +338,13 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .only(
+                                                                .only(
                                                                 left: 30.0),
                                                         child: Row(
                                                           children: [
-                                                            Expanded(child: Text("${displayNumber.toString()}")),
+                                                            Expanded(
+                                                                child: Text(
+                                                                    "${displayNumber.toString()}")),
                                                             Expanded(
                                                                 child: Text(drug[
                                                                         index]
@@ -395,7 +390,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                                                           TextButton(
                                                                             onPressed:
                                                                                 () {
-                                                                                MyDataBase.deleteDrug(drug[index].codeDrug!);
+                                                                              MyDataBase.deleteDrug(drug[index].codeDrug!);
                                                                               Navigator.of(context).pop(); // Close the dialog
                                                                             },
                                                                             child:
@@ -408,7 +403,9 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                                                                 },
                                                                 icon: Icon(Icons
                                                                     .delete)),
-                                                            SizedBox(width: 6,),
+                                                            SizedBox(
+                                                              width: 6,
+                                                            ),
                                                           ],
                                                         ),
                                                       ),
@@ -627,10 +624,19 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
           ),
 
           sizedBoxhight(hight: 20),
-           ElevatedButton(onPressed: () {_requestPermission();}, child: Text("Show Exceel sheet")),
-          SizedBox(height: 20,),
-          ElevatedButton(onPressed: (){createPdf(drug);}, child: Text("Show pdf sheet")),
-
+          ElevatedButton(
+              onPressed: () {
+                _requestPermission();
+              },
+              child: Text("Show Exceel sheet")),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                createPdf(drug);
+              },
+              child: Text("Show pdf sheet")),
         ],
       )),
     );
@@ -642,9 +648,8 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
         initialDate: selectedDate,
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(const Duration(days: 7650)));
-    if (chosenDate == null) return;
     setState(() {
-      selectedDate = DateUtils.dateOnly(chosenDate);
+      selectedDate = DateUtils.dateOnly(chosenDate!);
     });
   }
 
@@ -691,7 +696,6 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
     }
   }
 
-
   void createPdf(List<PharmacyModel> drugData) async {
     final doc = pw.Document();
     doc.addPage(
@@ -705,22 +709,28 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                 pw.Row(children: [
                   pw.SizedBox(width: 10),
                   pw.Expanded(
-                      child: pw.Text('#', style: pw.TextStyle(color: PdfColors.white))),
+                      child: pw.Text('#',
+                          style: pw.TextStyle(color: PdfColors.white))),
                   pw.Expanded(
-                      child: pw.Text('Quantity', style: pw.TextStyle(color: PdfColors.white))),
+                      child: pw.Text('Quantity',
+                          style: pw.TextStyle(color: PdfColors.white))),
                   pw.Expanded(
-                      child: pw.Text('Name', style: pw.TextStyle(color: PdfColors.white))),
+                      child: pw.Text('Name',
+                          style: pw.TextStyle(color: PdfColors.white))),
                   pw.Expanded(
-                      child: pw.Text('code', style: pw.TextStyle(color: PdfColors.white))),
+                      child: pw.Text('code',
+                          style: pw.TextStyle(color: PdfColors.white))),
                   pw.Expanded(
-                      child: pw.Text('Exp. date', style: pw.TextStyle(color: PdfColors.white))),
+                      child: pw.Text('Exp. date',
+                          style: pw.TextStyle(color: PdfColors.white))),
                 ]),
                 pw.Divider(
                   color: PdfColors.white,
                   thickness: 2,
                 ),
                 pw.ListView.builder(
-                  itemCount: drugData.length, // Assuming you have fetched and stored this data
+                  itemCount: drugData
+                      .length, // Assuming you have fetched and stored this data
                   itemBuilder: (pw.Context context, int index) {
                     int displayNumber = index + 1;
                     return pw.Container(
@@ -731,15 +741,22 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                             padding: pw.EdgeInsets.only(left: 30.0),
                             child: pw.Row(
                               children: [
-                                pw.Expanded(child: pw.Text("${displayNumber.toString()}")),
                                 pw.Expanded(
-                                    child: pw.Text(drugData[index].numberDrug.toString())),
+                                    child:
+                                        pw.Text("${displayNumber.toString()}")),
                                 pw.Expanded(
-                                    child: pw.Text(drugData[index].nameDrug ?? "N/A")),
+                                    child: pw.Text(
+                                        drugData[index].numberDrug.toString())),
                                 pw.Expanded(
-                                    child: pw.Text(drugData[index].codeDrug ?? "N/A")),
+                                    child: pw.Text(
+                                        drugData[index].nameDrug ?? "N/A")),
                                 pw.Expanded(
-                                    child: pw.Text(MyDatetimeUtilies.formateDate(drugData[index].expiryDateDrug!))),
+                                    child: pw.Text(
+                                        drugData[index].codeDrug ?? "N/A")),
+                                pw.Expanded(
+                                    child: pw.Text(
+                                        MyDatetimeUtilies.formateDate(
+                                            drugData[index].expiryDateDrug!))),
                                 pw.SizedBox(width: 6),
                               ],
                             ),
@@ -762,9 +779,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
       ),
     );
 
-    await Printing.layoutPdf(onLayout: (PdfPageFormat format) async => doc.save());
+    await Printing.layoutPdf(
+        onLayout: (PdfPageFormat format) async => doc.save());
   }
-
-
-
 }

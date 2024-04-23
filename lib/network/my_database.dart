@@ -43,7 +43,7 @@ class MyDataBase {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.imdiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -56,13 +56,14 @@ class MyDataBase {
         .map((snapshot) => getDiagnosisCountAdultIm(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountAdultEnt(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultEnt(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.entdiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -70,18 +71,18 @@ class MyDataBase {
   }
 
   Stream<int> getAdultEntDiagnoses(String targetDiagnosis) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountAdultEnt(snapshot, targetDiagnosis));
+    return getCollectionAdult().snapshots().map(
+        (snapshot) => getDiagnosisCountAdultEnt(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountAdultOrtho(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultOrtho(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.orthodiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -89,19 +90,18 @@ class MyDataBase {
   }
 
   Stream<int> getAdultOrthoDiagnoses(String targetDiagnosis) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountAdultOrtho(snapshot, targetDiagnosis));
+    return getCollectionAdult().snapshots().map(
+        (snapshot) => getDiagnosisCountAdultOrtho(snapshot, targetDiagnosis));
   }
 
-
-  int getDiagnosisCountAdultCardio(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultCardio(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.Cardiodiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -109,18 +109,18 @@ class MyDataBase {
   }
 
   Stream<int> getAdultCardioDiagnoses(String targetDiagnosis) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountAdultCardio(snapshot, targetDiagnosis));
+    return getCollectionAdult().snapshots().map(
+        (snapshot) => getDiagnosisCountAdultCardio(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountAdultOphtha(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultOphtha(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.ophthadiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -128,18 +128,18 @@ class MyDataBase {
   }
 
   Stream<int> getAdultOphthaDiagnoses(String targetDiagnosis) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountAdultOphtha(snapshot, targetDiagnosis));
+    return getCollectionAdult().snapshots().map(
+        (snapshot) => getDiagnosisCountAdultOphtha(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountAdultGyn(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultGyn(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.gyndiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -147,18 +147,18 @@ class MyDataBase {
   }
 
   Stream<int> getAdultGynDiagnoses(String targetDiagnosis) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountAdultGyn(snapshot, targetDiagnosis));
+    return getCollectionAdult().snapshots().map(
+        (snapshot) => getDiagnosisCountAdultGyn(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountAdultSurg(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultSurg(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.surgerydiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -166,18 +166,18 @@ class MyDataBase {
   }
 
   Stream<int> getAdultSurgeryDiagnoses(String targetDiagnosis) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountAdultSurg(snapshot, targetDiagnosis));
+    return getCollectionAdult().snapshots().map(
+        (snapshot) => getDiagnosisCountAdultSurg(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountAdultPed(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountAdultPed(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? diagnoses = patientData.peddiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -185,34 +185,29 @@ class MyDataBase {
   }
 
   Stream<int> getAdultPedDiagnoses(String targetDiagnosis) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountAdultPed(snapshot, targetDiagnosis));
+    return getCollectionAdult().snapshots().map(
+        (snapshot) => getDiagnosisCountAdultPed(snapshot, targetDiagnosis));
   }
 
-
-  int getCountAdultNephropathy(QuerySnapshot snapshot, String FamilyHist,String screeningDm) {
+  int getCountAdultNephropathy(
+      QuerySnapshot snapshot, String FamilyHist, String screeningDm) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientAdultModel patientData = userSnapshot.data() as PatientAdultModel;
 
       List<String>? Dm = patientData.familyHistory;
-      List<String>? screening =patientData.screening;
-      if (Dm != null && Dm.contains(FamilyHist) && screening!=null &&screening.contains(screeningDm)) {
+      List<String>? screening = patientData.screening;
+      if (Dm!.contains(FamilyHist) && screening!.contains(screeningDm)) {
         count++;
       }
     }
     return count;
   }
 
-  Stream<int> getAdultnephropathy(String FamilyHist,String screeningDm) {
-    return getCollectionAdult()
-        .snapshots()
-        .map((snapshot) => getCountAdultNephropathy(snapshot, FamilyHist,screeningDm));
+  Stream<int> getAdultnephropathy(String FamilyHist, String screeningDm) {
+    return getCollectionAdult().snapshots().map((snapshot) =>
+        getCountAdultNephropathy(snapshot, FamilyHist, screeningDm));
   }
-
-
-
 
   static Future<void> addPatientAdult(PatientAdultModel patientAdultModel) {
     var collectionRef = getCollectionAdult();
@@ -228,153 +223,316 @@ class MyDataBase {
         .doc(patientAdultModel.codeAdultPatient)
         .update(patientAdultModel.toFireStore());
   }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineAbnormalCalcium(String day) {
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineAbnormalCalcium(
+      String day) {
     var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExCalciumOxalate", isEqualTo: "Positive 3").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineAbnormalAmorphous(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExAmorphous", isEqualTo: "Positive 3").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineAbnormalUricacid(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExUricacid", isEqualTo: "Positive 3").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineAbnormalTriplephosphate(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExTriplephosphate", isEqualTo: "Positive 3").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalFasciola(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabfasciola", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalSchMansoni(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabsch", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalHNana(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabhnana", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalTinea(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabtinea", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalAscaris(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabAscaris", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalTtrichuria(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabTtrichuria", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalBlostocyt(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabblastosyct", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalEhistoliticatrophozite(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEhistoliticatrophozite", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalGiardiatrophozozite(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabGiardiatrophozozite", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalStrongyloideslarvae(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabStrongyloideslarvae", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalGiardia(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabGiardia", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalEhistolitica(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEhistolitica", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalEcoli(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEcoli", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalEntrobious(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEntrobious", isEqualTo:  "+VE").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalHookworm(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabHookworm", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExCalciumOxalate", isEqualTo: "Positive 3")
+        .snapshots();
   }
 
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultUrineAbnormalAmorphous(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExAmorphous", isEqualTo: "Positive 3")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineAbnormalUricacid(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExUricacid", isEqualTo: "Positive 3")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultUrineAbnormalTriplephosphate(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExTriplephosphate", isEqualTo: "Positive 3")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalFasciola(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabfasciola", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalSchMansoni(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabsch", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalHNana(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabhnana", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalTinea(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabtinea", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalAscaris(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabAscaris", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalTtrichuria(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabTtrichuria", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalBlostocyt(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabblastosyct", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalEhistoliticatrophozite(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEhistoliticatrophozite", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalGiardiatrophozozite(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabGiardiatrophozozite", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalStrongyloideslarvae(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabStrongyloideslarvae", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalGiardia(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabGiardia", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalEhistolitica(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEhistolitica", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalEcoli(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEcoli", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>>
+      getAdultStoolAbnormalEntrobious(String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEntrobious", isEqualTo: "+VE")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolAbnormalHookworm(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabHookworm", isEqualTo: "+VE")
+        .snapshots();
+  }
 
   static Stream<QuerySnapshot<PatientAdultModel>> getAdultDash(String day) {
     var collection = getCollectionAdult();
     return collection.where("chosenDay", isEqualTo: day).snapshots();
   }
 
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultDentalReport(String day) {
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultDentalReport(
+      String day) {
     var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportDentaldiagnoses", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportDentaldiagnoses", isEqualTo: "done")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultSurgeryReport(String day) {
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultSurgeryReport(
+      String day) {
     var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportsurgerydiagnoses", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportsurgerydiagnoses", isEqualTo: "done")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultPedReport(String day) {
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultPedReport(
+      String day) {
     var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportpeddiagnoses", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportpeddiagnoses", isEqualTo: "done")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultOpthaReport(String day) {
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultOpthaReport(
+      String day) {
     var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportophthadiagnoses", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportophthadiagnoses", isEqualTo: "done")
+        .snapshots();
   }
+
   static Stream<QuerySnapshot<PatientAdultModel>> getAdultIMReport(String day) {
     var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportimdiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultGynReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportgyndiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultEntReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportentdiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultDermaReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportDermadiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultCardioReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportCardiodiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultOrthoReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportorthodiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultFollowUoReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportFollowUp", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportimdiagnoses", isEqualTo: "done")
+        .snapshots();
   }
 
-
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineReport(String day) {
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultGynReport(
+      String day) {
     var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportUrine", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultBloodReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportBlood", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportStool", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientAdultModel>> getAdultPharmacyReport(String day) {
-    var collection = getCollectionAdult();
-    return collection.where("chosenDay", isEqualTo: day).where("reportPharma", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportgyndiagnoses", isEqualTo: "done")
+        .snapshots();
   }
 
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultEntReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportentdiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
 
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultDermaReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportDermadiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultCardioReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportCardiodiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultOrthoReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportorthodiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultFollowUoReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportFollowUp", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultUrineReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportUrine", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultBloodReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportBlood", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultStoolReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportStool", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientAdultModel>> getAdultPharmacyReport(
+      String day) {
+    var collection = getCollectionAdult();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportPharma", isEqualTo: "done")
+        .snapshots();
+  }
 
   static Stream<QuerySnapshot<PatientAdultModel>> getAllPatientAdult() {
     var collectionRef = getCollectionAdult();
@@ -433,81 +591,176 @@ class MyDataBase {
         .doc(patientChildModel.codeChildPatient)
         .update(patientChildModel.toFireStore());
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineAbnormalCalcium(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineAbnormalCalcium(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExCalciumOxalate", isEqualTo: "Positive 3").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExCalciumOxalate", isEqualTo: "Positive 3")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineAbnormalAmorphous(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildUrineAbnormalAmorphous(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExAmorphous", isEqualTo: "Positive 3").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExAmorphous", isEqualTo: "Positive 3")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineAbnormalUricacid(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineAbnormalUricacid(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExUricacid", isEqualTo: "Positive 3").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExUricacid", isEqualTo: "Positive 3")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineAbnormalTriplephosphate(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildUrineAbnormalTriplephosphate(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("urineMicroscopicExTriplephosphate", isEqualTo: "Positive 3").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("urineMicroscopicExTriplephosphate", isEqualTo: "Positive 3")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalFasciola(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalFasciola(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabfasciola", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabfasciola", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalSchMansoni(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalSchMansoni(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabsch", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabsch", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalHNana(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalHNana(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabhnana", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabhnana", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalTinea(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalTinea(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabtinea", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabtinea", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalAscaris(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalAscaris(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabAscaris", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabAscaris", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalTtrichuria(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalTtrichuria(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabTtrichuria", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabTtrichuria", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalBlostocyt(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalBlostocyt(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("Stoollabblastosyct", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("Stoollabblastosyct", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalEhistoliticatrophozite(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalEhistoliticatrophozite(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEhistoliticatrophozite", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEhistoliticatrophozite", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalGiardiatrophozozite(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalGiardiatrophozozite(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabGiardiatrophozozite", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabGiardiatrophozozite", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalStrongyloideslarvae(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalStrongyloideslarvae(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabStrongyloideslarvae", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabStrongyloideslarvae", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalGiardia(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalGiardia(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabGiardia", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabGiardia", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalEhistolitica(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalEhistolitica(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEhistolitica", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEhistolitica", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalEcoli(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalEcoli(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEcoli", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEcoli", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalEntrobious(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>>
+      getChildStoolAbnormalEntrobious(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabEntrobious", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabEntrobious", isEqualTo: "+VE")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalHookworm(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolAbnormalHookworm(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("StoollabHookworm", isEqualTo:  "+VE").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("StoollabHookworm", isEqualTo: "+VE")
+        .snapshots();
   }
 
   int getCountChildParasite(QuerySnapshot snapshot, String day) {
@@ -516,9 +769,11 @@ class MyDataBase {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       String? giardia = patientData.StoollabGiardia;
-      List<String>? screening =patientData.screeningChild;
-      String? chosen =patientData.chosenDay;
-      if (chosen==day && giardia=="+VE" && screening!=null &&screening.contains("Parasites Screening")) {
+      List<String>? screening = patientData.screeningChild;
+      String? chosen = patientData.chosenDay;
+      if (chosen == day &&
+          giardia == "+VE" &&
+          screening!.contains("Parasites Screening")) {
         count++;
       }
     }
@@ -531,8 +786,6 @@ class MyDataBase {
         .map((snapshot) => getCountChildParasite(snapshot, day));
   }
 
-
-
   static Stream<QuerySnapshot<PatientChildModel>> getPatientChild(String code) {
     var collection = getCollectionChild();
     return collection.where("codeChildPatient", isEqualTo: code).snapshots();
@@ -542,13 +795,14 @@ class MyDataBase {
     var collection = getCollectionChild();
     return collection.where("chosenDay", isEqualTo: day).snapshots();
   }
+
   int getDiagnosisCountChildIm(QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.imdiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -561,13 +815,16 @@ class MyDataBase {
         .map((snapshot) => getDiagnosisCountChildIm(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountChildENT(QuerySnapshot snapshot, String targetDiagnosis,) {
+  int getDiagnosisCountChildENT(
+    QuerySnapshot snapshot,
+    String targetDiagnosis,
+  ) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.entdiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -575,18 +832,20 @@ class MyDataBase {
   }
 
   Stream<int> getChildEntDiagnoses(String targetDiagnosis) {
-    return getCollectionChild()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountChildENT(snapshot, targetDiagnosis));
+    return getCollectionChild().snapshots().map(
+        (snapshot) => getDiagnosisCountChildENT(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountChildOrtho(QuerySnapshot snapshot, String targetDiagnosis,) {
+  int getDiagnosisCountChildOrtho(
+    QuerySnapshot snapshot,
+    String targetDiagnosis,
+  ) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.orthodiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -594,18 +853,20 @@ class MyDataBase {
   }
 
   Stream<int> getChildOrthoDiagnoses(String targetDiagnosis) {
-    return getCollectionChild()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountChildOrtho(snapshot, targetDiagnosis));
+    return getCollectionChild().snapshots().map(
+        (snapshot) => getDiagnosisCountChildOrtho(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountChildCardio(QuerySnapshot snapshot, String targetDiagnosis,) {
+  int getDiagnosisCountChildCardio(
+    QuerySnapshot snapshot,
+    String targetDiagnosis,
+  ) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.Cardiodiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -613,18 +874,18 @@ class MyDataBase {
   }
 
   Stream<int> getChildCardioDiagnoses(String targetDiagnosis) {
-    return getCollectionChild()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountChildCardio(snapshot, targetDiagnosis));
+    return getCollectionChild().snapshots().map(
+        (snapshot) => getDiagnosisCountChildCardio(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountChildOphtha(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountChildOphtha(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.ophthadiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -632,18 +893,18 @@ class MyDataBase {
   }
 
   Stream<int> getChildOphthaDiagnoses(String targetDiagnosis) {
-    return getCollectionChild()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountChildOphtha(snapshot, targetDiagnosis));
+    return getCollectionChild().snapshots().map(
+        (snapshot) => getDiagnosisCountChildOphtha(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountChildGyn(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountChildGyn(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.gyndiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -651,18 +912,18 @@ class MyDataBase {
   }
 
   Stream<int> getChildGynDiagnoses(String targetDiagnosis) {
-    return getCollectionChild()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountChildGyn(snapshot, targetDiagnosis));
+    return getCollectionChild().snapshots().map(
+        (snapshot) => getDiagnosisCountChildGyn(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountChildSurg(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountChildSurg(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.surgerydiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -670,18 +931,18 @@ class MyDataBase {
   }
 
   Stream<int> getChildSurgeryDiagnoses(String targetDiagnosis) {
-    return getCollectionChild()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountChildSurg(snapshot, targetDiagnosis));
+    return getCollectionChild().snapshots().map(
+        (snapshot) => getDiagnosisCountChildSurg(snapshot, targetDiagnosis));
   }
 
-  int getDiagnosisCountChildPed(QuerySnapshot snapshot, String targetDiagnosis) {
+  int getDiagnosisCountChildPed(
+      QuerySnapshot snapshot, String targetDiagnosis) {
     int count = 0;
     for (QueryDocumentSnapshot userSnapshot in snapshot.docs) {
       PatientChildModel patientData = userSnapshot.data() as PatientChildModel;
 
       List<String>? diagnoses = patientData.peddiagnoses;
-      if (diagnoses != null && diagnoses.contains(targetDiagnosis)) {
+      if (diagnoses!.contains(targetDiagnosis)) {
         count++;
       }
     }
@@ -689,77 +950,142 @@ class MyDataBase {
   }
 
   Stream<int> getChildPedDiagnoses(String targetDiagnosis) {
-    return getCollectionChild()
-        .snapshots()
-        .map((snapshot) => getDiagnosisCountChildPed(snapshot, targetDiagnosis));
+    return getCollectionChild().snapshots().map(
+        (snapshot) => getDiagnosisCountChildPed(snapshot, targetDiagnosis));
   }
 
+  static Stream<QuerySnapshot<PatientChildModel>> getChildDentalReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportDentaldiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
 
+  static Stream<QuerySnapshot<PatientChildModel>> getChildSurgeryReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportsurgerydiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
 
+  static Stream<QuerySnapshot<PatientChildModel>> getChildPedReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportpeddiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
 
-  static Stream<QuerySnapshot<PatientChildModel>> getChildDentalReport(String day) {
+  static Stream<QuerySnapshot<PatientChildModel>> getChildOpthaReport(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportDentaldiagnoses", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportophthadiagnoses", isEqualTo: "done")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildSurgeryReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportsurgerydiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildPedReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportpeddiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildOpthaReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportophthadiagnoses", isEqualTo: "done").snapshots();
-  }
+
   static Stream<QuerySnapshot<PatientChildModel>> getChildIMReport(String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportimdiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildGynReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportgyndiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildEntReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportentdiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildDermaReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportDermadiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildCardioReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportCardiodiagnoses", isEqualTo: "done").snapshots();
-  }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildOrthoReport(String day) {
-    var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportorthodiagnoses", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportimdiagnoses", isEqualTo: "done")
+        .snapshots();
   }
 
-  static Stream<QuerySnapshot<PatientChildModel>> getChildFollowUoReport(String day) {
+  static Stream<QuerySnapshot<PatientChildModel>> getChildGynReport(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportFollowUp", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportgyndiagnoses", isEqualTo: "done")
+        .snapshots();
   }
 
+  static Stream<QuerySnapshot<PatientChildModel>> getChildEntReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportentdiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
 
+  static Stream<QuerySnapshot<PatientChildModel>> getChildDermaReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportDermadiagnoses", isEqualTo: "done")
+        .snapshots();
+  }
 
-  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineReport(String day) {
+  static Stream<QuerySnapshot<PatientChildModel>> getChildCardioReport(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportUrine", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportCardiodiagnoses", isEqualTo: "done")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildBloodReport(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildOrthoReport(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportBlood", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportorthodiagnoses", isEqualTo: "done")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolReport(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildFollowUoReport(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportStool", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportFollowUp", isEqualTo: "done")
+        .snapshots();
   }
-  static Stream<QuerySnapshot<PatientChildModel>> getChildPharmacyReport(String day) {
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildUrineReport(
+      String day) {
     var collection = getCollectionChild();
-    return collection.where("chosenDay", isEqualTo: day).where("reportPharma", isEqualTo: "done").snapshots();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportUrine", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildBloodReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportBlood", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildStoolReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportStool", isEqualTo: "done")
+        .snapshots();
+  }
+
+  static Stream<QuerySnapshot<PatientChildModel>> getChildPharmacyReport(
+      String day) {
+    var collection = getCollectionChild();
+    return collection
+        .where("chosenDay", isEqualTo: day)
+        .where("reportPharma", isEqualTo: "done")
+        .snapshots();
   }
 
   static Stream<QuerySnapshot<PatientChildModel>> getAllPatientChild() {

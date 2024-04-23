@@ -12,7 +12,6 @@ import 'package:bedaya/widgets/my_button.dart';
 import 'package:bedaya/screens/welcome%20screen/welcomescreen.dart';
 
 import '../../Screening/ChoseScreningScreen.dart';
-import '../followUp_Screen.dart';
 
 class Chose2_Screen extends StatefulWidget {
   static const String screenRoute = 'chose2_screen';

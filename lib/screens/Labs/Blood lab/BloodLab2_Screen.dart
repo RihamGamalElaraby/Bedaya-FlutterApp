@@ -6,7 +6,6 @@ import 'package:bedaya/widgets/my_button.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
 import 'package:bedaya/component/component.dart';
 
-import '../../../DateModels/PatientAdultModel.dart';
 import '../../../network/my_database.dart';
 
 // import 'package:bedaya/widgets/appbar.dart';

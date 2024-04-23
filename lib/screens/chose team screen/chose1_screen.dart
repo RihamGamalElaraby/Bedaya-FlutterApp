@@ -7,7 +7,6 @@ import 'package:bedaya/screens/chose%20sup%20team%20screen/chose2_screen.dart';
 import 'package:bedaya/widgets/my_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../dashboard/dashboard.dart';
 
 class Chose1_Screen extends StatefulWidget {
   static const String screenRoute = 'chose1_screen';

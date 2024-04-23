@@ -6,7 +6,6 @@ import 'package:flutter/rendering.dart';
 
 import '../../DateModels/PatientAdultModel.dart';
 import '../../DateModels/patient_childmodel.dart';
-import '../../DateModels/pharmacy_model.dart';
 import '../../component/component.dart';
 import '../../network/my_database.dart';
 import '../../widgets/my_button.dart';

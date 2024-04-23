@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../DateModels/PatientAdultModel.dart';
 import '../../DateModels/patient_childmodel.dart';
 import '../../component/component.dart';
 import '../../network/my_database.dart';
@@ -101,7 +100,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: "Name: ${patient?.nameChildPatient}",
+                              data: "Name: ${patient.nameChildPatient}",
                               c: Colors.black,
                               x: 19,
                             ),
@@ -110,7 +109,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Code: ${patient?.codeChildPatient}',
+                              data: 'Code: ${patient.codeChildPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -119,7 +118,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Sex: ${patient?.sexChildPatient}',
+                              data: 'Sex: ${patient.sexChildPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -129,7 +128,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                             flex: 1,
                             child: defultText(
                               data:
-                              'Mobile No.: ${patient?.mobileNuChildPatient}',
+                              'Mobile No.: ${patient.mobileNuChildPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -139,7 +138,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                             flex: 1,
                             child: defultText(
                               data: 'House No.: ${patient
-                                  ?.houseNuChildPatient}',
+                                  .houseNuChildPatient}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -155,7 +154,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: "Age: ${patient?.ageChildPatient}",
+                              data: "Age: ${patient.ageChildPatient}",
                               c: Colors.black,
                               x: 19,
                             ),
@@ -165,7 +164,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                             flex: 1,
                             child: defultText(
                               data: 'Occupation: ${patient
-                                  ?.fatherCccubationChild}',
+                                  .fatherCccubationChild}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -183,7 +182,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                             child: defultText(
                               data:
                               "Mother Education Level: ${patient
-                                  ?.fatherEduChild}",
+                                  .fatherEduChild}",
                               c: Colors.black,
                               x: 19,
                             ),
@@ -194,7 +193,7 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                             child: defultText(
                               data:
                               "Father Education Level: ${patient
-                                  ?.motherEduChild}",
+                                  .motherEduChild}",
                               c: Colors.black,
                               x: 19,
                             ),
@@ -203,29 +202,29 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                           Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'order of birth: ${patient?.orderOfBirthChild}',
+                              data: 'order of birth: ${patient.orderOfBirthChild}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient?.birthTermChild?.trim() == null
+                          patient.birthTermChild?.trim() == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'birth term child: ${patient?.birthTermChild}',
+                              data: 'birth term child: ${patient.birthTermChild}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient?.consanguinityChild?.trim() == null
+                          patient.consanguinityChild?.trim() == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
-                              data: 'Consanguinity: ${patient?.consanguinityChild}',
+                              data: 'Consanguinity: ${patient.consanguinityChild}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -239,25 +238,25 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           sizedBoxWidth(width: 30),
-                          patient?.familyHistoryDMchild?.trim() == null
+                          patient.familyHistoryDMchild?.trim() == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'family history Dm: ${patient?.familyHistoryDMchild}',
+                              'family history Dm: ${patient.familyHistoryDMchild}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient?.familyHistoryChild == null
+                          patient.familyHistoryChild == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Family history : ${patient?.familyHistoryChild?.map((s) => '"$s"').join(', ')}',
+                              'Family history : ${patient.familyHistoryChild?.map((s) => '"$s"').join(', ')}',
                               c: Colors.black,
                               x: 19,
                             ),
@@ -268,37 +267,37 @@ class _ChildrenSearchState extends State<ChildrenSearch> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           sizedBoxWidth(width: 30),
-                          patient?.pastHistoryChild == null
+                          patient.pastHistoryChild == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Past history : ${patient?.pastHistoryChild?.map((s) => '"$s"').join(', ')}',
+                              'Past history : ${patient.pastHistoryChild?.map((s) => '"$s"').join(', ')}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient?.familyHistoryChild == null
+                          patient.familyHistoryChild == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Immuzation : ${patient?.immunizationHistChild}',
+                              'Immuzation : ${patient.immunizationHistChild}',
                               c: Colors.black,
                               x: 19,
                             ),
                           ),
                           sizedBoxWidth(width: 30),
-                          patient?.dieteticHistChild == null
+                          patient.dieteticHistChild == null
                               ? Container()
                               : Flexible(
                             flex: 1,
                             child: defultText(
                               data:
-                              'Dietetic history : ${patient?.dieteticHistChild}',
+                              'Dietetic history : ${patient.dieteticHistChild}',
                               c: Colors.black,
                               x: 19,
                             ),

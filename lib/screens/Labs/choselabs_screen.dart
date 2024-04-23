@@ -1,15 +1,13 @@
 import 'package:bedaya/DateModels/patient_childmodel.dart';
 import 'package:bedaya/component/component.dart';
-import 'package:bedaya/screens/Labs/Blood%20lab/BloodLab_screen.dart';
 import 'package:bedaya/screens/Labs/SelectLab.dart';
 import 'package:bedaya/screens/Labs/labcheckin.dart';
 import 'package:bedaya/screens/Labs/labcheckout.dart';
-import 'package:bedaya/screens/Labs/urine%20lab/UrineLab_screen.dart';
 import 'package:bedaya/screens/chose%20team%20screen/chose1_screen.dart';
-import 'package:bedaya/screens/Labs/stool%20lab/stool_lab.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import '../../DateModels/PatientAdultModel.dart';
 import '../../network/my_database.dart';
 import '../../widgets/my_button.dart';
@@ -33,7 +31,7 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
 
   bool child = false;
   bool adult = false;
-  String selectedPatient = "" ;
+  String selectedPatient = "";
 
   List<String> selectedLab = [];
 
@@ -111,7 +109,8 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                           color: Color.fromARGB(255, 1, 70, 2),
                           title: 'CheckOut',
                           onPressed: () {
-                            Navigator.pushNamed(context, LabCheckout.screenRoute);
+                            Navigator.pushNamed(
+                                context, LabCheckout.screenRoute);
                           },
                         ),
                       ),
@@ -121,118 +120,120 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                           color: Color.fromARGB(255, 1, 70, 2),
                           title: 'Results',
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, SelectLab.screenRoute);
+                            Navigator.pushNamed(context, SelectLab.screenRoute);
                           },
                         ),
                       )
                     ],
                   ),
 
-                 // Row(
-                 //    mainAxisAlignment: MainAxisAlignment.center,
-                 //    crossAxisAlignment: CrossAxisAlignment.center,
-                 //    children: [
-                 //      Flexible(
-                 //        child: mysignin(
-                 //          color: Color.fromARGB(255, 1, 70, 2),
-                 //          title: 'Urine',
-                 //          onPressed: () {
-                 //            Navigator.pushNamed(
-                 //                context, urineLabscreen.screenRoute);
-                 //          },
-                 //        ),
-                 //      ),
-                 //      sizedBoxWidth(width: 20),
-                 //      Flexible(
-                 //        child: mysignin(
-                 //          color: Color.fromARGB(255, 1, 70, 2),
-                 //          title: 'Stool',
-                 //          onPressed: () {
-                 //            Navigator.pushNamed(context, stoolLab.screenRoute);
-                 //          },
-                 //        ),
-                 //      ),
-                 //      sizedBoxWidth(width: 20),
-                 //      Flexible(
-                 //        child: mysignin(
-                 //          color: Color.fromARGB(255, 1, 70, 2),
-                 //          title: 'Blood',
-                 //          onPressed: () {
-                 //            Navigator.pushNamed(
-                 //                context, bloodLabScreen.screenRoute);
-                 //          },
-                 //        ),
-                 //      )
-                 //    ],
-                 //  ),
-                 //  sizedBoxhight(hight: 8),
+                  // Row(
+                  //    mainAxisAlignment: MainAxisAlignment.center,
+                  //    crossAxisAlignment: CrossAxisAlignment.center,
+                  //    children: [
+                  //      Flexible(
+                  //        child: mysignin(
+                  //          color: Color.fromARGB(255, 1, 70, 2),
+                  //          title: 'Urine',
+                  //          onPressed: () {
+                  //            Navigator.pushNamed(
+                  //                context, urineLabscreen.screenRoute);
+                  //          },
+                  //        ),
+                  //      ),
+                  //      sizedBoxWidth(width: 20),
+                  //      Flexible(
+                  //        child: mysignin(
+                  //          color: Color.fromARGB(255, 1, 70, 2),
+                  //          title: 'Stool',
+                  //          onPressed: () {
+                  //            Navigator.pushNamed(context, stoolLab.screenRoute);
+                  //          },
+                  //        ),
+                  //      ),
+                  //      sizedBoxWidth(width: 20),
+                  //      Flexible(
+                  //        child: mysignin(
+                  //          color: Color.fromARGB(255, 1, 70, 2),
+                  //          title: 'Blood',
+                  //          onPressed: () {
+                  //            Navigator.pushNamed(
+                  //                context, bloodLabScreen.screenRoute);
+                  //          },
+                  //        ),
+                  //      )
+                  //    ],
+                  //  ),
+                  //  sizedBoxhight(hight: 8),
 /////////////////////////////////////////
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Center(
                         child: Container(
-                          width: 270,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.grey,
-                          ),
-                          child: Column(
-                            children: [
-                              sizedBoxhight(hight: 10),
-                              Flexible(
-                                  flex: 3,
-                                  child: defultText(
-                                      data: 'Select patient do u need search for', c: Colors.black,x: 15)),
-                              sizedBoxhight(hight: 35),
-                              Flexible(
-                                flex: 1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Flexible(
-                                        flex: 1,
-                                        child: defultText(
-                                            data: 'Child', c: Colors.white)),
-                                    Flexible(
-                                        flex: 1,
-                                        child: Checkbox(
-                                            value: child,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                child = val!;
-                                                adult = false;
-                                                if (val) {
-                                                  selectedPatient="ch";
-                                                }
-                                              });
-                                            })),
-                                    Flexible(
-                                        flex: 1,
-                                        child: defultText(
-                                            data: 'Adult', c: Colors.white)),
-                                    Flexible(
-                                        flex: 1,
-                                        child: Checkbox(
-                                            value: adult,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                adult = val!;
-                                                child= false;
-                                                if (val) {
-                                                  selectedPatient="ad";
-                                                }
-                                              });
-                                            })),
-                                  ],
+                            width: 270,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.grey,
+                            ),
+                            child: Column(
+                              children: [
+                                sizedBoxhight(hight: 10),
+                                Flexible(
+                                    flex: 3,
+                                    child: defultText(
+                                        data:
+                                            'Select patient do u need search for',
+                                        c: Colors.black,
+                                        x: 15)),
+                                sizedBoxhight(hight: 35),
+                                Flexible(
+                                  flex: 1,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Flexible(
+                                          flex: 1,
+                                          child: defultText(
+                                              data: 'Child', c: Colors.white)),
+                                      Flexible(
+                                          flex: 1,
+                                          child: Checkbox(
+                                              value: child,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  child = val!;
+                                                  adult = false;
+                                                  if (val) {
+                                                    selectedPatient = "ch";
+                                                  }
+                                                });
+                                              })),
+                                      Flexible(
+                                          flex: 1,
+                                          child: defultText(
+                                              data: 'Adult', c: Colors.white)),
+                                      Flexible(
+                                          flex: 1,
+                                          child: Checkbox(
+                                              value: adult,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  adult = val!;
+                                                  child = false;
+                                                  if (val) {
+                                                    selectedPatient = "ad";
+                                                  }
+                                                });
+                                              })),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ),
+                              ],
+                            )),
                       )
                     ],
                   ),
@@ -284,249 +285,267 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                     children: [
                       Flexible(
                           flex: 1,
-                          child:
-
-                          selectedPatient=="ad"? StreamBuilder<QuerySnapshot<PatientAdultModel>>(
-                            stream:
-                                MyDataBase.getPatientAdult(codeController.text),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return CircularProgressIndicator();
-                              } else if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              } else if (!snapshot.hasData ||
-                                  snapshot.data!.docs.isEmpty) {
-                                return Text('No patient data found!');
-                              } else {
-                                // Access the first patient from the query snapshot
-                                //   List<PatientAdultModel> patientList =
-                                //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                                patientAd = snapshot.data!.docs[0].data();
-                                print("data ${patientAd.screening}");
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: MediaQuery.of(context).size.width*0.5,
-                                  height:  MediaQuery.of(context).size.height*0.15,
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                          child: selectedPatient == "ad"
+                              ? StreamBuilder<QuerySnapshot<PatientAdultModel>>(
+                                  stream: MyDataBase.getPatientAdult(
+                                      codeController.text),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return CircularProgressIndicator();
+                                    } else if (snapshot.hasError) {
+                                      return Text('Error: ${snapshot.error}');
+                                    } else if (!snapshot.hasData ||
+                                        snapshot.data!.docs.isEmpty) {
+                                      return Text('No patient data found!');
+                                    } else {
+                                      // Access the first patient from the query snapshot
+                                      //   List<PatientAdultModel> patientList =
+                                      //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                                      patientAd = snapshot.data!.docs[0].data();
+                                      print("data ${patientAd.screening}");
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.5,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.15,
+                                        child: Center(
+                                          child: Column(
                                             children: [
-                                              Flexible(
-                                                flex: 4,
-                                                child: defultText(
-                                                  data:
-                                                      "Patient’s Name: ${patientAd.nameAdultPatient}",
-                                                  c: Colors.black,
-                                                  x: 19,
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Flexible(
+                                                      flex: 4,
+                                                      child: defultText(
+                                                        data:
+                                                            "Patient’s Name: ${patientAd.nameAdultPatient}",
+                                                        c: Colors.black,
+                                                        x: 19,
+                                                      ),
+                                                    ),
+                                                    sizedBoxWidth(width: 150),
+                                                    Flexible(
+                                                      flex: 1,
+                                                      child: defultText(
+                                                        data:
+                                                            'Code: ${patientAd.codeAdultPatient}',
+                                                        c: Colors.black,
+                                                        x: 19,
+                                                      ),
+                                                    ),
+                                                    sizedBoxWidth(width: 50),
+                                                    Flexible(
+                                                      flex: 1,
+                                                      child: defultText(
+                                                        data:
+                                                            'Sex: ${patientAd.sexAdultPatient}',
+                                                        c: Colors.black,
+                                                        x: 19,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                              sizedBoxWidth(width: 150),
-                                              Flexible(
-                                                flex: 1,
-                                                child: defultText(
-                                                  data:
-                                                      'Code: ${patientAd.codeAdultPatient}',
-                                                  c: Colors.black,
-                                                  x: 19,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    flex: 4,
+                                                    child: defultText(
+                                                      data: patientAd
+                                                              .urineCheckIn!
+                                                          ? "Urine’s Check in : This patient is still checked in"
+                                                          : "Urine’s Check in : This patient checked out or not already chicked in ",
+                                                      c: Colors.black,
+                                                      x: 19,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                              sizedBoxWidth(width: 50),
-                                              Flexible(
-                                                flex: 1,
-                                                child: defultText(
-                                                  data:
-                                                      'Sex: ${patientAd.sexAdultPatient}',
-                                                  c: Colors.black,
-                                                  x: 19,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    flex: 4,
+                                                    child: defultText(
+                                                      data: patientAd
+                                                              .stoolCheckIn!
+                                                          ? "stool Check In : This patient is still checked in"
+                                                          : "stool Check In : This patient checked out or not already chicked in ",
+                                                      c: Colors.black,
+                                                      x: 19,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    flex: 4,
+                                                    child: defultText(
+                                                      data: patientAd
+                                                              .bloodCheckIn!
+                                                          ? "Blood’s Check in : This patient is still checked in"
+                                                          : "Blood’s Check in : This patient checked out or not already chicked in ",
+                                                      c: Colors.black,
+                                                      x: 19,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            Flexible(
-                                              flex: 4,
-                                              child: defultText(
-                                                data: patientAd.urineCheckIn!
-                                                    ? "Urine’s Check in : This patient is still checked in"
-                                                    : "Urine’s Check in : This patient checked out or not already chicked in ",
-                                                c: Colors.black,
-                                                x: 19,
-                                              ),
-                                            ),
-                                          ],
+                                      );
+                                    }
+                                  },
+                                )
+                              : StreamBuilder<QuerySnapshot<PatientChildModel>>(
+                                  stream: MyDataBase.getPatientChild(
+                                      codeController.text),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return CircularProgressIndicator();
+                                    } else if (snapshot.hasError) {
+                                      return Text('Error: ${snapshot.error}');
+                                    } else if (!snapshot.hasData ||
+                                        snapshot.data!.docs.isEmpty) {
+                                      return Text('No patient data found!');
+                                    } else {
+                                      // Access the first patient from the query snapshot
+                                      //   List<PatientAdultModel> patientList =
+                                      //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                                      patientCh = snapshot.data!.docs[0].data();
+                                      print("data ${patientAd.screening}");
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Flexible(
-                                              flex: 4,
-                                              child: defultText(
-                                                data: patientAd.stoolCheckIn!
-                                                    ? "stool Check In : This patient is still checked in"
-                                                    : "stool Check In : This patient checked out or not already chicked in ",
-                                                c: Colors.black,
-                                                x: 19,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            Flexible(
-                                              flex: 4,
-                                              child: defultText(
-                                                data: patientAd.bloodCheckIn!
-                                                    ? "Blood’s Check in : This patient is still checked in"
-                                                    : "Blood’s Check in : This patient checked out or not already chicked in ",
-                                                c: Colors.black,
-                                                x: 19,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
-                          )
-                              :  StreamBuilder<QuerySnapshot<PatientChildModel>>(
-                            stream:
-                            MyDataBase.getPatientChild(codeController.text),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return CircularProgressIndicator();
-                              } else if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              } else if (!snapshot.hasData ||
-                                  snapshot.data!.docs.isEmpty) {
-                                return Text('No patient data found!');
-                              } else {
-                                // Access the first patient from the query snapshot
-                                //   List<PatientAdultModel> patientList =
-                                //       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
-                                patientCh = snapshot.data!.docs[0].data();
-                                print("data ${patientAd.screening}");
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: MediaQuery.of(context).size.width*0.5,
-                                  height:  MediaQuery.of(context).size.height*0.15,
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.5,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.15,
+                                        child: Center(
+                                          child: Column(
                                             children: [
-                                              Flexible(
-                                                flex: 4,
-                                                child: defultText(
-                                                  data:
-                                                  "Patient’s Name: ${patientCh.nameChildPatient}",
-                                                  c: Colors.black,
-                                                  x: 19,
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Flexible(
+                                                      flex: 4,
+                                                      child: defultText(
+                                                        data:
+                                                            "Patient’s Name: ${patientCh.nameChildPatient}",
+                                                        c: Colors.black,
+                                                        x: 19,
+                                                      ),
+                                                    ),
+                                                    sizedBoxWidth(width: 300),
+                                                    Flexible(
+                                                      flex: 1,
+                                                      child: defultText(
+                                                        data:
+                                                            'Code: ${patientCh.codeChildPatient}',
+                                                        c: Colors.black,
+                                                        x: 19,
+                                                      ),
+                                                    ),
+                                                    sizedBoxWidth(width: 50),
+                                                    Flexible(
+                                                      flex: 1,
+                                                      child: defultText(
+                                                        data:
+                                                            'Sex: ${patientCh.sexChildPatient}',
+                                                        c: Colors.black,
+                                                        x: 19,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                              sizedBoxWidth(width: 300),
-                                              Flexible(
-                                                flex: 1,
-                                                child: defultText(
-                                                  data:
-                                                  'Code: ${patientCh.codeChildPatient}',
-                                                  c: Colors.black,
-                                                  x: 19,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    flex: 4,
+                                                    child: defultText(
+                                                      data: patientCh
+                                                              .urineCheckIn!
+                                                          ? "Urine’s Check in : This patient is still checked in"
+                                                          : "Urine’s Check in : This patient checked out or not already chicked in ",
+                                                      c: Colors.black,
+                                                      x: 19,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                              sizedBoxWidth(width: 50),
-                                              Flexible(
-                                                flex: 1,
-                                                child: defultText(
-                                                  data:
-                                                  'Sex: ${patientCh.sexChildPatient}',
-                                                  c: Colors.black,
-                                                  x: 19,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    flex: 4,
+                                                    child: defultText(
+                                                      data: patientCh
+                                                              .stoolCheckIn!
+                                                          ? "stool Check In : This patient is still checked in"
+                                                          : "stool Check In : This patient checked out or not already chicked in ",
+                                                      c: Colors.black,
+                                                      x: 19,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    flex: 4,
+                                                    child: defultText(
+                                                      data: patientCh
+                                                              .bloodCheckIn!
+                                                          ? "Blood’s Check in : This patient is still checked in"
+                                                          : "Blood’s Check in : This patient checked out or not already chicked in ",
+                                                      c: Colors.black,
+                                                      x: 19,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            Flexible(
-                                              flex: 4,
-                                              child: defultText(
-                                                data: patientCh.urineCheckIn!
-                                                    ? "Urine’s Check in : This patient is still checked in"
-                                                    : "Urine’s Check in : This patient checked out or not already chicked in ",
-                                                c: Colors.black,
-                                                x: 19,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Flexible(
-                                              flex: 4,
-                                              child: defultText(
-                                                data: patientCh.stoolCheckIn!
-                                                    ? "stool Check In : This patient is still checked in"
-                                                    : "stool Check In : This patient checked out or not already chicked in ",
-                                                c: Colors.black,
-                                                x: 19,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            Flexible(
-                                              flex: 4,
-                                              child: defultText(
-                                                data: patientCh.bloodCheckIn!
-                                                    ? "Blood’s Check in : This patient is still checked in"
-                                                    : "Blood’s Check in : This patient checked out or not already chicked in ",
-                                                c: Colors.black,
-                                                x: 19,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
-                          )
-                      ),
+                                      );
+                                    }
+                                  },
+                                )),
                     ],
                   ),
                   SizedBox(
@@ -656,13 +675,21 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                   //   width: double.infinity,
                   //   height: 30,
                   // ),
-                  Divider(height: 3,thickness: 4,color: Colors.lightGreenAccent,),
+                  Divider(
+                    height: 3,
+                    thickness: 4,
+                    color: Colors.lightGreenAccent,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 15,
                   ),
-                  Text("Adult Patient List",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-                  SizedBox(height: 8,),
+                  Text("Adult Patient List",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 8,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -746,7 +773,7 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                                           ?.copyWith(
                                                               color: Theme.of(
                                                                       context)
-                                                                  .accentColor,
+                                                                  .cardColor,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -843,7 +870,7 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                                           ?.copyWith(
                                                               color: Theme.of(
                                                                       context)
-                                                                  .accentColor,
+                                                                  .cardColor,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -956,13 +983,21 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                     height: 15,
                   ),
                   ///////////////////////////////////////////////////////
-                  Divider(height: 3,thickness: 4,color: Colors.lightGreenAccent,),
+                  Divider(
+                    height: 3,
+                    thickness: 4,
+                    color: Colors.lightGreenAccent,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 15,
                   ),
-                  Text("Child Patient List",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-                  SizedBox(height: 8,),
+                  Text("Child Patient List",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 8,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -990,7 +1025,8 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                       children: [
                                         SizedBox(height: offset.pixels),
                                         StreamBuilder(
-                                          stream: MyDataBase.getChildListUrine(true),
+                                          stream: MyDataBase.getChildListUrine(
+                                              true),
                                           builder: (context, snapshot) {
                                             if (snapshot.hasError) {
                                               return Center(
@@ -1046,7 +1082,7 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                                           ?.copyWith(
                                                               color: Theme.of(
                                                                       context)
-                                                                  .accentColor,
+                                                                  .cardColor,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -1087,7 +1123,8 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                       children: [
                                         SizedBox(height: offset.pixels),
                                         StreamBuilder(
-                                          stream: MyDataBase.getChildListBlood(true),
+                                          stream: MyDataBase.getChildListBlood(
+                                              true),
                                           builder: (context, snapshot) {
                                             if (snapshot.hasError) {
                                               return Center(
@@ -1143,7 +1180,7 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                                           ?.copyWith(
                                                               color: Theme.of(
                                                                       context)
-                                                                  .accentColor,
+                                                                  .cardColor,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -1184,7 +1221,8 @@ class _ChoseLabsScreenState extends State<ChoseLabsScreen> {
                                       children: [
                                         SizedBox(height: offset.pixels),
                                         StreamBuilder(
-                                          stream: MyDataBase.getChildListStool(true),
+                                          stream: MyDataBase.getChildListStool(
+                                              true),
                                           builder: (context, snapshot) {
                                             if (snapshot.hasError) {
                                               return Center(

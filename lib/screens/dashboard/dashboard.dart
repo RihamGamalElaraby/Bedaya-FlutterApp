@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../DateModels/PatientAdultModel.dart';
 import '../../DateModels/patient_childmodel.dart';
-import '../../network/my_database.dart';
 import '../../widgets/my_button.dart';
-import '../chat screens/chat_screen.dart';
 
 class DashboaedfirstScreen extends StatefulWidget {
   static const String screenRoute = 'dashboardfirst';
