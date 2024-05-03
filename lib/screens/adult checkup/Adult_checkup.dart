@@ -1129,7 +1129,8 @@ class _adultCheckupState extends State<adultCheckup> {
                         int? gravidano =
                             int.tryParse(gravideNumberController.text);
                         patientModel?.nameAdultPatient =
-                            patientNameController.text;
+                            patientNameController.text ??
+                                patientModel.nameAdultPatient;
                         patientModel?.chosenDay = selectedday;
                         patientModel?.nameAdultPatient =
                             patientNameController.text;
