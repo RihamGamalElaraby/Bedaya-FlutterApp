@@ -1,6 +1,7 @@
 import 'package:bedaya/DateModels/pharmacy_model.dart';
 
 class PatientChildModel {
+/////////////////////
   List<String>? IMfollowUPNEEDcheckup;
   List<String>? IMfollowUPNEEDdrugs;
   List<String>? IMfollowUPNEEDinvestigations;
@@ -15,8 +16,8 @@ class PatientChildModel {
   List<String>? ENTFollowupNeedinvestigations;
   List<String>? ENTFollowupNeedoperations;
   String? OphthalmologyFollowneedglasses;
-
   String? OphthalmologyFollowneedivestigations;
+////////////////////
 
   String? FollowerName;
 
@@ -43,6 +44,7 @@ class PatientChildModel {
   List<ComplaintsChildModel>? complaintsList;
   String? familyHistoryDMchild;
   String? similarConditionChild;
+
   List<String>? familyHistoryChild; //checkbox ma4y
 
   List<String>? pastHistoryChild;
@@ -896,12 +898,12 @@ class PatientChildModel {
           StoolOdour: json["StoolOdour"],
           wbcscontroller: json["wbcscontroller"],
           Rbcscontroller: json["Rbcscontroller"],
-      goHomeLabs:json["goHomeLabs"],
+          goHomeLabs: json["goHomeLabs"],
         );
 
   Map<String, dynamic> toFireStore() {
     return {
-      "goHomeLabs":goHomeLabs,
+      "goHomeLabs": goHomeLabs,
       "ENTFollowupNeedinvestigations": ENTFollowupNeedinvestigations,
       "ENTFollowupNeedoperations": ENTFollowupNeedoperations,
       "IMfollowUPNEEDcheckup": IMfollowUPNEEDcheckup,
