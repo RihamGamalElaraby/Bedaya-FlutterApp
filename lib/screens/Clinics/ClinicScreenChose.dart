@@ -1,8 +1,10 @@
 import 'package:bedaya/screens/Clinics/DentalClinicScreen.dart';
 import 'package:bedaya/screens/Clinics/DremaClinic.Dart.dart';
-import 'package:bedaya/screens/Clinics/IMClinicScreen.dart';
-import 'package:flutter/material.dart';
 import 'package:bedaya/screens/Clinics/ENTclinicScreen.dart';
+import 'package:bedaya/screens/Clinics/IMClinicScreen.dart';
+import 'package:bedaya/screens/Clinics/radiologyClinic.dart';
+import 'package:flutter/material.dart';
+
 import '../../widgets/appbar.dart';
 import '../../widgets/my_button.dart';
 import 'CardiologyClinicSreen.dart';
@@ -11,6 +13,7 @@ import 'OphthaClinicScreen.dart';
 import 'OrthoClinicScreen.dart';
 import 'PediatricsClinicScreen.dart';
 import 'SurgeryClinicScreen.dart';
+import 'familyMedicine.dart';
 
 class ClinicScreenChose extends StatefulWidget {
   static const String screenRoute = 'ClinicScreenChose';
@@ -25,15 +28,16 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          child: appBardefult(context: context,
-            data: 'Add Clinic',
-            icon: Icon(Icons.menu),
-          ),
-          preferredSize: Size(100, 50),
+      appBar: PreferredSize(
+        child: appBardefult(
+          context: context,
+          data: 'Add Clinic',
+          icon: Icon(Icons.menu),
         ),
-      body: SingleChildScrollView(child:
-        Padding(
+        preferredSize: Size(100, 50),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,13 +46,21 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('images/logo png.png', height: 150 , width: 100,),
+                  Image.asset(
+                    'images/logo png.png',
+                    height: 150,
+                    width: 100,
+                  ),
                   SizedBox(
                     height: 5,
                   ),
                   Text(
                     'Chose Clinic',
-                    style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold , fontSize: 18,),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
                 ],
               ),
@@ -64,13 +76,15 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'IM',
                       onPressed: () {
-                       Navigator.pushNamed(context, ClinicScreen.screenRoute);
+                        Navigator.pushNamed(context, ClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -89,7 +103,9 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -102,15 +118,18 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'Surgery',
                       onPressed: () {
-                       Navigator.pushNamed(context,  SurgeryClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, SurgeryClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     height: 50,
@@ -121,13 +140,16 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'Ophthalmology',
                       onPressed: () {
-                      Navigator.pushNamed(context, OphthaClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, OphthaClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -140,15 +162,18 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'Obs. &Gyn',
                       onPressed: () {
-                      Navigator.pushNamed(context, GynClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, GynClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     height: 50,
@@ -159,13 +184,16 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'ENT',
                       onPressed: () {
-                     Navigator.pushNamed(context, EntClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, EntClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -178,13 +206,16 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'Pediatrics',
                       onPressed: () {
-                        Navigator.pushNamed(context, PediatricsClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, PediatricsClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -197,13 +228,16 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'Derma',
                       onPressed: () {
-                    Navigator.pushNamed(context,  DermaClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, DermaClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -216,13 +250,16 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'Ortho',
                       onPressed: () {
-                      Navigator.pushNamed(context, OrthoClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, OrthoClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -235,17 +272,64 @@ class _ClinicScreenChoseState extends State<ClinicScreenChose> {
                       x: Colors.white,
                       title: 'Dental',
                       onPressed: () {
-                        Navigator.pushNamed(context, DentalClinicScreen.screenRoute);
+                        Navigator.pushNamed(
+                            context, DentalClinicScreen.screenRoute);
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5,),
-
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 50,
+                    width: 400,
+                    child: mysignin(
+                      color: Color.fromARGB(255, 1, 70, 2),
+                      size: 25,
+                      x: Colors.white,
+                      title: 'Family',
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, familyMedicineScreen.screenRoute);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 50,
+                    width: 400,
+                    child: mysignin(
+                      color: Color.fromARGB(255, 1, 70, 2),
+                      size: 25,
+                      x: Colors.white,
+                      title: 'Radiology',
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RadiologyClinicScreen.screenRoute);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
             ],
           ),
-        ),),
+        ),
+      ),
     );
   }
 }

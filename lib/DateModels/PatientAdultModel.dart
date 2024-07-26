@@ -1,5 +1,4 @@
 import 'package:bedaya/DateModels/pharmacy_model.dart';
-import 'package:bedaya/screens/Labs/urine%20lab/UrineLab_screen.dart';
 
 class PatientAdultModel {
   //folow up
@@ -101,6 +100,8 @@ class PatientAdultModel {
   String? reportPharma;
 
   String? reportCardiodiagnoses;
+  String? reportFamilydiagnoses;
+
   String? reportDentaldiagnoses;
   String? reportDermadiagnoses;
   String? reportentdiagnoses;
@@ -112,6 +113,8 @@ class PatientAdultModel {
   String? reportsurgerydiagnoses;
 
   //clinics start
+  List<String>? familydiagnoses;
+  List<String>? familyTreatment;
   List<String>? Cardiodiagnoses;
   List<String>? CardioTreatment;
   List<String>? Dentaldiagnoses;
@@ -254,8 +257,13 @@ class PatientAdultModel {
   String? bloodotherRheumatoidfactor;
   String? bloodotherCRP;
   String? bloodotherASOT;
+  List<String>? Radiologyiagnoses;
+  List<String>? Radiologytreatment;
+  String? reportRadiologydiagnoses;
 
   PatientAdultModel({
+    this.Radiologyiagnoses,
+    this.Radiologytreatment,
     this.ENTFollowupNeedinvestigations,
     this.ENTFollowupNeedoperations,
     this.IMfollowUPNEEDcheckup,
@@ -322,6 +330,7 @@ class PatientAdultModel {
     this.o2Saturationvital,
     this.ReferralOfConvoyClinics,
     this.followUp,
+    this.reportFamilydiagnoses,
     //personal data end
     this.goHomeLabs,
     this.reportFollowUp,
@@ -329,7 +338,6 @@ class PatientAdultModel {
     this.reportBlood,
     this.reportStool,
     this.reportUrine,
-
     this.reportCardiodiagnoses,
     this.reportDentaldiagnoses,
     this.reportDermadiagnoses,
@@ -340,7 +348,6 @@ class PatientAdultModel {
     this.reportorthodiagnoses,
     this.reportpeddiagnoses,
     this.reportsurgerydiagnoses,
-
     this.urlSurgeryTicket2,
     this.urlSurgeryTicket1,
     this.urlSurgerySonar,
@@ -350,8 +357,6 @@ class PatientAdultModel {
     this.urlImSheet2,
     this.urlImSheet1,
     this.urlGynWomen,
-
-
     this.urlTransImage,
     this.urlLowerImage,
     this.urlUpperImage,
@@ -472,6 +477,8 @@ class PatientAdultModel {
     this.surgeryTreatment,
     // clinic end
     //stool start
+    this.familyTreatment,
+    this.familydiagnoses,
     this.StoollabHpylori,
     this.Stoollabfecal,
     this.StoollabEhistoliticatrophozite,
@@ -497,6 +504,8 @@ class PatientAdultModel {
     this.StoolOdour,
     this.StoolWorm,
     this.wbcscontroller,
+    this.reportRadiologydiagnoses,
+
     //stool end
   });
 
@@ -504,7 +513,9 @@ class PatientAdultModel {
 
   PatientAdultModel.fromFireStore(Map<String, dynamic> json)
       : this(
-    reportFollowUp: json["reportFollowUp"],
+          reportRadiologydiagnoses: json["reportRadiologydiagnoses"],
+          reportFamilydiagnoses: json["reportFamilydiagnoses"],
+          reportFollowUp: json["reportFollowUp"],
           reportsurgerydiagnoses: json["reportsurgerydiagnoses"],
           reportCardiodiagnoses: json["reportCardiodiagnoses"],
           reportDentaldiagnoses: json["reportDentaldiagnoses"],
@@ -772,6 +783,12 @@ class PatientAdultModel {
           urineCheckIn: json["urineCheckIn"],
           //screnning end
           // ***************
+          familydiagnoses: json["familydiagnoses"] == null
+              ? null
+              : List<String>.from(json["familydiagnoses"]),
+          familyTreatment: json["familyTreatment"] == null
+              ? null
+              : List<String>.from(json["familyTreatment"]),
           orthodiagnoses: json["orthodiagnoses"] == null
               ? null
               : List<String>.from(json["orthodiagnoses"]),
@@ -833,6 +850,13 @@ class PatientAdultModel {
           surgeryTreatment: json["surgeryTreatment"] == null
               ? null
               : List<String>.from(json["surgeryTreatment"]),
+
+          Radiologyiagnoses: json["Radiologyiagnoses"] == null
+              ? null
+              : List<String>.from(json["Radiologyiagnoses"]),
+          Radiologytreatment: json["Radiologytreatment"] == null
+              ? null
+              : List<String>.from(json["Radiologytreatment"]),
           // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6
           consisteny: json["consisteny"],
           Stoollabblood: json["Stoollabblood"],
@@ -864,8 +888,13 @@ class PatientAdultModel {
 
   Map<String, dynamic> toFireStore() {
     return {
-      "goHomeLabs":goHomeLabs,
-      "reportFollowUp":reportFollowUp,
+      "Radiologyiagnoses": Radiologyiagnoses,
+      "Radiologytreatment": Radiologytreatment,
+      "reportFamilydiagnoses": reportFamilydiagnoses,
+      "familyTreatment": familyTreatment,
+      "familydiagnoses": familydiagnoses,
+      "goHomeLabs": goHomeLabs,
+      "reportFollowUp": reportFollowUp,
       "reportStool": reportStool,
       "reportPharma": reportPharma,
       "reportBlood": reportBlood,
@@ -893,7 +922,8 @@ class PatientAdultModel {
       "SurgeryFollowupNeeddesicion": SurgeryFollowupNeeddesicion,
       "SurgeryFollowupdontNeeddesicion": SurgeryFollowupdontNeeddesicion,
       "OphthalmologyFollowupNeeddesicion": OphthalmologyFollowupNeeddesicion,
-      "OphthalmologyFollowupdontNeeddesicion":
+      ""
+              "OphthalmologyFollowupdontNeeddesicion":
           OphthalmologyFollowupdontNeeddesicion,
       "GynFollowupNeedinvestigations": GynFollowupNeedinvestigations,
       "OphthalmologyFollowneedglasses": OphthalmologyFollowneedglasses,
@@ -901,6 +931,7 @@ class PatientAdultModel {
           OphthalmologyFollowneedivestigations,
       "FollowerName": FollowerName,
       "goHome": goHome,
+      "reportRadiologydiagnoses": reportRadiologydiagnoses,
       "communityDevelopment": communityDevelopment,
       "screening": screening,
       "idAdultPatient": idAdultPatient,
@@ -954,15 +985,15 @@ class PatientAdultModel {
       "followUp": followUp,
 
 // end >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    "urlSurgeryTicket2": urlSurgeryTicket2,
-      "urlSurgeryTicket1":urlSurgeryTicket1,
-      "urlSurgerySonar":urlSurgerySonar,
-      "urlRickets":urlRickets,
-      "urlOpthalmia":urlOpthalmia,
-      "urlImSheet2":urlImSheet2,
-      "urlImSheet1":urlImSheet1,
-      "urlGynWomen":urlGynWomen,
-      "urlBirthCertficate":urlBirthCertficate,
+      "urlSurgeryTicket2": urlSurgeryTicket2,
+      "urlSurgeryTicket1": urlSurgeryTicket1,
+      "urlSurgerySonar": urlSurgerySonar,
+      "urlRickets": urlRickets,
+      "urlOpthalmia": urlOpthalmia,
+      "urlImSheet2": urlImSheet2,
+      "urlImSheet1": urlImSheet1,
+      "urlGynWomen": urlGynWomen,
+      "urlBirthCertficate": urlBirthCertficate,
 
       "urlUpperImage": urlUpperImage,
       "urlTransImage": urlTransImage,

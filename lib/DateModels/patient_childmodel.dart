@@ -129,7 +129,8 @@ class PatientChildModel {
   String? reportBlood;
   String? reportStool;
   String? reportPharma;
-
+  String? reportFamilydiagnoses;
+  String? reportRadiologydiagnoses;
   String? reportCardiodiagnoses;
   String? reportDentaldiagnoses;
   String? reportDermadiagnoses;
@@ -162,6 +163,10 @@ class PatientChildModel {
   List<String>? pedTreatment;
   List<String>? surgerydiagnoses;
   List<String>? surgeryTreatment;
+  List<String>? familydiagnoses;
+  List<String>? familyTreatment;
+  List<String>? Radiologyiagnoses;
+  List<String>? Radiologytreatment;
 
   //clinic end
   // checkin
@@ -288,6 +293,10 @@ class PatientChildModel {
   String? bloodotherASOT;
 
   PatientChildModel({
+    this.Radiologyiagnoses,
+    this.Radiologytreatment,
+    this.reportRadiologydiagnoses,
+    this.reportFamilydiagnoses,
     this.ENTFollowupNeedinvestigations,
     this.ENTFollowupNeedoperations,
     this.IMfollowUPNEEDcheckup,
@@ -534,6 +543,8 @@ class PatientChildModel {
     this.StoolOdour,
     this.StoolWorm,
     this.wbcscontroller,
+    this.familyTreatment,
+    this.familydiagnoses,
     //stool end
   });
 
@@ -545,6 +556,8 @@ class PatientChildModel {
           reportBlood: json["reportBlood"],
           reportPharma: json["reportPharma"],
           reportStool: json["reportStool"],
+          reportRadiologydiagnoses: json["reportRadiologydiagnoses"],
+          reportFamilydiagnoses: json["reportFamilydiagnoses"],
 
           reportsurgerydiagnoses: json["reportsurgerydiagnoses"],
           reportCardiodiagnoses: json["reportCardiodiagnoses"],
@@ -634,6 +647,7 @@ class PatientChildModel {
           referralClinicsChild: json["referralClinicsChild"] == null
               ? null
               : List<String>.from(json["referralClinicsChild"]),
+
           placeChild: json["placeChild"],
           goHomeChild: json["goHomeChild"],
           antenatalHistDisease: json["antenatalHistDisease"],
@@ -708,7 +722,6 @@ class PatientChildModel {
           urlSurgerySonar: json["urlSurgerySonar"],
           urlSurgeryTicket1: json["urlSurgeryTicket1"],
           urlSurgeryTicket2: json["urlSurgeryTicket2"],
-
           bloodotherAlfafetoprotein: json["bloodotherAlfafetoprotein"],
           bloodotherAntiD: json["bloodotherAntiD"],
           bloodotherBHCG: json["bloodotherBHCG"],
@@ -871,6 +884,21 @@ class PatientChildModel {
           surgeryTreatment: json["surgeryTreatment"] == null
               ? null
               : List<String>.from(json["surgeryTreatment"]),
+
+          familydiagnoses: json["familydiagnoses"] == null
+              ? null
+              : List<String>.from(json["familydiagnoses"]),
+          familyTreatment: json["familyTreatment"] == null
+              ? null
+              : List<String>.from(json["familyTreatment"]),
+
+          Radiologyiagnoses: json["Radiologyiagnoses"] == null
+              ? null
+              : List<String>.from(json["Radiologyiagnoses"]),
+          Radiologytreatment: json["Radiologytreatment"] == null
+              ? null
+              : List<String>.from(json["Radiologytreatment"]),
+
           // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6
           consisteny: json["consisteny"],
           Stoollabblood: json["Stoollabblood"],
@@ -903,6 +931,8 @@ class PatientChildModel {
 
   Map<String, dynamic> toFireStore() {
     return {
+      "Radiologyiagnoses": Radiologyiagnoses,
+      "Radiologytreatment": Radiologytreatment,
       "goHomeLabs": goHomeLabs,
       "ENTFollowupNeedinvestigations": ENTFollowupNeedinvestigations,
       "ENTFollowupNeedoperations": ENTFollowupNeedoperations,
@@ -973,6 +1003,9 @@ class PatientChildModel {
       "pretermEduChild": pretermEduChild,
       "weekBirthMode": weekBirthMode,
       "nicuChild": nicuChild,
+      "reportFamilydiagnoses": reportFamilydiagnoses,
+      "reportRadiologydiagnoses": reportRadiologydiagnoses,
+
       "consanguinityChild": consanguinityChild,
       "familyHistoryChild": familyHistoryChild,
       "familyHistoryDMchild": familyHistoryDMchild,
@@ -1131,6 +1164,8 @@ class PatientChildModel {
       "pedTreatment": pedTreatment,
       "surgerydiagnoses": surgerydiagnoses,
       "surgeryTreatment": surgeryTreatment,
+      "familyTreatment": familyTreatment,
+      "familydiagnoses": familydiagnoses,
 
       "StoollabHpylori": StoollabHpylori,
       "Stoollabfecal": Stoollabfecal,
