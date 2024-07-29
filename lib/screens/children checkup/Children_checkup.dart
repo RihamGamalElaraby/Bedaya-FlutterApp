@@ -1,12 +1,11 @@
 import 'package:bedaya/DateModels/patient_childmodel.dart';
+import 'package:bedaya/component/component.dart';
 import 'package:bedaya/network/my_database.dart';
 import 'package:bedaya/screens/children%20checkup/Children_continue.dart';
-import 'package:bedaya/screens/children%20checkup/child_dash.dart';
-import 'package:flutter/material.dart';
 import 'package:bedaya/widgets/appbar.dart';
 import 'package:bedaya/widgets/my_button.dart';
 import 'package:bedaya/widgets/text_Filed.dart';
-import 'package:bedaya/component/component.dart';
+import 'package:flutter/material.dart';
 
 class childrenCheckup extends StatefulWidget {
   static const String screenRoute = 'childrenCheckup';
@@ -194,31 +193,35 @@ class _childrenCheckupState extends State<childrenCheckup> {
           selectedCheckboxesFamilyHistory.add("Genetic Disease");
         }
       }
-      MedicalController=TextEditingController(text: patientModel.pastHistMedicalChild);
-      AllergyController=TextEditingController(text: patientModel.pastHistAllergyChild);
-      ICUController=TextEditingController(text: patientModel.pastHistIcuChild);
-      SurgicalController=TextEditingController(text: patientModel.pastHistSurgicalChild);
-      BloodTransfusionController=TextEditingController(text: patientModel.pastHistBloodTransChild);
+      MedicalController =
+          TextEditingController(text: patientModel.pastHistMedicalChild);
+      AllergyController =
+          TextEditingController(text: patientModel.pastHistAllergyChild);
+      ICUController =
+          TextEditingController(text: patientModel.pastHistIcuChild);
+      SurgicalController =
+          TextEditingController(text: patientModel.pastHistSurgicalChild);
+      BloodTransfusionController =
+          TextEditingController(text: patientModel.pastHistBloodTransChild);
 
-      for(int i=0;i<patientModel.pastHistoryChild!.length;i++){
-        if(patientModel.pastHistoryChild![i]=="Blood Transfusion"){
-          BloodTransfusion=true;
+      for (int i = 0; i < patientModel.pastHistoryChild!.length; i++) {
+        if (patientModel.pastHistoryChild![i] == "Blood Transfusion") {
+          BloodTransfusion = true;
           selectedCheckboxesPastHistory.add("Blood Transfusion");
-        }else if(patientModel.pastHistoryChild![i]=="Surgical"){
-          Surgical=true;
+        } else if (patientModel.pastHistoryChild![i] == "Surgical") {
+          Surgical = true;
           selectedCheckboxesPastHistory.add("Surgical");
-        }else if(patientModel.pastHistoryChild![i]=="ICU"){
-          ICU=true;
+        } else if (patientModel.pastHistoryChild![i] == "ICU") {
+          ICU = true;
           selectedCheckboxesPastHistory.add("ICU");
-        }else if(patientModel.pastHistoryChild![i]=="Allergy"){
-          Allergy=true;
+        } else if (patientModel.pastHistoryChild![i] == "Allergy") {
+          Allergy = true;
           selectedCheckboxesPastHistory.add("Allergy");
-        }else if(patientModel.pastHistoryChild![i]=="Medical"){
-          Medical=true;
+        } else if (patientModel.pastHistoryChild![i] == "Medical") {
+          Medical = true;
           selectedCheckboxesPastHistory.add("Medical");
         }
       }
-
     }
     return Scaffold(
       appBar: PreferredSize(
@@ -384,7 +387,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                       });
                       if (val!) {
                         patientModel?.sexChildPatient = "female";
-                        sexPatient = "male";
+                        sexPatient = "female";
                       } else {
                         patientModel?.sexChildPatient = null;
                       }
@@ -1281,7 +1284,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                       pastHistory.addAll(selectedCheckboxesPastHistory);
                       selectedCheckboxesPastHistory.clear();
                       int? houseNumber = int.tryParse(houseNuPatient.text);
-                      int? age = int.tryParse(agePatient.text);
+                      // int? age = int.tryParse(agePatient.text);
                       int? mobile = int.tryParse(mobileNuPatient.text);
                       if (formKey.currentState!.validate()) {
                         PatientChildModel patient = PatientChildModel(
@@ -1290,7 +1293,7 @@ class _childrenCheckupState extends State<childrenCheckup> {
                           sexChildPatient: sexPatient,
                           codeChildPatient: codePatient.text,
                           houseNuChildPatient: houseNumber,
-                          ageChildPatient: age,
+                          ageChildPatient: agePatient.text,
                           fatherCccubationChild: fatherOcc.text,
                           mobileNuChildPatient: mobile,
                           fatherEduChild: educationLevelFather,
@@ -1338,32 +1341,38 @@ class _childrenCheckupState extends State<childrenCheckup> {
                     onPressed: () {
                       int? housn = int.tryParse(houseNuPatient.text);
                       int? mobilen = int.tryParse(mobileNuPatient.text);
-                      int? agen = int.tryParse(agePatient.text);
+                      // int? agen = int.tryParse(agePatient.text);
                       // int? abortionno = int.tryParse(abortionNumberController.text);
                       // int? gravidano = int.tryParse(gravideNumberController.text);
                       patientModel?.nameChildPatient = namePatient.text;
-                      patientModel?.codeChildPatient =codePatient.text;
+                      patientModel?.codeChildPatient = codePatient.text;
                       // patientModel?.sexAdultPatient = sex==null ?  patientModel.sexAdultPatient! : sex ;
                       patientModel?.houseNuChildPatient = housn;
                       patientModel?.mobileNuChildPatient = mobilen;
-                      patientModel?.ageChildPatient = agen;
+                      patientModel?.ageChildPatient = agePatient.text;
                       patientModel?.fatherCccubationChild = fatherOcc.text;
-                     patientModel?.orderOfBirthChild=orderOfBirthController.text;
-                     patientModel?.pretermEduChild=preTermchild.text;
-                     patientModel?.consanguinityChild=ConsanguinityChild.text;
-                      patientModel?.nicuChild=nicuChild.text;
-                      patientModel?.familyHistoryDMchild=dmChild.text;
-                      patientModel?.similarConditionChild=similarConditionChild.text;
-                      patientModel?.pastHistBloodTransChild=BloodTransfusionController.text;
-                      patientModel?.pastHistSurgicalChild=SurgicalController.text;
-                      patientModel?.pastHistAllergyChild=AllergyController.text;
-                      patientModel?.pastHistIcuChild=ICUController.text;
-                      patientModel?.pastHistMedicalChild=MedicalController.text;
+                      patientModel?.orderOfBirthChild =
+                          orderOfBirthController.text;
+                      patientModel?.pretermEduChild = preTermchild.text;
+                      patientModel?.consanguinityChild =
+                          ConsanguinityChild.text;
+                      patientModel?.nicuChild = nicuChild.text;
+                      patientModel?.familyHistoryDMchild = dmChild.text;
+                      patientModel?.similarConditionChild =
+                          similarConditionChild.text;
+                      patientModel?.pastHistBloodTransChild =
+                          BloodTransfusionController.text;
+                      patientModel?.pastHistSurgicalChild =
+                          SurgicalController.text;
+                      patientModel?.pastHistAllergyChild =
+                          AllergyController.text;
+                      patientModel?.pastHistIcuChild = ICUController.text;
+                      patientModel?.pastHistMedicalChild =
+                          MedicalController.text;
 
                       MyDataBase.updatePatientChild(patientModel!);
-                     // Navigator.pushNamed(context,ChildDash.screenRoute);
-                      Navigator.pushNamed(
-                          context, childrenContinue.screenRoute,
+                      // Navigator.pushNamed(context,ChildDash.screenRoute);
+                      Navigator.pushNamed(context, childrenContinue.screenRoute,
                           arguments: patientModel);
                     },
                   ),

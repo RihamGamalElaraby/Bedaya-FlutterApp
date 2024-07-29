@@ -28,7 +28,7 @@ class PatientChildModel {
   String? codeChildPatient;
   String? sexChildPatient;
   int? houseNuChildPatient;
-  int? ageChildPatient;
+  String? ageChildPatient;
   int? mobileNuChildPatient;
   String? fatherCccubationChild;
   String? fatherEduChild;
